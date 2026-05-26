@@ -1,0 +1,211 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+
+import { levels } from "../../data/levels.js";
+
+import {
+  getCollection,
+} from "astro:content";
+
+export async function getStaticPaths() {
+
+  return levels.map((level) => ({
+    params: {
+      id: level.id.toString(),
+    },
+    props: {
+      level,
+    },
+  }));
+}
+
+const { level } = Astro.props;
+
+const collections = {
+  1: "basic",
+  2: "chart",
+  3: "entry",
+  4: "technical",
+  5: "risk",
+  6: "mental",
+  7: "market",
+  8: "fundamental",
+  9: "analysis",
+  10: "style",
+  11: "advanced",
+  12: "operation",
+};
+
+const collectionName =
+  collections[level.id];
+
+const articles =
+  await getCollection(
+    collectionName
+  );
+
+const breadcrumbItems = [
+  {
+    label: "HOME",
+    href: "/fx-learning-rpg-site/",
+  },
+  {
+    label: `LEVEL ${level.id}`,
+    href: `/fx-learning-rpg-site/level/${level.id}/`,
+  },
+];
+---
+
+<BaseLayout
+  title={`LEVEL ${level.id} | ${level.title}`}
+  description={level.description}
+>
+
+  <main class="level-page">
+
+    <Breadcrumbs
+      items={breadcrumbItems}
+    />
+
+    <section class="level-hero">
+
+      <span>
+        LEVEL {level.id}
+      </span>
+
+      <h1>
+        {level.title}
+      </h1>
+
+      <p>
+        {level.description}
+      </p>
+
+    </section>
+
+    <section class="quest-section">
+
+      <h2>
+        QUEST LIST
+      </h2>
+
+      <div class="quest-grid">
+
+        {
+          articles.map((article) => (
+
+            <a
+              href={`/fx-learning-rpg-site/category/${collectionName}/${article.id.replace(".md", "")}`}
+              class="quest-card"
+            >
+
+              <span>
+                QUEST
+              </span>
+
+              <h3>
+                {article.data.title}
+              </h3>
+
+              <p>
+                {article.data.description}
+              </p>
+
+            </a>
+
+          ))
+        }
+
+      </div>
+
+    </section>
+
+  </main>
+
+</BaseLayout>
+
+<style>
+
+.level-page {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.level-hero {
+  margin-bottom: 3rem;
+}
+
+.level-hero span {
+  color: #60a5fa;
+  font-size: .9rem;
+}
+
+.level-hero h1 {
+  font-size: clamp(2rem,5vw,4rem);
+  margin: .5rem 0 1rem;
+}
+
+.level-hero p {
+  color: #9ca3af;
+  line-height: 1.8;
+}
+
+.quest-section h2 {
+  margin-bottom: 1.5rem;
+}
+
+.quest-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+  gap: 1rem;
+}
+
+.quest-card {
+  background:
+    linear-gradient(
+      180deg,
+      #111827,
+      #020617
+    );
+
+  border:
+    1px solid #1f2937;
+
+  border-radius: 18px;
+
+  padding: 1.5rem;
+
+  text-decoration: none;
+
+  transition: .2s ease;
+}
+
+.quest-card:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    #3b82f6;
+}
+
+.quest-card span {
+  color: #60a5fa;
+  font-size: .8rem;
+}
+
+.quest-card h3 {
+  color: #f9fafb;
+  margin: .7rem 0;
+}
+
+.quest-card p {
+  color: #9ca3af;
+  line-height: 1.7;
+}
+
+</style>

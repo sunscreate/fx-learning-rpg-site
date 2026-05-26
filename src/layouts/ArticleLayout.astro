@@ -1,0 +1,59 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import ArticleChartSection from "../components/ArticleChartSection.astro";
+
+const {
+  title,
+  description,
+  symbol = "OANDA:USDJPY",
+  interval = "60",
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+>
+
+  <article class="article-container">
+
+    <slot />
+
+    <ArticleChartSection
+      title="実戦チャート分析"
+      symbol={symbol}
+      interval={interval}
+    />
+
+  </article>
+
+</BaseLayout>
+
+<style>
+.article-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.article-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.article-container h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.article-container p,
+.article-container li {
+  line-height: 2;
+  color: #ddd;
+}
+
+.article-container ul,
+.article-container ol {
+  padding-left: 1.5rem;
+}
+</style>

@@ -1,0 +1,71 @@
+---
+const { items = [] } = Astro.props;
+
+const siteUrl = "https://sunscreate.github.io/fx-learning-rpg-site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.label,
+    item: item.href.startsWith("http")
+      ? item.href
+      : `${siteUrl}${item.href.replace("/fx-learning-rpg-site", "")}`,
+  })),
+};
+---
+
+<nav class="breadcrumbs" aria-label="パンくずリスト">
+  {items.map((item, index) => (
+    <>
+      {index < items.length - 1 ? (
+        <a href={item.href}>
+          {item.label}
+        </a>
+      ) : (
+        <span class="current">
+          {item.label}
+        </span>
+      )}
+
+      {index < items.length - 1 && (
+        <span class="separator">›</span>
+      )}
+    </>
+  ))}
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<style>
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #999;
+    flex-wrap: wrap;
+  }
+
+  .breadcrumbs a {
+    color: #58a6ff;
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  .breadcrumbs a:hover {
+    color: #79c0ff;
+  }
+
+  .separator {
+    color: #666;
+  }
+
+  .current {
+    color: #d1d5db;
+    font-weight: 600;
+  }
+</style>

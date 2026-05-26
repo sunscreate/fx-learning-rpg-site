@@ -1,0 +1,98 @@
+---
+const {
+  level = 1,
+  exp = 0,
+  nextExp = 100,
+  streak = 0,
+} = Astro.props;
+
+const titles = {
+  1: "Novice",
+  3: "Apprentice",
+  5: "Adventurer",
+  10: "Elite Trader",
+  15: "Market Knight",
+  20: "Guild Master",
+};
+
+let currentTitle = "Novice";
+
+Object.entries(titles).forEach(([lv, title]) => {
+  if (level >= Number(lv)) {
+    currentTitle = title;
+  }
+});
+---
+
+<section class="level-status">
+
+  <div class="status-header">
+    <h2>Guild Rank</h2>
+  </div>
+
+  <div class="status-grid">
+
+    <div class="status-card">
+      <span>LEVEL</span>
+      <strong>LV {level}</strong>
+    </div>
+
+    <div class="status-card">
+      <span>TITLE</span>
+      <strong>{currentTitle}</strong>
+    </div>
+
+    <div class="status-card">
+      <span>EXP</span>
+      <strong>{exp}</strong>
+    </div>
+
+    <div class="status-card">
+      <span>NEXT</span>
+      <strong>{nextExp}</strong>
+    </div>
+
+    <div class="status-card">
+      <span>STREAK</span>
+      <strong>🔥 {streak}</strong>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+.level-status {
+  margin-top: 2rem;
+}
+
+.status-header h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 1rem;
+}
+
+.status-card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.status-card span {
+  display: block;
+  color: #9ca3af;
+  font-size: .8rem;
+  margin-bottom: .4rem;
+}
+
+.status-card strong {
+  font-size: 1.2rem;
+  color: #f3f4f6;
+}
+</style>

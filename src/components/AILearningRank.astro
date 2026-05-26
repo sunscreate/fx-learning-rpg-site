@@ -1,0 +1,133 @@
+<section class="learning-rank">
+
+  <div class="rank-header">
+
+    <p class="eyebrow">
+      RANK SYSTEM
+    </p>
+
+    <h2>
+      AI学習ランク
+    </h2>
+
+  </div>
+
+  <div
+    id="rank-content"
+    class="rank-content"
+  ></div>
+
+</section>
+
+<script type="module">
+
+import {
+  getLearningData,
+} from "../utils/learningEngine.js";
+
+const data =
+  getLearningData();
+
+const viewed =
+  data.viewed.length;
+
+const completed =
+  data.completed.length;
+
+let rank =
+  "BEGINNER";
+
+let color =
+  "#9ca3af";
+
+if (viewed >= 10) {
+  rank = "QUESTER";
+  color = "#60a5fa";
+}
+
+if (completed >= 10) {
+  rank = "TRADER";
+  color = "#22c55e";
+}
+
+if (completed >= 30) {
+  rank = "STRATEGIST";
+  color = "#a855f7";
+}
+
+if (completed >= 60) {
+  rank = "MARKET MASTER";
+  color = "#f59e0b";
+}
+
+const el =
+  document.getElementById(
+    "rank-content"
+  );
+
+el.innerHTML = `
+
+  <div
+    class="rank-box"
+    style="border-color:${color}"
+  >
+
+    <p class="rank-label">
+      CURRENT RANK
+    </p>
+
+    <h3 style="color:${color}">
+      ${rank}
+    </h3>
+
+    <small>
+      閲覧QUEST:
+      ${viewed}
+      ／
+      完了QUEST:
+      ${completed}
+    </small>
+
+  </div>
+
+`;
+
+</script>
+
+<style>
+
+.learning-rank {
+  margin: 60px 0;
+}
+
+.rank-header {
+  margin-bottom: 24px;
+}
+
+.rank-box {
+  padding: 36px;
+
+  border-radius: 28px;
+
+  background: #111827;
+
+  border: 2px solid #374151;
+
+  text-align: center;
+}
+
+.rank-label {
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.rank-box h3 {
+  font-size: clamp(2rem, 6vw, 4rem);
+  margin-bottom: 16px;
+}
+
+.rank-box small {
+  color: #cbd5e1;
+}
+
+</style>

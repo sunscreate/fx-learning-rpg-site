@@ -1,0 +1,116 @@
+---
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+
+const {
+  title = "FX Quest Guild",
+  description = "FXをRPG感覚で体系的に学ぶ学習サイト",
+  image = "https://sunscreate.github.io/fx-learning-rpg-site/ogp.png",
+} = Astro.props;
+
+const canonicalUrl =
+  new URL(Astro.url.pathname, "https://sunscreate.github.io").toString();
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "FX Quest Guild",
+  url: "https://sunscreate.github.io/fx-learning-rpg-site/",
+  description,
+  potentialAction: {
+    "@type": "SearchAction",
+    target:
+      "https://sunscreate.github.io/fx-learning-rpg-site/search/?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+      name="description"
+      content={description}
+    />
+
+    <title>{title}</title>
+
+    <link
+      rel="canonical"
+      href={canonicalUrl}
+    />
+
+    <!-- OGP -->
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:title"
+      content={title}
+    />
+
+    <meta
+      property="og:description"
+      content={description}
+    />
+
+    <meta
+      property="og:image"
+      content={image}
+    />
+
+    <meta
+      property="og:url"
+      content={canonicalUrl}
+    />
+
+    <meta
+      property="og:site_name"
+      content="FX Quest Guild"
+    />
+
+    <!-- Twitter -->
+
+    <meta
+      name="twitter:card"
+      content="summary_large_image"
+    />
+
+    <meta
+      name="twitter:title"
+      content={title}
+    />
+
+    <meta
+      name="twitter:description"
+      content={description}
+    />
+
+    <meta
+      name="twitter:image"
+      content={image}
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteJsonLd)}
+    />
+  </head>
+
+  <body>
+    <slot />
+
+    <Footer />
+  </body>
+</html>

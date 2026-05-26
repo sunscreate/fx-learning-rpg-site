@@ -1,0 +1,99 @@
+---
+const {
+  title = "FXギルドへ参加する",
+  description = "環境認識・検証・QUEST攻略を共有できるDiscordコミュニティ。",
+  url = "#",
+} = Astro.props;
+---
+
+<section class="discord-cta">
+
+  <div>
+
+    <p class="discord-label">
+      GUILD SYSTEM
+    </p>
+
+    <h2>
+      {title}
+    </h2>
+
+    <p>
+      {description}
+    </p>
+
+  </div>
+
+  <a
+    href={url}
+    class="discord-button"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    ギルドに入る
+  </a>
+
+</section>
+
+<style>
+
+.discord-cta {
+  margin: 48px 0;
+  padding: 28px;
+  border-radius: 24px;
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #1e1b4b
+    );
+
+  border: 1px solid #6366f1;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.discord-label {
+  color: #818cf8;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.discord-cta h2 {
+  color: #f9fafb;
+  margin-bottom: 10px;
+}
+
+.discord-cta p {
+  color: #d1d5db;
+}
+
+.discord-button {
+  white-space: nowrap;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  background: #6366f1;
+
+  color: white;
+
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+  .discord-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+</style>

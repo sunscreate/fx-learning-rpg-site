@@ -1,0 +1,157 @@
+---
+
+---
+
+<section class="ai-analysis">
+
+  <div class="ai-analysis-header">
+
+    <p class="eyebrow">
+      AI LEARNING ANALYSIS
+    </p>
+
+    <h2>
+      学習分析
+    </h2>
+
+  </div>
+
+  <div id="ai-analysis-content">
+
+    <p>
+      学習データを分析中...
+    </p>
+
+  </div>
+
+</section>
+
+<script type="module">
+
+import {
+  getWeakTags,
+  getStrongLevels,
+} from "../utils/learningEngine.js";
+
+const weakTags =
+  getWeakTags();
+
+const strongLevels =
+  getStrongLevels();
+
+const el =
+  document.getElementById(
+    "ai-analysis-content"
+  );
+
+el.innerHTML = `
+  <div class="analysis-grid">
+
+    <div class="analysis-card">
+      <h3>
+        苦手タグ
+      </h3>
+
+      <div class="tag-list">
+        ${
+          weakTags.length
+          ?
+          weakTags.map((tag) =>
+            `<span>#${tag}</span>`
+          ).join("")
+          :
+          "<p>まだ分析データがありません</p>"
+        }
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>
+        学習傾向
+      </h3>
+
+      <div class="level-list">
+        ${
+          strongLevels.length
+          ?
+          strongLevels.map(([level, count]) =>
+            `<p>LEVEL ${level} : ${count} QUEST</p>`
+          ).join("")
+          :
+          "<p>まだ分析データがありません</p>"
+        }
+      </div>
+    </div>
+
+  </div>
+`;
+
+</script>
+
+<style>
+
+.ai-analysis {
+  margin: 60px 0;
+
+  padding: 32px;
+
+  border-radius: 24px;
+
+  background: #111827;
+
+  border: 1px solid #1f2937;
+}
+
+.ai-analysis-header {
+  margin-bottom: 24px;
+}
+
+.analysis-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px, 1fr)
+    );
+
+  gap: 20px;
+}
+
+.analysis-card {
+  padding: 24px;
+
+  border-radius: 20px;
+
+  background: #0f172a;
+
+  border: 1px solid #1e293b;
+}
+
+.analysis-card h3 {
+  color: white;
+  margin-bottom: 16px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-list span {
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background: #1e3a8a;
+
+  color: #bfdbfe;
+}
+
+.level-list p {
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+</style>

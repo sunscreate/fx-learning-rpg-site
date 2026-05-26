@@ -1,0 +1,182 @@
+---
+import { getCollection } from "astro:content";
+
+const collections = [
+  "basic",
+  "chart",
+  "entry",
+  "technical",
+  "risk",
+  "mental",
+  "market",
+  "fundamental",
+  "analysis",
+  "style",
+  "advanced",
+  "operation",
+];
+
+const allPosts = [];
+
+for (const collection of collections) {
+
+  const posts =
+    await getCollection(collection);
+
+  posts.forEach((post) => {
+
+    allPosts.push({
+      ...post,
+      collection,
+    });
+
+  });
+
+}
+---
+
+<section class="ai-recommend">
+
+  <div class="recommend-header">
+
+    <p class="eyebrow">
+      AI QUEST RECOMMEND
+    </p>
+
+    <h2>
+      AIおすすめQUEST
+    </h2>
+
+  </div>
+
+  <div
+    id="recommend-list"
+    class="recommend-grid"
+  ></div>
+
+</section>
+
+<script define:vars={{ allPosts }}>
+
+import {
+  getWeakTags,
+} from "../utils/learningEngine.js";
+
+const weakTags =
+  getWeakTags();
+
+const recommendList =
+  document.getElementById(
+    "recommend-list"
+  );
+
+let recommended = [];
+
+if (weakTags.length) {
+
+  recommended =
+    allPosts.filter((post) => {
+
+      const tags =
+        post.data.tags || [];
+
+      return tags.some((tag) =>
+        weakTags.includes(tag)
+      );
+
+    });
+
+}
+
+if (!recommended.length) {
+
+  recommended =
+    allPosts.slice(0, 6);
+
+}
+
+recommended =
+  recommended.slice(0, 6);
+
+recommendList.innerHTML =
+  recommended.map((post) => `
+
+    <a
+      href="/fx-learning-rpg-site/category/${post.collection}/${post.slug}/"
+      class="recommend-card"
+    >
+
+      <span>
+        LEVEL ${post.data.level}
+      </span>
+
+      <h3>
+        ${post.data.title}
+      </h3>
+
+      <p>
+        ${post.data.description}
+      </p>
+
+    </a>
+
+  `).join("");
+
+</script>
+
+<style>
+
+.ai-recommend {
+  margin: 60px 0;
+}
+
+.recommend-header {
+  margin-bottom: 24px;
+}
+
+.recommend-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(240px, 1fr)
+    );
+
+  gap: 20px;
+}
+
+.recommend-card {
+  display: block;
+
+  padding: 24px;
+
+  border-radius: 20px;
+
+  background: #111827;
+
+  border: 1px solid #1f2937;
+
+  text-decoration: none;
+}
+
+.recommend-card:hover {
+  border-color: #2563eb;
+}
+
+.recommend-card span {
+  color: #60a5fa;
+  font-size: 13px;
+}
+
+.recommend-card h3 {
+  color: white;
+  margin: 10px 0;
+}
+
+.recommend-card p {
+  color: #9ca3af;
+  line-height: 1.7;
+}
+
+</style>

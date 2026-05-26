@@ -1,0 +1,101 @@
+---
+const {
+  title = "さらに深く学ぶ",
+  description = "QUESTの続きを、note教材で体系的に学習できます。",
+  url = "#",
+} = Astro.props;
+---
+
+<section class="note-cta">
+
+  <div>
+
+    <p class="note-label">
+      ADVANCED QUEST
+    </p>
+
+    <h2>
+      {title}
+    </h2>
+
+    <p>
+      {description}
+    </p>
+
+  </div>
+
+  <a
+    href={url}
+    class="note-button"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    note教材を見る
+  </a>
+
+</section>
+
+<style>
+
+.note-cta {
+  margin: 48px 0;
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #3f1d2e
+    );
+
+  border: 1px solid #ec4899;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.note-label {
+  color: #f9a8d4;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.note-cta h2 {
+  color: #f9fafb;
+  margin-bottom: 10px;
+}
+
+.note-cta p {
+  color: #d1d5db;
+}
+
+.note-button {
+  white-space: nowrap;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  background: #ec4899;
+
+  color: white;
+
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+  .note-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+</style>

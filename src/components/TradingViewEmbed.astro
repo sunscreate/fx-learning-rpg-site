@@ -1,0 +1,44 @@
+---
+const {
+  symbol = "OANDA:USDJPY",
+  interval = "60",
+  height = 500,
+} = Astro.props;
+---
+
+<div class="tradingview-widget-container">
+
+  <div
+    class="tradingview-widget-container__widget"
+  ></div>
+
+  <script
+    type="text/javascript"
+    src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+    async
+  >
+{
+  "autosize": true,
+  "symbol": "${symbol}",
+  "interval": "${interval}",
+  "timezone": "Asia/Tokyo",
+  "theme": "dark",
+  "style": "1",
+  "locale": "ja",
+  "allow_symbol_change": true,
+  "support_host": "https://www.tradingview.com",
+  "height": ${height}
+}
+  </script>
+
+</div>
+
+<style>
+.tradingview-widget-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #222;
+}
+</style>

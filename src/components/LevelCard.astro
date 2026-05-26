@@ -1,0 +1,28 @@
+---
+const {
+  level,
+} = Astro.props;
+---
+
+<div class="level-card">
+
+  <span>
+    LEVEL {level.id}
+  </span>
+
+  <h3>
+    {level.title}
+  </h3>
+
+  <p>
+    {level.description}
+  </p>
+
+  <a
+    class="quest-start-btn"
+    href={`/fx-learning-rpg-site/level/${level.id}`}
+  >
+    QUEST開始 →
+  </a>
+
+</div>

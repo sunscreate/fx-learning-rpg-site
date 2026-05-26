@@ -1,0 +1,122 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import Header from "../../components/Header.astro";
+import { getCollection } from "astro:content";
+
+const collectionNames = [
+  "basic",
+  "chart",
+  "entry",
+  "technical",
+  "risk",
+  "mental",
+  "market",
+  "fundamental",
+  "analysis",
+  "style",
+  "advanced",
+  "operation",
+  "ea",
+  "glossary",
+];
+
+const allPosts = await Promise.all(
+  collectionNames.map((name) => getCollection(name))
+);
+
+const posts = allPosts
+  .flat()
+  .sort((a, b) => {
+    if (a.data.level !== b.data.level) return a.data.level - b.data.level;
+    return a.data.order - b.data.order;
+  });
+---
+
+<BaseLayout
+  title="記事一覧｜FX Quest Guild"
+  description="FX学習記事一覧"
+>
+  <Header />
+
+  <main>
+    <section class="section">
+      <div class="badge">ARTICLE DATABASE</div>
+
+      <h1>記事一覧</h1>
+
+      <div class="post-list">
+        {posts.map((post) => (
+          <a class="post-card" href={`/fx-learning-rpg-site/category/${post.collection}/${post.slug}/`}>
+            <span>LEVEL {post.data.level}</span>
+
+            <h2>{post.data.title}</h2>
+
+            <p>{post.data.description}</p>
+
+            <div class="tags">
+              {post.data.tags.map((tag) => (
+                <small>{tag}</small>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 54px;
+    margin: 24px 0 40px;
+  }
+
+  .post-list {
+    display: grid;
+    gap: 18px;
+  }
+
+  .post-card {
+    background: linear-gradient(180deg, var(--panel-light), var(--panel));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    transition: 0.2s;
+  }
+
+  .post-card:hover {
+    border-color: rgba(78,161,255,0.5);
+    transform: translateY(-3px);
+  }
+
+  .post-card span {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .post-card h2 {
+    margin: 12px 0;
+  }
+
+  .post-card p {
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+
+  .tags small {
+    background: rgba(78,161,255,0.1);
+    border: 1px solid rgba(78,161,255,0.2);
+    padding: 6px 10px;
+    border-radius: 999px;
+    color: var(--blue);
+  }
+</style>

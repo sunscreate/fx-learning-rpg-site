@@ -1,0 +1,60 @@
+---
+const {
+  symbol = "FX:USDJPY",
+  height = 500,
+} = Astro.props;
+---
+
+<div class="tv-widget">
+
+  <div
+    class="tradingview-widget-container"
+  >
+    <div
+      class="tradingview-widget-container__widget"
+    ></div>
+
+    <script
+      type="text/javascript"
+      src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
+      async
+    >
+      {
+        JSON.stringify({
+          autosize: true,
+          symbol,
+          interval: "60",
+          timezone: "Asia/Tokyo",
+          theme: "dark",
+          style: "1",
+          locale: "ja",
+          enable_publishing: false,
+          allow_symbol_change: true,
+          hide_top_toolbar: false,
+          hide_legend: false,
+          save_image: false,
+          studies: [
+            "MASimple@tv-basicstudies",
+            "RSI@tv-basicstudies",
+          ],
+        })
+      }
+    </script>
+
+  </div>
+
+</div>
+
+<style>
+.tv-widget {
+  margin: 40px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #1f2937;
+  background: #111827;
+}
+
+.tradingview-widget-container {
+  height: 500px;
+}
+</style>

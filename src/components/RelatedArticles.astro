@@ -1,0 +1,115 @@
+---
+import { getCollection } from "astro:content";
+
+const {
+  currentSlug,
+  currentLevel,
+} = Astro.props;
+
+const collections = [
+  "basic",
+  "chart",
+  "entry",
+  "technical",
+  "risk",
+  "mental",
+  "market",
+  "fundamental",
+  "analysis",
+  "style",
+  "advanced",
+  "operation",
+];
+
+let allPosts = [];
+
+for (const collection of collections) {
+  const posts =
+    await getCollection(collection);
+
+  allPosts.push(...posts);
+}
+
+const relatedPosts = allPosts
+  .filter((post) => {
+    return (
+      post.slug !== currentSlug &&
+      post.data.level === currentLevel
+    );
+  })
+  .slice(0, 3);
+---
+
+{
+  relatedPosts.length > 0 && (
+    <section class="related-section">
+      <h2>Related QUESTS</h2>
+
+      <div class="related-grid">
+        {relatedPosts.map((post) => (
+          <a
+            href={`/category/${post.collection}/${post.slug}`}
+            class="related-card"
+          >
+            <span>
+              LEVEL {post.data.level}
+            </span>
+
+            <h3>{post.data.title}</h3>
+
+            <p>
+              {post.data.description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .related-section {
+    margin-top: 64px;
+  }
+
+  .related-section h2 {
+    margin-bottom: 24px;
+    font-size: 28px;
+    color: #f9fafb;
+  }
+
+  .related-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .related-card {
+    display: block;
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 18px;
+    padding: 24px;
+    transition: 0.25s;
+  }
+
+  .related-card:hover {
+    transform: translateY(-4px);
+    border-color: #00ff99;
+  }
+
+  .related-card span {
+    color: #00ff99;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .related-card h3 {
+    margin: 12px 0;
+    color: #f9fafb;
+  }
+
+  .related-card p {
+    color: #9ca3af;
+    line-height: 1.7;
+  }
+</style>

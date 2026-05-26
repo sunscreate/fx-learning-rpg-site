@@ -1,0 +1,89 @@
+---
+import {
+  getCurrentLevel,
+  getNextLevelExp,
+  getLevelProgress,
+} from "../utils/levelCalc";
+
+const {
+  exp = 0,
+} = Astro.props;
+
+const level =
+  getCurrentLevel(exp);
+
+const nextExp =
+  getNextLevelExp(level);
+
+const progress =
+  getLevelProgress(exp);
+---
+
+<div class="exp-bar-card">
+  <div class="exp-header">
+    <span>LV {level}</span>
+    <span>{exp} EXP</span>
+  </div>
+
+  <div class="exp-bar">
+    <div
+      class="exp-fill"
+      style={`width: ${progress}%`}
+    ></div>
+  </div>
+
+  <div class="exp-footer">
+    NEXT {nextExp} EXP
+  </div>
+</div>
+
+<style>
+  .exp-bar-card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 24px 0;
+    box-shadow:
+      0 0 20px rgba(0,255,170,0.08);
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #f3f4f6;
+  }
+
+  .exp-bar {
+    width: 100%;
+    height: 18px;
+    background: #1f2937;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .exp-fill {
+    height: 100%;
+    background:
+      linear-gradient(
+        90deg,
+        #00ff99,
+        #00ccff
+      );
+
+    border-radius: 999px;
+
+    transition: width 0.4s ease;
+
+    box-shadow:
+      0 0 12px rgba(0,255,170,0.5);
+  }
+
+  .exp-footer {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+</style>

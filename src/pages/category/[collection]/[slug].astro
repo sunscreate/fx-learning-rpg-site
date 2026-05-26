@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from "astro:content";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+
+export async function getStaticPaths() {
+  const collections = [
+    "basic",
+    "chart",
+    "entry",
+    "technical",
+    "risk",
+    "mental",
+    "market",
+    "fundamental",
+    "analysis",
+    "style",
+    "advanced",
+    "operation",
+    "ea",
+    "glossary",
+  ];
+
+  const paths = [];
+
+  for (const collectionName of collections) {
+    const collection = await getCollection(collectionName);
+
+    collection.forEach((entry) => {
+      const slug = entry.slug || entry.id.replace(/\.md$/, "");
+
+      paths.push({
+        params: {
+          collection: collectionName,
+          slug,
+        },
+        props: {
+          entry,
+        },
+      });
+    });
+  }
+
+  return paths;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ArticleLayout
+  title={entry.data.title}
+  description={entry.data.description}
+>
+  <Content />
+</ArticleLayout>

@@ -1,0 +1,139 @@
+---
+const { levels = [] } = Astro.props;
+---
+
+<section class="skill-tree">
+
+  <div class="tree-header">
+    <div class="badge">SKILL TREE</div>
+    <h2>冒険者スキルツリー</h2>
+
+    <p>
+      LEVELを進めながら、
+      新しいスキルを解放していこう。
+    </p>
+  </div>
+
+  <div class="tree-grid">
+    {levels.map((level) => (
+      <a
+        href={`/level/${level.id}`}
+        class="tree-node"
+      >
+        <div class="node-level">
+          LEVEL {level.id}
+        </div>
+
+        <h3>{level.title}</h3>
+
+        <p>{level.desc}</p>
+      </a>
+    ))}
+  </div>
+
+</section>
+
+<style>
+  .skill-tree {
+    margin-top: 80px;
+  }
+
+  .tree-header {
+    margin-bottom: 32px;
+  }
+
+  .tree-header h2 {
+    margin: 12px 0;
+    font-size: 40px;
+  }
+
+  .tree-header p {
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .tree-grid {
+    display: grid;
+
+    grid-template-columns:
+      repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 22px;
+  }
+
+  .tree-node {
+    position: relative;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(25,25,35,.95),
+        rgba(12,12,18,.95)
+      );
+
+    border:
+      1px solid rgba(88,166,255,.18);
+
+    border-radius: 18px;
+
+    padding: 24px;
+
+    overflow: hidden;
+
+    transition: .25s ease;
+
+    box-shadow:
+      0 0 24px rgba(88,166,255,.05);
+  }
+
+  .tree-node:hover {
+    transform: translateY(-6px);
+
+    border-color:
+      rgba(88,166,255,.5);
+
+    box-shadow:
+      0 0 40px rgba(88,166,255,.15);
+  }
+
+  .tree-node::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+      radial-gradient(
+        circle at top right,
+        rgba(88,166,255,.15),
+        transparent 50%
+      );
+
+    pointer-events: none;
+  }
+
+  .node-level {
+    color: var(--gold);
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    margin-bottom: 10px;
+  }
+
+  .tree-node h3 {
+    margin-bottom: 10px;
+
+    font-size: 20px;
+  }
+
+  .tree-node p {
+    color: var(--muted);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+  }
+</style>

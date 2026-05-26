@@ -1,0 +1,112 @@
+<header class="header">
+  <div class="header-inner">
+
+    <a
+      class="logo"
+      href="/fx-learning-rpg-site/"
+    >
+      <span class="logo-icon">⚔️</span>
+
+      <div>
+        <strong>FX Quest Guild</strong>
+        <p>FX Learning RPG</p>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a href="/fx-learning-rpg-site/">ホーム</a>
+      <a href="/fx-learning-rpg-site/level/1/">LEVEL</a>
+      <a href="/fx-learning-rpg-site/category/">カテゴリ</a>
+      <a href="/fx-learning-rpg-site/tag/">タグ</a>
+      <a href="/fx-learning-rpg-site/tag/">タグ</a>
+      <a href="/fx-learning-rpg-site/search/">検索</a>
+      <a href="#" class="nav-cta">LINE</a>
+    </nav>
+
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(7, 10, 15, 0.82);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .header-inner {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo-icon {
+    font-size: 28px;
+  }
+
+  .logo strong {
+    display: block;
+    font-size: 18px;
+  }
+
+  .logo p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .nav {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav a {
+    color: var(--muted);
+    font-size: 14px;
+    transition: 0.2s;
+    text-decoration: none;
+  }
+
+  .nav a:hover {
+    color: var(--blue);
+  }
+
+  .nav-cta {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #22c55e;
+    color: #052e16 !important;
+    font-weight: 800;
+  }
+
+  @media (max-width: 768px) {
+    .header-inner {
+      align-items: flex-start;
+      flex-direction: column;
+      padding: 14px 0;
+    }
+
+    .nav {
+      justify-content: flex-start;
+      gap: 14px;
+    }
+  }
+</style>

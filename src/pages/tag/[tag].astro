@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+import {
+  getAllTags,
+  getTagSlug,
+} from "../../utils/getAllTags.js";
+
+export async function getStaticPaths() {
+  const collections = [
+    "basic",
+    "chart",
+    "entry",
+    "technical",
+    "risk",
+    "mental",
+    "market",
+    "fundamental",
+    "analysis",
+    "style",
+    "advanced",
+    "operation",
+    "ea",
+    "glossary",
+  ];
+
+  const allPosts = [];
+
+  for (const collection of collections) {
+    try {
+      const posts = await getCollection(collection);
+
+      posts.forEach((post) => {
+        allPosts.push({
+          ...post,
+          collection,
+        });
+      });
+    } catch (error) {
+      // empty collection
+    }
+  }
+
+  const tagMap = getAllTags(allPosts);
+  const slugMap = new Map();
+
+  for (const [tag, posts] of tagMap.entries()) {
+    const slug = getTagSlug(tag);
+
+    if (!slugMap.has(slug)) {
+      slugMap.set(slug, {
+        tag,
+        posts,
+      });
+    } else {
+      const current = slugMap.get(slug);
+
+      slugMap.set(slug, {
+        tag: current.tag,
+        posts: [...current.posts, ...posts],
+      });
+    }
+  }
+
+  return [...slugMap.entries()].map(([slug, data]) => ({
+    params: {
+      tag: slug,
+    },
+    props: {
+      tag: data.tag,
+      posts: data.posts,
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+
+const pageTitle = `#${tag} のFX学習記事一覧｜FX Quest Guild`;
+const pageDescription = `${tag} に関連するFX学習記事一覧ページです。`;
+
+const breadcrumbItems = [
+  {
+    label: "HOME",
+    href: "/fx-learning-rpg-site/",
+  },
+  {
+    label: "タグ一覧",
+    href: "/fx-learning-rpg-site/tag/",
+  },
+  {
+    label: `#${tag}`,
+    href: `/fx-learning-rpg-site/tag/${getTagSlug(tag)}/`,
+  },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+>
+  <main class="tag-page">
+
+    <Breadcrumbs
+      items={breadcrumbItems}
+    />
+
+    <section class="tag-hero">
+      <p class="eyebrow">TAG QUEST</p>
+
+      <h1>#{tag}</h1>
+
+      <p>
+        {tag} に関連するQUEST一覧です。
+      </p>
+
+      <a
+        class="search-link"
+        href={`/fx-learning-rpg-site/search/?q=${tag}`}
+      >
+        「{tag}」を検索でさらに探す →
+      </a>
+    </section>
+
+    <section class="tag-article-list">
+      {posts.map((post) => (
+        <article class="tag-article-card">
+          <p class="level-label">
+            LEVEL {post.data.level}
+          </p>
+
+          <h2>
+            <a href={`/fx-learning-rpg-site/category/${post.collection}/${post.slug}/`}>
+              {post.data.title}
+            </a>
+          </h2>
+
+          <p>
+            {post.data.description}
+          </p>
+
+          <div class="tag-list">
+            {(post.data.tags || []).map((item) => (
+              <a href={`/fx-learning-rpg-site/tag/${getTagSlug(item)}/`}>
+                #{item}
+              </a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  .tag-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  .tag-hero {
+    margin-bottom: 40px;
+  }
+
+  .tag-hero h1 {
+    font-size: 44px;
+    color: #f9fafb;
+  }
+
+  .tag-article-list {
+    display: grid;
+    gap: 20px;
+  }
+
+  .tag-article-card {
+    padding: 24px;
+    border-radius: 20px;
+    background: #111827;
+    border: 1px solid #1f2937;
+  }
+
+  .tag-article-card h2 {
+    margin: 10px 0;
+  }
+
+  .tag-article-card a {
+    color: #93c5fd;
+    text-decoration: none;
+  }
+
+  .level-label {
+    color: #00ffcc;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .tag-list a {
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: #1f2937;
+    color: #93c5fd;
+    font-size: 13px;
+  }
+
+  .search-link {
+    display: inline-flex;
+    margin-top: 20px;
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .search-link:hover {
+    color: #93c5fd;
+  }
+</style>

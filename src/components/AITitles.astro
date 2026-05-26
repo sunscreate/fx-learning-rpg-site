@@ -1,0 +1,137 @@
+<section class="ai-titles">
+
+  <div class="titles-header">
+
+    <p class="eyebrow">
+      TITLE SYSTEM
+    </p>
+
+    <h2>
+      AI称号
+    </h2>
+
+  </div>
+
+  <div
+    id="titles-grid"
+    class="titles-grid"
+  ></div>
+
+</section>
+
+<script type="module">
+
+import {
+  getLearningData,
+} from "../utils/learningEngine.js";
+
+const data =
+  getLearningData();
+
+const viewed =
+  data.viewed.length;
+
+const completed =
+  data.completed.length;
+
+const titles = [];
+
+if (viewed >= 1) {
+  titles.push("QUEST開始者");
+}
+
+if (viewed >= 10) {
+  titles.push("チャート観測者");
+}
+
+if (completed >= 5) {
+  titles.push("FX見習い");
+}
+
+if (completed >= 15) {
+  titles.push("環境認識者");
+}
+
+if (completed >= 30) {
+  titles.push("テクニカル分析官");
+}
+
+if (completed >= 50) {
+  titles.push("ギルド戦略家");
+}
+
+if (completed >= 80) {
+  titles.push("マーケットマスター");
+}
+
+const grid =
+  document.getElementById(
+    "titles-grid"
+  );
+
+grid.innerHTML = `
+
+  ${
+    titles.length
+    ?
+    titles.map((title) => `
+
+      <div class="title-card">
+
+        <p>
+          ${title}
+        </p>
+
+      </div>
+
+    `).join("")
+    :
+    `
+      <p class="empty-text">
+        まだ称号がありません
+      </p>
+    `
+  }
+
+`;
+
+</script>
+
+<style>
+
+.ai-titles {
+  margin: 60px 0;
+}
+
+.titles-header {
+  margin-bottom: 24px;
+}
+
+.titles-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.title-card {
+  padding: 14px 20px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #1e3a8a,
+      #7c3aed
+    );
+
+  color: white;
+
+  font-weight: 700;
+}
+
+.empty-text {
+  color: #9ca3af;
+}
+
+</style>

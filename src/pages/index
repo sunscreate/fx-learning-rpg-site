@@ -1,0 +1,273 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import ProgressHUD from "../components/ProgressHUD.astro";
+
+import DashboardClient from "../components/dashboard/DashboardClient.jsx";
+import QuestProgress from "../components/QuestProgress.jsx";
+import LevelCard from "../components/LevelCard.jsx";
+import AIQuestAdvisor from "../components/AIQuestAdvisor.jsx";
+import AIAnalysisPanel from "../components/AIAnalysisPanel.astro";
+import AIRecommendedQuests from "../components/AIRecommendedQuests.astro";
+import AIPlayerProfile from "../components/AIPlayerProfile.astro";
+import AIStreakMission from "../components/AIStreakMission.astro";
+import AILearningRank from "../components/AILearningRank.astro";
+import AITitles from "../components/AITitles.astro";
+import AICompletionRate from "../components/AICompletionRate.astro";
+import AIRoadmap from "../components/AIRoadmap.astro";
+import AIEducationOS from "../components/AIEducationOS.astro";
+import SkillTreeV2 from "../components/SkillTreeV2.jsx";
+import LevelUpModal from "../components/LevelUpModal.jsx";
+import SaveToast from "../components/SaveToast.jsx";
+
+import { levels } from "../data/levels.js";
+---
+
+<BaseLayout
+  title="FX Quest Guild｜FXをRPG感覚で学ぶ"
+  description="FX初心者から上級者まで、RPGのクエスト形式で体系的に学べるFX学習サイト。"
+>
+
+  <Header />
+
+  <main class="container">
+
+    <DashboardClient client:load />
+
+<LevelUpModal client:load />
+<SaveToast client:load />
+
+    
+<QuestProgress client:load />
+
+
+<AIQuestAdvisor client:load />
+
+<AIAnalysisPanel />
+
+<AIRecommendedQuests />
+
+<AIPlayerProfile />
+
+<AIStreakMission />
+
+<AILearningRank />
+
+<AITitles />
+
+<AICompletionRate />
+
+<AIRoadmap />
+
+<AIEducationOS />
+
+<SkillTreeV2 client:load />
+
+
+
+
+
+    <section class="hero">
+
+      <h1>
+        FX Quest Guild
+      </h1>
+
+      <p>
+        FXをRPG感覚で学ぶ
+        次世代教育プラットフォーム
+      </p>
+
+    </section>
+
+    <ProgressHUD
+      level={4}
+      current={18}
+      total={29}
+    />
+
+
+    <section class="levels-section">
+
+      <h2>
+        LEVEL QUEST
+      </h2>
+
+      <div class="levels-grid">
+
+{
+  levels.map((level) => (
+
+    <LevelCard
+      level={level}
+      client:load
+    />
+
+  ))
+}
+
+      </div>
+
+    </section>
+
+  </main>
+
+</BaseLayout>
+
+<style>
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 4rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  color: #9ca3af;
+  font-size: 1.1rem;
+}
+
+.levels-section {
+  margin-top: 4rem;
+}
+
+.levels-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+  gap: 1rem;
+
+  margin-top: 2rem;
+}
+
+.level-card {
+  background:
+    linear-gradient(
+      180deg,
+      #111827,
+      #0f172a
+    );
+
+  border: 1px solid #1f2937;
+
+  border-radius: 18px;
+
+  padding: 1.4rem;
+
+  text-decoration: none;
+
+  transition: .2s ease;
+}
+
+.level-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #3b82f6;
+}
+
+.level-card span {
+  color: #60a5fa;
+  font-size: .8rem;
+}
+
+.level-card h3 {
+  margin: .7rem 0;
+  color: #f9fafb;
+}
+
+.level-card p {
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+.quest-start-btn {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    #00ccff,
+    #00ff99
+  );
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.quest-start-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.level-card.locked {
+  opacity: 0.55;
+}
+
+.lock-box {
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #111827;
+  border: 1px solid #374151;
+  color: #f9fafb;
+}
+
+.lock-box small {
+  display: block;
+  margin-top: 6px;
+  color: #9ca3af;
+}
+</style>
+
+<style>
+.quest-start-btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: .5rem;
+
+  margin-top: 1rem;
+
+  padding: .8rem 1.2rem;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #2563eb,
+      #10b981
+    );
+
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  transition: .2s ease;
+
+  box-shadow:
+    0 0 20px rgba(37,99,235,.25);
+}
+
+.quest-start-btn:hover {
+
+  transform: translateY(-2px);
+
+  opacity: .92;
+}
+</style>

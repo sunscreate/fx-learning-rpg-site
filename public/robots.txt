@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sunscreate.github.io/fx-learning-rpg-site/sitemap.xml

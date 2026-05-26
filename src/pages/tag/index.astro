@@ -1,0 +1,169 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+import {
+  getAllTags,
+  getTagSlug,
+} from "../../utils/getAllTags.js";
+
+const collections = [
+  "basic",
+  "chart",
+  "entry",
+  "technical",
+  "risk",
+  "mental",
+  "market",
+  "fundamental",
+  "analysis",
+  "style",
+  "advanced",
+  "operation",
+];
+
+const allPosts = [];
+
+for (const collection of collections) {
+
+  const posts =
+    await getCollection(collection);
+
+  posts.forEach((post) => {
+
+    allPosts.push({
+      ...post,
+      collection,
+    });
+
+  });
+
+}
+
+const tagMap =
+  getAllTags(allPosts);
+
+const tags =
+  [...tagMap.entries()]
+    .sort((a, b) =>
+      b[1].length - a[1].length
+    );
+
+const breadcrumbItems = [
+  {
+    label: "HOME",
+    href: "/fx-learning-rpg-site/",
+  },
+  {
+    label: "タグ一覧",
+    href: "/fx-learning-rpg-site/tag/",
+  },
+];
+---
+
+<BaseLayout
+  title="タグ一覧 | FX Quest Guild"
+  description="FX学習タグ一覧"
+>
+
+  <main class="tag-index-page">
+
+    <Breadcrumbs
+      items={breadcrumbItems}
+    />
+
+    <section class="tag-hero">
+
+      <p class="eyebrow">
+        TAG DATABASE
+      </p>
+
+      <h1>
+        タグ一覧
+      </h1>
+
+      <p>
+        テーマ別にQUESTを横断学習できます。
+      </p>
+
+    </section>
+
+    <section class="tag-grid">
+
+      {
+        tags.map(([tag, posts]) => (
+
+          <a
+            href={`/fx-learning-rpg-site/tag/${getTagSlug(tag)}/`}
+            class="tag-card"
+          >
+
+            <h2>
+              #{tag}
+            </h2>
+
+            <p>
+              {posts.length} QUEST
+            </p>
+
+          </a>
+
+        ))
+      }
+
+    </section>
+
+  </main>
+
+</BaseLayout>
+
+<style>
+
+.tag-index-page {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.tag-hero {
+  margin-bottom: 2rem;
+}
+
+.tag-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(220px, 1fr)
+    );
+
+  gap: 20px;
+}
+
+.tag-card {
+  padding: 24px;
+
+  border-radius: 20px;
+
+  background: #111827;
+
+  border: 1px solid #1f2937;
+
+  text-decoration: none;
+}
+
+.tag-card:hover {
+  border-color: #2563eb;
+}
+
+.tag-card h2 {
+  color: #93c5fd;
+  margin-bottom: 10px;
+}
+
+.tag-card p {
+  color: #9ca3af;
+}
+
+</style>

@@ -1,0 +1,135 @@
+<section class="ai-roadmap">
+
+  <div class="roadmap-header">
+
+    <p class="eyebrow">
+      AI ROADMAP
+    </p>
+
+    <h2>
+      次にやるべきQUEST
+    </h2>
+
+  </div>
+
+  <div
+    id="roadmap-list"
+    class="roadmap-list"
+  ></div>
+
+</section>
+
+<script type="module">
+
+import {
+  getLearningData,
+} from "../utils/learningEngine.js";
+
+const data =
+  getLearningData();
+
+const viewed =
+  data.viewed.length;
+
+const list =
+  document.getElementById(
+    "roadmap-list"
+  );
+
+let roadmap = [];
+
+if (viewed < 5) {
+
+  roadmap = [
+    "LEVEL1 を攻略",
+    "FX基礎QUESTを読む",
+    "通貨ペア理解",
+  ];
+
+}
+
+else if (viewed < 15) {
+
+  roadmap = [
+    "テクニカル分析習得",
+    "RSI・MACD理解",
+    "環境認識QUEST",
+  ];
+
+}
+
+else if (viewed < 30) {
+
+  roadmap = [
+    "資金管理強化",
+    "メンタル分析",
+    "相場環境理解",
+  ];
+
+}
+
+else {
+
+  roadmap = [
+    "AI分析QUEST",
+    "高度環境認識",
+    "自分ルール構築",
+  ];
+
+}
+
+list.innerHTML = roadmap.map((item, index) => `
+
+  <div class="roadmap-card">
+
+    <span>
+      STEP ${index + 1}
+    </span>
+
+    <p>
+      ${item}
+    </p>
+
+  </div>
+
+`).join("");
+
+</script>
+
+<style>
+
+.ai-roadmap {
+  margin: 60px 0;
+}
+
+.roadmap-header {
+  margin-bottom: 24px;
+}
+
+.roadmap-list {
+  display: grid;
+  gap: 18px;
+}
+
+.roadmap-card {
+  padding: 24px;
+
+  border-radius: 20px;
+
+  background: #111827;
+
+  border: 1px solid #1f2937;
+}
+
+.roadmap-card span {
+  color: #60a5fa;
+  font-size: 13px;
+}
+
+.roadmap-card p {
+  margin-top: 10px;
+  color: white;
+  font-size: 18px;
+}
+
+</style>

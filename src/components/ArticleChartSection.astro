@@ -1,0 +1,45 @@
+---
+import TradingViewEmbed from "./TradingViewEmbed.astro";
+
+const {
+  title = "実戦チャート分析",
+  symbol = "OANDA:USDJPY",
+  interval = "60",
+} = Astro.props;
+---
+
+<section class="article-chart-section">
+
+  <h2>
+    📈 {title}
+  </h2>
+
+  <p>
+    実際のチャートを見ながら、
+    相場の動きと知識を結びつけて学習しましょう。
+  </p>
+
+  <TradingViewEmbed
+    symbol={symbol}
+    interval={interval}
+  />
+
+</section>
+
+<style>
+.article-chart-section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.article-chart-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.article-chart-section p {
+  margin-bottom: 1.5rem;
+  color: #aaa;
+  line-height: 1.8;
+}
+</style>

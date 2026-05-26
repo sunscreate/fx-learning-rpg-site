@@ -1,0 +1,42 @@
+[
+  {
+    "category": "basic",
+    "article": "FXとは"
+  },
+  {
+    "category": "basic",
+    "article": "通貨ペアとは"
+  },
+  {
+    "category": "basic",
+    "article": "lotとは"
+  },
+  {
+    "category": "technical",
+    "article": "RSIとは"
+  },
+  {
+    "category": "technical",
+    "article": "MACDとは"
+  },
+  {
+    "category": "technical",
+    "article": "移動平均線とは"
+  },
+  {
+    "category": "risk",
+    "article": "損切りとは"
+  },
+  {
+    "category": "risk",
+    "article": "資金管理とは"
+  },
+  {
+    "category": "mental",
+    "article": "ポジポジ病とは"
+  },
+  {
+    "category": "mental",
+    "article": "FOMOとは"
+  }
+]

@@ -1,0 +1,104 @@
+---
+const {
+  level = 1,
+  current = 0,
+  total = 100
+} = Astro.props;
+
+const percent = Math.floor((current / total) * 100);
+---
+
+<section class="progress-hud">
+  <div class="hud-header">
+    <span class="level">
+      冒険者ランク：LEVEL {level}
+    </span>
+
+    <span class="percent">
+      {percent}%
+    </span>
+  </div>
+
+  <div class="bar-wrap">
+    <div
+      class="bar"
+      style={`width:${percent}%`}
+    ></div>
+  </div>
+
+  <div class="quest-info">
+    クリア済みQUEST：
+    {current} / {total}
+  </div>
+</section>
+
+<style>
+  .progress-hud {
+    background: linear-gradient(
+      180deg,
+      rgba(25,25,35,.95),
+      rgba(12,12,18,.95)
+    );
+
+    border: 1px solid rgba(88,166,255,.25);
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    margin-bottom: 32px;
+
+    box-shadow:
+      0 0 30px rgba(88,166,255,.08);
+  }
+
+  .hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 14px;
+  }
+
+  .level {
+    font-weight: 700;
+    color: #58a6ff;
+  }
+
+  .percent {
+    color: #79c0ff;
+    font-size: 14px;
+  }
+
+  .bar-wrap {
+    height: 14px;
+
+    background: rgba(255,255,255,.06);
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+    margin-bottom: 12px;
+  }
+
+  .bar {
+    height: 100%;
+
+    background:
+      linear-gradient(
+        90deg,
+        #58a6ff,
+        #3fb950
+      );
+
+    border-radius: 999px;
+
+    transition: width .3s ease;
+  }
+
+  .quest-info {
+    color: #aaa;
+    font-size: 14px;
+  }
+</style>

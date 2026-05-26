@@ -1,0 +1,78 @@
+---
+const {
+  title = "毎日1QUESTをLINEで受け取る",
+  description = "FX初心者向けに、今日学ぶべきポイントを短くわかりやすく届けます。",
+  url = "#",
+} = Astro.props;
+---
+
+<section class="line-cta">
+  <div>
+    <p class="line-label">
+      LINE QUEST
+    </p>
+
+    <h2>
+      {title}
+    </h2>
+
+    <p>
+      {description}
+    </p>
+  </div>
+
+  <a
+    href={url}
+    class="line-button"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    LINEで受け取る
+  </a>
+</section>
+
+<style>
+.line-cta {
+  margin: 48px 0;
+  padding: 28px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #052e16, #111827);
+  border: 1px solid #16a34a;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.line-label {
+  color: #4ade80;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.line-cta h2 {
+  color: #f9fafb;
+  margin-bottom: 10px;
+}
+
+.line-cta p {
+  color: #d1d5db;
+}
+
+.line-button {
+  white-space: nowrap;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #052e16;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .line-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>

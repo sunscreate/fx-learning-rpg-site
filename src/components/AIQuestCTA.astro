@@ -1,0 +1,113 @@
+---
+const {
+  title = "AIが次のQUESTを提案",
+  description = "学習状況・苦手分野・現在LEVELから、次に学ぶべきQUESTをAIが分析。",
+  url = "#",
+} = Astro.props;
+---
+
+<section class="ai-cta">
+
+  <div>
+
+    <p class="ai-label">
+      AI QUEST ANALYSIS
+    </p>
+
+    <h2>
+      {title}
+    </h2>
+
+    <p>
+      {description}
+    </p>
+
+    <ul class="ai-list">
+      <li>・苦手分野分析</li>
+      <li>・おすすめQUEST</li>
+      <li>・LEVEL最適化</li>
+      <li>・学習効率向上</li>
+    </ul>
+
+  </div>
+
+  <a
+    href={url}
+    class="ai-button"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    AI分析を見る
+  </a>
+
+</section>
+
+<style>
+
+.ai-cta {
+  margin: 48px 0;
+  padding: 32px;
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #111827,
+      #172554
+    );
+
+  border: 1px solid #3b82f6;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.ai-label {
+  color: #60a5fa;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ai-cta h2 {
+  color: #f9fafb;
+  margin-bottom: 12px;
+}
+
+.ai-cta p {
+  color: #d1d5db;
+}
+
+.ai-list {
+  margin-top: 18px;
+  color: #bfdbfe;
+  line-height: 1.9;
+}
+
+.ai-button {
+  white-space: nowrap;
+
+  padding: 14px 24px;
+
+  border-radius: 999px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+  .ai-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+</style>

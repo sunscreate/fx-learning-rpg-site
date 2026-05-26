@@ -1,0 +1,293 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+
+const collections = [
+  "basic",
+  "chart",
+  "entry",
+  "technical",
+  "risk",
+  "mental",
+  "market",
+  "fundamental",
+  "analysis",
+  "style",
+  "advanced",
+  "operation",
+];
+
+const allPosts = [];
+
+for (const collection of collections) {
+
+  const posts =
+    await getCollection(collection);
+
+  posts.forEach((post) => {
+
+    allPosts.push({
+      ...post,
+      collection,
+    });
+
+  });
+
+}
+
+const searchIndex =
+  allPosts.map((post) => ({
+
+    title:
+      post.data.title,
+
+    description:
+      post.data.description,
+
+    level:
+      post.data.level,
+
+    tags:
+      post.data.tags || [],
+
+    category:
+      post.collection,
+
+    url:
+      `/fx-learning-rpg-site/category/${post.collection}/${post.slug}/`,
+
+  }));
+
+const breadcrumbItems = [
+  {
+    label: "HOME",
+    href: "/fx-learning-rpg-site/",
+  },
+  {
+    label: "SEARCH",
+    href: "/fx-learning-rpg-site/search/",
+  },
+];
+---
+
+<BaseLayout
+  title="検索 | FX Quest Guild"
+  description="FX Quest Guild の記事検索"
+>
+
+  <main class="search-page">
+
+    <Breadcrumbs
+      items={breadcrumbItems}
+    />
+
+    <section class="search-hero">
+
+      <p class="eyebrow">
+        SEARCH SYSTEM
+      </p>
+
+      <h1>
+        QUEST検索
+      </h1>
+
+      <p>
+        キーワード・タグ・LEVELから
+        QUESTを検索できます。
+      </p>
+
+    </section>
+
+    <input
+      id="search-input"
+      type="text"
+      placeholder="検索..."
+      class="search-input"
+    />
+
+    <div
+      id="search-suggestions"
+      class="search-suggestions"
+    ></div>
+
+    <div
+      id="search-results"
+      class="search-results"
+    ></div>
+
+  </main>
+
+  <script define:vars={{ searchIndex }}>
+
+    const input =
+      document.getElementById("search-input");
+
+    const results =
+      document.getElementById("search-results");
+
+    const suggestions =
+      document.getElementById("search-suggestions");
+
+    function render(posts) {
+
+      if (!posts.length) {
+
+        results.innerHTML =
+          "<p>一致するQUESTがありません。</p>";
+
+        return;
+      }
+
+      results.innerHTML =
+        posts.map((post) => `
+          <a
+            href="${post.url}"
+            class="search-card"
+          >
+            <span>
+              LEVEL ${post.level}
+            </span>
+
+            <h2>
+              ${post.title}
+            </h2>
+
+            <p>
+              ${post.description}
+            </p>
+
+            <div class="search-tags">
+              ${post.tags.map((tag) =>
+                `<small>#${tag}</small>`
+              ).join("")}
+            </div>
+          </a>
+        `).join("");
+    }
+
+    const params =
+      new URLSearchParams(window.location.search);
+
+    const initialQuery =
+      params.get("q") || "";
+
+    input.value = initialQuery;
+
+    function runSearch(q) {
+
+      q = q.toLowerCase();
+
+      runSearch(q);
+    }
+
+    runSearch(initialQuery);
+
+    input.addEventListener("input", (e) => {
+
+      const q =
+        e.target.value.toLowerCase();
+
+      runSearch(q);
+
+    });
+
+  </script>
+
+</BaseLayout>
+
+<style>
+
+.search-page {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.search-hero {
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 18px;
+  border-radius: 14px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.search-results {
+  display: grid;
+  gap: 20px;
+}
+
+.search-card {
+  display: block;
+  padding: 24px;
+  border-radius: 20px;
+  background: #111827;
+  border: 1px solid #1f2937;
+  text-decoration: none;
+}
+
+.search-card:hover {
+  border-color: #2563eb;
+}
+
+.search-card span {
+  color: #60a5fa;
+  font-size: 14px;
+}
+
+.search-card h2 {
+  margin: 10px 0;
+  color: white;
+}
+
+.search-card p {
+  color: #9ca3af;
+}
+
+.search-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.search-tags small {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #1f2937;
+  color: #93c5fd;
+}
+
+</style>
+
+<style>
+
+.search-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.suggestion-tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #1f2937;
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.suggestion-tag:hover {
+  background: #2563eb;
+  color: white;
+}
+
+</style>
