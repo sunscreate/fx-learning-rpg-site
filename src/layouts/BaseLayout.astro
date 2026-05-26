@@ -8,19 +8,20 @@ const {
   image = "https://sunscreate.github.io/fx-learning-rpg-site/ogp.png",
 } = Astro.props;
 
-const canonicalUrl =
-  new URL(Astro.url.pathname, "https://sunscreate.github.io").toString();
+const siteBase = "https://sunscreate.github.io/fx-learning-rpg-site";
 
+const canonicalUrl =
+  `${siteBase}${Astro.url.pathname.replace(/^\/fx-learning-rpg-site/, "")}`;
+  
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "FX Quest Guild",
-  url: "https://sunscreate.github.io/fx-learning-rpg-site/",
+  url: `${siteBase}/`,
   description,
   potentialAction: {
     "@type": "SearchAction",
-    target:
-      "https://sunscreate.github.io/fx-learning-rpg-site/search/?q={search_term_string}",
+    target: `${siteBase}/search/?q={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
 };
@@ -31,76 +32,25 @@ const websiteJsonLd = {
   <head>
     <meta charset="UTF-8" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta
-      name="description"
-      content={description}
-    />
+    <meta name="description" content={description} />
 
     <title>{title}</title>
 
-    <link
-      rel="canonical"
-      href={canonicalUrl}
-    />
+    <link rel="canonical" href={canonicalUrl} />
 
-    <!-- OGP -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="FX Quest Guild" />
 
-    <meta
-      property="og:type"
-      content="website"
-    />
-
-    <meta
-      property="og:title"
-      content={title}
-    />
-
-    <meta
-      property="og:description"
-      content={description}
-    />
-
-    <meta
-      property="og:image"
-      content={image}
-    />
-
-    <meta
-      property="og:url"
-      content={canonicalUrl}
-    />
-
-    <meta
-      property="og:site_name"
-      content="FX Quest Guild"
-    />
-
-    <!-- Twitter -->
-
-    <meta
-      name="twitter:card"
-      content="summary_large_image"
-    />
-
-    <meta
-      name="twitter:title"
-      content={title}
-    />
-
-    <meta
-      name="twitter:description"
-      content={description}
-    />
-
-    <meta
-      name="twitter:image"
-      content={image}
-    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
 
     <script
       type="application/ld+json"
