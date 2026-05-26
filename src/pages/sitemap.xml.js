@@ -1,9 +1,7 @@
 import { getCollection } from "astro:content";
 
 export async function GET() {
-
-  const base =
-    "https://sunscreate.github.io/fx-learning-rpg-site";
+  const base = "https://sunscreate.github.io/fx-learning-rpg-site";
 
   const collections = [
     "basic",
@@ -18,6 +16,8 @@ export async function GET() {
     "style",
     "advanced",
     "operation",
+    "ea",
+    "glossary",
   ];
 
   const urls = [];
@@ -32,42 +32,38 @@ export async function GET() {
   }
 
   for (const collection of collections) {
-
-    const posts =
-      await getCollection(collection);
+    const posts = await getCollection(collection);
 
     posts.forEach((post) => {
+      const slug = post.slug || post.id?.replace(/\.md$/, "");
 
-      urls.push(
-        `${base}/category/${collection}/${post.slug}/`
-      );
+      if (slug) {
+        urls.push(`${base}/category/${collection}/${slug}/`);
+      }
 
-      (post.data.tags || []).forEach((tag) => {
-
-        urls.push(
-          `${base}/tag/${encodeURIComponent(tag.toLowerCase())}/`
-        );
-
-      });
-
+      (post.data.tags || [])
+        .filter(Boolean)
+        .forEach((tag) => {
+          urls.push(
+            `${base}/tag/${encodeURIComponent(String(tag).toLowerCase())}/`
+          );
+        });
     });
-
   }
 
-  const uniqueUrls =
-    [...new Set(urls)];
+  const uniqueUrls = [...new Set(urls)].filter(
+    (url) => !url.includes("undefined")
+  );
 
-  const body =
-`<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-${uniqueUrls.map((url) => `
-  <url>
+  const body = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${uniqueUrls
+  .map(
+    (url) => `  <url>
     <loc>${url}</loc>
-  </url>
-`).join("")}
-
+  </url>`
+  )
+  .join("\n")}
 </urlset>`;
 
   return new Response(body, {
@@ -75,5 +71,4 @@ ${uniqueUrls.map((url) => `
       "Content-Type": "application/xml",
     },
   });
-
 }
