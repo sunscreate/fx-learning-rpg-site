@@ -1,5 +1,5 @@
 ---
-title: "スプレッドとは？"
+title: "スプレッドとは？FXの実質コストを初心者向けに解説"
 description: "スプレッドとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

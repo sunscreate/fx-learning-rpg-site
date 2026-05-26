@@ -1,5 +1,5 @@
 ---
-title: "N字とは？"
+title: "N字とは？押し目買い・戻り売りで使う基本形"
 description: "N字とは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "entry"

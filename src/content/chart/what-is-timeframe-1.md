@@ -1,5 +1,5 @@
 ---
-title: "時間足とは？"
+title: "時間足とは？チャートを見る時間軸の基本"
 description: "時間足とは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"

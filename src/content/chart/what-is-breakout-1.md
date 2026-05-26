@@ -1,5 +1,5 @@
 ---
-title: "ブレイクアウトとは？"
+title: "ブレイクアウトとは？チャート分析での見方を解説"
 description: "ブレイクアウトとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"

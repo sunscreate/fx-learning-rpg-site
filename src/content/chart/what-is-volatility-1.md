@@ -1,5 +1,5 @@
 ---
-title: "ボラティリティとは？"
+title: "ボラティリティとは？値動きの大きさを初心者向けに解説"
 description: "ボラティリティとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"

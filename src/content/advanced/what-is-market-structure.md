@@ -1,5 +1,5 @@
 ---
-title: "市場構造とは？"
+title: "市場構造とは？上級者向けに相場の仕組みを解説"
 description: "FX初心者向けに市場構造をRPG風にわかりやすく解説"
 level: 11
 category: "advanced"

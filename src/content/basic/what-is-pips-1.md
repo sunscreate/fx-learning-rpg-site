@@ -1,5 +1,5 @@
 ---
-title: "pipsとは？"
+title: "pipsとは？FXの値幅単位を初心者向けに解説"
 description: "pipsとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

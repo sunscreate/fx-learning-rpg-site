@@ -1,5 +1,5 @@
 ---
-title: "スリッページとは？"
+title: "スリッページとは？注文価格がズレる原因を解説"
 description: "スリッページとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

@@ -1,5 +1,5 @@
 ---
-title: "ダウ理論とは？"
+title: "ダウ理論とは？トレンド判断の基本を初心者向けに解説"
 description: "ダウ理論とは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"

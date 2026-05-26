@@ -1,5 +1,5 @@
 ---
-title: "通貨ペアとは？"
+title: "通貨ペアとは？初心者向けにわかりやすく解説"
 description: "通貨ペアとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

@@ -1,5 +1,5 @@
 ---
-title: "ロットとは？"
+title: "ロットとは？FXの取引量を初心者向けに解説"
 description: "ロットとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

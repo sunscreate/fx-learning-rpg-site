@@ -1,5 +1,5 @@
 ---
-title: "フラッグとは？"
+title: "フラッグとは？トレンド継続パターンを解説"
 description: "フラッグとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "entry"

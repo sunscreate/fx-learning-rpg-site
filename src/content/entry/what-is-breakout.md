@@ -1,5 +1,5 @@
 ---
-title: "ブレイクアウトとは？"
+title: "ブレイクアウトエントリーとは？狙い方と注意点を解説"
 description: "FX初心者向けにブレイクアウトをRPG風にわかりやすく解説"
 level: 3
 category: "entry"

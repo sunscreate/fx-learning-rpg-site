@@ -1,5 +1,5 @@
 ---
-title: "スリッページとは？"
+title: "スリッページの意味とは？FX用語として簡単に解説"
 description: "スリッページとは？をFX初心者向けにわかりやすく解説"
 level: 1
 category: "glossary"

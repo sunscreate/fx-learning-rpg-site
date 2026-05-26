@@ -1,5 +1,5 @@
 ---
-title: "市場構造とは？"
+title: "市場構造とは？チャート上の相場の流れを解説"
 description: "市場構造とは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"

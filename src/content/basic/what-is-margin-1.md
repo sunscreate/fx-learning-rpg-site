@@ -1,5 +1,5 @@
 ---
-title: "証拠金とは？"
+title: "証拠金とは？FXで必要な資金の考え方を解説"
 description: "証拠金とは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

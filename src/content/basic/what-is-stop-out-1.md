@@ -1,5 +1,5 @@
 ---
-title: "ストップアウトとは？"
+title: "ストップアウトとは？強制ロスカットとの違いを解説"
 description: "ストップアウトとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

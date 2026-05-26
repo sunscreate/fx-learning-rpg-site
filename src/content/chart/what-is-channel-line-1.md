@@ -1,5 +1,5 @@
 ---
-title: "チャネルラインとは？"
+title: "チャネルラインとは？トレンドの通り道を読む方法"
 description: "チャネルラインとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"

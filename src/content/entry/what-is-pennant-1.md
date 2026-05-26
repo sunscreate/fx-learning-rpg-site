@@ -1,5 +1,5 @@
 ---
-title: "ペナントとは？"
+title: "ペナントとは？三角持ち合いからの値動きを解説"
 description: "ペナントとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "entry"

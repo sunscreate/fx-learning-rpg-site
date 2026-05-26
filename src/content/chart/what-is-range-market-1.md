@@ -1,5 +1,5 @@
 ---
-title: "レンジ相場とは？"
+title: "レンジ相場とは？横ばい相場の特徴と注意点"
 description: "レンジ相場とは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"

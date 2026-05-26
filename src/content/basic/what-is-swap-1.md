@@ -1,5 +1,5 @@
 ---
-title: "スワップポイントとは？"
+title: "スワップポイントとは？金利差で発生する損益を解説"
 description: "スワップポイントとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

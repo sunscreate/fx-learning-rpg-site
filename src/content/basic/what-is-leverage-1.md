@@ -1,5 +1,5 @@
 ---
-title: "レバレッジとは？"
+title: "レバレッジとは？危険性と使い方を初心者向けに解説"
 description: "レバレッジとは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "basic"

@@ -1,5 +1,5 @@
 ---
-title: "高値・安値とは？"
+title: "高値・安値とは？相場の方向性を読む基本"
 description: "高値・安値とは？をFX初心者向けにわかりやすく解説。"
 level: 1
 category: "chart"
