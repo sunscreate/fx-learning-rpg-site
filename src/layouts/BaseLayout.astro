@@ -6,6 +6,7 @@ const {
   title = "FX Quest Guild",
   description = "FXをRPG感覚で体系的に学ぶ学習サイト",
   image = "https://sunscreate.github.io/fx-learning-rpg-site/ogp.png",
+  noindex = false,
 } = Astro.props;
 
 const siteBase = "https://sunscreate.github.io/fx-learning-rpg-site";
@@ -35,6 +36,10 @@ const websiteJsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta name="description" content={description} />
+
+    {noindex && (
+      <meta name="robots" content="noindex,follow" />
+    )}
 
     <title>{title}</title>
 

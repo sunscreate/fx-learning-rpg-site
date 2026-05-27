@@ -45,11 +45,15 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+const slug = entry.slug || entry.id.replace(/\.md$/, "");
+const noindex = /-\d+$/.test(slug);
 ---
 
 <ArticleLayout
   title={entry.data.title}
   description={entry.data.description}
+  noindex={noindex}
 >
   <Content />
 </ArticleLayout>

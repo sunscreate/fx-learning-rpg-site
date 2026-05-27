@@ -7,12 +7,14 @@ const {
   description,
   symbol = "OANDA:USDJPY",
   interval = "60",
+  noindex = false,
 } = Astro.props;
 ---
 
 <BaseLayout
   title={title}
   description={description}
+  noindex={noindex}
 >
 
   <article class="article-container">
