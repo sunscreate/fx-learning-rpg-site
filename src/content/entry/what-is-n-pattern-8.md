@@ -4,7 +4,6 @@ description: "N字の実戦的な使い方をFX初心者向けにわかりやす
 level: 1
 category: "entry"
 tags:
-  - "N字の実戦活用"
   - "FX初心者"
   - "entry"
 ---

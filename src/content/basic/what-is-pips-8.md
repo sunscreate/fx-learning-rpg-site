@@ -4,7 +4,6 @@ description: "pipsの実戦的な使い方をFX初心者向けにわかりやす
 level: 1
 category: "basic"
 tags:
-  - "pipsの実戦活用"
   - "FX初心者"
   - "basic"
 ---

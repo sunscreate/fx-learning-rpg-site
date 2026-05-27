@@ -4,7 +4,6 @@ description: "Bid/Askの実戦的な使い方をFX初心者向けにわかりや
 level: 1
 category: "basic"
 tags:
-  - "Bid/Askの実戦活用"
   - "FX初心者"
   - "basic"
 ---
