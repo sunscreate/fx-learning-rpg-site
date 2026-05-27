@@ -28,6 +28,7 @@ for (const collection of collections) {
     allPosts.push({
       ...post,
       collection,
+      fixedSlug: post.slug || post.id.replace(/\\.md$/, ""),
     });
 
   });
@@ -102,7 +103,7 @@ recommendList.innerHTML =
   recommended.map((post) => `
 
     <a
-      href="/fx-learning-rpg-site/category/${post.collection}/${post.slug}/"
+      href="/fx-learning-rpg-site/category/${post.collection}/${post.fixedSlug}/"
       class="recommend-card"
     >
 
