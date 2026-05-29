@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import { mainQuestList } from "../data/mainQuestList.js";
 
 const {
   currentSlug,
@@ -19,6 +20,8 @@ const collections = [
   "style",
   "advanced",
   "operation",
+  "ea",
+  "glossary",
 ];
 
 let allPosts = [];
@@ -31,25 +34,41 @@ for (const collection of collections) {
     ...posts.map((post) => ({
       ...post,
       collection,
-      fixedSlug: post.slug || post.id.replace(/\\.md$/, ""),
+      fixedSlug:
+        post.slug ||
+        post.id.replace(/\\.md$/, ""),
     }))
   );
 }
+
+const mainSlugs =
+  mainQuestList[currentLevel] || [];
 
 const relatedPosts = allPosts
   .filter((post) => {
     return (
       post.fixedSlug !== currentSlug &&
-      post.data.level === currentLevel
+      post.data.level === currentLevel &&
+      !mainSlugs.includes(post.fixedSlug)
     );
   })
-  .slice(0, 3);
+  .slice(0, 6);
 ---
 
 {
   relatedPosts.length > 0 && (
     <section class="related-section">
-      <h2>Related QUESTS</h2>
+      <p class="side-label">
+        SIDE QUEST
+      </p>
+
+      <h2>
+        📘 補足QUEST
+      </h2>
+
+      <p class="side-description">
+        メインQUESTの理解を深めるための補足記事です。
+      </p>
 
       <div class="related-grid">
         {relatedPosts.map((post) => (
@@ -57,15 +76,25 @@ const relatedPosts = allPosts
             href={`/fx-learning-rpg-site/category/${post.collection}/${post.fixedSlug}/`}
             class="related-card"
           >
-            <span>
-              LEVEL {post.data.level}
-            </span>
+            <div class="related-top">
+              <span>
+                LEVEL {post.data.level}
+              </span>
+
+              <strong>
+                +20 EXP
+              </strong>
+            </div>
 
             <h3>{post.data.title}</h3>
 
             <p>
               {post.data.description}
             </p>
+
+            <div class="side-button">
+              補足QUESTへ進む →
+            </div>
           </a>
         ))}
       </div>
@@ -76,12 +105,29 @@ const relatedPosts = allPosts
 <style>
   .related-section {
     margin-top: 64px;
+    padding: 32px;
+    border-radius: 24px;
+    background: #0f172a;
+    border: 1px solid #1f2937;
+  }
+
+  .side-label {
+    color: #38bdf8;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    font-size: 13px;
+    margin-bottom: 8px;
   }
 
   .related-section h2 {
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     font-size: 28px;
     color: #f9fafb;
+  }
+
+  .side-description {
+    color: #9ca3af;
+    margin-bottom: 24px;
   }
 
   .related-grid {
@@ -96,17 +142,30 @@ const relatedPosts = allPosts
     border-radius: 18px;
     padding: 24px;
     transition: 0.25s;
+    text-decoration: none;
   }
 
   .related-card:hover {
     transform: translateY(-4px);
-    border-color: #00ff99;
+    border-color: #38bdf8;
   }
 
-  .related-card span {
-    color: #00ff99;
+  .related-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .related-top span {
+    color: #38bdf8;
     font-size: 12px;
     font-weight: bold;
+  }
+
+  .related-top strong {
+    color: #86efac;
+    font-size: 12px;
   }
 
   .related-card h3 {
@@ -117,5 +176,16 @@ const relatedPosts = allPosts
   .related-card p {
     color: #9ca3af;
     line-height: 1.7;
+  }
+
+  .side-button {
+    margin-top: 18px;
+    display: inline-flex;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: #1e3a8a;
+    color: #bfdbfe;
+    font-weight: 800;
+    font-size: 13px;
   }
 </style>

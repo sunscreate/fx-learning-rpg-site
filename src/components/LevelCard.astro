@@ -4,8 +4,10 @@ const {
 } = Astro.props;
 ---
 
-<div class="level-card">
-
+<div
+  class="level-card"
+  data-level={level.id}
+>
   <span>
     LEVEL {level.id}
   </span>
@@ -20,9 +22,72 @@ const {
 
   <a
     class="quest-start-btn"
-    href={`/fx-learning-rpg-site/level/${level.id}`}
+    href={`/fx-learning-rpg-site/level/${level.id}/`}
   >
     QUEST開始 →
   </a>
 
+  <div class="level-lock-label">
+    🔒 LOCKED
+  </div>
 </div>
+
+<script define:vars={{ levelId: level.id }}>
+const SAVE_KEY =
+  "fx-quest-guild-save";
+
+const raw =
+  localStorage.getItem(SAVE_KEY);
+
+const data =
+  raw ? JSON.parse(raw) : {};
+
+const currentLevel =
+  data.currentLevel || 1;
+
+const card =
+  document.querySelector(
+    `.level-card[data-level="${levelId}"]`
+  );
+
+if (card && levelId > currentLevel) {
+  card.classList.add("locked");
+
+  const link =
+    card.querySelector("a");
+
+  if (link) {
+    link.removeAttribute("href");
+  }
+} else if (card) {
+  card.classList.add("unlocked");
+}
+</script>
+
+<style>
+.level-card {
+  position: relative;
+}
+
+.level-lock-label {
+  display: none;
+  margin-top: 16px;
+  color: #facc15;
+  font-weight: 900;
+}
+
+.level-card.locked {
+  opacity: 0.45;
+  filter: grayscale(0.7);
+}
+
+.level-card.locked .quest-start-btn {
+  pointer-events: none;
+  background: #3f3f46;
+  color: #a1a1aa;
+}
+
+.level-card.locked .level-lock-label {
+  display: block;
+}
+</style>
