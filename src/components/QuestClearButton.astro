@@ -1,0 +1,273 @@
+---
+const {
+  slug,
+  title,
+  level,
+} = Astro.props;
+---
+
+<section class="quest-clear-box">
+
+  <p class="clear-label">
+    QUEST COMPLETE
+  </p>
+
+  <h2>
+    このQUESTをクリアしますか？
+  </h2>
+
+  <p>
+    内容を理解できたらクリアボタンを押してください。
+  </p>
+
+  <button
+    id="quest-clear-button"
+    class="quest-clear-button"
+    data-slug={slug}
+    data-title={title}
+    data-level={level}
+  >
+    ✅ QUESTクリア
+  </button>
+
+  <p
+    id="quest-clear-message"
+    class="quest-clear-message"
+  ></p>
+
+  <a
+    id="next-quest-link"
+    class="next-quest-link"
+    href={`/fx-learning-rpg-site/level/${level}/`}
+  >
+    次のQUESTへ進む →
+  </a>
+
+</section>
+
+<script>
+const SAVE_KEY =
+  "fx-quest-guild-save";
+
+const EXP_PER_CLEAR =
+  50;
+
+const defaultSaveData = {
+  totalExp: 0,
+  currentLevel: 1,
+  learnedArticles: [],
+  completedQuests: [],
+  dailyStreak: 0,
+  lastLoginDate: null,
+};
+
+function loadSaveData() {
+  const raw =
+    localStorage.getItem(SAVE_KEY);
+
+  if (!raw) {
+    return { ...defaultSaveData };
+  }
+
+  try {
+    return {
+      ...defaultSaveData,
+      ...JSON.parse(raw),
+    };
+  } catch {
+    return { ...defaultSaveData };
+  }
+}
+
+function saveData(data) {
+  localStorage.setItem(
+    SAVE_KEY,
+    JSON.stringify(data)
+  );
+
+  window.dispatchEvent(
+    new Event("fxquest-update")
+  );
+
+  window.dispatchEvent(
+    new Event("fxquest-save")
+  );
+}
+
+const button =
+  document.getElementById("quest-clear-button");
+
+const message =
+  document.getElementById("quest-clear-message");
+
+const nextLink =
+  document.getElementById("next-quest-link");
+
+if (nextLink) {
+  nextLink.style.display = "none";
+}
+
+if (button) {
+  const slug =
+    button.dataset.slug;
+
+  const title =
+    button.dataset.title;
+
+  const level =
+    Number(button.dataset.level || 1);
+
+  const save =
+    loadSaveData();
+
+  const alreadyClear =
+    save.learnedArticles.includes(slug) ||
+    save.completedQuests.includes(slug);
+
+  if (alreadyClear) {
+    button.textContent = "✅ CLEAR済み";
+    button.disabled = true;
+    message.textContent = "このQUESTはクリア済みです。";
+
+    if (nextLink) {
+      nextLink.style.display = "inline-flex";
+    }
+  }
+
+  button.addEventListener("click", () => {
+    const data =
+      loadSaveData();
+
+    const isFirstClear =
+      !data.learnedArticles.includes(slug) &&
+      !data.completedQuests.includes(slug);
+
+    if (isFirstClear) {
+      data.learnedArticles.push(slug);
+      data.completedQuests.push(slug);
+      data.totalExp += EXP_PER_CLEAR;
+    }
+
+    data.currentLevel =
+      Math.max(
+        data.currentLevel || 1,
+        level
+      );
+
+    saveData(data);
+
+    const legacyLearned =
+      JSON.parse(
+        localStorage.getItem("fxQuestLearned") || "[]"
+      );
+
+    if (!legacyLearned.includes(slug)) {
+      legacyLearned.push(slug);
+    }
+
+    localStorage.setItem(
+      "fxQuestLearned",
+      JSON.stringify(legacyLearned)
+    );
+
+    const history =
+      JSON.parse(
+        localStorage.getItem("fxQuestHistory") || "[]"
+      );
+
+    history.push({
+      slug,
+      title,
+      level,
+      exp: isFirstClear ? EXP_PER_CLEAR : 0,
+      clearedAt: new Date().toISOString(),
+    });
+
+    localStorage.setItem(
+      "fxQuestHistory",
+      JSON.stringify(history)
+    );
+
+    button.textContent = "✅ CLEAR済み";
+    button.disabled = true;
+
+    message.textContent =
+      isFirstClear
+        ? `QUESTクリア！+${EXP_PER_CLEAR} EXPを獲得しました。`
+        : "このQUESTはすでにクリア済みです。";
+
+    if (nextLink) {
+      nextLink.style.display = "inline-flex";
+    }
+  });
+}
+</script>
+
+<style>
+.quest-clear-box {
+  margin: 56px 0;
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #111827, #0f172a);
+  border: 1px solid #1f2937;
+  text-align: center;
+}
+
+.clear-label {
+  color: #22c55e;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+}
+
+.quest-clear-box h2 {
+  margin: 12px 0;
+  color: #f9fafb;
+}
+
+.quest-clear-box p {
+  color: #9ca3af;
+}
+
+.quest-clear-button {
+  margin-top: 24px;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 999px;
+  background: #22c55e;
+  color: #052e16;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.quest-clear-button:hover {
+  filter: brightness(1.1);
+}
+
+.quest-clear-button:disabled {
+  cursor: default;
+  background: #14532d;
+  color: #86efac;
+}
+
+.quest-clear-message {
+  margin-top: 18px;
+  color: #86efac !important;
+  font-weight: 700;
+}
+
+.next-quest-link {
+  margin-top: 22px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.next-quest-link:hover {
+  background: #1d4ed8;
+}
+</style>

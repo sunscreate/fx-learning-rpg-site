@@ -4,6 +4,7 @@ import QuestCard from "../../components/QuestCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 
 import { levels } from "../../data/levels.js";
+import { mainQuestList } from "../../data/mainQuestList.js";
 
 import {
   getCollection,
@@ -41,10 +42,37 @@ const collections = {
 const collectionName =
   collections[level.id];
 
-const articles =
+const allArticles =
   await getCollection(
     collectionName
   );
+
+const mainSlugs =
+  mainQuestList[level.id] || [];
+
+const articles =
+  allArticles
+    .filter((article) => {
+      const slug =
+        article.slug ||
+        article.id.replace(".md", "");
+
+      return mainSlugs.includes(slug);
+    })
+    .sort((a, b) => {
+      const slugA =
+        a.slug ||
+        a.id.replace(".md", "");
+
+      const slugB =
+        b.slug ||
+        b.id.replace(".md", "");
+
+      return (
+        mainSlugs.indexOf(slugA) -
+        mainSlugs.indexOf(slugB)
+      );
+    });
 
 const breadcrumbItems = [
   {

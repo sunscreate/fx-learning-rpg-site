@@ -44,16 +44,31 @@ const href =
 </a>
 
 <script define:vars={{ slug }}>
+const SAVE_KEY =
+  "fx-quest-guild-save";
 
-const learned =
+const saveData =
   JSON.parse(
-    localStorage.getItem(
-      "fxQuestLearned"
-    ) || "[]"
+    localStorage.getItem(SAVE_KEY) || "{}"
   );
 
-if (learned.includes(slug)) {
+const learnedArticles =
+  saveData.learnedArticles || [];
 
+const completedQuests =
+  saveData.completedQuests || [];
+
+const legacyLearned =
+  JSON.parse(
+    localStorage.getItem("fxQuestLearned") || "[]"
+  );
+
+const isClear =
+  learnedArticles.includes(slug) ||
+  completedQuests.includes(slug) ||
+  legacyLearned.includes(slug);
+
+if (isClear) {
   const el =
     document.getElementById(
       `status-${slug}`
@@ -63,26 +78,18 @@ if (learned.includes(slug)) {
     el.textContent = "CLEAR";
     el.classList.add("clear");
   }
-
 }
-
 </script>
 
 <style>
 
 .quest-card {
   display: block;
-
   padding: 24px;
-
   border-radius: 20px;
-
   background: #111827;
-
   border: 1px solid #1f2937;
-
   transition: 0.25s;
-
   text-decoration: none;
 }
 
@@ -93,31 +100,22 @@ if (learned.includes(slug)) {
 
 .quest-top {
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
-
   margin-bottom: 16px;
 }
 
 .quest-level {
   color: #60a5fa;
-
   font-size: 13px;
-
   font-weight: bold;
 }
 
 .quest-status {
   font-size: 12px;
-
   padding: 4px 10px;
-
   border-radius: 999px;
-
   background: #3f3f46;
-
   color: #d4d4d8;
 }
 
@@ -128,13 +126,11 @@ if (learned.includes(slug)) {
 
 .quest-card h3 {
   color: white;
-
   margin-bottom: 12px;
 }
 
 .quest-card p {
   color: #9ca3af;
-
   line-height: 1.7;
 }
 

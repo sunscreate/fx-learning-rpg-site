@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
 import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import Header from "../../../components/Header.astro";
+import QuestClearButton from "../../../components/QuestClearButton.astro";
 
 export async function getStaticPaths() {
   const collections = [
@@ -55,5 +57,15 @@ const noindex = /-\d+$/.test(slug);
   description={entry.data.description}
   noindex={noindex}
 >
+
+  <Header />
+
   <Content />
+
+  <QuestClearButton
+    slug={slug}
+    title={entry.data.title}
+    level={entry.data.level}
+  />
+
 </ArticleLayout>
