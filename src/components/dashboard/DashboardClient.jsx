@@ -80,9 +80,14 @@ export default function DashboardClient() {
       saveData.totalExp
     );
 
+  const currentLevel =
+    getCurrentLevel(
+      saveData.totalExp
+    );
+
   const nextExp =
     getNextLevelExp(
-      saveData.currentLevel
+      currentLevel
     );
 
   return (
@@ -91,7 +96,7 @@ export default function DashboardClient() {
 
       <LevelUpModal
         open={levelUpOpen}
-        level={saveData.currentLevel}
+        level={currentLevel}
         onClose={() =>
           setLevelUpOpen(false)
         }
@@ -115,7 +120,7 @@ export default function DashboardClient() {
               <span>LEVEL</span>
 
               <strong>
-                LV {saveData.currentLevel}
+                LV {currentLevel}
               </strong>
             </div>
 
