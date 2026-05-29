@@ -130,7 +130,11 @@ const breadcrumbItems = [
           </p>
 
           <h2>
-            <a href={`/fx-learning-rpg-site/category/${post.collection}/${post.slug}/`}>
+            <a href={`/fx-learning-rpg-site/category/${
+  post.collection
+}/${
+  post.slug || post.id.replace(".md", "")
+}/`}>
               {post.data.title}
             </a>
           </h2>

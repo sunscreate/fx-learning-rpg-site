@@ -47,7 +47,7 @@ const posts = allPosts
 
       <div class="post-list">
         {posts.map((post) => (
-          <a class="post-card" href={`/fx-learning-rpg-site/category/${post.collection}/${post.slug}/`}>
+          <a class="post-card" href={`/fx-learning-rpg-site/category/${post.collection}/${post.slug || post.id.replace(".md", "")}/`}>
             <span>LEVEL {post.data.level}</span>
 
             <h2>{post.data.title}</h2>

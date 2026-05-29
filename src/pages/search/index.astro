@@ -55,7 +55,11 @@ const searchIndex =
       post.collection,
 
     url:
-      `/fx-learning-rpg-site/category/${post.collection}/${post.slug}/`,
+      `/fx-learning-rpg-site/category/${
+        post.collection
+      }/${
+        post.slug || post.id.replace(".md", "")
+      }/`,
 
   }));
 

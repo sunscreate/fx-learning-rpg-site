@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import QuestCard from "../../components/QuestCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 
 import { levels } from "../../data/levels.js";
@@ -94,26 +95,10 @@ const breadcrumbItems = [
 
         {
           articles.map((article) => (
-
-            <a
-              href={`/fx-learning-rpg-site/category/${collectionName}/${article.id.replace(".md", "")}`}
-              class="quest-card"
-            >
-
-              <span>
-                QUEST
-              </span>
-
-              <h3>
-                {article.data.title}
-              </h3>
-
-              <p>
-                {article.data.description}
-              </p>
-
-            </a>
-
+            <QuestCard
+              article={article}
+              collection={collectionName}
+            />
           ))
         }
 
