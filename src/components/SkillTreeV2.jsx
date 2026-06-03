@@ -7,65 +7,23 @@ import {
   loadSaveData,
 } from "../utils/storage";
 
-const skills = [
-  {
-    title: "FXとは？",
-    slug: "what-is-fx",
-  },
-  {
-    title: "通貨ペアとは？",
-    slug: "what-is-currency-pair",
-  },
-  {
-    title: "円高・円安とは？",
-    slug: "what-is-yen-weak-strong",
-  },
-  {
-    title: "レバレッジとは？",
-    slug: "what-is-leverage",
-  },
-  {
-    title: "証拠金とは？",
-    slug: "what-is-margin",
-  },
-  {
-    title: "ロットとは？",
-    slug: "what-is-lot",
-  },
-  {
-    title: "pipsとは？",
-    slug: "what-is-pips",
-  },
-  {
-    title: "スプレッドとは？",
-    slug: "what-is-spread",
-  },
-  {
-    title: "注文方法とは？",
-    slug: "order-types",
-  },
-  {
-    title: "取引時間とは？",
-    slug: "trading-session",
-  },
-];
+import {
+  mainQuestList,
+} from "../data/mainQuestList";
+
+import {
+  mainQuestTitles,
+} from "../data/mainQuestTitles";
 
 export default function SkillTreeV2() {
 
-  const [learned, setLearned] =
-    useState([]);
+  const [saveData, setSaveData] =
+    useState(loadSaveData());
 
   useEffect(() => {
 
     const sync = () => {
-
-      const data =
-        loadSaveData();
-
-      setLearned([
-        ...(data.learnedArticles || []),
-        ...(data.completedQuests || []),
-      ]);
+      setSaveData(loadSaveData());
     };
 
     sync();
@@ -95,15 +53,36 @@ export default function SkillTreeV2() {
 
   }, []);
 
+  const currentLevel =
+    saveData.currentLevel || 1;
+
+  const learned = [
+    ...(saveData.learnedArticles || []),
+    ...(saveData.completedQuests || []),
+  ];
+
+  const slugs =
+    mainQuestList[currentLevel] || [];
+
+  const skills =
+    slugs.map((slug) => ({
+      slug,
+      title:
+        mainQuestTitles[slug] ||
+        slug,
+    }));
+
   const completed =
     skills.filter((skill) =>
       learned.includes(skill.slug)
     ).length;
 
   const progress =
-    Math.round(
-      (completed / skills.length) * 100
-    );
+    skills.length
+      ? Math.round(
+          (completed / skills.length) * 100
+        )
+      : 0;
 
   return (
 
@@ -116,7 +95,7 @@ export default function SkillTreeV2() {
           </p>
 
           <h2>
-            LEVEL1 スキルツリー
+            LEVEL {currentLevel} スキルツリー
           </h2>
         </div>
 

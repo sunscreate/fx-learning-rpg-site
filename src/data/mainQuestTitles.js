@@ -1,0 +1,20 @@
+export const mainQuestTitles = {
+  "what-is-fx": "FXとは？",
+  "what-is-currency-pair": "通貨ペアとは？",
+  "what-is-yen-weak-strong": "円高・円安とは？",
+  "what-is-leverage": "レバレッジとは？",
+  "what-is-margin": "証拠金とは？",
+  "what-is-lot": "ロットとは？",
+  "what-is-pips": "pipsとは？",
+  "what-is-spread": "スプレッドとは？",
+  "order-types": "注文方法とは？",
+  "trading-session": "取引時間とは？",
+
+  "what-is-candlestick": "ローソク足とは？",
+  "what-is-high-low": "高値・安値とは？",
+  "what-is-trend": "トレンドとは？",
+  "what-is-range": "レンジとは？",
+  "what-is-support-resistance": "サポート・レジスタンスとは？",
+  "what-is-dow-theory": "ダウ理論とは？",
+  "what-is-timeframe": "時間足とは？",
+};

@@ -1,0 +1,131 @@
+---
+const {
+  level = 1,
+  quests = [],
+} = Astro.props;
+
+const completedCount =
+  quests.filter(
+    (quest) => quest.completed
+  ).length;
+
+const progress =
+  quests.length > 0
+    ? Math.floor(
+        (completedCount /
+          quests.length) *
+          100
+      )
+    : 0;
+---
+
+<div class="quest-card">
+  <div class="quest-header">
+    LEVEL {level} QUESTS
+  </div>
+
+  <div class="quest-list">
+    {quests.map((quest) => (
+      <div class="quest-item">
+        <span>
+          {quest.completed
+            ? "☑"
+            : "☐"}
+        </span>
+
+        <p>{quest.title}</p>
+      </div>
+    ))}
+  </div>
+
+  <div class="progress-area">
+    <div class="progress-label">
+      QUEST Progress
+    </div>
+
+    <div class="progress-bar">
+      <div
+        class="progress-fill"
+        style={`width:${progress}%`}
+      ></div>
+    </div>
+
+    <div class="progress-text">
+      {progress}%
+    </div>
+  </div>
+</div>
+
+<style>
+  .quest-card {
+    background: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 18px;
+    padding: 24px;
+    margin: 32px 0;
+  }
+
+  .quest-header {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #f9fafb;
+  }
+
+  .quest-list {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .quest-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0f172a;
+    border-radius: 12px;
+    padding: 14px;
+    border: 1px solid #1f2937;
+  }
+
+  .quest-item span {
+    font-size: 18px;
+    color: #00ff99;
+  }
+
+  .quest-item p {
+    color: #f3f4f6;
+  }
+
+  .progress-label {
+    margin-bottom: 10px;
+    color: #9ca3af;
+    font-size: 14px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 18px;
+    background: #1f2937;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background:
+      linear-gradient(
+        90deg,
+        #00ff99,
+        #00ccff
+      );
+
+    border-radius: 999px;
+  }
+
+  .progress-text {
+    margin-top: 10px;
+    color: #f9fafb;
+    font-weight: bold;
+  }
+</style>
