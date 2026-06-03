@@ -15,6 +15,10 @@ import {
   mainQuestTitles,
 } from "../data/mainQuestTitles";
 
+import {
+  getCurrentLevel,
+} from "../utils/levelCalc";
+
 export default function SkillTreeV2() {
 
   const [saveData, setSaveData] =
@@ -54,7 +58,9 @@ export default function SkillTreeV2() {
   }, []);
 
   const currentLevel =
-    saveData.currentLevel || 1;
+    getCurrentLevel(
+      saveData.totalExp || 0
+    );
 
   const learned = [
     ...(saveData.learnedArticles || []),

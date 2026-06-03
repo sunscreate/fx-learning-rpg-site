@@ -180,9 +180,30 @@ const breadcrumbItems = [
 
     function runSearch(q) {
 
-      q = q.toLowerCase();
+      q =
+        q.trim().toLowerCase();
 
-      runSearch(q);
+      const posts =
+        q
+          ? searchIndex.filter((post) => {
+              const searchable =
+                [
+                  post.title,
+                  post.description,
+                  post.category,
+                  `level ${post.level}`,
+                  ...(post.tags || []),
+                ]
+                  .join(" ")
+                  .toLowerCase();
+
+              return searchable.includes(q);
+            })
+          : searchIndex;
+
+      suggestions.innerHTML = "";
+
+      render(posts);
     }
 
     runSearch(initialQuery);

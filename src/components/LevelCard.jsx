@@ -11,6 +11,10 @@ import {
   mainQuestList,
 } from "../data/mainQuestList";
 
+import {
+  getCurrentLevel,
+} from "../utils/levelCalc";
+
 export default function LevelCard({
   level,
 }) {
@@ -37,7 +41,9 @@ export default function LevelCard({
     isLevelUnlocked(level.id);
 
   const currentLevel =
-    saveData.currentLevel || 1;
+    getCurrentLevel(
+      saveData.totalExp || 0
+    );
 
   const isNext =
     unlocked &&

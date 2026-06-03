@@ -36,7 +36,7 @@ export default function AIQuestAdvisor() {
         "what-is-fx"
       ) &&
       !learned.includes(
-        "currency-pair"
+        "what-is-currency-pair"
       )
     ) {
 

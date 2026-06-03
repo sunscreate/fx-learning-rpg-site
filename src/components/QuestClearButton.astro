@@ -52,6 +52,29 @@ const SAVE_KEY =
 const EXP_PER_CLEAR =
   50;
 
+const EXP_TABLE = [
+  0,
+  100,
+  250,
+  450,
+  700,
+  1000,
+  1400,
+  1900,
+  2500,
+  3200,
+  4000,
+  5000,
+  6500,
+  8500,
+  11000,
+  14000,
+  17500,
+  21500,
+  26000,
+  32000,
+];
+
 const defaultSaveData = {
   totalExp: 0,
   currentLevel: 1,
@@ -92,6 +115,18 @@ function saveData(data) {
   window.dispatchEvent(
     new Event("fxquest-save")
   );
+}
+
+function getCurrentLevel(exp) {
+  let level = 1;
+
+  for (let i = 0; i < EXP_TABLE.length; i++) {
+    if (exp >= EXP_TABLE[i]) {
+      level = i + 1;
+    }
+  }
+
+  return level;
 }
 
 const button =
@@ -149,9 +184,8 @@ if (button) {
     }
 
     data.currentLevel =
-      Math.max(
-        data.currentLevel || 1,
-        level
+      getCurrentLevel(
+        data.totalExp || 0
       );
 
     saveData(data);
