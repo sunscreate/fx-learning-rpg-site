@@ -52,60 +52,74 @@ const SAVE_KEY =
 const EXP_PER_CLEAR =
   50;
 
-const EXP_TABLE = [
-  0,
-  100,
-  250,
-  450,
-  700,
-  1000,
-  1400,
-  1900,
-  2500,
-  3200,
-  4000,
-  5000,
-  6500,
-  8500,
-  11000,
-  14000,
-  17500,
-  21500,
-  26000,
-  32000,
-];
-
 const defaultSaveData = {
   totalExp: 0,
-  currentLevel: 1,
   learnedArticles: [],
   completedQuests: [],
   dailyStreak: 0,
   lastLoginDate: null,
 };
 
+function normalizeSaveData(data = {}) {
+  return {
+    totalExp:
+      Number(data.totalExp || 0),
+    learnedArticles:
+      Array.isArray(data.learnedArticles)
+        ? data.learnedArticles
+        : [],
+    completedQuests:
+      Array.isArray(data.completedQuests)
+        ? data.completedQuests
+        : [],
+    dailyStreak:
+      Number(data.dailyStreak || 0),
+    lastLoginDate:
+      data.lastLoginDate || null,
+  };
+}
+
 function loadSaveData() {
   const raw =
     localStorage.getItem(SAVE_KEY);
 
   if (!raw) {
-    return { ...defaultSaveData };
+    return normalizeSaveData(
+      defaultSaveData
+    );
   }
 
   try {
-    return {
+    const parsed = {
       ...defaultSaveData,
       ...JSON.parse(raw),
     };
+
+    const data =
+      normalizeSaveData(parsed);
+
+    if ("currentLevel" in parsed) {
+      localStorage.setItem(
+        SAVE_KEY,
+        JSON.stringify(data)
+      );
+    }
+
+    return data;
   } catch {
-    return { ...defaultSaveData };
+    return normalizeSaveData(
+      defaultSaveData
+    );
   }
 }
 
 function saveData(data) {
+  const saveData =
+    normalizeSaveData(data);
+
   localStorage.setItem(
     SAVE_KEY,
-    JSON.stringify(data)
+    JSON.stringify(saveData)
   );
 
   window.dispatchEvent(
@@ -115,18 +129,6 @@ function saveData(data) {
   window.dispatchEvent(
     new Event("fxquest-save")
   );
-}
-
-function getCurrentLevel(exp) {
-  let level = 1;
-
-  for (let i = 0; i < EXP_TABLE.length; i++) {
-    if (exp >= EXP_TABLE[i]) {
-      level = i + 1;
-    }
-  }
-
-  return level;
 }
 
 const button =
@@ -182,11 +184,6 @@ if (button) {
       data.completedQuests.push(slug);
       data.totalExp += EXP_PER_CLEAR;
     }
-
-    data.currentLevel =
-      getCurrentLevel(
-        data.totalExp || 0
-      );
 
     saveData(data);
 

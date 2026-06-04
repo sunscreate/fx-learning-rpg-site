@@ -1,78 +1,32 @@
 import {
   useEffect,
-  useState,
 } from "react";
 
-import {
-  loadSaveData,
-} from "../utils/storage";
-
-export default function LevelUpModal() {
-
-  const [show, setShow] =
-    useState(false);
-
-  const [level, setLevel] =
-    useState(1);
+export default function LevelUpModal({
+  open = false,
+  level = 1,
+  onClose,
+}) {
 
   useEffect(() => {
 
-    const checkLevel = () => {
+    if (!open) {
+      return;
+    }
 
-      const data =
-        loadSaveData();
+    const timer =
+      setTimeout(() => {
 
-      const nextLevel =
-        Math.floor(
-          data.totalExp / 100
-        ) + 1;
+        onClose?.();
 
-      const savedLevel =
-        Number(
-          localStorage.getItem(
-            "fx-last-level"
-          ) || 1
-        );
+      }, 4000);
 
-      if (
-        nextLevel > savedLevel
-      ) {
+    return () =>
+      clearTimeout(timer);
 
-        setLevel(nextLevel);
+  }, [open, onClose]);
 
-        setShow(true);
-
-        localStorage.setItem(
-          "fx-last-level",
-          nextLevel
-        );
-
-        setTimeout(() => {
-
-          setShow(false);
-
-        }, 4000);
-      }
-    };
-
-    checkLevel();
-
-    window.addEventListener(
-      "fxquest-update",
-      checkLevel
-    );
-
-    return () => {
-
-      window.removeEventListener(
-        "fxquest-update",
-        checkLevel
-      );
-    };
-
-  }, []);
-
-  if (!show) return null;
+  if (!open) return null;
 
   return (
 

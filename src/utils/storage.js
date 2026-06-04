@@ -3,12 +3,30 @@ const STORAGE_KEY =
 
 const defaultSaveData = {
   totalExp: 0,
-  currentLevel: 1,
   learnedArticles: [],
   completedQuests: [],
   dailyStreak: 0,
   lastLoginDate: null,
 };
+
+function normalizeSaveData(data = {}) {
+  return {
+    totalExp:
+      Number(data.totalExp || 0),
+    learnedArticles:
+      Array.isArray(data.learnedArticles)
+        ? data.learnedArticles
+        : [],
+    completedQuests:
+      Array.isArray(data.completedQuests)
+        ? data.completedQuests
+        : [],
+    dailyStreak:
+      Number(data.dailyStreak || 0),
+    lastLoginDate:
+      data.lastLoginDate || null,
+  };
+}
 
 export function loadSaveData() {
 
@@ -30,22 +48,39 @@ export function loadSaveData() {
 
   try {
 
-    return {
+    const parsed = {
       ...defaultSaveData,
       ...JSON.parse(raw),
     };
 
+    const data =
+      normalizeSaveData(parsed);
+
+    if ("currentLevel" in parsed) {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+      );
+    }
+
+    return data;
+
   } catch {
 
-    return defaultSaveData;
+    return normalizeSaveData(
+      defaultSaveData
+    );
   }
 }
 
 export function saveData(data) {
 
+  const saveData =
+    normalizeSaveData(data);
+
   localStorage.setItem(
     STORAGE_KEY,
-    JSON.stringify(data)
+    JSON.stringify(saveData)
   );
 
   window.dispatchEvent(
@@ -66,7 +101,7 @@ export function addExp(amount) {
 
   saveData(data);
 
-  return data;
+  return saveData;
 }
 
 export function markArticleLearned(slug) {

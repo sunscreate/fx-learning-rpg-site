@@ -4,7 +4,7 @@ import { mainQuestList } from "../data/mainQuestList.js";
 
 const {
   currentSlug,
-  currentLevel,
+  currentArticleLevel,
 } = Astro.props;
 
 const collections = [
@@ -42,13 +42,13 @@ for (const collection of collections) {
 }
 
 const mainSlugs =
-  mainQuestList[currentLevel] || [];
+  mainQuestList[currentArticleLevel] || [];
 
 const relatedPosts = allPosts
   .filter((post) => {
     return (
       post.fixedSlug !== currentSlug &&
-      post.data.level === currentLevel &&
+      post.data.level === currentArticleLevel &&
       !mainSlugs.includes(post.fixedSlug)
     );
   })

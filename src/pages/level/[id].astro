@@ -42,10 +42,23 @@ const collections = {
 const collectionName =
   collections[level.id];
 
-const allArticles =
-  await getCollection(
-    collectionName
-  );
+const collectionNames =
+  level.id === 10
+    ? ["style", "ea"]
+    : [collectionName];
+
+const allArticles = (
+  await Promise.all(
+    collectionNames.map(async (name) =>
+      (await getCollection(name))
+        .map((article) => ({
+          ...article,
+          collection: name,
+        }))
+    )
+  )
+)
+  .flat();
 
 const mainSlugs =
   mainQuestList[level.id] || [];
@@ -125,7 +138,7 @@ const breadcrumbItems = [
           articles.map((article) => (
             <QuestCard
               article={article}
-              collection={collectionName}
+              collection={article.collection}
             />
           ))
         }

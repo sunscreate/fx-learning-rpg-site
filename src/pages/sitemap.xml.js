@@ -37,7 +37,7 @@ export async function GET() {
     posts.forEach((post) => {
       const slug = post.slug || post.id?.replace(/\.md$/, "");
 
-      if (slug) {
+      if (slug && !/-\d+$/.test(slug)) {
         urls.push(`${base}/category/${collection}/${slug}/`);
       }
 

@@ -4,6 +4,7 @@ import ArticleLayout from "../../../layouts/ArticleLayout.astro";
 import Header from "../../../components/Header.astro";
 import QuestClearButton from "../../../components/QuestClearButton.astro";
 import RelatedArticles from "../../../components/RelatedArticles.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 
 export async function getStaticPaths() {
   const collections = [
@@ -47,19 +48,85 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const { collection } = Astro.params;
 const { Content } = await render(entry);
 
 const slug = entry.slug || entry.id.replace(/\.md$/, "");
 const noindex = /-\d+$/.test(slug);
+const siteBase = "https://sunscreate.github.io/fx-learning-rpg-site";
+const articlePath = `/fx-learning-rpg-site/category/${collection}/${slug}/`;
+const articleUrl = `${siteBase}/category/${collection}/${slug}/`;
+const imageUrl = `${siteBase}/ogp.png`;
+const fallbackDescription =
+  `${entry.data.title} を初心者向けにわかりやすく解説。` +
+  "意味・使い方・注意点・実践での活用方法までRPG風に学べるFX Quest Guildの学習記事。" +
+  "基礎知識からトレード判断へのつなげ方まで、クエスト形式で順番に理解できるよう整理しています。";
+const description =
+  entry.data.description ||
+  fallbackDescription;
+const publishedDate =
+  entry.data.datePublished ||
+  entry.data.pubDate ||
+  "2026-06-04";
+const modifiedDate =
+  entry.data.dateModified ||
+  entry.data.updatedDate ||
+  publishedDate;
+
+const breadcrumbItems = [
+  {
+    label: "Home",
+    href: "/fx-learning-rpg-site/",
+  },
+  {
+    label: collection,
+    href: "/fx-learning-rpg-site/category/",
+  },
+  {
+    label: entry.data.title,
+    href: articlePath,
+  },
+];
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: entry.data.title,
+  description,
+  author: {
+    "@type": "Organization",
+    name: "FX Quest Guild",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "FX Quest Guild",
+  },
+  datePublished: publishedDate,
+  dateModified: modifiedDate,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": articleUrl,
+  },
+  image: imageUrl,
+};
 ---
 
 <ArticleLayout
   title={entry.data.title}
-  description={entry.data.description}
+  description={description}
   noindex={noindex}
 >
 
   <Header />
+
+  <Breadcrumbs
+    items={breadcrumbItems}
+  />
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(articleJsonLd)}
+  />
 
   <Content />
 
@@ -71,7 +138,7 @@ const noindex = /-\d+$/.test(slug);
 
   <RelatedArticles
     currentSlug={slug}
-    currentLevel={entry.data.level}
+    currentArticleLevel={entry.data.level}
   />
 
 </ArticleLayout>

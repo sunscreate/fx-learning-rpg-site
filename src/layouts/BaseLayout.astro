@@ -4,10 +4,25 @@ import Footer from "../components/Footer.astro";
 
 const {
   title = "FX Quest Guild",
-  description = "FXをRPG感覚で体系的に学ぶ学習サイト",
+  description,
   image = "https://sunscreate.github.io/fx-learning-rpg-site/ogp.png",
   noindex = false,
 } = Astro.props;
+
+const fallbackDescription =
+  `${title} を初心者向けにわかりやすく解説。` +
+  "意味・使い方・注意点・実践での活用方法までRPG風に学べるFX Quest Guildの学習記事。" +
+  "基礎知識からトレード判断へのつなげ方まで、クエスト形式で順番に理解できるよう整理しています。";
+
+const pageDescription =
+  description || fallbackDescription;
+
+const robotsContent =
+  typeof noindex === "string"
+    ? noindex
+    : noindex
+    ? "noindex,follow"
+    : "";
 
 const siteBase = "https://sunscreate.github.io/fx-learning-rpg-site";
 
@@ -19,7 +34,7 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "FX Quest Guild",
   url: `${siteBase}/`,
-  description,
+  description: pageDescription,
   potentialAction: {
     "@type": "SearchAction",
     target: `${siteBase}/search/?q={search_term_string}`,
@@ -35,10 +50,10 @@ const websiteJsonLd = {
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
 
-    {noindex && (
-      <meta name="robots" content="noindex,follow" />
+    {robotsContent && (
+      <meta name="robots" content={robotsContent} />
     )}
 
     <title>{title}</title>
@@ -47,14 +62,14 @@ const websiteJsonLd = {
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content={image} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="FX Quest Guild" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={image} />
 
     <script
