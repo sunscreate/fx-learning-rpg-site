@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import ArticleChartSection from "../components/ArticleChartSection.astro";
 
 import DashboardClient from "../components/dashboard/DashboardClient.jsx";
 import LevelCard from "../components/LevelCard.jsx";
@@ -37,6 +38,11 @@ import { levels } from "../data/levels.js";
 
 
 <AIQuestAdvisor client:load />
+
+<ArticleChartSection
+  title="ホーム実戦チャート分析"
+  height={1100}
+/>
 
 
 

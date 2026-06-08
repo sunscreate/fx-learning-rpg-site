@@ -5,7 +5,10 @@ const {
   title = "実戦チャート分析",
   symbol = "OANDA:USDJPY",
   interval = "60",
+  height = 1200,
 } = Astro.props;
+
+const chartUrl = `https://www.tradingview.com/chart/?symbol=${encodeURIComponent(symbol)}`;
 ---
 
 <section class="article-chart-section">
@@ -19,9 +22,20 @@ const {
     相場の動きと知識を結びつけて学習しましょう。
   </p>
 
+  <div class="chart-actions">
+    <a
+      href={chartUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      チャートを別タブで開く
+    </a>
+  </div>
+
   <TradingViewEmbed
     symbol={symbol}
     interval={interval}
+    height={height}
   />
 
 </section>
@@ -30,6 +44,9 @@ const {
 .article-chart-section {
   margin-top: 4rem;
   margin-bottom: 4rem;
+  width: min(1400px, calc(100vw - 32px));
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .article-chart-section h2 {
@@ -41,5 +58,43 @@ const {
   margin-bottom: 1.5rem;
   color: #aaa;
   line-height: 1.8;
+}
+
+.chart-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.chart-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.chart-actions a:hover {
+  background: #3b82f6;
+}
+
+@media (max-width: 768px) {
+  .article-chart-section {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+
+  .chart-actions {
+    justify-content: stretch;
+  }
+
+  .chart-actions a {
+    width: 100%;
+  }
 }
 </style>

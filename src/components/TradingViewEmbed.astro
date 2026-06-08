@@ -2,11 +2,14 @@
 const {
   symbol = "OANDA:USDJPY",
   interval = "60",
-  height = 500,
+  height = 1200,
 } = Astro.props;
 ---
 
-<div class="tradingview-widget-container">
+<div
+  class="tradingview-widget-container"
+  style={`--chart-height: ${height}px;`}
+>
 
   <div
     class="tradingview-widget-container__widget"
@@ -37,8 +40,19 @@ const {
 .tradingview-widget-container {
   margin-top: 2rem;
   margin-bottom: 2rem;
+  height: var(--chart-height);
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid #222;
+}
+
+.tradingview-widget-container__widget {
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .tradingview-widget-container {
+    height: min(var(--chart-height), 760px);
+  }
 }
 </style>
