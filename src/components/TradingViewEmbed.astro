@@ -2,7 +2,7 @@
 const {
   symbol = "OANDA:USDJPY",
   interval = "60",
-  height = 1200,
+  height = 720,
 } = Astro.props;
 ---
 
@@ -40,7 +40,7 @@ const {
 .tradingview-widget-container {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  height: var(--chart-height);
+  height: clamp(420px, 68vh, var(--chart-height));
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid #222;
@@ -52,7 +52,7 @@ const {
 
 @media (max-width: 768px) {
   .tradingview-widget-container {
-    height: min(var(--chart-height), 760px);
+    height: clamp(340px, 58vh, var(--chart-height));
   }
 }
 </style>
