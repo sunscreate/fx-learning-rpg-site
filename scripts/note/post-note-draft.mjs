@@ -25,6 +25,12 @@ function parseTitle(markdown) {
   return markdown.match(/^#\s+(.+)$/m)?.[1]?.trim() || "FX Quest Guild 限定QUEST";
 }
 
+function getNoteUrl(url) {
+  const match = url.match(/editor\.note\.com\/notes\/([^/]+)\//);
+  if (!match) return null;
+  return `https://note.com/hearty_tapir5661/n/${match[1]}`;
+}
+
 async function loadLedger() {
   try {
     return JSON.parse(await readFile(LEDGER_PATH, "utf8"));
@@ -67,31 +73,41 @@ async function main() {
   await editor.waitFor({ timeout: 60000 });
   await editor.fill(markdown.replace(/^#\s+.+\n+/, ""));
 
-  if (publish) {
-    const publishButtons = [
-      page.getByRole("button", { name: "公開設定" }),
-      page.getByRole("button", { name: "投稿" }),
-      page.getByRole("button", { name: "公開" }),
-    ];
-
-    for (const button of publishButtons) {
-      try {
-        if ((await button.count()) === 1) {
-          await button.click();
-          break;
-        }
-      } catch {
-        // Continue to the next candidate. note changes its editor labels often.
-      }
-    }
-
-    console.log("Publish mode requested. If note opened a final confirmation screen, review it before completing publication.");
-  }
-
   const ledger = await loadLedger();
   const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file);
+  let publishedNoteUrl = null;
+
+  if (publish) {
+    if (generatedEntry?.visibility && generatedEntry.visibility !== "public") {
+      throw new Error(`Refusing to auto-publish ${generatedEntry.visibility} as a free public note.`);
+    }
+
+    const proceedButton = page.locator("button").filter({ hasText: "公開に進む" });
+    await proceedButton.waitFor({ timeout: 60000 });
+    await proceedButton.click({ force: true });
+    await page.waitForTimeout(5000);
+
+    const noteUrl = getNoteUrl(page.url());
+    publishedNoteUrl = noteUrl;
+    const postButton = page.locator("button").filter({ hasText: "投稿する" });
+    await postButton.waitFor({ timeout: 60000 });
+    await postButton.click({ force: true });
+    await page.waitForTimeout(10000);
+
+    if (noteUrl) {
+      const verifyPage = await context.newPage();
+      await verifyPage.goto(noteUrl, { waitUntil: "domcontentloaded" });
+      await verifyPage.waitForTimeout(3000);
+      const bodyText = await verifyPage.locator("body").innerText();
+      if (bodyText.includes("これは公開前の下書きです")) {
+        throw new Error("Publish verification failed: draft notice is still visible.");
+      }
+    }
+  }
+
   if (generatedEntry) {
     const postedAt = new Date().toISOString();
+    const noteUrl = publishedNoteUrl || getNoteUrl(page.url());
     const nextLedger = {
       generated: (ledger.generated || []).filter((entry) => entry.file !== file),
       posted: [
@@ -99,7 +115,9 @@ async function main() {
         {
           ...generatedEntry,
           postedAt,
-          postedMode: publish ? "browser_publish_requested" : "browser_draft_filled",
+          postedMode: publish ? "browser_published" : "browser_draft_filled",
+          ...(noteUrl ? { noteUrl } : {}),
+          ...(publish ? { publishedAt: postedAt } : {}),
         },
       ],
     };

@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "note:generate": "node scripts/note/generate-note-posts.mjs",
-    "note:post": "node scripts/note/post-note-draft.mjs"
+    "note:post": "node scripts/note/post-note-draft.mjs",
+    "note:publish": "node scripts/note/publish-note-draft.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.5",
