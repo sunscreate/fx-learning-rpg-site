@@ -13,6 +13,8 @@ FX Quest Guild の note メンバーシップ運用を、重複を避けなが�
 
 ```sh
 npm run note:generate
+npm run note:generate:public
+npm run note:generate:member
 npm run note:post -- --file content/note-automation/drafts/<draft>.md
 npm run note:publish -- --url https://note.com/<user>/n/<id>
 ```

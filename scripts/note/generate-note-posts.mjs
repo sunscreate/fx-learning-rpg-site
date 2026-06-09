@@ -20,6 +20,7 @@ const args = new Map(
 );
 
 const count = Number(args.get("count") || 2);
+const typeFilter = args.get("type") || "any";
 const today = new Date().toISOString().slice(0, 10);
 
 function slugify(input) {
@@ -307,7 +308,13 @@ function selectDrafts(articles, ledger) {
   const drafts = [];
 
   for (const article of preferred) {
-    const builders = [buildPublicTeaser, buildPremiumArticle, buildBoardPost];
+    const buildersByType = {
+      any: [buildPublicTeaser, buildPremiumArticle, buildBoardPost],
+      public: [buildPublicTeaser],
+      member: [buildPremiumArticle],
+      board: [buildBoardPost],
+    };
+    const builders = buildersByType[typeFilter] || buildersByType.any;
     for (const builder of builders) {
       const draft = builder(article, drafts.length);
       if (usedKeys.has(draft.key)) continue;

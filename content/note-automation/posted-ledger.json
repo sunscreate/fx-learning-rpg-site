@@ -33,6 +33,23 @@
         "学習記録"
       ],
       "generatedAt": "2026-06-09T07:33:51.687Z"
+    },
+    {
+      "key": "article:basic/what-is-bid-ask-10:premium-checkpoints",
+      "id": "7b85323c8a",
+      "title": "限定QUEST: Bid/AskFX初心者が最初に覚えるべき理由を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-06-09-what-is-bid-ask-10-premium-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-10/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "generatedAt": "2026-06-09T10:53:19.413Z"
     }
   ],
   "posted": [

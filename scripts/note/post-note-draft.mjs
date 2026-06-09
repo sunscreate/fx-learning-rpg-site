@@ -31,6 +31,25 @@ function getNoteUrl(url) {
   return `https://note.com/hearty_tapir5661/n/${match[1]}`;
 }
 
+async function configurePublishSettings(page, entry) {
+  if (entry?.visibility === "members_only") {
+    const membershipButton = page.locator("button[role='checkbox']").filter({ hasText: "メンバーシップ" });
+    await membershipButton.waitFor({ timeout: 60000 });
+
+    const isChecked = await membershipButton.getAttribute("aria-checked");
+    if (isChecked !== "true") {
+      await membershipButton.click({ force: true });
+      await page.waitForTimeout(1000);
+    }
+
+    const addButton = page.locator("button").filter({ hasText: "追加" });
+    if ((await addButton.count()) === 1) {
+      await addButton.click({ force: true });
+      await page.waitForTimeout(2000);
+    }
+  }
+}
+
 async function loadLedger() {
   try {
     return JSON.parse(await readFile(LEDGER_PATH, "utf8"));
@@ -78,7 +97,7 @@ async function main() {
   let publishedNoteUrl = null;
 
   if (publish) {
-    if (generatedEntry?.visibility && generatedEntry.visibility !== "public") {
+    if (generatedEntry?.visibility && !["public", "members_only"].includes(generatedEntry.visibility)) {
       throw new Error(`Refusing to auto-publish ${generatedEntry.visibility} as a free public note.`);
     }
 
@@ -89,6 +108,8 @@ async function main() {
 
     const noteUrl = getNoteUrl(page.url());
     publishedNoteUrl = noteUrl;
+    await configurePublishSettings(page, generatedEntry);
+
     const postButton = page.locator("button").filter({ hasText: "投稿する" });
     await postButton.waitFor({ timeout: 60000 });
     await postButton.click({ force: true });
