@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "note:generate": "node scripts/note/generate-note-posts.mjs",
+    "note:post": "node scripts/note/post-note-draft.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.5",
@@ -20,5 +22,8 @@
     "pagefind": "^1.5.2",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
   }
 }
