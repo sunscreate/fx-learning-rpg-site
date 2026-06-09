@@ -1,0 +1,116 @@
+---
+const {
+  title = "実践環境を確認する",
+  description = "学んだ内容を実際の取引環境で確認したい方向けに、FXサービスの情報を紹介します。",
+  url = "https://px.a8.net/svt/ejp?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE",
+  label = "MATSUI FXを確認する",
+  trackingPixel = "https://www16.a8.net/0.gif?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE",
+} = Astro.props;
+---
+
+<section class="affiliate-cta">
+
+  <div>
+
+    <p class="affiliate-label">
+      FX SERVICE
+    </p>
+
+    <h2>
+      {title}
+    </h2>
+
+    <p>
+      {description}
+    </p>
+
+  </div>
+
+  <a
+    href={url}
+    class="affiliate-button"
+    target="_blank"
+    rel="sponsored nofollow noopener noreferrer"
+  >
+    {label}
+  </a>
+
+  <img
+    src={trackingPixel}
+    width="1"
+    height="1"
+    alt=""
+    loading="lazy"
+  />
+
+</section>
+
+<style>
+.affiliate-cta {
+  margin: 48px 0;
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #123028
+    );
+
+  border: 1px solid #22c55e;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.affiliate-label {
+  color: #86efac;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.affiliate-cta h2 {
+  color: #f9fafb;
+  margin-bottom: 10px;
+}
+
+.affiliate-cta p {
+  color: #d1d5db;
+}
+
+.affiliate-button {
+  white-space: nowrap;
+
+  padding: 14px 22px;
+
+  border-radius: 999px;
+
+  background: #22c55e;
+
+  color: #052e16;
+
+  font-weight: 900;
+
+  text-decoration: none;
+}
+
+.affiliate-button:hover {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 768px) {
+  .affiliate-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .affiliate-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+</style>
