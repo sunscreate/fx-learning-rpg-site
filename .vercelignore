@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.astro/
+.note-browser-profile/
+.git/
+*.log

@@ -26,3 +26,4 @@ pnpm-debug.log*
 .git_broken_*
 astro-error.log
 .note-browser-profile/
+.vercel

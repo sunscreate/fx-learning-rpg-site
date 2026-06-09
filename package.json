@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/vercel-copy-base-output.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "note:generate": "node scripts/note/generate-note-posts.mjs",
