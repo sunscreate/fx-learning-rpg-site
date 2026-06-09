@@ -1,9 +1,26 @@
 ---
 const {
-  symbol = "OANDA:USDJPY",
+  symbol = "FX:USDJPY",
   interval = "60",
   height = 720,
 } = Astro.props;
+
+const widgetConfig = JSON.stringify(
+  {
+    autosize: true,
+    symbol,
+    interval,
+    timezone: "Asia/Tokyo",
+    theme: "dark",
+    style: "1",
+    locale: "ja",
+    allow_symbol_change: true,
+    support_host: "https://www.tradingview.com",
+    height,
+  },
+  null,
+  2,
+);
 ---
 
 <div
@@ -19,20 +36,8 @@ const {
     type="text/javascript"
     src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js"
     async
-  >
-{
-  "autosize": true,
-  "symbol": "${symbol}",
-  "interval": "${interval}",
-  "timezone": "Asia/Tokyo",
-  "theme": "dark",
-  "style": "1",
-  "locale": "ja",
-  "allow_symbol_change": true,
-  "support_host": "https://www.tradingview.com",
-  "height": ${height}
-}
-  </script>
+    set:html={widgetConfig}
+  />
 
 </div>
 
