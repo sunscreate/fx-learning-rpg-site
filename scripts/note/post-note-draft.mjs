@@ -54,9 +54,9 @@ async function main() {
   console.log("Opened note editor. If login is required, log in in the opened browser, then rerun this command.");
 
   if (page.url().includes("/login")) {
-    console.error("note login is required. Log in once in the opened browser window, then rerun this command.");
-    await context.close();
-    process.exit(2);
+    console.log("note login is required. Log in in the opened browser window. This command will continue after login.");
+    await page.waitForURL((url) => !url.href.includes("/login"), { timeout: 10 * 60 * 1000 });
+    await page.goto(NOTE_NEW_URL, { waitUntil: "domcontentloaded" });
   }
 
   const titleInput = page.getByPlaceholder("タイトル");
