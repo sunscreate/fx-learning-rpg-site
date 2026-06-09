@@ -33,7 +33,9 @@
         "学習記録"
       ],
       "generatedAt": "2026-06-09T07:33:51.687Z"
-    },
+    }
+  ],
+  "posted": [
     {
       "key": "public:basic/what-is-bid-ask:membership-teaser",
       "id": "c108661e1c",
@@ -49,8 +51,9 @@
         "ドル円",
         "FX Quest Guild"
       ],
-      "generatedAt": "2026-06-09T07:35:47.413Z"
+      "generatedAt": "2026-06-09T07:35:47.413Z",
+      "postedAt": "2026-06-09T09:04:07.148Z",
+      "postedMode": "browser_draft_filled"
     }
-  ],
-  "posted": []
+  ]
 }
