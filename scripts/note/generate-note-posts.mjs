@@ -9,6 +9,8 @@ const CONTENT_DIR = path.join(ROOT, "src/content");
 const OUT_DIR = path.join(ROOT, "content/note-automation/drafts");
 const THUMBNAIL_DIR = path.join(ROOT, "content/note-automation/thumbnails");
 const THUMBNAIL_ARCHIVE_DIR = "/Volumes/MyHD/Archives/fx-quest-guild/note-thumbnails";
+const CHART_DIR = path.join(ROOT, "content/note-automation/charts");
+const CHART_ARCHIVE_DIR = "/Volumes/MyHD/Archives/fx-quest-guild/note-charts";
 const LEDGER_PATH = path.join(ROOT, "content/note-automation/posted-ledger.json");
 const LATEST_PATH = path.join(ROOT, "content/note-automation/latest.json");
 
@@ -128,21 +130,78 @@ async function createThumbnail(draft) {
   return path.relative(ROOT, pngPath);
 }
 
+function shouldIncludeChart(draft) {
+  if (draft.type === "member_article") return true;
+  if (["chart", "entry", "risk", "analysis"].includes(draft.category)) return true;
+  return /(チャート|トレンド|サポート|レジスタンス|ブレイク|押し目|戻り|スプレッド|Bid|Ask)/i.test(
+    draft.title,
+  );
+}
+
+async function createChartImage(draft) {
+  if (!shouldIncludeChart(draft)) return null;
+
+  const baseName = draft.fileName.replace(/\.md$/, "");
+  const svgPath = path.join(CHART_DIR, `${baseName}-chart.svg`);
+  const pngPath = path.join(CHART_DIR, `${baseName}-chart.png`);
+  const accent = draft.visibility === "public" ? "#58d68d" : "#f2c94c";
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#0d1424"/>
+  <g stroke="#29344c" stroke-width="2" opacity="0.85">
+    <path d="M80 150H1200M80 260H1200M80 370H1200M80 480H1200M80 590H1200"/>
+    <path d="M200 110V620M360 110V620M520 110V620M680 110V620M840 110V620M1000 110V620M1160 110V620"/>
+  </g>
+  <text x="80" y="62" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="34" font-weight="700">USD/JPY 解説用チャート例</text>
+  <text x="80" y="100" fill="#aebbd3" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="20">実際の相場価格ではありません。判断ポイントの学習用です。</text>
+  <path d="M95 520C190 500 220 420 300 438S430 520 510 430S650 320 730 355S850 445 920 338S1050 220 1180 250" fill="none" stroke="${accent}" stroke-width="8" stroke-linecap="round"/>
+  <g stroke-width="5">
+    <path d="M180 430V560" stroke="#58d68d"/><rect x="164" y="462" width="32" height="58" fill="#58d68d"/>
+    <path d="M260 398V530" stroke="#ff7b7b"/><rect x="244" y="430" width="32" height="62" fill="#ff7b7b"/>
+    <path d="M390 420V548" stroke="#58d68d"/><rect x="374" y="448" width="32" height="66" fill="#58d68d"/>
+    <path d="M545 348V478" stroke="#58d68d"/><rect x="529" y="386" width="32" height="58" fill="#58d68d"/>
+    <path d="M695 294V410" stroke="#ff7b7b"/><rect x="679" y="326" width="32" height="54" fill="#ff7b7b"/>
+    <path d="M825 340V460" stroke="#58d68d"/><rect x="809" y="372" width="32" height="58" fill="#58d68d"/>
+    <path d="M960 258V386" stroke="#58d68d"/><rect x="944" y="292" width="32" height="60" fill="#58d68d"/>
+  </g>
+  <path d="M80 446H1200" stroke="#ff7b7b" stroke-width="3" stroke-dasharray="14 10"/>
+  <rect x="92" y="402" width="228" height="42" rx="6" fill="#1b263d"/>
+  <text x="108" y="432" fill="#ffb1b1" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="21" font-weight="700">見送り・再確認ゾーン</text>
+  <path d="M934 204L970 258" stroke="#ffffff" stroke-width="4"/>
+  <rect x="810" y="154" width="252" height="48" rx="6" fill="#1b263d"/>
+  <text x="832" y="186" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="22" font-weight="700">根拠を確認する地点</text>
+  <text x="80" y="682" fill="#aebbd3" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="20">FX Quest Guild | 通貨ペア: USD/JPY</text>
+</svg>`;
+
+  await mkdir(CHART_DIR, { recursive: true });
+  await writeFile(svgPath, svg, "utf8");
+  await execFileAsync("/usr/bin/sips", ["-s", "format", "png", svgPath, "--out", pngPath]);
+  await unlink(svgPath);
+
+  try {
+    await mkdir(CHART_ARCHIVE_DIR, { recursive: true });
+    await copyFile(pngPath, path.join(CHART_ARCHIVE_DIR, path.basename(pngPath)));
+  } catch (error) {
+    console.warn(`Chart archive skipped: ${error.message}`);
+  }
+
+  return path.relative(ROOT, pngPath);
+}
+
 async function ensureGeneratedThumbnails(ledger) {
   const generated = [];
 
   for (const entry of ledger.generated || []) {
-    if (entry.thumbnail) {
-      generated.push(entry);
-      continue;
-    }
-
-    const thumbnail = await createThumbnail({
+    const draft = {
       fileName: path.basename(entry.file),
       title: entry.title,
+      type: entry.type,
+      category: entry.category || entry.sourcePath?.split("/")[2],
       visibility: entry.visibility,
-    });
-    generated.push({ ...entry, thumbnail });
+    };
+    const thumbnail = entry.thumbnail || (await createThumbnail(draft));
+    const chartImage = entry.chartImage || (await createChartImage(draft));
+    generated.push({ ...entry, thumbnail, ...(chartImage ? { chartImage } : {}) });
   }
 
   return { ...ledger, generated };
@@ -306,6 +365,7 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
 
   return {
     type: "member_article",
+    category: article.category,
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -357,6 +417,7 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
 
   return {
     type: "public_teaser",
+    category: article.category,
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -408,6 +469,7 @@ ${link("メンバーシップでドル円チャート実践ワークに参加す
 
   return {
     type: "board_post",
+    category: article.category,
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -455,6 +517,7 @@ function selectDrafts(articles, ledger) {
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   await mkdir(THUMBNAIL_DIR, { recursive: true });
+  await mkdir(CHART_DIR, { recursive: true });
 
   const [articles, rawLedger] = await Promise.all([readArticles(), readLedger()]);
   const ledger = await ensureGeneratedThumbnails(rawLedger);
@@ -474,6 +537,7 @@ async function main() {
     const outPath = path.join(OUT_DIR, draft.fileName);
     await writeFile(outPath, draft.body, "utf8");
     const thumbnail = await createThumbnail(draft);
+    const chartImage = await createChartImage(draft);
     generatedEntries.push({
       key: draft.key,
       id: hash(`${draft.key}:${generatedAt}`),
@@ -482,9 +546,11 @@ async function main() {
       file: path.relative(ROOT, outPath),
       sourcePath: draft.sourcePath,
       sourceUrl: draft.sourceUrl,
+      category: draft.category,
       visibility: draft.visibility,
       tags: draft.tags,
       thumbnail,
+      ...(chartImage ? { chartImage } : {}),
       generatedAt,
     });
   }

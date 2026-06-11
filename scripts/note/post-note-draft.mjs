@@ -112,6 +112,45 @@ async function uploadThumbnail(page, entry) {
   await page.waitForTimeout(3000);
 }
 
+async function insertChartImage(page, entry) {
+  if (!entry?.chartImage) return;
+
+  const chartPath = path.resolve(ROOT, entry.chartImage);
+  const chartBuffer = await readFile(chartPath);
+  const chartBase64 = chartBuffer.toString("base64");
+  const editor = page.locator("[contenteditable='true']").last();
+
+  await editor.evaluate((element) => {
+    element.focus();
+    const paragraphs = element.querySelectorAll("p");
+    const target = paragraphs[Math.min(1, Math.max(0, paragraphs.length - 1))] || element;
+    const range = document.createRange();
+    range.selectNodeContents(target);
+    range.collapse(false);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  });
+
+  await page.evaluate(async ({ base64 }) => {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+    const file = new File([bytes], "usdjpy-learning-chart.png", { type: "image/png" });
+    const transfer = new DataTransfer();
+    transfer.items.add(file);
+    const target = document.activeElement;
+    target?.dispatchEvent(new ClipboardEvent("paste", { bubbles: true, cancelable: true, clipboardData: transfer }));
+  }, { base64: chartBase64 });
+
+  await page.waitForTimeout(5000);
+
+  const bodyImageCount = await editor.locator("img").count();
+  if (bodyImageCount === 0) {
+    throw new Error("Chart image insertion could not be verified in the note body.");
+  }
+}
+
 async function loadLedger() {
   try {
     return JSON.parse(await readFile(LEDGER_PATH, "utf8"));
@@ -174,6 +213,7 @@ async function main() {
   const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file);
   let publishedNoteUrl = null;
 
+  await insertChartImage(page, generatedEntry);
   await uploadThumbnail(page, generatedEntry);
 
   if (publish) {
