@@ -93,6 +93,48 @@
       "postedMode": "browser_published_members_only",
       "noteUrl": "https://note.com/hearty_tapir5661/n/nda534dd13445",
       "publishedAt": "2026-06-11T13:25:16.891Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-10:membership-teaser",
+      "id": "b1d68b95cf",
+      "title": "無料公開: Bid/AskFX初心者が最初に覚えるべき理由でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-06-11-what-is-bid-ask-10-public-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-10/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "generatedAt": "2026-06-11T19:17:04.151Z",
+      "postedAt": "2026-06-11T19:18:52.819Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n59b3fba270f0",
+      "publishedAt": "2026-06-11T19:18:52.819Z"
+    },
+    {
+      "key": "article:basic/what-is-bid-ask-9:premium-checkpoints",
+      "id": "911638ae85",
+      "title": "限定QUEST: Bid/Askおすすめしない場面を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-06-11-what-is-bid-ask-9-premium-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-9.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-9/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "generatedAt": "2026-06-11T19:26:14.032Z",
+      "postedAt": "2026-06-11T19:26:52.307Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/ne603039c5108",
+      "publishedAt": "2026-06-11T19:26:52.307Z"
     }
   ]
 }

@@ -70,7 +70,7 @@ async function main() {
   }
 
   const publicUrl = getPublicUrl(targetUrl);
-  const context = await chromium.launchPersistentContext(PROFILE_DIR, { headless: false });
+  const context = await chromium.launchPersistentContext(PROFILE_DIR, { headless: false, channel: "chrome" });
   const page = await context.newPage();
 
   await openDraft(page, publicUrl);

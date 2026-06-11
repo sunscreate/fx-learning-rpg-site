@@ -111,7 +111,7 @@ async function main() {
     process.exit(1);
   }
 
-  const context = await chromium.launchPersistentContext(PROFILE_DIR, { headless: false });
+  const context = await chromium.launchPersistentContext(PROFILE_DIR, { headless: false, channel: "chrome" });
   const page = await context.newPage();
   await page.goto(NOTE_NEW_URL, { waitUntil: "domcontentloaded" });
 
@@ -200,8 +200,10 @@ async function main() {
     await writeFile(LEDGER_PATH, `${JSON.stringify(nextLedger, null, 2)}\n`, "utf8");
   }
 
-  console.log(`Filled note draft: ${title}`);
-  console.log("Review the editor and publish from note when ready.");
+  await context.close();
+
+  console.log(publish ? `Published note: ` : `Filled note draft: `);
+  if (!publish) console.log("Review the editor and publish from note when ready.");
 }
 
 main().catch((error) => {
