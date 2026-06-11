@@ -89,6 +89,29 @@ async function configurePublishSettings(page, entry) {
   }
 }
 
+async function uploadThumbnail(page, entry) {
+  if (!entry?.thumbnail) {
+    throw new Error("Refusing to publish without a generated note thumbnail.");
+  }
+
+  const thumbnailPath = path.resolve(ROOT, entry.thumbnail);
+  const imageButton = page.locator("button").filter({ hasText: "画像を追加" }).first();
+  await imageButton.waitFor({ timeout: 60000 });
+
+  const fileChooserPromise = page.waitForEvent("filechooser");
+  await imageButton.click({ force: true });
+  const uploadButton = page.locator("button").filter({ hasText: "画像をアップロード" }).first();
+  await uploadButton.waitFor({ timeout: 60000 });
+  await uploadButton.click({ force: true });
+  const fileChooser = await fileChooserPromise;
+  await fileChooser.setFiles(thumbnailPath);
+
+  const saveButton = page.locator("button").filter({ hasText: "保存" }).last();
+  await saveButton.waitFor({ timeout: 60000 });
+  await saveButton.click({ force: true });
+  await page.waitForTimeout(3000);
+}
+
 async function loadLedger() {
   try {
     return JSON.parse(await readFile(LEDGER_PATH, "utf8"));
@@ -151,6 +174,8 @@ async function main() {
   const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file);
   let publishedNoteUrl = null;
 
+  await uploadThumbnail(page, generatedEntry);
+
   if (publish) {
     if (generatedEntry?.visibility && !["public", "members_only"].includes(generatedEntry.visibility)) {
       throw new Error(`Refusing to auto-publish ${generatedEntry.visibility} as a free public note.`);
@@ -202,7 +227,7 @@ async function main() {
 
   await context.close();
 
-  console.log(publish ? `Published note: ` : `Filled note draft: `);
+  console.log(publish ? `Published note: ${publishedNoteUrl || title}` : `Filled note draft: ${title}`);
   if (!publish) console.log("Review the editor and publish from note when ready.");
 }
 

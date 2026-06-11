@@ -1,16 +1,21 @@
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import path from "node:path";
 import crypto from "node:crypto";
 
 const ROOT = process.cwd();
 const CONTENT_DIR = path.join(ROOT, "src/content");
 const OUT_DIR = path.join(ROOT, "content/note-automation/drafts");
+const THUMBNAIL_DIR = path.join(ROOT, "content/note-automation/thumbnails");
+const THUMBNAIL_ARCHIVE_DIR = "/Volumes/MyHD/Archives/fx-quest-guild/note-thumbnails";
 const LEDGER_PATH = path.join(ROOT, "content/note-automation/posted-ledger.json");
 const LATEST_PATH = path.join(ROOT, "content/note-automation/latest.json");
 
 const SITE_URL = "https://sunscreate.github.io/fx-learning-rpg-site/";
 const NOTE_MEMBERSHIP_URL = "https://note.com/hearty_tapir5661/membership";
 const A8_URL = "https://px.a8.net/svt/ejp?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE";
+const execFileAsync = promisify(execFile);
 
 function link(label, url) {
   return `[${label}](${url})`;
@@ -23,9 +28,14 @@ const args = new Map(
   }),
 );
 
-const count = Number(args.get("count") || 2);
+const count = args.has("count") ? Number(args.get("count")) : 2;
 const typeFilter = args.get("type") || "any";
-const today = new Date().toISOString().slice(0, 10);
+const today = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Tokyo",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+}).format(new Date());
 
 function slugify(input) {
   return input
@@ -37,6 +47,116 @@ function slugify(input) {
 
 function hash(input) {
   return crypto.createHash("sha1").update(input).digest("hex").slice(0, 10);
+}
+
+function escapeXml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function wrapTitle(title, maxLength = 14) {
+  const normalized = title
+    .replace(/^(無料公開|限定QUEST|掲示板テーマ):\s*/, "")
+    .replace(/FX Quest Guild/g, "FX Quest Guild ")
+    .trim();
+  const lines = [];
+  let current = "";
+
+  for (const character of normalized) {
+    current += character;
+    if (current.length >= maxLength) {
+      lines.push(current.trim());
+      current = "";
+    }
+    if (lines.length === 3) break;
+  }
+  if (current && lines.length < 3) lines.push(current.trim());
+  return lines.filter(Boolean).slice(0, 3);
+}
+
+async function createThumbnail(draft) {
+  const baseName = draft.fileName.replace(/\.md$/, "");
+  const svgPath = path.join(THUMBNAIL_DIR, `${baseName}.svg`);
+  const pngPath = path.join(THUMBNAIL_DIR, `${baseName}.png`);
+  const isMember = draft.visibility !== "public";
+  const label = draft.visibility === "members_board" ? "MEMBER BOARD" : isMember ? "MEMBER QUEST" : "FREE QUEST";
+  const accent = isMember ? "#f2c94c" : "#58d68d";
+  const lines = wrapTitle(draft.title);
+  const titleSvg = lines
+    .map(
+      (line, index) =>
+        `<text x="92" y="${350 + index * 62}" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="44" font-weight="800">${escapeXml(line)}</text>`,
+    )
+    .join("\n");
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="670" viewBox="0 0 1280 670">
+  <rect width="1280" height="670" fill="#0d1424"/>
+  <g stroke="#29344c" stroke-width="2" opacity="0.72">
+    <path d="M0 112H1280M0 224H1280M0 336H1280M0 448H1280M0 560H1280"/>
+    <path d="M160 0V670M320 0V670M480 0V670M640 0V670M800 0V670M960 0V670M1120 0V670"/>
+  </g>
+  <rect x="58" y="52" width="1164" height="566" rx="18" fill="none" stroke="${accent}" stroke-width="4"/>
+  <text x="92" y="116" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="38" font-weight="700">FX Quest Guild</text>
+  <text x="92" y="162" fill="${accent}" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="25" font-weight="700">${label} | USDJPY</text>
+  <g transform="translate(870 180) scale(0.8)">
+    <path d="M0 236L92 150L184 190L276 88L368 120" fill="none" stroke="${accent}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke-width="8">
+      <path d="M38 78V246" stroke="#58d68d"/><rect x="20" y="116" width="36" height="76" fill="#58d68d"/>
+      <path d="M112 112V280" stroke="#ff7b7b"/><rect x="94" y="154" width="36" height="82" fill="#ff7b7b"/>
+      <path d="M190 42V214" stroke="#58d68d"/><rect x="172" y="78" width="36" height="92" fill="#58d68d"/>
+    </g>
+  </g>
+  ${titleSvg}
+  <text x="92" y="592" fill="#b8c2d8" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="24" font-weight="600">初心者向けFX学習 | 実践で使える知識へ</text>
+</svg>`;
+
+  await mkdir(THUMBNAIL_DIR, { recursive: true });
+  await writeFile(svgPath, svg, "utf8");
+  await execFileAsync("/usr/bin/sips", ["-s", "format", "png", svgPath, "--out", pngPath]);
+  await unlink(svgPath);
+
+  try {
+    await mkdir(THUMBNAIL_ARCHIVE_DIR, { recursive: true });
+    await copyFile(pngPath, path.join(THUMBNAIL_ARCHIVE_DIR, path.basename(pngPath)));
+  } catch (error) {
+    console.warn(`Thumbnail archive skipped: ${error.message}`);
+  }
+
+  return path.relative(ROOT, pngPath);
+}
+
+async function ensureGeneratedThumbnails(ledger) {
+  const generated = [];
+
+  for (const entry of ledger.generated || []) {
+    if (entry.thumbnail) {
+      generated.push(entry);
+      continue;
+    }
+
+    const thumbnail = await createThumbnail({
+      fileName: path.basename(entry.file),
+      title: entry.title,
+      visibility: entry.visibility,
+    });
+    generated.push({ ...entry, thumbnail });
+  }
+
+  return { ...ledger, generated };
+}
+
+async function syncLatestThumbnails(ledger) {
+  try {
+    const latest = JSON.parse(await readFile(LATEST_PATH, "utf8"));
+    const generatedByFile = new Map((ledger.generated || []).map((entry) => [entry.file, entry]));
+    const synced = latest.map((entry) => generatedByFile.get(entry.file) || entry);
+    await writeFile(LATEST_PATH, `${JSON.stringify(synced, null, 2)}\n`, "utf8");
+  } catch {
+    // latest.json is optional until the first draft is generated.
+  }
 }
 
 function parseFrontmatter(markdown) {
@@ -300,6 +420,7 @@ ${link("メンバーシップでドル円チャート実践ワークに参加す
 }
 
 function selectDrafts(articles, ledger) {
+  if (count <= 0) return [];
   const usedKeys = new Set([
     ...(ledger.generated || []).map((entry) => entry.key),
     ...(ledger.posted || []).map((entry) => entry.key),
@@ -333,11 +454,15 @@ function selectDrafts(articles, ledger) {
 
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
+  await mkdir(THUMBNAIL_DIR, { recursive: true });
 
-  const [articles, ledger] = await Promise.all([readArticles(), readLedger()]);
+  const [articles, rawLedger] = await Promise.all([readArticles(), readLedger()]);
+  const ledger = await ensureGeneratedThumbnails(rawLedger);
   const drafts = selectDrafts(articles, ledger);
 
   if (drafts.length === 0) {
+    await writeFile(LEDGER_PATH, `${JSON.stringify(ledger, null, 2)}\n`, "utf8");
+    await syncLatestThumbnails(ledger);
     console.log("No new note drafts. All candidate topics are already generated or posted.");
     return;
   }
@@ -348,6 +473,7 @@ async function main() {
   for (const draft of drafts) {
     const outPath = path.join(OUT_DIR, draft.fileName);
     await writeFile(outPath, draft.body, "utf8");
+    const thumbnail = await createThumbnail(draft);
     generatedEntries.push({
       key: draft.key,
       id: hash(`${draft.key}:${generatedAt}`),
@@ -358,6 +484,7 @@ async function main() {
       sourceUrl: draft.sourceUrl,
       visibility: draft.visibility,
       tags: draft.tags,
+      thumbnail,
       generatedAt,
     });
   }
