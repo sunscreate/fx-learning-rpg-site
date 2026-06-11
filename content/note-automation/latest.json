@@ -1,12 +1,12 @@
 [
   {
-    "key": "article:basic/what-is-bid-ask-9:premium-checkpoints",
-    "id": "911638ae85",
-    "title": "限定QUEST: Bid/Askおすすめしない場面を実戦で使う3つの確認ポイント",
+    "key": "article:basic/what-is-bid-ask-1:premium-checkpoints",
+    "id": "2e40e5ca57",
+    "title": "限定QUEST: Bid/Askとは？を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-06-11-what-is-bid-ask-9-premium-1.md",
-    "sourcePath": "src/content/basic/what-is-bid-ask-9.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-9/",
+    "file": "content/note-automation/drafts/2026-06-11-what-is-bid-ask-1-premium-1.md",
+    "sourcePath": "src/content/basic/what-is-bid-ask-1.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-1/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -14,6 +14,6 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "generatedAt": "2026-06-11T19:26:14.032Z"
+    "generatedAt": "2026-06-11T20:01:22.604Z"
   }
 ]
