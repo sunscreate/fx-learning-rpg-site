@@ -25,6 +25,45 @@ function parseTitle(markdown) {
   return markdown.match(/^#\s+(.+)$/m)?.[1]?.trim() || "FX Quest Guild 限定QUEST";
 }
 
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function renderInline(markdown) {
+  return escapeHtml(markdown)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2">$1</a>');
+}
+
+function markdownToNoteHtml(markdown) {
+  const body = markdown.replace(/^#\s+.+\n+/, "").trim();
+  const blocks = body.split(/\n{2,}/);
+
+  return blocks
+    .map((block) => {
+      const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
+      if (lines.length === 0) return "";
+
+      if (lines[0].startsWith("## ")) {
+        return `<h2>${renderInline(lines[0].replace(/^##\s+/, ""))}</h2>`;
+      }
+
+      if (lines.every((line) => line.startsWith("- "))) {
+        return `<ul>${lines
+          .map((line) => `<li>${renderInline(line.replace(/^-\s+/, ""))}</li>`)
+          .join("")}</ul>`;
+      }
+
+      return `<p>${lines.map(renderInline).join("<br>")}</p>`;
+    })
+    .filter(Boolean)
+    .join("");
+}
+
 function getNoteUrl(url) {
   const match = url.match(/editor\.note\.com\/notes\/([^/]+)\//);
   if (!match) return null;
@@ -90,7 +129,23 @@ async function main() {
 
   const editor = page.locator("[contenteditable='true']").last();
   await editor.waitFor({ timeout: 60000 });
-  await editor.fill(markdown.replace(/^#\s+.+\n+/, ""));
+  await page.evaluate((html) => {
+    const editables = [...document.querySelectorAll("[contenteditable='true']")];
+    const bodyEditor =
+      editables.find((element) => element.className?.toString().includes("ProseMirror")) ||
+      editables[editables.length - 1];
+
+    bodyEditor.focus();
+    const range = document.createRange();
+    range.selectNodeContents(bodyEditor);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("delete", false);
+    document.execCommand("insertHTML", false, html);
+    bodyEditor.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertHTML" }));
+    bodyEditor.dispatchEvent(new Event("change", { bubbles: true }));
+  }, markdownToNoteHtml(markdown));
 
   const ledger = await loadLedger();
   const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file);

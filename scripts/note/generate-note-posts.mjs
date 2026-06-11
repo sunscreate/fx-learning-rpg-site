@@ -12,6 +12,10 @@ const SITE_URL = "https://sunscreate.github.io/fx-learning-rpg-site/";
 const NOTE_MEMBERSHIP_URL = "https://note.com/hearty_tapir5661/membership";
 const A8_URL = "https://px.a8.net/svt/ejp?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE";
 
+function link(label, url) {
+  return `[${label}](${url})`;
+}
+
 const args = new Map(
   process.argv.slice(2).map((arg) => {
     const [key, value = true] = arg.replace(/^--/, "").split("=");
@@ -127,7 +131,7 @@ function buildPremiumArticle(article, index) {
 この記事は、FX Quest Guild本編の「${article.title}」を読んだあとに進めるメンバー限定ワークです。
 
 元QUEST:
-${article.url}
+${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
 
 ## 今日のゴール
 
@@ -142,7 +146,7 @@ ${article.url}
 - レンジ
 - 判断保留
 
-大事なのは当てることではなく、根拠を短く書くことです。
+**大事なのは当てることではなく、根拠を短く書くことです。**
 
 ## 実戦チェック2: 入る場所より、入らない場所を決める
 
@@ -169,13 +173,13 @@ ${article.url}
 本編で基礎を確認し、限定ワークで実戦の見方を増やしていきましょう。
 
 FX Quest Guild:
-${SITE_URL}
+${link("FX Quest Guildで基礎QUESTを進める", SITE_URL)}
 
 メンバーシップ:
-${NOTE_MEMBERSHIP_URL}
+${link("メンバーシップでドル円チャート実践ワークに参加する", NOTE_MEMBERSHIP_URL)}
 
 取引環境を確認したい方:
-${A8_URL}
+${link("MATSUI FXの取引環境を確認する", A8_URL)}
 
 ※本記事は学習目的です。売買指示や利益保証ではありません。投資判断は必ずご自身で行ってください。
 `;
@@ -203,11 +207,11 @@ function buildPublicTeaser(article, index) {
 FXを学び始めた人が「${article.title}」でつまずきやすいポイントを、短く整理します。
 
 本編QUEST:
-${article.url}
+${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
 
 ## まず押さえること
 
-最初から勝ち方を探すより、用語やチャートの見方を自分の言葉で説明できる状態を作ることが大事です。
+**最初から勝ち方を探すより、用語やチャートの見方を自分の言葉で説明できる状態を作ることが大事です。**
 
 ## 初心者が止まりやすいポイント
 
@@ -220,13 +224,13 @@ ${article.url}
 無料の本編QUESTで基礎を確認し、メンバーシップでは実践ワーク・掲示板・ドル円チャート分析で理解を深めます。
 
 FX Quest Guild:
-${SITE_URL}
+${link("FX Quest Guildで基礎QUESTを進める", SITE_URL)}
 
 メンバーシップはこちら:
-${NOTE_MEMBERSHIP_URL}
+${link("メンバーシップでドル円チャート実践ワークに参加する", NOTE_MEMBERSHIP_URL)}
 
 取引環境を確認したい方:
-${A8_URL}
+${link("MATSUI FXの取引環境を確認する", A8_URL)}
 
 ※本記事は学習目的です。売買指示や利益保証ではありません。投資判断は必ずご自身で行ってください。
 `;
@@ -254,7 +258,7 @@ function buildBoardPost(article, index) {
 今週の掲示板テーマです。
 
 元QUEST:
-${article.url}
+${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
 
 ## 投稿テーマ
 
@@ -274,10 +278,10 @@ ${article.url}
 他の人の投稿には、否定ではなく「どの根拠を見たか」を返してください。
 
 FX Quest Guild:
-${SITE_URL}
+${link("FX Quest Guildで基礎QUESTを進める", SITE_URL)}
 
 メンバーシップ:
-${NOTE_MEMBERSHIP_URL}
+${link("メンバーシップでドル円チャート実践ワークに参加する", NOTE_MEMBERSHIP_URL)}
 
 ※掲示板は学習用です。売買指示、個別の投資助言、利益保証は行いません。
 `;

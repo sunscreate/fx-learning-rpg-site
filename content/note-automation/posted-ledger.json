@@ -73,6 +73,26 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n425e599fb3b6",
       "publishedAt": "2026-06-09T10:42:13.000Z"
+    },
+    {
+      "key": "member:basic/bid-ask-spread-watch:2026-06-11",
+      "id": "da534dd13445",
+      "title": "限定QUEST: ドル円でスプレッドが広い時間帯を見送る実践ワーク",
+      "type": "member_article",
+      "file": "member-note/2026-06-11-member-spread-work.html",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-1/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "スプレッド",
+        "FX Quest Guild"
+      ],
+      "generatedAt": "2026-06-11T13:09:00.000Z",
+      "postedAt": "2026-06-11T13:25:16.891Z",
+      "postedMode": "browser_published_members_only",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nda534dd13445",
+      "publishedAt": "2026-06-11T13:25:16.891Z"
     }
   ]
 }
