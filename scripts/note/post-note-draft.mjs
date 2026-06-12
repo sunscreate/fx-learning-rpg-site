@@ -95,7 +95,11 @@ async function uploadThumbnail(page, entry) {
   }
 
   const thumbnailPath = path.resolve(ROOT, entry.thumbnail);
-  const imageButton = page.locator("button").filter({ hasText: "画像を追加" }).first();
+  const labeledImageButton = page.locator('button[aria-label="画像を追加"]').first();
+  const imageButton =
+    (await labeledImageButton.count()) > 0
+      ? labeledImageButton
+      : page.locator("button").filter({ hasText: "画像を追加" }).first();
   await imageButton.waitFor({ timeout: 60000 });
 
   const fileChooserPromise = page.waitForEvent("filechooser");
@@ -221,16 +225,20 @@ async function main() {
       throw new Error(`Refusing to auto-publish ${generatedEntry.visibility} as a free public note.`);
     }
 
-    const proceedButton = page.locator("button").filter({ hasText: "公開に進む" });
+    const proceedButton = page.locator("button").filter({ hasText: "公開に進む" }).first();
     await proceedButton.waitFor({ timeout: 60000 });
     await proceedButton.click({ force: true });
-    await page.waitForTimeout(5000);
+    try {
+      await page.waitForURL(/\/publish\/?$/, { timeout: 60000 });
+    } catch {
+      await page.waitForTimeout(5000);
+    }
 
     const noteUrl = getNoteUrl(page.url());
     publishedNoteUrl = noteUrl;
     await configurePublishSettings(page, generatedEntry);
 
-    const postButton = page.locator("button").filter({ hasText: "投稿する" });
+    const postButton = page.locator("button").filter({ hasText: "投稿する" }).first();
     await postButton.waitFor({ timeout: 60000 });
     await postButton.click({ force: true });
     await page.waitForTimeout(10000);
