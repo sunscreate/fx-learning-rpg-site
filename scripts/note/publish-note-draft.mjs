@@ -28,10 +28,65 @@ async function loadLedger() {
   }
 }
 
+async function uploadThumbnail(page, entry) {
+  if (!entry?.thumbnail) return;
+
+  const thumbnailPath = path.resolve(ROOT, entry.thumbnail);
+  const labeledImageButton = page.locator('button[aria-label="画像を追加"]').first();
+  const imageButton =
+    (await labeledImageButton.count()) > 0
+      ? labeledImageButton
+      : page.locator("button").filter({ hasText: "画像を追加" }).first();
+  try {
+    await imageButton.waitFor({ timeout: 60000 });
+  } catch (error) {
+    const visibleText = (await page.locator("body").innerText()).replace(/\s+/g, " ").slice(-2000);
+    throw new Error(`Thumbnail button was not found at ${page.url()}. Visible text: ${visibleText}`, {
+      cause: error,
+    });
+  }
+
+  const fileChooserPromise = page.waitForEvent("filechooser");
+  await imageButton.click({ force: true });
+  const uploadButton = page.locator("button").filter({ hasText: "画像をアップロード" }).first();
+  await uploadButton.waitFor({ timeout: 60000 });
+  await uploadButton.click({ force: true });
+  const fileChooser = await fileChooserPromise;
+  await fileChooser.setFiles(thumbnailPath);
+
+  const cropModal = page.locator(".CropModal__overlay");
+  await cropModal.waitFor({ timeout: 60000 });
+  const saveButton = cropModal.locator("button").filter({ hasText: "保存" });
+  await saveButton.waitFor({ timeout: 60000 });
+  let saveEnabled = false;
+  for (let attempt = 0; attempt < 120 && !saveEnabled; attempt += 1) {
+    saveEnabled = await saveButton.isEnabled();
+    if (!saveEnabled) await page.waitForTimeout(500);
+  }
+  if (!saveEnabled) throw new Error("Thumbnail upload did not become ready to save.");
+  await saveButton.click();
+  await cropModal.waitFor({ state: "hidden", timeout: 60000 });
+  await page.waitForTimeout(3000);
+}
+
 function getPublicUrl(url) {
   const match = url.match(/note\.com\/([^/]+)\/n\/([^/?#]+)/);
-  if (!match) return url;
-  return `https://note.com/${match[1]}/n/${match[2]}`;
+  if (match) return `https://note.com/${match[1]}/n/${match[2]}`;
+
+  const editorMatch = url.match(/editor\.note\.com\/notes\/([^/?#]+)/);
+  if (editorMatch) return `https://note.com/hearty_tapir5661/n/${editorMatch[1]}`;
+
+  return url;
+}
+
+function getEditorUrl(url) {
+  const editorMatch = url.match(/editor\.note\.com\/notes\/([^/?#]+)/);
+  if (editorMatch) return `https://editor.note.com/notes/${editorMatch[1]}/edit/`;
+
+  const publicMatch = url.match(/note\.com\/[^/]+\/n\/([^/?#]+)/);
+  if (publicMatch) return `https://editor.note.com/notes/${publicMatch[1]}/edit/`;
+
+  return url;
 }
 
 async function openDraft(page, url) {
@@ -50,7 +105,40 @@ async function openDraft(page, url) {
   if ((await editButton.count()) === 1) {
     await editButton.click({ force: true });
     await page.waitForTimeout(5000);
+    return;
   }
+
+  const editLink = page.locator("a").filter({ hasText: "編集" });
+  if ((await editLink.count()) === 1) {
+    await editLink.click({ force: true });
+    await page.waitForTimeout(5000);
+    return;
+  }
+
+  const settingsButton = page.locator("button").filter({ hasText: "設定する" });
+  if ((await settingsButton.count()) === 1) {
+    await settingsButton.click({ force: true });
+    await page.waitForTimeout(500);
+
+    if (page.url().includes("editor.note.com")) {
+      await page.waitForTimeout(5000);
+      return;
+    }
+
+    const editControl = page.getByText("編集", { exact: true });
+    if ((await editControl.count()) === 1) {
+      await editControl.click({ force: true });
+      await page.waitForTimeout(5000);
+      return;
+    }
+  }
+
+  const controls = await page.locator("button:visible, a:visible").allInnerTexts();
+  const editorLinks = await page.locator('a[href*="editor.note.com"]').evaluateAll((links) =>
+    links.map((link) => ({ text: link.textContent?.trim(), href: link.href })),
+  );
+  console.log(`Edit controls not found. Visible controls: ${controls.filter(Boolean).join(" | ")}`);
+  console.log(`Editor links: ${JSON.stringify(editorLinks)}`);
 }
 
 async function main() {
@@ -70,10 +158,13 @@ async function main() {
   }
 
   const publicUrl = getPublicUrl(targetUrl);
+  const targetEntry = (ledger.posted || []).find(
+    (entry) => (typeof file === "string" && entry.file === file) || entry.noteUrl === publicUrl,
+  );
   const context = await chromium.launchPersistentContext(PROFILE_DIR, { headless: false, channel: "chrome" });
   const page = await context.newPage();
 
-  await openDraft(page, publicUrl);
+  await openDraft(page, getEditorUrl(targetUrl));
 
   if (!page.url().includes("editor.note.com")) {
     const text = await page.locator("body").innerText();
@@ -84,14 +175,42 @@ async function main() {
     }
   }
 
+  await uploadThumbnail(page, targetEntry);
+
   const proceedButton = page.locator("button").filter({ hasText: "公開に進む" });
   if ((await proceedButton.count()) === 1) {
-    await proceedButton.click({ force: true });
-    await page.waitForTimeout(5000);
+    const savedIndicator = page.getByText("下書きを保存しました", { exact: true });
+    if ((await savedIndicator.count()) > 0) {
+      await savedIndicator.last().waitFor({ timeout: 60000 });
+    }
+
+    let reachedPublishSettings = false;
+    for (let attempt = 0; attempt < 3 && !reachedPublishSettings; attempt += 1) {
+      await proceedButton.click({ force: true });
+      try {
+        await page.waitForURL(/\/publish\/?$/, { timeout: 20000 });
+        reachedPublishSettings = true;
+      } catch {
+        await page.waitForTimeout(1000);
+      }
+    }
+    if (!reachedPublishSettings) {
+      throw new Error(`Publish settings did not open from ${page.url()}.`);
+    }
   }
 
-  const postButton = page.locator("button").filter({ hasText: "投稿する" });
-  await postButton.waitFor({ timeout: 60000 });
+  const postButton = page.getByRole("button", { name: /^(投稿|公開|更新)する$/ }).first();
+  try {
+    await postButton.waitFor({ timeout: 60000 });
+  } catch (error) {
+    const visibleButtons = await page.locator("button:visible").allInnerTexts();
+    const visibleText = (await page.locator("body").innerText()).replace(/\s+/g, " ").slice(-2000);
+    throw new Error(
+      `Final publish button was not found at ${page.url()}. Visible buttons: ${visibleButtons.join(" | ")}. ` +
+        `Visible text: ${visibleText}`,
+      { cause: error },
+    );
+  }
   await postButton.click({ force: true });
   await page.waitForTimeout(10000);
 

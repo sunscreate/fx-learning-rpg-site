@@ -184,6 +184,54 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n62a03c4e97d7",
       "publishedAt": "2026-06-12T07:39:02.816Z"
+    },
+    {
+      "key": "article:basic/what-is-bid-ask-8:premium-checkpoints",
+      "id": "6e80e93305",
+      "title": "限定QUEST: Bid/Askの実戦的な使い方を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-06-13-what-is-bid-ask-8-premium-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-8.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-8/",
+      "category": "basic",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-13-what-is-bid-ask-8-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-13-what-is-bid-ask-8-premium-1-chart.png",
+      "generatedAt": "2026-06-12T20:02:19.663Z",
+      "postedAt": "2026-06-12T20:03:03.783Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/na61faf222c14",
+      "publishedAt": "2026-06-12T20:03:03.783Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-1:membership-teaser",
+      "id": "df24711dc1",
+      "title": "無料公開: Bid/Askとは？でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-06-13-what-is-bid-ask-1-public-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-1.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-1/",
+      "category": "basic",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-13-what-is-bid-ask-1-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-13-what-is-bid-ask-1-public-1-chart.png",
+      "generatedAt": "2026-06-13T01:57:44.240Z",
+      "postedAt": "2026-06-13T02:04:20.685Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n49e8a56567ca",
+      "publishedAt": "2026-06-13T02:23:17.716Z"
     }
   ]
 }

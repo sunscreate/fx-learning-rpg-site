@@ -110,9 +110,18 @@ async function uploadThumbnail(page, entry) {
   const fileChooser = await fileChooserPromise;
   await fileChooser.setFiles(thumbnailPath);
 
-  const saveButton = page.locator("button").filter({ hasText: "保存" }).last();
+  const cropModal = page.locator(".CropModal__overlay");
+  await cropModal.waitFor({ timeout: 60000 });
+  const saveButton = cropModal.locator("button").filter({ hasText: "保存" });
   await saveButton.waitFor({ timeout: 60000 });
-  await saveButton.click({ force: true });
+  let saveEnabled = false;
+  for (let attempt = 0; attempt < 120 && !saveEnabled; attempt += 1) {
+    saveEnabled = await saveButton.isEnabled();
+    if (!saveEnabled) await page.waitForTimeout(500);
+  }
+  if (!saveEnabled) throw new Error("Thumbnail upload did not become ready to save.");
+  await saveButton.click();
+  await cropModal.waitFor({ state: "hidden", timeout: 60000 });
   await page.waitForTimeout(3000);
 }
 
@@ -217,8 +226,8 @@ async function main() {
   const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file);
   let publishedNoteUrl = null;
 
-  await insertChartImage(page, generatedEntry);
   await uploadThumbnail(page, generatedEntry);
+  await insertChartImage(page, generatedEntry);
 
   if (publish) {
     if (generatedEntry?.visibility && !["public", "members_only"].includes(generatedEntry.visibility)) {
@@ -227,19 +236,41 @@ async function main() {
 
     const proceedButton = page.locator("button").filter({ hasText: "公開に進む" }).first();
     await proceedButton.waitFor({ timeout: 60000 });
-    await proceedButton.click({ force: true });
-    try {
-      await page.waitForURL(/\/publish\/?$/, { timeout: 60000 });
-    } catch {
-      await page.waitForTimeout(5000);
+    const savedIndicator = page.getByText("下書きを保存しました", { exact: true });
+    if ((await savedIndicator.count()) > 0) {
+      await savedIndicator.last().waitFor({ timeout: 60000 });
+    }
+
+    let reachedPublishSettings = false;
+    for (let attempt = 0; attempt < 3 && !reachedPublishSettings; attempt += 1) {
+      await proceedButton.click({ force: true });
+      try {
+        await page.waitForURL(/\/publish\/?$/, { timeout: 20000 });
+        reachedPublishSettings = true;
+      } catch {
+        await page.waitForTimeout(1000);
+      }
+    }
+    if (!reachedPublishSettings) {
+      throw new Error(`Publish settings did not open from ${page.url()}.`);
     }
 
     const noteUrl = getNoteUrl(page.url());
     publishedNoteUrl = noteUrl;
     await configurePublishSettings(page, generatedEntry);
 
-    const postButton = page.locator("button").filter({ hasText: "投稿する" }).first();
-    await postButton.waitFor({ timeout: 60000 });
+    const postButton = page.getByRole("button", { name: /^(投稿|公開)する$/ }).first();
+    try {
+      await postButton.waitFor({ timeout: 60000 });
+    } catch (error) {
+      const visibleButtons = await page.locator("button:visible").allInnerTexts();
+      const visibleText = (await page.locator("body").innerText()).replace(/\s+/g, " ").slice(-2000);
+      throw new Error(
+        `Final publish button was not found at ${page.url()}. Visible buttons: ${visibleButtons.join(" | ")}. ` +
+          `Visible text: ${visibleText}`,
+        { cause: error },
+      );
+    }
     await postButton.click({ force: true });
     await page.waitForTimeout(10000);
 
