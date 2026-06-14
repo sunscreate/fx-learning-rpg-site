@@ -1,22 +1,22 @@
 [
   {
-    "key": "article:basic/what-is-bid-ask-12:premium-checkpoints",
-    "id": "ffacd5f0ea",
-    "title": "限定QUEST: Bid/Ask環境認識との関係を実戦で使う3つの確認ポイント",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-06-14-what-is-bid-ask-12-premium-1.md",
-    "sourcePath": "src/content/basic/what-is-bid-ask-12.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-12/",
+    "key": "public:basic/what-is-bid-ask-8:membership-teaser",
+    "id": "683c6c6a0b",
+    "title": "無料公開: Bid/Askの実戦的な使い方でつまずく前に確認したいこと",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-06-15-what-is-bid-ask-8-public-1.md",
+    "sourcePath": "src/content/basic/what-is-bid-ask-8.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-8/",
     "category": "basic",
-    "visibility": "members_only",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-06-14-what-is-bid-ask-12-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-06-14-what-is-bid-ask-12-premium-1-chart.png",
-    "generatedAt": "2026-06-14T11:02:17.617Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-06-15-what-is-bid-ask-8-public-1.png",
+    "chartImage": "content/note-automation/charts/2026-06-15-what-is-bid-ask-8-public-1-chart.png",
+    "generatedAt": "2026-06-14T22:30:56.501Z"
   }
 ]

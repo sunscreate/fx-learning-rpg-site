@@ -64,8 +64,19 @@ async function uploadThumbnail(page, entry) {
     if (!saveEnabled) await page.waitForTimeout(500);
   }
   if (!saveEnabled) throw new Error("Thumbnail upload did not become ready to save.");
-  await saveButton.click();
-  await cropModal.waitFor({ state: "hidden", timeout: 60000 });
+  let cropSaved = false;
+  for (let attempt = 0; attempt < 3 && !cropSaved; attempt += 1) {
+    await saveButton.click({ force: attempt > 0 });
+    try {
+      await cropModal.waitFor({ state: "hidden", timeout: 20000 });
+      cropSaved = true;
+    } catch {
+      if (attempt === 2) {
+        const modalText = (await cropModal.innerText()).replace(/\s+/g, " ").trim();
+        throw new Error(`Thumbnail crop modal did not close after save. Modal text: ${modalText}`);
+      }
+    }
+  }
   await page.waitForTimeout(3000);
 }
 
