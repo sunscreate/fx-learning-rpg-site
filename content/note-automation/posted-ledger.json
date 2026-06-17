@@ -296,6 +296,30 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n0893ee0c9925",
       "publishedAt": "2026-06-14T22:34:16.906Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-11:membership-teaser",
+      "id": "bde9c040f1",
+      "title": "無料公開: Bid/Askよくある勘違いでつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-06-18-what-is-bid-ask-11-public-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-11.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-11/",
+      "category": "basic",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-18-what-is-bid-ask-11-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-18-what-is-bid-ask-11-public-1-chart.png",
+      "generatedAt": "2026-06-17T22:32:27.793Z",
+      "postedAt": "2026-06-17T22:33:35.713Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nfe808bcb3b35",
+      "publishedAt": "2026-06-17T22:33:35.713Z"
     }
   ]
 }
