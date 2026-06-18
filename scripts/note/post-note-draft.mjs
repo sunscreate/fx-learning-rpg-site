@@ -81,10 +81,30 @@ async function configurePublishSettings(page, entry) {
       await page.waitForTimeout(1000);
     }
 
-    const addButton = page.locator("button").filter({ hasText: "追加" });
-    if ((await addButton.count()) === 1) {
-      await addButton.click({ force: true });
+    const added = await page.evaluate(() =>
+      [...document.querySelectorAll("button")].some((button) => {
+        const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
+        return button.textContent?.trim() === "追加済" && rowText?.includes("メンバー全員に公開");
+      }),
+    );
+
+    if (!added) {
+      await page.evaluate(() => {
+        const target = [...document.querySelectorAll("button")].find((button) => {
+          const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
+          return button.textContent?.trim() === "追加" && rowText?.includes("メンバー全員に公開");
+        });
+
+        if (!target) throw new Error("Membership all-members add button was not found.");
+        target.click();
+      });
       await page.waitForTimeout(2000);
+    }
+
+    const trialButton = page.locator("button").filter({ hasText: "試し読みエリアを設定" }).first();
+    if ((await trialButton.count()) > 0) {
+      await trialButton.click({ force: true });
+      await page.waitForTimeout(3000);
     }
   }
 }

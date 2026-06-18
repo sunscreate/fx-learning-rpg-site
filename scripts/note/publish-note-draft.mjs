@@ -31,6 +31,9 @@ async function loadLedger() {
 async function uploadThumbnail(page, entry) {
   if (!entry?.thumbnail) return;
 
+  const existingEyecatch = page.locator('img[alt="eyecatch"], img[alt="見出し画像"]').first();
+  if ((await existingEyecatch.count()) > 0) return;
+
   const thumbnailPath = path.resolve(ROOT, entry.thumbnail);
   const labeledImageButton = page.locator('button[aria-label="画像を追加"]').first();
   const imageButton =
@@ -152,6 +155,45 @@ async function openDraft(page, url) {
   console.log(`Editor links: ${JSON.stringify(editorLinks)}`);
 }
 
+async function configurePublishSettings(page, entry) {
+  if (entry?.visibility !== "members_only") return;
+
+  const membershipButton = page.locator("button[role='checkbox']").filter({ hasText: "メンバーシップ" });
+  await membershipButton.waitFor({ timeout: 60000 });
+
+  const isChecked = await membershipButton.getAttribute("aria-checked");
+  if (isChecked !== "true") {
+    await membershipButton.click({ force: true });
+    await page.waitForTimeout(1000);
+  }
+
+  const added = await page.evaluate(() =>
+    [...document.querySelectorAll("button")].some((button) => {
+      const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
+      return button.textContent?.trim() === "追加済" && rowText?.includes("メンバー全員に公開");
+    }),
+  );
+
+  if (!added) {
+    await page.evaluate(() => {
+      const target = [...document.querySelectorAll("button")].find((button) => {
+        const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
+        return button.textContent?.trim() === "追加" && rowText?.includes("メンバー全員に公開");
+      });
+
+      if (!target) throw new Error("Membership all-members add button was not found.");
+      target.click();
+    });
+    await page.waitForTimeout(2000);
+  }
+
+  const trialButton = page.locator("button").filter({ hasText: "試し読みエリアを設定" }).first();
+  if ((await trialButton.count()) > 0) {
+    await trialButton.click({ force: true });
+    await page.waitForTimeout(3000);
+  }
+}
+
 async function main() {
   const { chromium } = await import("playwright");
   const ledger = await loadLedger();
@@ -209,6 +251,8 @@ async function main() {
       throw new Error(`Publish settings did not open from ${page.url()}.`);
     }
   }
+
+  await configurePublishSettings(page, targetEntry);
 
   const postButton = page.getByRole("button", { name: /^(投稿|公開|更新)する$/ }).first();
   try {
