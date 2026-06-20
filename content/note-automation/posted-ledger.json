@@ -416,6 +416,30 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/ne1faea920dc3",
       "publishedAt": "2026-06-19T22:32:03.094Z"
+    },
+    {
+      "key": "article:basic/what-is-bid-ask-6:premium-checkpoints",
+      "id": "0e5454c431",
+      "title": "限定QUEST: Bid/Ask失敗例を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-06-20-what-is-bid-ask-6-premium-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-6.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-6/",
+      "category": "basic",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-20-what-is-bid-ask-6-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-20-what-is-bid-ask-6-premium-1-chart.png",
+      "generatedAt": "2026-06-20T11:02:21.255Z",
+      "postedAt": "2026-06-20T11:03:14.572Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/ne705740c90d5",
+      "publishedAt": "2026-06-20T11:03:14.572Z"
     }
   ]
 }
