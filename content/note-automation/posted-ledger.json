@@ -489,6 +489,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n21b52aee3a5c",
       "publishedAt": "2026-06-21T11:02:50.328Z"
+    },
+    {
+      "key": "public:risk/what-is-risk-reward:click-focused-teaser",
+      "id": "8063099e70",
+      "title": "無料公開: 今日のドル円で使えるリスクリワードとは？の考え方",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-06-22-what-is-risk-reward-public-1.md",
+      "sourcePath": "src/content/risk/what-is-risk-reward.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-risk-reward/",
+      "category": "risk",
+      "topicGroup": "risk-money",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-22-what-is-risk-reward-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-22-what-is-risk-reward-public-1-chart.png",
+      "generatedAt": "2026-06-21T22:31:03.759Z",
+      "postedAt": "2026-06-21T22:32:17.341Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n0ff1d7a9b2bf",
+      "publishedAt": "2026-06-21T22:32:17.341Z"
     }
   ]
 }
