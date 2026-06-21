@@ -464,6 +464,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/nb10e93f5cbc2",
       "publishedAt": "2026-06-20T22:32:46.878Z"
+    },
+    {
+      "key": "article:risk/what-is-drawdown:premium-practical-work",
+      "id": "f51b4eea46",
+      "title": "限定QUEST: 初心者が迷いやすいドローダウンとは？を実例で確認",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-06-21-what-is-drawdown-premium-1.md",
+      "sourcePath": "src/content/risk/what-is-drawdown.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-drawdown/",
+      "category": "risk",
+      "topicGroup": "risk",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-21-what-is-drawdown-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-21-what-is-drawdown-premium-1-chart.png",
+      "generatedAt": "2026-06-21T11:01:55.671Z",
+      "postedAt": "2026-06-21T11:02:50.328Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n21b52aee3a5c",
+      "publishedAt": "2026-06-21T11:02:50.328Z"
     }
   ]
 }
