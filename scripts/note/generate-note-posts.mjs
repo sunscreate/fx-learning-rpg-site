@@ -79,6 +79,69 @@ function wrapTitle(title, maxLength = 14) {
   return lines.filter(Boolean).slice(0, 3);
 }
 
+function titleSeed(article) {
+  return Number.parseInt(hash(`${article.category}:${article.slug}`), 16);
+}
+
+function pickByArticle(article, items) {
+  return items[titleSeed(article) % items.length];
+}
+
+function shortTitle(article) {
+  return article.title
+    .replace(/FX初心者が最初に覚えるべき理由/g, "")
+    .replace(/おすすめしない場面/g, "避ける場面")
+    .replace(/環境認識との関係/g, "環境認識")
+    .replace(/よくある勘違い/g, "勘違い")
+    .replace(/の実戦的な使い方/g, "の使い方")
+    .trim();
+}
+
+function topicGroup(article) {
+  const normalized = `${article.slug} ${article.title}`.toLowerCase();
+  if (/bid|ask|スプレッド/.test(normalized)) return "bid-ask-spread";
+  if (/lot|ロット|資金|損切|risk|リスク/.test(normalized)) return "risk-money";
+  if (/chart|チャート|ローソク|trend|トレンド|support|resistance|分析/.test(normalized)) return "chart-analysis";
+  if (/entry|エントリー|exit|利確|決済/.test(normalized)) return "entry-exit";
+  if (/ea|mql|backtest|auto/.test(normalized)) return "ea-auto";
+  return article.category;
+}
+
+function buildUsedTopicCounts(ledger) {
+  const counts = new Map();
+  for (const entry of [...(ledger.generated || []), ...(ledger.posted || [])]) {
+    const group = entry.topicGroup || topicGroup({
+      slug: entry.sourcePath || entry.key || "",
+      title: entry.title || "",
+      category: entry.category || "",
+    });
+    counts.set(group, (counts.get(group) || 0) + 1);
+  }
+  return counts;
+}
+
+function sortForTopicDiversity(articles, ledger) {
+  const usedTopicCounts = buildUsedTopicCounts(ledger);
+  const categoryPriority = new Map([
+    ["risk", 0],
+    ["chart", 1],
+    ["entry", 2],
+    ["analysis", 3],
+    ["basic", 4],
+    ["operation", 5],
+  ]);
+
+  return [...articles].sort((a, b) => {
+    const topicDiff = (usedTopicCounts.get(topicGroup(a)) || 0) - (usedTopicCounts.get(topicGroup(b)) || 0);
+    if (topicDiff !== 0) return topicDiff;
+
+    const categoryDiff = (categoryPriority.get(a.category) ?? 9) - (categoryPriority.get(b.category) ?? 9);
+    if (categoryDiff !== 0) return categoryDiff;
+
+    return a.level - b.level || a.title.localeCompare(b.title, "ja");
+  });
+}
+
 async function createThumbnail(draft) {
   const baseName = draft.fileName.replace(/\.md$/, "");
   const svgPath = path.join(THUMBNAIL_DIR, `${baseName}.svg`);
@@ -301,13 +364,21 @@ async function readLedger() {
 }
 
 function buildPremiumArticle(article, index) {
-  const title = `限定QUEST: ${article.title}を実戦で使う3つの確認ポイント`;
-  const key = `article:${article.category}/${article.slug}:premium-checkpoints`;
+  const compactTitle = shortTitle(article);
+  const title = pickByArticle(article, [
+    `限定QUEST: ドル円チャートで${compactTitle}を判断する実践ワーク`,
+    `限定QUEST: ${compactTitle}を「見送る判断」まで落とし込む練習`,
+    `限定QUEST: 初心者が迷いやすい${compactTitle}を実例で確認`,
+    `限定QUEST: ${compactTitle}で負けやすい場面をドル円で整理`,
+  ]);
+  const key = `article:${article.category}/${article.slug}:premium-practical-work`;
   const fileSlug = `${today}-${slugify(article.slug)}-premium-${index + 1}`;
 
   const body = `# ${title}
 
 この記事は、FX Quest Guild本編の「${article.title}」を読んだあとに進めるメンバー限定ワークです。
+
+今日のテーマは、知識を増やすことではなく、**ドル円チャートを見たときに迷いを減らすこと**です。
 
 元QUEST:
 ${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
@@ -366,6 +437,7 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
   return {
     type: "member_article",
     category: article.category,
+    topicGroup: topicGroup(article),
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -378,13 +450,22 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
 }
 
 function buildPublicTeaser(article, index) {
-  const title = `無料公開: ${article.title}でつまずく前に確認したいこと`;
-  const key = `public:${article.category}/${article.slug}:membership-teaser`;
+  const compactTitle = shortTitle(article);
+  const title = pickByArticle(article, [
+    `無料公開: FX初心者が${compactTitle}で損しやすい見落とし`,
+    `無料公開: ドル円を見る前に知りたい${compactTitle}の基本`,
+    `無料公開: ${compactTitle}で迷う人へ。最初に見るべきポイント`,
+    `無料公開: ${compactTitle}をなんとなく覚える前に確認すること`,
+    `無料公開: 今日のドル円で使える${compactTitle}の考え方`,
+  ]);
+  const key = `public:${article.category}/${article.slug}:click-focused-teaser`;
   const fileSlug = `${today}-${slugify(article.slug)}-public-${index + 1}`;
 
   const body = `# ${title}
 
 FXを学び始めた人が「${article.title}」でつまずきやすいポイントを、短く整理します。
+
+この記事で見るのは、**難しい理論よりも、初心者が実際に見落としやすい判断ミス**です。
 
 本編QUEST:
 ${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
@@ -418,6 +499,7 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
   return {
     type: "public_teaser",
     category: article.category,
+    topicGroup: topicGroup(article),
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -430,8 +512,13 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
 }
 
 function buildBoardPost(article, index) {
-  const title = `掲示板テーマ: ${article.title}をドル円チャートで確認しよう`;
-  const key = `board:${article.category}/${article.slug}:usdjpy-check`;
+  const compactTitle = shortTitle(article);
+  const title = pickByArticle(article, [
+    `掲示板テーマ: 今日のドル円で${compactTitle}を一緒に確認`,
+    `掲示板テーマ: ${compactTitle}で迷ったポイントを共有しよう`,
+    `掲示板テーマ: ドル円チャートのどこで${compactTitle}を見ますか？`,
+  ]);
+  const key = `board:${article.category}/${article.slug}:discussion-prompt`;
   const fileSlug = `${today}-${slugify(article.slug)}-board-${index + 1}`;
 
   const body = `# ${title}
@@ -470,6 +557,7 @@ ${link("メンバーシップでドル円チャート実践ワークに参加す
   return {
     type: "board_post",
     category: article.category,
+    topicGroup: topicGroup(article),
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -487,9 +575,17 @@ function selectDrafts(articles, ledger) {
     ...(ledger.generated || []).map((entry) => entry.key),
     ...(ledger.posted || []).map((entry) => entry.key),
   ]);
+  const usedArticleTypes = new Set(
+    [...(ledger.generated || []), ...(ledger.posted || [])]
+      .filter((entry) => entry.type && entry.sourcePath)
+      .map((entry) => `${entry.type}:${entry.sourcePath}`),
+  );
 
-  const preferred = articles.filter((article) =>
-    ["basic", "chart", "entry", "risk", "analysis", "operation"].includes(article.category),
+  const preferred = sortForTopicDiversity(
+    articles.filter((article) =>
+      ["basic", "chart", "entry", "risk", "analysis", "operation"].includes(article.category),
+    ),
+    ledger,
   );
 
   const drafts = [];
@@ -505,8 +601,10 @@ function selectDrafts(articles, ledger) {
     for (const builder of builders) {
       const draft = builder(article, drafts.length);
       if (usedKeys.has(draft.key)) continue;
+      if (usedArticleTypes.has(`${draft.type}:${draft.sourcePath}`)) continue;
       drafts.push(draft);
       usedKeys.add(draft.key);
+      usedArticleTypes.add(`${draft.type}:${draft.sourcePath}`);
       if (drafts.length >= count) return drafts;
     }
   }
@@ -547,6 +645,7 @@ async function main() {
       sourcePath: draft.sourcePath,
       sourceUrl: draft.sourceUrl,
       category: draft.category,
+      topicGroup: draft.topicGroup,
       visibility: draft.visibility,
       tags: draft.tags,
       thumbnail,
