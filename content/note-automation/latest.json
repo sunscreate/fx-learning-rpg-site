@@ -1,23 +1,23 @@
 [
   {
-    "key": "public:risk/what-is-risk-reward:click-focused-teaser",
-    "id": "8063099e70",
-    "title": "無料公開: 今日のドル円で使えるリスクリワードとは？の考え方",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-06-22-what-is-risk-reward-public-1.md",
-    "sourcePath": "src/content/risk/what-is-risk-reward.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-risk-reward/",
-    "category": "risk",
-    "topicGroup": "risk-money",
-    "visibility": "public",
+    "key": "article:chart/what-is-support-resistance-10:premium-practical-work",
+    "id": "b7530eb29a",
+    "title": "限定QUEST: 初心者が迷いやすいサポートラインを実例で確認",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-06-22-what-is-support-resistance-10-premium-1.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-10.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-10/",
+    "category": "chart",
+    "topicGroup": "chart-analysis",
+    "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "FX学習",
       "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-06-22-what-is-risk-reward-public-1.png",
-    "chartImage": "content/note-automation/charts/2026-06-22-what-is-risk-reward-public-1-chart.png",
-    "generatedAt": "2026-06-21T22:31:03.759Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-06-22-what-is-support-resistance-10-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-06-22-what-is-support-resistance-10-premium-1-chart.png",
+    "generatedAt": "2026-06-22T11:01:58.470Z"
   }
 ]
