@@ -539,6 +539,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n80b7d1515efe",
       "publishedAt": "2026-06-22T11:02:51.987Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-10:click-focused-teaser",
+      "id": "f40c9550a0",
+      "title": "無料公開: 今日のドル円で使えるダウ理論の考え方",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-06-23-what-is-dow-theory-10-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-10/",
+      "category": "chart",
+      "topicGroup": "chart",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-23-what-is-dow-theory-10-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-23-what-is-dow-theory-10-public-1-chart.png",
+      "generatedAt": "2026-06-22T22:31:33.708Z",
+      "postedAt": "2026-06-22T22:32:38.152Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nd7b8cfead9eb",
+      "publishedAt": "2026-06-22T22:32:38.152Z"
     }
   ]
 }
