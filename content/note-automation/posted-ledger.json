@@ -589,6 +589,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n01cd42d0920f",
       "publishedAt": "2026-06-23T11:02:25.019Z"
+    },
+    {
+      "key": "public:entry/what-is-n-pattern-10:click-focused-teaser",
+      "id": "140c7ce9e8",
+      "title": "無料公開: N字をなんとなく覚える前に確認すること",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-06-24-what-is-n-pattern-10-public-1.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-10/",
+      "category": "entry",
+      "topicGroup": "entry",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-24-what-is-n-pattern-10-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-24-what-is-n-pattern-10-public-1-chart.png",
+      "generatedAt": "2026-06-23T22:32:27.110Z",
+      "postedAt": "2026-06-23T22:33:15.105Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n7fde6c2b4879",
+      "publishedAt": "2026-06-23T22:33:15.105Z"
     }
   ]
 }
