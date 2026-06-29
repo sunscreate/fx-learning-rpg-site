@@ -639,6 +639,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/na0bc156018c9",
       "publishedAt": "2026-06-24T11:02:07.838Z"
+    },
+    {
+      "key": "article:analysis/what-is-trading-journal:premium-practical-work",
+      "id": "fc6081b8a1",
+      "title": "限定QUEST: ドル円チャートでトレード日記とは？を判断する実践ワーク",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-06-29-what-is-trading-journal-premium-1.md",
+      "sourcePath": "src/content/analysis/what-is-trading-journal.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/analysis/what-is-trading-journal/",
+      "category": "analysis",
+      "topicGroup": "analysis",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-06-29-what-is-trading-journal-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-06-29-what-is-trading-journal-premium-1-chart.png",
+      "generatedAt": "2026-06-29T11:01:48.469Z",
+      "postedAt": "2026-06-29T11:02:49.267Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nfd18e59e6635",
+      "publishedAt": "2026-06-29T11:02:49.267Z"
     }
   ]
 }
