@@ -1,23 +1,22 @@
 [
   {
-    "key": "article:basic/what-is-fx:premium-practical-work",
-    "id": "24ca6bc661",
-    "title": "限定QUEST: 初心者が迷いやすいFXとは？を実例で確認",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-06-30-what-is-fx-premium-1.md",
-    "sourcePath": "src/content/basic/what-is-fx.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-fx/",
-    "category": "basic",
-    "topicGroup": "basic",
-    "visibility": "members_only",
+    "key": "public:operation/what-is-trading-plan:click-focused-teaser",
+    "id": "b0770c3fad",
+    "title": "無料公開: FX初心者がトレードプランとは？で損しやすい見落とし",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-01-what-is-trading-plan-public-1.md",
+    "sourcePath": "src/content/operation/what-is-trading-plan.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-trading-plan/",
+    "category": "operation",
+    "topicGroup": "operation",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-06-30-what-is-fx-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-06-30-what-is-fx-premium-1-chart.png",
-    "generatedAt": "2026-06-30T11:01:54.678Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-01-what-is-trading-plan-public-1.png",
+    "generatedAt": "2026-06-30T22:32:36.773Z"
   }
 ]

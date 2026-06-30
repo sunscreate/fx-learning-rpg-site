@@ -689,6 +689,30 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n4bd6d46ae635",
       "publishedAt": "2026-06-30T11:03:08.740Z"
+    },
+    {
+      "key": "public:operation/what-is-trading-plan:click-focused-teaser",
+      "id": "b0770c3fad",
+      "title": "無料公開: FX初心者がトレードプランとは？で損しやすい見落とし",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-01-what-is-trading-plan-public-1.md",
+      "sourcePath": "src/content/operation/what-is-trading-plan.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-trading-plan/",
+      "category": "operation",
+      "topicGroup": "operation",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-01-what-is-trading-plan-public-1.png",
+      "generatedAt": "2026-06-30T22:32:36.773Z",
+      "postedAt": "2026-06-30T22:34:23.752Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n080276f971e3",
+      "publishedAt": "2026-06-30T22:34:23.752Z"
     }
   ]
 }
