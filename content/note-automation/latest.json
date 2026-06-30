@@ -1,14 +1,14 @@
 [
   {
-    "key": "article:analysis/what-is-trading-journal:premium-practical-work",
-    "id": "fc6081b8a1",
-    "title": "限定QUEST: ドル円チャートでトレード日記とは？を判断する実践ワーク",
+    "key": "article:basic/what-is-fx:premium-practical-work",
+    "id": "24ca6bc661",
+    "title": "限定QUEST: 初心者が迷いやすいFXとは？を実例で確認",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-06-29-what-is-trading-journal-premium-1.md",
-    "sourcePath": "src/content/analysis/what-is-trading-journal.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/analysis/what-is-trading-journal/",
-    "category": "analysis",
-    "topicGroup": "analysis",
+    "file": "content/note-automation/drafts/2026-06-30-what-is-fx-premium-1.md",
+    "sourcePath": "src/content/basic/what-is-fx.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-fx/",
+    "category": "basic",
+    "topicGroup": "basic",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -16,8 +16,8 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-06-29-what-is-trading-journal-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-06-29-what-is-trading-journal-premium-1-chart.png",
-    "generatedAt": "2026-06-29T11:01:48.469Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-06-30-what-is-fx-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-06-30-what-is-fx-premium-1-chart.png",
+    "generatedAt": "2026-06-30T11:01:54.678Z"
   }
 ]
