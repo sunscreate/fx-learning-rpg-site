@@ -713,6 +713,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n080276f971e3",
       "publishedAt": "2026-06-30T22:34:23.752Z"
+    },
+    {
+      "key": "article:risk/what-is-position-diversification:premium-practical-work",
+      "id": "c2c71130f7",
+      "title": "限定QUEST: ドル円チャートでポジション分散とは？を判断する実践ワーク",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-01-what-is-position-diversification-premium-1.md",
+      "sourcePath": "src/content/risk/what-is-position-diversification.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-diversification/",
+      "category": "risk",
+      "topicGroup": "risk",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-01-what-is-position-diversification-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-01-what-is-position-diversification-premium-1-chart.png",
+      "generatedAt": "2026-07-01T11:02:57.825Z",
+      "postedAt": "2026-07-01T11:04:12.754Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n9306ba79e2d8",
+      "publishedAt": "2026-07-01T11:04:12.754Z"
     }
   ]
 }
