@@ -1,23 +1,23 @@
 [
   {
-    "key": "article:risk/what-is-position-diversification:premium-practical-work",
-    "id": "c2c71130f7",
-    "title": "限定QUEST: ドル円チャートでポジション分散とは？を判断する実践ワーク",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-01-what-is-position-diversification-premium-1.md",
-    "sourcePath": "src/content/risk/what-is-position-diversification.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-diversification/",
+    "key": "public:risk/what-is-risk-management:click-focused-teaser",
+    "id": "b2dc11830e",
+    "title": "無料公開: FX初心者がリスク管理とは？で損しやすい見落とし",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-02-what-is-risk-management-public-1.md",
+    "sourcePath": "src/content/risk/what-is-risk-management.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-risk-management/",
     "category": "risk",
-    "topicGroup": "risk",
-    "visibility": "members_only",
+    "topicGroup": "risk-money",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-01-what-is-position-diversification-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-01-what-is-position-diversification-premium-1-chart.png",
-    "generatedAt": "2026-07-01T11:02:57.825Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-02-what-is-risk-management-public-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-02-what-is-risk-management-public-1-chart.png",
+    "generatedAt": "2026-07-01T22:32:54.380Z"
   }
 ]

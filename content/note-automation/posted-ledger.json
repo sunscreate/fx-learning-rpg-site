@@ -738,6 +738,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n9306ba79e2d8",
       "publishedAt": "2026-07-01T11:04:12.754Z"
+    },
+    {
+      "key": "public:risk/what-is-risk-management:click-focused-teaser",
+      "id": "b2dc11830e",
+      "title": "無料公開: FX初心者がリスク管理とは？で損しやすい見落とし",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-02-what-is-risk-management-public-1.md",
+      "sourcePath": "src/content/risk/what-is-risk-management.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-risk-management/",
+      "category": "risk",
+      "topicGroup": "risk-money",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-02-what-is-risk-management-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-02-what-is-risk-management-public-1-chart.png",
+      "generatedAt": "2026-07-01T22:32:54.380Z",
+      "postedAt": "2026-07-01T22:34:00.221Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/na46355fc536f",
+      "publishedAt": "2026-07-01T22:34:00.221Z"
     }
   ]
 }
