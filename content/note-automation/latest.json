@@ -1,23 +1,23 @@
 [
   {
-    "key": "public:risk/what-is-risk-management:click-focused-teaser",
-    "id": "b2dc11830e",
-    "title": "無料公開: FX初心者がリスク管理とは？で損しやすい見落とし",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-02-what-is-risk-management-public-1.md",
-    "sourcePath": "src/content/risk/what-is-risk-management.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-risk-management/",
-    "category": "risk",
-    "topicGroup": "risk-money",
-    "visibility": "public",
+    "key": "article:chart/what-is-support-resistance-9:premium-practical-work",
+    "id": "80c7710b92",
+    "title": "限定QUEST: サポートライン避ける場面で負けやすい場面をドル円で整理",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-07-02-what-is-support-resistance-9-premium-1.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-9.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-9/",
+    "category": "chart",
+    "topicGroup": "chart-analysis",
+    "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "FX学習",
       "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-02-what-is-risk-management-public-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-02-what-is-risk-management-public-1-chart.png",
-    "generatedAt": "2026-07-01T22:32:54.380Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-02-what-is-support-resistance-9-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-02-what-is-support-resistance-9-premium-1-chart.png",
+    "generatedAt": "2026-07-02T11:02:20.101Z"
   }
 ]
