@@ -1,39 +1,61 @@
 ---
 const {
-  title = "実践環境を確認する",
-  description = "学んだ内容を実際の取引環境で確認したい方向けに、FXサービスの情報を紹介します。",
+  title = "学んだあとに、取引環境をチェックする",
+  description =
+    "FXの知識は、実際の画面・スプレッド・注文方法・損益表示まで確認して初めて使いやすさが見えてきます。開設前に見るべきポイントを整理しました。",
   url = "https://px.a8.net/svt/ejp?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE",
-  label = "MATSUI FXを確認する",
+  label = "公式ページで最新条件を見る",
   trackingPixel = "https://www16.a8.net/0.gif?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE",
+  context = "article",
 } = Astro.props;
+
+const checklist = [
+  "最小取引単位と、少額で練習しやすいか",
+  "スプレッド・スワップ・取引時間などの条件を公式ページで確認できるか",
+  "スマホアプリで注文・損切り・建玉確認が迷わずできそうか",
+  "チャート、ニュース、経済指標、入出金の導線が見つけやすいか",
+];
 ---
 
-<section class="affiliate-cta">
+<section class={`affiliate-cta affiliate-cta-${context}`} aria-label="FXサービス確認">
+  <div class="affiliate-copy">
+    <p class="affiliate-label">PR</p>
 
-  <div>
+    <h2>{title}</h2>
 
-    <p class="affiliate-label">
-      FX SERVICE
-    </p>
+    <p>{description}</p>
 
-    <h2>
-      {title}
-    </h2>
-
-    <p>
-      {description}
-    </p>
-
+    <ul class="affiliate-checklist">
+      {checklist.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
   </div>
 
-  <a
-    href={url}
-    class="affiliate-button"
-    target="_blank"
-    rel="sponsored nofollow noopener noreferrer"
-  >
-    {label}
-  </a>
+  <aside class="affiliate-card">
+    <p class="card-kicker">初心者が最初に確認したい国内FX候補</p>
+
+    <h3>MATSUI FX</h3>
+
+    <p>
+      口座開設前に、取引条件・アプリ画面・リスク説明・キャンペーン条件を必ず公式ページで確認してください。
+    </p>
+
+    <a
+      href={url}
+      class="affiliate-button"
+      target="_blank"
+      rel="sponsored nofollow noopener noreferrer"
+      data-affiliate-click="matsui-fx"
+      data-affiliate-context={context}
+    >
+      {label}
+    </a>
+
+    <a class="affiliate-sub-link" href="/fx-learning-rpg-site/fx-broker-checklist/">
+      口座選びのチェック表を先に見る
+    </a>
+  </aside>
 
   <img
     src={trackingPixel}
@@ -42,75 +64,118 @@ const {
     alt=""
     loading="lazy"
   />
-
 </section>
 
 <style>
 .affiliate-cta {
   margin: 48px 0;
   padding: 28px;
-
-  border-radius: 24px;
-
+  border-radius: 26px;
   background:
-    linear-gradient(
-      135deg,
-      #0f172a,
-      #123028
-    );
-
-  border: 1px solid #22c55e;
-
-  display: flex;
-  justify-content: space-between;
+    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(18, 48, 40, 0.94)),
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.18), transparent 42%);
+  border: 1px solid rgba(34, 197, 94, 0.44);
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
   gap: 24px;
-  align-items: center;
+  align-items: stretch;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
 }
 
 .affiliate-label {
-  color: #86efac;
-  font-weight: 800;
-  margin-bottom: 8px;
+  width: fit-content;
+  color: #052e16 !important;
+  background: #86efac;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  border-radius: 999px;
+  padding: 5px 10px;
+  margin: 0 0 12px;
+  font-size: 12px;
 }
 
-.affiliate-cta h2 {
+.affiliate-copy h2,
+.affiliate-card h3 {
   color: #f9fafb;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
 }
 
-.affiliate-cta p {
+.affiliate-copy p,
+.affiliate-card p {
   color: #d1d5db;
+  line-height: 1.8;
+}
+
+.affiliate-checklist {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.affiliate-checklist li {
+  position: relative;
+  padding-left: 28px;
+  color: #e5e7eb;
+  line-height: 1.7;
+}
+
+.affiliate-checklist li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #86efac;
+  font-weight: 900;
+}
+
+.affiliate-card {
+  background: rgba(2, 6, 23, 0.56);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 22px;
+}
+
+.card-kicker {
+  color: #86efac !important;
+  font-size: 13px;
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+
+.affiliate-button,
+.affiliate-sub-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 900;
 }
 
 .affiliate-button {
-  white-space: nowrap;
-
-  padding: 14px 22px;
-
-  border-radius: 999px;
-
+  margin-top: 18px;
+  padding: 14px 18px;
   background: #22c55e;
-
   color: #052e16;
-
-  font-weight: 900;
-
-  text-decoration: none;
 }
 
-.affiliate-button:hover {
+.affiliate-sub-link {
+  margin-top: 10px;
+  padding: 11px 14px;
+  color: #bbf7d0;
+  border: 1px solid rgba(187, 247, 208, 0.35);
+}
+
+.affiliate-button:hover,
+.affiliate-sub-link:hover {
   filter: brightness(1.08);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .affiliate-cta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .affiliate-button {
-    width: 100%;
-    text-align: center;
+    grid-template-columns: 1fr;
+    padding: 22px;
   }
 }
 </style>

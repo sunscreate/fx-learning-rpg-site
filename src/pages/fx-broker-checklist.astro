@@ -1,0 +1,142 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import AffiliateCTA from "../components/AffiliateCTA.astro";
+
+const checklistRows = [
+  {
+    point: "少額で練習できるか",
+    why: "初心者がいきなり大きなロットを持つと、学習より損益の感情が強くなります。",
+    check: "最小取引単位、必要証拠金、デモ/少額練習のしやすさを確認します。",
+  },
+  {
+    point: "コストを理解しやすいか",
+    why: "スプレッド、スワップ、スリッページは利益より先に確認すべき固定条件です。",
+    check: "公式ページで通貨ペア別の条件、例外時間、キャンペーン条件を確認します。",
+  },
+  {
+    point: "注文と損切りが迷わないか",
+    why: "良い分析ができても、注文画面で迷うとミスが増えます。",
+    check: "成行、指値、逆指値、OCO、建玉確認、決済操作の流れを確認します。",
+  },
+  {
+    point: "学習と検証を続けやすいか",
+    why: "勝ち負けより先に、記録・振り返り・同じ手順の再現ができる環境が必要です。",
+    check: "取引履歴、チャート、ニュース、経済指標、入出金履歴の見やすさを見ます。",
+  },
+];
+---
+
+<BaseLayout
+  title="FX口座選びチェック表｜FX Quest Guild"
+  description="FX初心者が口座開設前に確認したい、少額練習・コスト・注文画面・検証環境のチェック表。"
+>
+  <Header />
+
+  <main class="broker-page">
+    <section class="section hero-section">
+      <p class="badge">BROKER CHECKLIST</p>
+      <h1>FX口座は、開設前に「勝てるか」ではなく「学びやすいか」で見る</h1>
+      <p>
+        口座選びで大切なのは、派手な条件だけではありません。初心者ほど、少額で試せること、
+        損切りが迷わないこと、コストを確認しやすいこと、振り返りが続けやすいことを優先します。
+      </p>
+    </section>
+
+    <section class="card checklist-card">
+      <h2>開設前の4つの確認ポイント</h2>
+      <div class="checklist-table">
+        {checklistRows.map((row) => (
+          <article>
+            <h3>{row.point}</h3>
+            <p>{row.why}</p>
+            <strong>{row.check}</strong>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="card warning-card">
+      <h2>このページの考え方</h2>
+      <p>
+        FXは元本割れのリスクがあります。ここでは「どこを見れば判断しやすいか」を整理し、
+        利益を保証する表現や、無理な取引をすすめる表現は使いません。
+      </p>
+      <p>
+        条件は変更されることがあります。スプレッド、キャンペーン、取引単位、リスク説明は必ず公式ページで最新情報を確認してください。
+      </p>
+    </section>
+
+    <AffiliateCTA
+      title="チェック表を見たうえで、公式条件を確認する"
+      description="少額練習、取引コスト、スマホ操作、損切り注文、情報ツールの5点を公式ページで確認してから判断しましょう。"
+      context="broker-checklist"
+    />
+  </main>
+</BaseLayout>
+
+<style>
+.broker-page {
+  max-width: 1040px;
+}
+
+.hero-section h1 {
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+  line-height: 1.08;
+  margin: 22px 0;
+}
+
+.hero-section p {
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.9;
+}
+
+.checklist-card h2,
+.warning-card h2 {
+  margin-top: 0;
+}
+
+.checklist-table {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.checklist-table article {
+  border: 1px solid rgba(78, 161, 255, 0.22);
+  border-radius: 18px;
+  padding: 20px;
+  background: rgba(78, 161, 255, 0.06);
+}
+
+.checklist-table h3 {
+  margin-top: 0;
+  color: #bfdbfe;
+}
+
+.checklist-table p,
+.warning-card p {
+  color: #cbd5e1;
+  line-height: 1.85;
+}
+
+.checklist-table strong {
+  display: block;
+  margin-top: 12px;
+  color: #bbf7d0;
+  line-height: 1.7;
+}
+
+.warning-card {
+  margin-top: 24px;
+  border-color: rgba(247, 201, 72, 0.24);
+}
+
+@media (max-width: 760px) {
+  .checklist-table {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

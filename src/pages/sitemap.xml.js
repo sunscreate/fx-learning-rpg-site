@@ -26,6 +26,7 @@ export async function GET() {
   urls.push(`${base}/category/`);
   urls.push(`${base}/tag/`);
   urls.push(`${base}/search/`);
+  urls.push(`${base}/fx-broker-checklist/`);
 
   for (let i = 1; i <= 12; i++) {
     urls.push(`${base}/level/${i}/`);

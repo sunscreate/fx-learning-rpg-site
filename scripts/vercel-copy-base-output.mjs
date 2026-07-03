@@ -17,6 +17,7 @@ const entries = [
   "404.html",
   "_astro",
   "category",
+  "fx-broker-checklist",
   "level",
   "search",
   "sitemap.xml",

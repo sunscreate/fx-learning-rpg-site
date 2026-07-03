@@ -76,6 +76,35 @@ const websiteJsonLd = {
       type="application/ld+json"
       set:html={JSON.stringify(websiteJsonLd)}
     />
+
+    <script is:inline>
+      window.fxQuestTrack = function (eventName, payload) {
+        try {
+          const key = "fxQuestAffiliateEvents";
+          const current = JSON.parse(window.localStorage.getItem(key) || "[]");
+          current.push({
+            eventName,
+            payload,
+            path: location.pathname,
+            createdAt: new Date().toISOString(),
+          });
+          window.localStorage.setItem(key, JSON.stringify(current.slice(-100)));
+        } catch (error) {
+          // Tracking is best-effort and must never block navigation.
+        }
+      };
+
+      document.addEventListener("click", function (event) {
+        if (!event.target || !event.target.closest) return;
+        const link = event.target.closest("[data-affiliate-click]");
+        if (!link) return;
+        window.fxQuestTrack("affiliate_click", {
+          offer: link.dataset.affiliateClick,
+          context: link.dataset.affiliateContext || "unknown",
+          href: link.href,
+        });
+      });
+    </script>
   </head>
 
   <body>
