@@ -888,6 +888,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n7c7b379685c9",
       "publishedAt": "2026-07-04T11:03:56.737Z"
+    },
+    {
+      "key": "public:analysis/what-is-trading-journal:click-focused-teaser",
+      "id": "9b3ea836a4",
+      "title": "無料公開: FX初心者がトレード日記とは？で損しやすい見落とし",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-05-what-is-trading-journal-public-1.md",
+      "sourcePath": "src/content/analysis/what-is-trading-journal.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/analysis/what-is-trading-journal/",
+      "category": "analysis",
+      "topicGroup": "analysis",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-05-what-is-trading-journal-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-05-what-is-trading-journal-public-1-chart.png",
+      "generatedAt": "2026-07-04T22:32:31.513Z",
+      "postedAt": "2026-07-04T22:33:17.795Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n2062de818b05",
+      "publishedAt": "2026-07-04T22:33:17.795Z"
     }
   ]
 }
