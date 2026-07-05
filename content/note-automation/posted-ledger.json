@@ -938,6 +938,30 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n79a605d21848",
       "publishedAt": "2026-07-05T11:02:01.189Z"
+    },
+    {
+      "key": "public:operation/what-is-weekly-review:click-focused-teaser",
+      "id": "8ff7765018",
+      "title": "無料公開: 今日のドル円で使える週間レビューとは？の考え方",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-06-what-is-weekly-review-public-1.md",
+      "sourcePath": "src/content/operation/what-is-weekly-review.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-weekly-review/",
+      "category": "operation",
+      "topicGroup": "operation",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-06-what-is-weekly-review-public-1.png",
+      "generatedAt": "2026-07-05T22:32:16.857Z",
+      "postedAt": "2026-07-05T22:33:57.567Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nb8e617034617",
+      "publishedAt": "2026-07-05T22:33:57.567Z"
     }
   ]
 }

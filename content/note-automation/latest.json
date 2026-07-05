@@ -1,23 +1,22 @@
 [
   {
-    "key": "article:basic/trading-session:premium-practical-work",
-    "id": "8fb808c4dd",
-    "title": "限定QUEST: 初心者が迷いやすいFXの取引時間とは？を実例で確認",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-05-trading-session-premium-1.md",
-    "sourcePath": "src/content/basic/trading-session.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/trading-session/",
-    "category": "basic",
-    "topicGroup": "basic",
-    "visibility": "members_only",
+    "key": "public:operation/what-is-weekly-review:click-focused-teaser",
+    "id": "8ff7765018",
+    "title": "無料公開: 今日のドル円で使える週間レビューとは？の考え方",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-06-what-is-weekly-review-public-1.md",
+    "sourcePath": "src/content/operation/what-is-weekly-review.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-weekly-review/",
+    "category": "operation",
+    "topicGroup": "operation",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-05-trading-session-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-05-trading-session-premium-1-chart.png",
-    "generatedAt": "2026-07-05T11:01:02.452Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-06-what-is-weekly-review-public-1.png",
+    "generatedAt": "2026-07-05T22:32:16.857Z"
   }
 ]
