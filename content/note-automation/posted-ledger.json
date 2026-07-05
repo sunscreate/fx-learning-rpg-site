@@ -913,6 +913,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n2062de818b05",
       "publishedAt": "2026-07-04T22:33:17.795Z"
+    },
+    {
+      "key": "article:basic/trading-session:premium-practical-work",
+      "id": "8fb808c4dd",
+      "title": "限定QUEST: 初心者が迷いやすいFXの取引時間とは？を実例で確認",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-05-trading-session-premium-1.md",
+      "sourcePath": "src/content/basic/trading-session.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/trading-session/",
+      "category": "basic",
+      "topicGroup": "basic",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-05-trading-session-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-05-trading-session-premium-1-chart.png",
+      "generatedAt": "2026-07-05T11:01:02.452Z",
+      "postedAt": "2026-07-05T11:02:01.189Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n79a605d21848",
+      "publishedAt": "2026-07-05T11:02:01.189Z"
     }
   ]
 }

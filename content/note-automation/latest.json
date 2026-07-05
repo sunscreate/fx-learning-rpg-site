@@ -1,23 +1,23 @@
 [
   {
-    "key": "public:analysis/what-is-trading-journal:click-focused-teaser",
-    "id": "9b3ea836a4",
-    "title": "無料公開: FX初心者がトレード日記とは？で損しやすい見落とし",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-05-what-is-trading-journal-public-1.md",
-    "sourcePath": "src/content/analysis/what-is-trading-journal.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/analysis/what-is-trading-journal/",
-    "category": "analysis",
-    "topicGroup": "analysis",
-    "visibility": "public",
+    "key": "article:basic/trading-session:premium-practical-work",
+    "id": "8fb808c4dd",
+    "title": "限定QUEST: 初心者が迷いやすいFXの取引時間とは？を実例で確認",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-07-05-trading-session-premium-1.md",
+    "sourcePath": "src/content/basic/trading-session.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/trading-session/",
+    "category": "basic",
+    "topicGroup": "basic",
+    "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "FX学習",
       "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-05-what-is-trading-journal-public-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-05-what-is-trading-journal-public-1-chart.png",
-    "generatedAt": "2026-07-04T22:32:31.513Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-05-trading-session-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-05-trading-session-premium-1-chart.png",
+    "generatedAt": "2026-07-05T11:01:02.452Z"
   }
 ]
