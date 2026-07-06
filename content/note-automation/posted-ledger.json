@@ -962,6 +962,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/nb8e617034617",
       "publishedAt": "2026-07-05T22:33:57.567Z"
+    },
+    {
+      "key": "article:risk/what-is-martingale:premium-practical-work",
+      "id": "897447537b",
+      "title": "限定QUEST: ドル円チャートでマーチンゲールとは？を判断する実践ワーク",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-06-what-is-martingale-premium-1.md",
+      "sourcePath": "src/content/risk/what-is-martingale.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-martingale/",
+      "category": "risk",
+      "topicGroup": "risk",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-06-what-is-martingale-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-06-what-is-martingale-premium-1-chart.png",
+      "generatedAt": "2026-07-06T11:01:15.833Z",
+      "postedAt": "2026-07-06T11:02:03.486Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n179e7e7058c1",
+      "publishedAt": "2026-07-06T11:02:03.486Z"
     }
   ]
 }

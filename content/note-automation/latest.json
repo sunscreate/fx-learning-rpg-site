@@ -1,22 +1,23 @@
 [
   {
-    "key": "public:operation/what-is-weekly-review:click-focused-teaser",
-    "id": "8ff7765018",
-    "title": "無料公開: 今日のドル円で使える週間レビューとは？の考え方",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-06-what-is-weekly-review-public-1.md",
-    "sourcePath": "src/content/operation/what-is-weekly-review.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-weekly-review/",
-    "category": "operation",
-    "topicGroup": "operation",
-    "visibility": "public",
+    "key": "article:risk/what-is-martingale:premium-practical-work",
+    "id": "897447537b",
+    "title": "限定QUEST: ドル円チャートでマーチンゲールとは？を判断する実践ワーク",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-07-06-what-is-martingale-premium-1.md",
+    "sourcePath": "src/content/risk/what-is-martingale.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-martingale/",
+    "category": "risk",
+    "topicGroup": "risk",
+    "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "FX学習",
       "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-06-what-is-weekly-review-public-1.png",
-    "generatedAt": "2026-07-05T22:32:16.857Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-06-what-is-martingale-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-06-what-is-martingale-premium-1-chart.png",
+    "generatedAt": "2026-07-06T11:01:15.833Z"
   }
 ]
