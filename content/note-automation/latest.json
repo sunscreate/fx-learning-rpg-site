@@ -1,23 +1,23 @@
 [
   {
-    "key": "article:risk/what-is-martingale:premium-practical-work",
-    "id": "897447537b",
-    "title": "限定QUEST: ドル円チャートでマーチンゲールとは？を判断する実践ワーク",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-06-what-is-martingale-premium-1.md",
-    "sourcePath": "src/content/risk/what-is-martingale.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-martingale/",
+    "key": "public:risk/what-is-position-sizing:click-focused-teaser",
+    "id": "4d216da61d",
+    "title": "無料公開: ロット管理とは？をなんとなく覚える前に確認すること",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-07-what-is-position-sizing-public-1.md",
+    "sourcePath": "src/content/risk/what-is-position-sizing.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
     "category": "risk",
-    "topicGroup": "risk",
-    "visibility": "members_only",
+    "topicGroup": "risk-money",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-06-what-is-martingale-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-06-what-is-martingale-premium-1-chart.png",
-    "generatedAt": "2026-07-06T11:01:15.833Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-07-what-is-position-sizing-public-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-07-what-is-position-sizing-public-1-chart.png",
+    "generatedAt": "2026-07-06T22:30:59.759Z"
   }
 ]

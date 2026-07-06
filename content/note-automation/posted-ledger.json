@@ -987,6 +987,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n179e7e7058c1",
       "publishedAt": "2026-07-06T11:02:03.486Z"
+    },
+    {
+      "key": "public:risk/what-is-position-sizing:click-focused-teaser",
+      "id": "4d216da61d",
+      "title": "無料公開: ロット管理とは？をなんとなく覚える前に確認すること",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-07-what-is-position-sizing-public-1.md",
+      "sourcePath": "src/content/risk/what-is-position-sizing.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
+      "category": "risk",
+      "topicGroup": "risk-money",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-07-what-is-position-sizing-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-07-what-is-position-sizing-public-1-chart.png",
+      "generatedAt": "2026-07-06T22:30:59.759Z",
+      "postedAt": "2026-07-06T22:32:05.528Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nc4c24f0a0417",
+      "publishedAt": "2026-07-06T22:32:05.528Z"
     }
   ]
 }
