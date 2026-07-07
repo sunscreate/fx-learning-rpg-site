@@ -122,13 +122,28 @@ async function uploadThumbnail(page, entry) {
       : page.locator("button").filter({ hasText: "画像を追加" }).first();
   await imageButton.waitFor({ timeout: 60000 });
 
-  const fileChooserPromise = page.waitForEvent("filechooser");
+  const directFileChooserPromise = page.waitForEvent("filechooser", { timeout: 5000 }).catch(() => null);
   await imageButton.click({ force: true });
-  const uploadButton = page.locator("button").filter({ hasText: "画像をアップロード" }).first();
-  await uploadButton.waitFor({ timeout: 60000 });
-  await uploadButton.click({ force: true });
-  const fileChooser = await fileChooserPromise;
-  await fileChooser.setFiles(thumbnailPath);
+  const directFileChooser = await directFileChooserPromise;
+  if (directFileChooser) {
+    await directFileChooser.setFiles(thumbnailPath);
+  } else {
+    const uploadButton = page.locator("button:visible").filter({ hasText: "画像をアップロード" }).first();
+    await uploadButton.waitFor({ timeout: 60000 });
+    const fileChooserPromise = page.waitForEvent("filechooser", { timeout: 15000 }).catch(() => null);
+    await uploadButton.click({ force: true });
+    const fileChooser = await fileChooserPromise;
+    if (fileChooser) {
+      await fileChooser.setFiles(thumbnailPath);
+    } else {
+      const fileInput = page.locator('input[type="file"]').last();
+      if ((await fileInput.count()) === 0) {
+        const visibleButtons = await page.locator("button:visible").allInnerTexts();
+        throw new Error(`Thumbnail file input was not found. Visible buttons: ${visibleButtons.join(" | ")}`);
+      }
+      await fileInput.setInputFiles(thumbnailPath);
+    }
+  }
 
   const cropModal = page.locator(".CropModal__overlay");
   await cropModal.waitFor({ timeout: 60000 });

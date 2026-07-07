@@ -1037,6 +1037,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n1dbb183e66a6",
       "publishedAt": "2026-07-07T11:03:10.994Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-8:click-focused-teaser",
+      "id": "a5680c2219",
+      "title": "無料公開: ダウ理論の使い方をなんとなく覚える前に確認すること",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-08-what-is-dow-theory-8-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-8.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-8/",
+      "category": "chart",
+      "topicGroup": "chart",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-08-what-is-dow-theory-8-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-08-what-is-dow-theory-8-public-1-chart.png",
+      "generatedAt": "2026-07-07T22:31:36.815Z",
+      "postedAt": "2026-07-07T22:34:28.759Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n588eaa94bff6",
+      "publishedAt": "2026-07-07T22:34:28.759Z"
     }
   ]
 }
