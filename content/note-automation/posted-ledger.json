@@ -1087,6 +1087,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n9dcbef64ec4b",
       "publishedAt": "2026-07-08T11:02:03.812Z"
+    },
+    {
+      "key": "public:entry/what-is-n-pattern-1:click-focused-teaser",
+      "id": "a2243f5c6f",
+      "title": "無料公開: FX初心者がN字とは？押し目買い・戻り売りで使う基本形で損しやすい見落とし",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-09-what-is-n-pattern-1-public-1.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-1.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-1/",
+      "category": "entry",
+      "topicGroup": "entry",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-09-what-is-n-pattern-1-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-09-what-is-n-pattern-1-public-1-chart.png",
+      "generatedAt": "2026-07-08T22:31:08.694Z",
+      "postedAt": "2026-07-08T22:32:07.614Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/ne9a9b741f8b9",
+      "publishedAt": "2026-07-08T22:32:07.614Z"
     }
   ]
 }
