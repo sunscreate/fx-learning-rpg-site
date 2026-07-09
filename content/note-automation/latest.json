@@ -1,23 +1,22 @@
 [
   {
-    "key": "article:entry/what-is-breakout-entry-1:premium-practical-work",
-    "id": "ae1cde9b08",
-    "title": "限定QUEST: ブレイクアウトエントリーとは？を「見送る判断」まで落とし込む練習",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-09-what-is-breakout-entry-1-premium-1.md",
-    "sourcePath": "src/content/entry/what-is-breakout-entry-1.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-breakout-entry-1/",
-    "category": "entry",
-    "topicGroup": "entry-exit",
-    "visibility": "members_only",
+    "key": "public:basic/what-is-fx:click-focused-teaser",
+    "id": "957144c692",
+    "title": "無料公開: ドル円を見る前に知りたいFXとは？の基本",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-10-what-is-fx-public-1.md",
+    "sourcePath": "src/content/basic/what-is-fx.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-fx/",
+    "category": "basic",
+    "topicGroup": "basic",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-09-what-is-breakout-entry-1-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-09-what-is-breakout-entry-1-premium-1-chart.png",
-    "generatedAt": "2026-07-09T11:01:51.885Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-10-what-is-fx-public-1.png",
+    "generatedAt": "2026-07-09T22:31:35.496Z"
   }
 ]
