@@ -1,23 +1,23 @@
 [
   {
-    "key": "public:entry/what-is-n-pattern-1:click-focused-teaser",
-    "id": "a2243f5c6f",
-    "title": "無料公開: FX初心者がN字とは？押し目買い・戻り売りで使う基本形で損しやすい見落とし",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-09-what-is-n-pattern-1-public-1.md",
-    "sourcePath": "src/content/entry/what-is-n-pattern-1.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-1/",
+    "key": "article:entry/what-is-breakout-entry-1:premium-practical-work",
+    "id": "ae1cde9b08",
+    "title": "限定QUEST: ブレイクアウトエントリーとは？を「見送る判断」まで落とし込む練習",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-07-09-what-is-breakout-entry-1-premium-1.md",
+    "sourcePath": "src/content/entry/what-is-breakout-entry-1.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-breakout-entry-1/",
     "category": "entry",
-    "topicGroup": "entry",
-    "visibility": "public",
+    "topicGroup": "entry-exit",
+    "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "FX学習",
       "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-09-what-is-n-pattern-1-public-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-09-what-is-n-pattern-1-public-1-chart.png",
-    "generatedAt": "2026-07-08T22:31:08.694Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-09-what-is-breakout-entry-1-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-09-what-is-breakout-entry-1-premium-1-chart.png",
+    "generatedAt": "2026-07-09T11:01:51.885Z"
   }
 ]
