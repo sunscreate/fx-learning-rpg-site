@@ -1161,6 +1161,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n9dda71fea8c1",
       "publishedAt": "2026-07-09T22:33:05.311Z"
+    },
+    {
+      "key": "article:operation/what-is-trading-plan:premium-practical-work",
+      "id": "f359f2ffd8",
+      "title": "限定QUEST: ドル円チャートでトレードプランとは？を判断する実践ワーク",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-10-what-is-trading-plan-premium-1.md",
+      "sourcePath": "src/content/operation/what-is-trading-plan.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-trading-plan/",
+      "category": "operation",
+      "topicGroup": "operation",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-10-what-is-trading-plan-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-10-what-is-trading-plan-premium-1-chart.png",
+      "generatedAt": "2026-07-10T11:01:25.672Z",
+      "postedAt": "2026-07-10T11:02:21.611Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n35b456672d9f",
+      "publishedAt": "2026-07-10T11:02:21.611Z"
     }
   ]
 }
