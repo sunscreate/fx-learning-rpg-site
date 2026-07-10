@@ -1186,6 +1186,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n35b456672d9f",
       "publishedAt": "2026-07-10T11:02:21.611Z"
+    },
+    {
+      "key": "public:risk/what-is-drawdown:click-focused-teaser",
+      "id": "5bdfea4e0f",
+      "title": "無料公開: FX初心者がドローダウンとは？で損しやすい見落とし",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-11-what-is-drawdown-public-1.md",
+      "sourcePath": "src/content/risk/what-is-drawdown.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-drawdown/",
+      "category": "risk",
+      "topicGroup": "risk",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-11-what-is-drawdown-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-11-what-is-drawdown-public-1-chart.png",
+      "generatedAt": "2026-07-10T22:32:25.330Z",
+      "postedAt": "2026-07-10T22:33:17.346Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n0db38fca8209",
+      "publishedAt": "2026-07-10T22:33:17.346Z"
     }
   ]
 }
