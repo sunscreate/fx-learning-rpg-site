@@ -1211,6 +1211,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n0db38fca8209",
       "publishedAt": "2026-07-10T22:33:17.346Z"
+    },
+    {
+      "key": "article:risk/what-is-risk-reward:premium-practical-work",
+      "id": "67d9d390d9",
+      "title": "限定QUEST: 初心者が迷いやすいリスクリワードとは？を実例で確認",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-11-what-is-risk-reward-premium-1.md",
+      "sourcePath": "src/content/risk/what-is-risk-reward.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-risk-reward/",
+      "category": "risk",
+      "topicGroup": "risk-money",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-11-what-is-risk-reward-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-11-what-is-risk-reward-premium-1-chart.png",
+      "generatedAt": "2026-07-11T11:01:28.951Z",
+      "postedAt": "2026-07-11T11:02:32.605Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n0af458ad89b2",
+      "publishedAt": "2026-07-11T11:02:32.605Z"
     }
   ]
 }
