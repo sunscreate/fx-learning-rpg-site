@@ -1336,6 +1336,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n7b828363c244",
       "publishedAt": "2026-07-13T11:01:45.531Z"
+    },
+    {
+      "key": "public:entry/what-is-breakout-entry-10:click-focused-teaser",
+      "id": "184ce156c8",
+      "title": "無料公開: ドル円を見る前に知りたいブレイクアウトエントリーの基本",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-14-what-is-breakout-entry-10-public-1.md",
+      "sourcePath": "src/content/entry/what-is-breakout-entry-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-breakout-entry-10/",
+      "category": "entry",
+      "topicGroup": "entry-exit",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-14-what-is-breakout-entry-10-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-14-what-is-breakout-entry-10-public-1-chart.png",
+      "generatedAt": "2026-07-13T22:31:54.851Z",
+      "postedAt": "2026-07-13T22:32:51.850Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n82cd16953eac",
+      "publishedAt": "2026-07-13T22:32:51.850Z"
     }
   ]
 }
