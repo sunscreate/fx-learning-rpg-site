@@ -1361,6 +1361,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n82cd16953eac",
       "publishedAt": "2026-07-13T22:32:51.850Z"
+    },
+    {
+      "key": "article:basic/what-is-pips-10:premium-practical-work",
+      "id": "d2e019f4d3",
+      "title": "限定QUEST: pipsで負けやすい場面をドル円で整理",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-14-what-is-pips-10-premium-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-10/",
+      "category": "basic",
+      "topicGroup": "basic",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-14-what-is-pips-10-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-14-what-is-pips-10-premium-1-chart.png",
+      "generatedAt": "2026-07-14T11:02:29.609Z",
+      "postedAt": "2026-07-14T11:03:36.774Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n1442b4f037ed",
+      "publishedAt": "2026-07-14T11:03:36.774Z"
     }
   ]
 }
