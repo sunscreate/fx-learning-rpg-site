@@ -1436,6 +1436,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n5a1a2f7dde44",
       "publishedAt": "2026-07-15T22:32:38.228Z"
+    },
+    {
+      "key": "article:operation/what-is-weekly-review:premium-practical-work",
+      "id": "c306453be9",
+      "title": "限定QUEST: 週間レビューとは？で負けやすい場面をドル円で整理",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-16-what-is-weekly-review-premium-1.md",
+      "sourcePath": "src/content/operation/what-is-weekly-review.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-weekly-review/",
+      "category": "operation",
+      "topicGroup": "operation",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-16-what-is-weekly-review-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-16-what-is-weekly-review-premium-1-chart.png",
+      "generatedAt": "2026-07-16T11:01:04.962Z",
+      "postedAt": "2026-07-16T11:02:05.909Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/ncf5bb9dc4a8d",
+      "publishedAt": "2026-07-16T11:02:05.909Z"
     }
   ]
 }
