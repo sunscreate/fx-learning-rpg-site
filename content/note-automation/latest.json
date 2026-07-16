@@ -1,23 +1,23 @@
 [
   {
-    "key": "article:operation/what-is-weekly-review:premium-practical-work",
-    "id": "c306453be9",
-    "title": "限定QUEST: 週間レビューとは？で負けやすい場面をドル円で整理",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-16-what-is-weekly-review-premium-1.md",
-    "sourcePath": "src/content/operation/what-is-weekly-review.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/operation/what-is-weekly-review/",
-    "category": "operation",
-    "topicGroup": "operation",
-    "visibility": "members_only",
+    "key": "public:chart/what-is-support-resistance-13:click-focused-teaser",
+    "id": "82d7fc198b",
+    "title": "無料公開: FX初心者がサポートライン損切りとの関係で損しやすい見落とし",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-17-what-is-support-resistance-13-public-1.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-13.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-13/",
+    "category": "chart",
+    "topicGroup": "risk-money",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-16-what-is-weekly-review-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-16-what-is-weekly-review-premium-1-chart.png",
-    "generatedAt": "2026-07-16T11:01:04.962Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-17-what-is-support-resistance-13-public-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-17-what-is-support-resistance-13-public-1-chart.png",
+    "generatedAt": "2026-07-16T22:31:13.524Z"
   }
 ]
