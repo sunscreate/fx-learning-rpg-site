@@ -1,23 +1,23 @@
 [
   {
-    "key": "public:chart/what-is-support-resistance-13:click-focused-teaser",
-    "id": "82d7fc198b",
-    "title": "無料公開: FX初心者がサポートライン損切りとの関係で損しやすい見落とし",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-17-what-is-support-resistance-13-public-1.md",
-    "sourcePath": "src/content/chart/what-is-support-resistance-13.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-13/",
+    "key": "article:chart/what-is-dow-theory-9:premium-practical-work",
+    "id": "31143d25d1",
+    "title": "限定QUEST: ダウ理論避ける場面を「見送る判断」まで落とし込む練習",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-07-17-what-is-dow-theory-9-premium-1.md",
+    "sourcePath": "src/content/chart/what-is-dow-theory-9.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-9/",
     "category": "chart",
-    "topicGroup": "risk-money",
-    "visibility": "public",
+    "topicGroup": "chart",
+    "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "FX学習",
       "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-17-what-is-support-resistance-13-public-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-17-what-is-support-resistance-13-public-1-chart.png",
-    "generatedAt": "2026-07-16T22:31:13.524Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-17-what-is-dow-theory-9-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-17-what-is-dow-theory-9-premium-1-chart.png",
+    "generatedAt": "2026-07-17T11:01:39.691Z"
   }
 ]

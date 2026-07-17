@@ -1486,6 +1486,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/nbd987e6e98b2",
       "publishedAt": "2026-07-16T22:32:08.395Z"
+    },
+    {
+      "key": "article:chart/what-is-dow-theory-9:premium-practical-work",
+      "id": "31143d25d1",
+      "title": "限定QUEST: ダウ理論避ける場面を「見送る判断」まで落とし込む練習",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-17-what-is-dow-theory-9-premium-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-9.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-9/",
+      "category": "chart",
+      "topicGroup": "chart",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-17-what-is-dow-theory-9-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-17-what-is-dow-theory-9-premium-1-chart.png",
+      "generatedAt": "2026-07-17T11:01:39.691Z",
+      "postedAt": "2026-07-17T11:02:40.644Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n6161c739ac7b",
+      "publishedAt": "2026-07-17T11:02:40.644Z"
     }
   ]
 }
