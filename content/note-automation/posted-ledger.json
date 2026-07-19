@@ -1611,6 +1611,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/ne3b8e4d2e019",
       "publishedAt": "2026-07-19T11:03:37.034Z"
+    },
+    {
+      "key": "public:risk/what-is-martingale:click-focused-teaser",
+      "id": "e9ec34f82c",
+      "title": "無料公開: FX初心者がマーチンゲールとは？で損しやすい見落とし",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-20-what-is-martingale-public-1.md",
+      "sourcePath": "src/content/risk/what-is-martingale.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-martingale/",
+      "category": "risk",
+      "topicGroup": "risk",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-20-what-is-martingale-public-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-20-what-is-martingale-public-1-chart.png",
+      "generatedAt": "2026-07-19T22:33:06.823Z",
+      "postedAt": "2026-07-19T22:34:03.993Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n682fd9fe85b3",
+      "publishedAt": "2026-07-19T22:34:03.993Z"
     }
   ]
 }
