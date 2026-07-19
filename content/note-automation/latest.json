@@ -1,23 +1,23 @@
 [
   {
-    "key": "public:entry/what-is-breakout-entry-9:click-focused-teaser",
-    "id": "72e9194977",
-    "title": "無料公開: FX初心者がブレイクアウトエントリー避ける場面で損しやすい見落とし",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-19-what-is-breakout-entry-9-public-1.md",
-    "sourcePath": "src/content/entry/what-is-breakout-entry-9.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-breakout-entry-9/",
-    "category": "entry",
-    "topicGroup": "entry-exit",
-    "visibility": "public",
+    "key": "article:basic/what-is-pips-9:premium-practical-work",
+    "id": "53afe6000b",
+    "title": "限定QUEST: ドル円チャートでpips避ける場面を判断する実践ワーク",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-07-19-what-is-pips-9-premium-1.md",
+    "sourcePath": "src/content/basic/what-is-pips-9.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-9/",
+    "category": "basic",
+    "topicGroup": "basic",
+    "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "FX学習",
       "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-19-what-is-breakout-entry-9-public-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-19-what-is-breakout-entry-9-public-1-chart.png",
-    "generatedAt": "2026-07-18T22:32:10.953Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-19-what-is-pips-9-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-19-what-is-pips-9-premium-1-chart.png",
+    "generatedAt": "2026-07-19T11:02:33.790Z"
   }
 ]
