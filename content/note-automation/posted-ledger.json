@@ -1636,6 +1636,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n682fd9fe85b3",
       "publishedAt": "2026-07-19T22:34:03.993Z"
+    },
+    {
+      "key": "article:risk/what-is-risk-management:premium-practical-work",
+      "id": "39cc3e7870",
+      "title": "限定QUEST: ドル円チャートでリスク管理とは？を判断する実践ワーク",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-20-what-is-risk-management-premium-1.md",
+      "sourcePath": "src/content/risk/what-is-risk-management.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-risk-management/",
+      "category": "risk",
+      "topicGroup": "risk-money",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-20-what-is-risk-management-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-20-what-is-risk-management-premium-1-chart.png",
+      "generatedAt": "2026-07-20T11:02:16.917Z",
+      "postedAt": "2026-07-20T11:03:26.357Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n0ba870387ed4",
+      "publishedAt": "2026-07-20T11:03:26.357Z"
     }
   ]
 }
