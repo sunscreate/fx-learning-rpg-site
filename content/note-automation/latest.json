@@ -1,23 +1,23 @@
 [
   {
-    "key": "article:risk/what-is-position-sizing:premium-practical-work",
-    "id": "55269edd5c",
-    "title": "限定QUEST: ロット管理とは？で負けやすい場面をドル円で整理",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-24-what-is-position-sizing-premium-1.md",
-    "sourcePath": "src/content/risk/what-is-position-sizing.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
-    "category": "risk",
-    "topicGroup": "risk-money",
-    "visibility": "members_only",
+    "key": "public:chart/what-is-support-resistance-8:click-focused-teaser",
+    "id": "2f7d48c65c",
+    "title": "無料公開: FX初心者がサポートラインの使い方で損しやすい見落とし",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-25-what-is-support-resistance-8-public-1.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-8.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-8/",
+    "category": "chart",
+    "topicGroup": "chart-analysis",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-24-what-is-position-sizing-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-24-what-is-position-sizing-premium-1-chart.png",
-    "generatedAt": "2026-07-24T11:02:47.995Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-25-what-is-support-resistance-8-public-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-25-what-is-support-resistance-8-public-1-chart.png",
+    "generatedAt": "2026-07-24T22:32:51.897Z"
   }
 ]
