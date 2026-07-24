@@ -1836,6 +1836,31 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n4f6c7e903b7e",
       "publishedAt": "2026-07-23T22:32:37.103Z"
+    },
+    {
+      "key": "article:risk/what-is-position-sizing:premium-practical-work",
+      "id": "55269edd5c",
+      "title": "限定QUEST: ロット管理とは？で負けやすい場面をドル円で整理",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-24-what-is-position-sizing-premium-1.md",
+      "sourcePath": "src/content/risk/what-is-position-sizing.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
+      "category": "risk",
+      "topicGroup": "risk-money",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-24-what-is-position-sizing-premium-1.png",
+      "chartImage": "content/note-automation/charts/2026-07-24-what-is-position-sizing-premium-1-chart.png",
+      "generatedAt": "2026-07-24T11:02:47.995Z",
+      "postedAt": "2026-07-24T11:03:52.907Z",
+      "postedMode": "browser_published",
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n26e339ea079f",
+      "publishedAt": "2026-07-24T11:03:52.907Z"
     }
   ]
 }
