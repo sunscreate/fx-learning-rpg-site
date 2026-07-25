@@ -1,23 +1,23 @@
 [
   {
-    "key": "article:chart/what-is-dow-theory-11:premium-practical-work",
-    "id": "53434e3586",
-    "title": "限定QUEST: ダウ理論勘違いで負けやすい場面をドル円で整理",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-25-what-is-dow-theory-11-premium-1.md",
-    "sourcePath": "src/content/chart/what-is-dow-theory-11.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-11/",
+    "key": "public:chart/what-is-breakout-11:click-focused-teaser",
+    "id": "ac32dbf927",
+    "title": "無料公開: ブレイクアウト勘違いで迷う人へ。最初に見るべきポイント",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-07-26-what-is-breakout-11-public-1.md",
+    "sourcePath": "src/content/chart/what-is-breakout-11.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-breakout-11/",
     "category": "chart",
-    "topicGroup": "chart",
-    "visibility": "members_only",
+    "topicGroup": "ea-auto",
+    "visibility": "public",
     "tags": [
       "FX初心者",
+      "FX学習",
       "ドル円",
-      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-25-what-is-dow-theory-11-premium-1.png",
-    "chartImage": "content/note-automation/charts/2026-07-25-what-is-dow-theory-11-premium-1-chart.png",
-    "generatedAt": "2026-07-25T11:01:48.049Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-26-what-is-breakout-11-public-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-26-what-is-breakout-11-public-1-chart.png",
+    "generatedAt": "2026-07-25T22:31:13.369Z"
   }
 ]
