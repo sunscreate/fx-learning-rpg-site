@@ -20,3 +20,8 @@ npm run note:publish -- --url https://note.com/<user>/n/<id>
 ```
 
 `note:post` は note の公式APIではなく、ログイン済みブラウザでの投稿操作を自動化する入口です。note画面変更に弱いため、失敗した場合は生成済みMarkdownを貼り付けて使います。
+
+## Scheduled Behavior
+
+- `note:generate:public` と `note:generate:member` は、どちらも同じ記事テーマの無料記事 + メンバー記事を1セット生成する想定です。
+- `note:post -- --file=<public or member draft>` は、同じ `sourcePath` を持つ未投稿の相方が ledger に残っていれば、無料記事とメンバー記事を続けて投稿します。

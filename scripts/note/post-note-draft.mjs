@@ -196,33 +196,74 @@ async function loadLedger() {
   }
 }
 
-async function main() {
-  const fullPath = path.resolve(ROOT, file);
+function sameEntryFile(entry, targetFile) {
+  return entry.file === targetFile || entry.file === path.relative(ROOT, path.resolve(ROOT, targetFile));
+}
+
+function buildPostingQueue(ledger, targetFile) {
+  const relativeTargetFile = path.relative(ROOT, path.resolve(ROOT, targetFile));
+  const primary = (ledger.generated || []).find((entry) => sameEntryFile(entry, targetFile));
+  if (!primary) {
+    return [{ file: relativeTargetFile, generatedEntry: null }];
+  }
+
+  const companions = (ledger.generated || [])
+    .filter((entry) =>
+      entry.file !== primary.file &&
+      entry.sourcePath === primary.sourcePath &&
+      ["public", "members_only"].includes(entry.visibility),
+    )
+    .sort((left, right) => {
+      const order = { public: 0, members_only: 1 };
+      return (order[left.visibility] ?? 99) - (order[right.visibility] ?? 99);
+    });
+
+  const queue = [primary, ...companions]
+    .filter((entry, index, entries) => entries.findIndex((item) => item.file === entry.file) === index)
+    .sort((left, right) => {
+      const order = { public: 0, members_only: 1 };
+      return (order[left.visibility] ?? 99) - (order[right.visibility] ?? 99);
+    })
+    .map((entry) => ({ file: entry.file, generatedEntry: entry }));
+
+  return queue;
+}
+
+async function writeLedgerEntry(ledger, filePath, generatedEntry, publishState) {
+  if (!generatedEntry) return ledger;
+
+  const postedAt = new Date().toISOString();
+  const nextLedger = {
+    generated: (ledger.generated || []).filter((entry) => entry.file !== filePath),
+    posted: [
+      ...(ledger.posted || []),
+      {
+        ...generatedEntry,
+        postedAt,
+        postedMode: publishState.publish ? "browser_published" : "browser_draft_filled",
+        thumbnailSet: publishState.thumbnailSet,
+        qualityChecked: publishState.qualityChecked,
+        ...(publishState.noteUrl ? { noteUrl: publishState.noteUrl } : {}),
+        ...(publishState.publish ? { publishedAt: postedAt } : {}),
+      },
+    ],
+  };
+
+  await writeFile(LEDGER_PATH, `${JSON.stringify(nextLedger, null, 2)}\n`, "utf8");
+  return nextLedger;
+}
+
+async function postSingleDraft(context, ledger, queueEntry) {
+  const fullPath = path.resolve(ROOT, queueEntry.file);
   const relativeFile = path.relative(ROOT, fullPath);
   const markdown = await readFile(fullPath, "utf8");
   const title = parseTitle(markdown);
-  const ledger = await loadLedger();
-  const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file || entry.file === relativeFile);
+  const generatedEntry = queueEntry.generatedEntry || (ledger.generated || []).find((entry) => entry.file === relativeFile);
 
-  let chromium;
-  try {
-    ({ chromium } = await import("playwright"));
-  } catch {
-    console.error("Playwright is not installed. Run `npm install` first, then retry.");
-    console.error("Fallback: open the generated Markdown and paste it into note manually.");
-    process.exit(1);
-  }
-
-  const context = await chromium.launchPersistentContext(
-    PROFILE_DIR,
-    getChromePersistentContextOptions({ headless: false }),
-  );
-  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://note.com" });
-  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://editor.note.com" });
   const page = await context.newPage();
   await page.goto(NOTE_NEW_URL, { waitUntil: "domcontentloaded", timeout: 120000 });
 
-  console.log("Opened note editor. If login is required, log in in the opened browser, then rerun this command.");
+  console.log(`Opened note editor for: ${relativeFile}`);
 
   if (page.url().includes("/login")) {
     console.log("note login is required. Log in in the opened browser window. This command will continue after login.");
@@ -283,32 +324,54 @@ async function main() {
         throw new Error(`Publish verification failed: links were not rendered as links: ${missingLinks.join(", ")}`);
       }
       qualityChecked = true;
+      await verifyPage.close();
     }
   }
 
-  if (generatedEntry) {
-    const postedAt = new Date().toISOString();
-    const noteUrl = publishedNoteUrl || getNoteUrl(page.url());
-    const nextLedger = {
-      generated: (ledger.generated || []).filter((entry) => entry.file !== file),
-      posted: [
-        ...(ledger.posted || []),
-        {
-          ...generatedEntry,
-          postedAt,
-          postedMode: publish ? "browser_published" : "browser_draft_filled",
-          thumbnailSet,
-          qualityChecked,
-          ...(noteUrl ? { noteUrl } : {}),
-          ...(publish ? { publishedAt: postedAt } : {}),
-        },
-      ],
-    };
-    await writeFile(LEDGER_PATH, `${JSON.stringify(nextLedger, null, 2)}\n`, "utf8");
+  console.log(`Filled note draft: ${title}`);
+  if (!publish) {
+    console.log("Review the editor and publish from note when ready.");
   }
 
-  console.log(`Filled note draft: ${title}`);
-  console.log("Review the editor and publish from note when ready.");
+  const finalNoteUrl = publishedNoteUrl || getNoteUrl(page.url());
+  await page.close();
+  return {
+    file: relativeFile,
+    generatedEntry,
+    noteUrl: finalNoteUrl,
+    thumbnailSet,
+    qualityChecked,
+    publish,
+  };
+}
+
+async function main() {
+  const postingLedger = await loadLedger();
+  const queue = buildPostingQueue(postingLedger, file);
+
+  let chromium;
+  try {
+    ({ chromium } = await import("playwright"));
+  } catch {
+    console.error("Playwright is not installed. Run `npm install` first, then retry.");
+    console.error("Fallback: open the generated Markdown and paste it into note manually.");
+    process.exit(1);
+  }
+
+  const context = await chromium.launchPersistentContext(
+    PROFILE_DIR,
+    getChromePersistentContextOptions({ headless: false }),
+  );
+  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://note.com" });
+  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://editor.note.com" });
+
+  let ledger = postingLedger;
+  for (const queueEntry of queue) {
+    const publishState = await postSingleDraft(context, ledger, queueEntry);
+    ledger = await writeLedgerEntry(ledger, publishState.file, publishState.generatedEntry, publishState);
+  }
+
+  await context.close();
 }
 
 main().catch((error) => {

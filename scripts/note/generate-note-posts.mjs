@@ -266,6 +266,40 @@ function renderPublicMemberBridge(articleTitle) {
 無料記事では土台、有料記事では運用設計まで扱うイメージです。`;
 }
 
+function renderPublicAdvancedAngles(articleTitle) {
+  return `## もう一段深く見る視点
+
+${articleTitle}を本当に使える知識へ変えるには、単語の意味だけで終わらせないことが重要です。
+たとえば次の視点を足すだけでも、無料記事の理解はかなり深まります。
+
+### 1. 時間軸で意味が変わる
+同じ${articleTitle}でも、5分足で見たときと1時間足で見たときでは重みが違います。
+短い時間足ではノイズに見えるものが、上位足では重要な転換の一部であることもあります。
+だから「見えたかどうか」だけでなく、「どの時間軸で見えたか」をセットで考える必要があります。
+
+### 2. ロット管理と切り離さない
+初心者は知識と資金管理を別物で考えがちですが、実戦ではつながっています。
+${articleTitle}の理解が曖昧な場面ではロットを落とす、説明できる場面だけ通常サイズにする、といった設計にすると事故が減りやすくなります。
+
+### 3. 見送る判断こそ学習価値が高い
+「ここでは使えない」「今日は判断材料が足りない」と言えることは、弱さではなく再現性の土台です。
+勝っている人ほど、入らない理由を先に集めています。`;
+}
+
+function renderPublicExperiments(articleTitle) {
+  return `## 無料でもできる実験
+
+### 実験1: 3回連続で同じ型で記録する
+${articleTitle}を見た場面を3回分だけ記録し、「見えた」「見えない」ではなく、「なぜそう判断したか」を毎回同じ順番で書きます。
+
+### 実験2: 上位足と下位足を見比べる
+5分足と1時間足で${articleTitle}の見え方がどうズレるかを比較し、どちらの方が自分にとって判断しやすいかを確認します。
+
+### 実験3: ロットを変えずに判断だけ検証する
+すぐに大きく張らず、しばらくはロットを固定して、${articleTitle}の理解そのものが改善しているかだけを見ます。
+成績より先に判断の質をそろえる方が、後で伸びやすいです。`;
+}
+
 async function writeThumbnail(draft) {
   await mkdir(THUMBNAIL_DIR, { recursive: true });
 
@@ -478,6 +512,37 @@ ${renderPracticeMenu(practicalPoints, articleTitle)}
 
 ${renderPremiumExperiments(articleTitle)}
 
+## 上位層が実務で外さない運用ルール
+
+本気で資金を守る人ほど、手法の細部より運用ルールの一貫性を重視します。
+特に外しにくいのは次の5点です。
+
+- 理解が浅い場面でロットを上げない
+- 連敗時の縮小条件を先に決める
+- 経済指標や高ボラ日の例外ルールを持つ
+- 週単位で資産曲線を点検する
+- 新しいアイデアは本番資金へ直接混ぜない
+
+このあたりは派手さがありませんが、長く残る人ほど徹底しています。
+
+## 資金管理の設計例
+
+たとえば学習中の段階なら、次のような階段設計が現実的です。
+
+1. まずは固定ロットで判断の質だけをそろえる
+2. 次に固定比率へ移り、1回の損失上限を口座全体で管理する
+3. 慣れてきたらATRや損切り幅に応じてサイズを微調整する
+4. 連敗時は自動的にサイズを落とす
+5. 月次で資産曲線と日記の質を合わせて見直す
+
+この順番を飛ばしていきなり攻めると、理解不足のままサイズだけ大きくなりやすいです。
+
+## 無料記事から先へ進む意味
+
+無料記事で土台を作り、メンバー記事で運用設計へ踏み込む理由は明確です。
+無料側では「何を見るか」「どこで誤解しやすいか」を整え、有料側では「どう資金を置くか」「どう止まるか」「どう改善サイクルを回すか」まで詰めます。
+知識を読むだけの状態から、資金曲線を守る実務へ進みたい人には、この差が大きく効きます。
+
 ## 仕上げチェック
 
 ${renderChecklist([
@@ -566,9 +631,13 @@ ${joinBulletList(mistakePoints)}
 
 ${renderMistakeFixes(mistakePoints, articleTitle)}
 
+${renderPublicAdvancedAngles(articleTitle)}
+
 ## 今日からできる練習メニュー
 
 ${renderPracticeMenu(practicalPoints, articleTitle)}
+
+${renderPublicExperiments(articleTitle)}
 
 ## 学習チェックリスト
 
@@ -578,6 +647,8 @@ ${renderChecklist([
   "どこで使わないか",
   "見送る条件",
   "記録に残す内容",
+  "時間軸ごとの差",
+  "ロットを落とすべき場面",
 ])}
 
 ## よくある疑問
@@ -681,6 +752,7 @@ function selectDrafts(articles, ledger) {
   );
 
   const drafts = [];
+  let selectedTopicCount = 0;
 
   for (const article of preferred) {
     const buildersByType = {
@@ -688,15 +760,25 @@ function selectDrafts(articles, ledger) {
       public: [buildPublicTeaser],
       member: [buildPremiumArticle],
       board: [buildBoardPost],
+      paired: [buildPublicTeaser, buildPremiumArticle],
     };
     const builders = buildersByType[typeFilter] || buildersByType.any;
+    const articleDrafts = [];
     for (const builder of builders) {
-      const draft = builder(article, drafts.length);
+      const draft = builder(article, drafts.length + articleDrafts.length);
       if (usedKeys.has(draft.key)) continue;
+      articleDrafts.push(draft);
+    }
+
+    if (typeFilter === "paired" && articleDrafts.length < 2) continue;
+
+    for (const draft of articleDrafts) {
       drafts.push(draft);
       usedKeys.add(draft.key);
-      if (drafts.length >= count) return drafts;
     }
+
+    selectedTopicCount += 1;
+    if (selectedTopicCount >= count) return drafts;
   }
 
   return drafts;
