@@ -2059,6 +2059,30 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n985138d302ab",
       "publishedAt": "2026-07-27T11:03:58.847Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-6:membership-teaser",
+      "id": "ab7ab51a1a",
+      "title": "無料公開: Bid/Askを失敗例でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-27-what-is-bid-ask-6-public-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-6.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-6/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-27-what-is-bid-ask-6-public-1.png",
+      "generatedAt": "2026-07-27T22:32:22.213Z",
+      "postedAt": "2026-07-27T22:33:36.604Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n644d9bb3601c",
+      "publishedAt": "2026-07-27T22:33:36.604Z"
     }
   ]
 }
