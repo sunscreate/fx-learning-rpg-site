@@ -1,38 +1,23 @@
 [
   {
-    "key": "public:risk/what-is-position-sizing:capital-preservation-funnel",
-    "id": "public-ris",
-    "title": "無料公開: ロット管理で退場しないために最初に捨てるべき3つの思い込み",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-27-what-is-position-sizing-public-1.md",
-    "sourcePath": "src/content/risk/what-is-position-sizing.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
-    "visibility": "public",
-    "tags": [
-      "FX初心者",
-      "資金管理",
-      "ロット管理",
-      "FX Quest Guild"
-    ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-27-what-is-position-sizing-public-1.png",
-    "generatedAt": "2026-07-27T08:01:18.335Z"
-  },
-  {
-    "key": "article:risk/what-is-position-sizing:world-class-capital-lab",
-    "id": "member-ris",
-    "title": "限定QUEST: ロット管理を世界水準で設計する 実戦資金管理ラボ",
+    "key": "article:basic/what-is-pips-1:premium-practical-work",
+    "id": "940405ee90",
+    "title": "限定QUEST: ドル円チャートでpipsとは？FXの値幅単位を初心者向けに解説を判断する実践ワーク",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-27-what-is-position-sizing-premium-1.md",
-    "sourcePath": "src/content/risk/what-is-position-sizing.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
+    "file": "content/note-automation/drafts/2026-07-27-what-is-pips-1-premium-1.md",
+    "sourcePath": "src/content/basic/what-is-pips-1.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-1/",
+    "category": "basic",
+    "topicGroup": "basic",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
-      "資金管理",
-      "ロット管理",
+      "ドル円",
+      "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-27-what-is-position-sizing-premium-1.png",
-    "generatedAt": "2026-07-27T08:01:18.335Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-27-what-is-pips-1-premium-1.png",
+    "chartImage": "content/note-automation/charts/2026-07-27-what-is-pips-1-premium-1-chart.png",
+    "generatedAt": "2026-07-27T11:02:59.807Z"
   }
 ]
