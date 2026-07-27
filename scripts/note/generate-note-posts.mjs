@@ -1,27 +1,18 @@
-import { copyFile, mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+import { copyFile, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { getChromeLaunchOptions } from "./playwright-launch-options.mjs";
 
 const ROOT = process.cwd();
 const CONTENT_DIR = path.join(ROOT, "src/content");
 const OUT_DIR = path.join(ROOT, "content/note-automation/drafts");
 const THUMBNAIL_DIR = path.join(ROOT, "content/note-automation/thumbnails");
-const THUMBNAIL_ARCHIVE_DIR = "/Volumes/MyHD/Archives/fx-quest-guild/note-thumbnails";
-const CHART_DIR = path.join(ROOT, "content/note-automation/charts");
-const CHART_ARCHIVE_DIR = "/Volumes/MyHD/Archives/fx-quest-guild/note-charts";
 const LEDGER_PATH = path.join(ROOT, "content/note-automation/posted-ledger.json");
 const LATEST_PATH = path.join(ROOT, "content/note-automation/latest.json");
 
 const SITE_URL = "https://sunscreate.github.io/fx-learning-rpg-site/";
 const NOTE_MEMBERSHIP_URL = "https://note.com/hearty_tapir5661/membership";
 const A8_URL = "https://px.a8.net/svt/ejp?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE";
-const execFileAsync = promisify(execFile);
-
-function link(label, url) {
-  return `[${label}](${url})`;
-}
 
 const args = new Map(
   process.argv.slice(2).map((arg) => {
@@ -30,14 +21,9 @@ const args = new Map(
   }),
 );
 
-const count = args.has("count") ? Number(args.get("count")) : 2;
+const count = Number(args.get("count") || 2);
 const typeFilter = args.get("type") || "any";
-const today = new Intl.DateTimeFormat("en-CA", {
-  timeZone: "Asia/Tokyo",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-}).format(new Date());
+const today = new Date().toISOString().slice(0, 10);
 
 function slugify(input) {
   return input
@@ -51,234 +37,290 @@ function hash(input) {
   return crypto.createHash("sha1").update(input).digest("hex").slice(0, 10);
 }
 
-function escapeXml(value) {
-  return value
+function escapeXml(input) {
+  return String(input)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
 
-function wrapTitle(title, maxLength = 14) {
-  const normalized = title
-    .replace(/^(無料公開|限定QUEST|掲示板テーマ):\s*/, "")
-    .replace(/FX Quest Guild/g, "FX Quest Guild ")
-    .trim();
-  const lines = [];
-  let current = "";
+function splitTitle(title) {
+  const normalized = title.replace(/^無料公開:\s*/, "").replace(/^限定QUEST:\s*/, "");
+  if (normalized.length <= 24) return [normalized];
+  const first = normalized.slice(0, 24);
+  const second = normalized.slice(24, 48);
+  return [first, second ? `${second}${normalized.length > 48 ? "..." : ""}` : ""].filter(Boolean);
+}
 
-  for (const character of normalized) {
-    current += character;
-    if (current.length >= maxLength) {
-      lines.push(current.trim());
-      current = "";
+function noteTitle(title) {
+  return title
+    .replace(/Bid\/AskFX初心者/g, "Bid/AskをFX初心者")
+    .replace(/Bid\/Ask(?!(?:とは|を))(?=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}])/u, "Bid/Askを");
+}
+
+function cleanBodyLine(line) {
+  return line
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/^\d+\.\s+/, "")
+    .replace(/^#+\s+/, "")
+    .trim();
+}
+
+function articleSections(article) {
+  const sections = [];
+  let current = null;
+
+  for (const rawLine of article.body.split("\n")) {
+    const line = rawLine.trim();
+    if (!line || line === "---" || line.startsWith("<!--")) continue;
+
+    if (line.startsWith("## ")) {
+      if (current) sections.push(current);
+      current = { heading: cleanBodyLine(line), lines: [] };
+      continue;
     }
-    if (lines.length === 3) break;
-  }
-  if (current && lines.length < 3) lines.push(current.trim());
-  return lines.filter(Boolean).slice(0, 3);
-}
 
-function titleSeed(article) {
-  return Number.parseInt(hash(`${article.category}:${article.slug}`), 16);
-}
-
-function pickByArticle(article, items) {
-  return items[titleSeed(article) % items.length];
-}
-
-function shortTitle(article) {
-  return article.title
-    .replace(/FX初心者が最初に覚えるべき理由/g, "")
-    .replace(/おすすめしない場面/g, "避ける場面")
-    .replace(/環境認識との関係/g, "環境認識")
-    .replace(/よくある勘違い/g, "勘違い")
-    .replace(/の実戦的な使い方/g, "の使い方")
-    .trim();
-}
-
-function topicGroup(article) {
-  const normalized = `${article.slug} ${article.title}`.toLowerCase();
-  if (/bid|ask|スプレッド/.test(normalized)) return "bid-ask-spread";
-  if (/lot|ロット|資金|損切|risk|リスク/.test(normalized)) return "risk-money";
-  if (/chart|チャート|ローソク|trend|トレンド|support|resistance|分析/.test(normalized)) return "chart-analysis";
-  if (/entry|エントリー|exit|利確|決済/.test(normalized)) return "entry-exit";
-  if (/ea|mql|backtest|auto/.test(normalized)) return "ea-auto";
-  return article.category;
-}
-
-function buildUsedTopicCounts(ledger) {
-  const counts = new Map();
-  for (const entry of [...(ledger.generated || []), ...(ledger.posted || [])]) {
-    const group = entry.topicGroup || topicGroup({
-      slug: entry.sourcePath || entry.key || "",
-      title: entry.title || "",
-      category: entry.category || "",
-    });
-    counts.set(group, (counts.get(group) || 0) + 1);
-  }
-  return counts;
-}
-
-function sortForTopicDiversity(articles, ledger) {
-  const usedTopicCounts = buildUsedTopicCounts(ledger);
-  const categoryPriority = new Map([
-    ["risk", 0],
-    ["chart", 1],
-    ["entry", 2],
-    ["analysis", 3],
-    ["basic", 4],
-    ["operation", 5],
-  ]);
-
-  return [...articles].sort((a, b) => {
-    const topicDiff = (usedTopicCounts.get(topicGroup(a)) || 0) - (usedTopicCounts.get(topicGroup(b)) || 0);
-    if (topicDiff !== 0) return topicDiff;
-
-    const categoryDiff = (categoryPriority.get(a.category) ?? 9) - (categoryPriority.get(b.category) ?? 9);
-    if (categoryDiff !== 0) return categoryDiff;
-
-    return a.level - b.level || a.title.localeCompare(b.title, "ja");
-  });
-}
-
-async function createThumbnail(draft) {
-  const baseName = draft.fileName.replace(/\.md$/, "");
-  const svgPath = path.join(THUMBNAIL_DIR, `${baseName}.svg`);
-  const pngPath = path.join(THUMBNAIL_DIR, `${baseName}.png`);
-  const isMember = draft.visibility !== "public";
-  const label = draft.visibility === "members_board" ? "MEMBER BOARD" : isMember ? "MEMBER QUEST" : "FREE QUEST";
-  const accent = isMember ? "#f2c94c" : "#58d68d";
-  const lines = wrapTitle(draft.title);
-  const titleSvg = lines
-    .map(
-      (line, index) =>
-        `<text x="92" y="${350 + index * 62}" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="44" font-weight="800">${escapeXml(line)}</text>`,
-    )
-    .join("\n");
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="670" viewBox="0 0 1280 670">
-  <rect width="1280" height="670" fill="#0d1424"/>
-  <g stroke="#29344c" stroke-width="2" opacity="0.72">
-    <path d="M0 112H1280M0 224H1280M0 336H1280M0 448H1280M0 560H1280"/>
-    <path d="M160 0V670M320 0V670M480 0V670M640 0V670M800 0V670M960 0V670M1120 0V670"/>
-  </g>
-  <rect x="58" y="52" width="1164" height="566" rx="18" fill="none" stroke="${accent}" stroke-width="4"/>
-  <text x="92" y="116" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="38" font-weight="700">FX Quest Guild</text>
-  <text x="92" y="162" fill="${accent}" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="25" font-weight="700">${label} | USDJPY</text>
-  <g transform="translate(870 180) scale(0.8)">
-    <path d="M0 236L92 150L184 190L276 88L368 120" fill="none" stroke="${accent}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-    <g stroke-width="8">
-      <path d="M38 78V246" stroke="#58d68d"/><rect x="20" y="116" width="36" height="76" fill="#58d68d"/>
-      <path d="M112 112V280" stroke="#ff7b7b"/><rect x="94" y="154" width="36" height="82" fill="#ff7b7b"/>
-      <path d="M190 42V214" stroke="#58d68d"/><rect x="172" y="78" width="36" height="92" fill="#58d68d"/>
-    </g>
-  </g>
-  ${titleSvg}
-  <text x="92" y="592" fill="#b8c2d8" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="24" font-weight="600">初心者向けFX学習 | 実践で使える知識へ</text>
-</svg>`;
-
-  await mkdir(THUMBNAIL_DIR, { recursive: true });
-  await writeFile(svgPath, svg, "utf8");
-  await execFileAsync("/usr/bin/sips", ["-s", "format", "png", svgPath, "--out", pngPath]);
-  await unlink(svgPath);
-
-  try {
-    await mkdir(THUMBNAIL_ARCHIVE_DIR, { recursive: true });
-    await copyFile(pngPath, path.join(THUMBNAIL_ARCHIVE_DIR, path.basename(pngPath)));
-  } catch (error) {
-    console.warn(`Thumbnail archive skipped: ${error.message}`);
+    if (!current || line.startsWith("# ")) continue;
+    const cleaned = cleanBodyLine(line);
+    if (cleaned) current.lines.push(cleaned);
   }
 
-  return path.relative(ROOT, pngPath);
+  if (current) sections.push(current);
+  return sections.filter((section) => section.heading && section.lines.length > 0);
 }
 
-function shouldIncludeChart(draft) {
-  if (draft.type === "member_article") return true;
-  if (["chart", "entry", "risk", "analysis"].includes(draft.category)) return true;
-  return /(チャート|トレンド|サポート|レジスタンス|ブレイク|押し目|戻り|スプレッド|Bid|Ask)/i.test(
-    draft.title,
+function pickSection(article, headingPattern, fallbackIndex = 0) {
+  const sections = articleSections(article);
+  return (
+    sections.find((section) => headingPattern.test(section.heading)) ||
+    sections[fallbackIndex] ||
+    { heading: noteTitle(article.title), lines: [article.description || `${noteTitle(article.title)}を確認します。`] }
   );
 }
 
-async function createChartImage(draft) {
-  if (!shouldIncludeChart(draft)) return null;
+function sectionSummary(section, maxLines = 4) {
+  return section.lines
+    .filter((line) => !line.startsWith("["))
+    .slice(0, maxLines)
+    .join("\n");
+}
 
-  const baseName = draft.fileName.replace(/\.md$/, "");
-  const svgPath = path.join(CHART_DIR, `${baseName}-chart.svg`);
-  const pngPath = path.join(CHART_DIR, `${baseName}-chart.png`);
-  const accent = draft.visibility === "public" ? "#58d68d" : "#f2c94c";
-  const svg = `<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
-  <rect width="1280" height="720" fill="#0d1424"/>
-  <g stroke="#29344c" stroke-width="2" opacity="0.85">
-    <path d="M80 150H1200M80 260H1200M80 370H1200M80 480H1200M80 590H1200"/>
-    <path d="M200 110V620M360 110V620M520 110V620M680 110V620M840 110V620M1000 110V620M1160 110V620"/>
+function sectionBullets(section, maxLines = 4) {
+  const bullets = section.lines.filter((line) => line.startsWith("- ")).slice(0, maxLines);
+  if (bullets.length > 0) return bullets.join("\n");
+  return section.lines
+    .filter((line) => !line.startsWith("["))
+    .slice(0, maxLines)
+    .map((line) => `- ${line.replace(/^- /, "")}`)
+    .join("\n");
+}
+
+function sectionPoints(section, maxLines = 5) {
+  return [...new Set(
+    section.lines
+      .map((line) => line.replace(/^- /, "").trim())
+      .filter((line) => line && !line.startsWith("["))
+      .slice(0, maxLines),
+  )];
+}
+
+function joinBulletList(items) {
+  return items.map((item) => `- ${item}`).join("\n");
+}
+
+function explainPoint(point, articleTitle, index) {
+  const leads = [
+    `「${point}」は、${articleTitle}を単語で終わらせず判断材料として使うための基本です。`,
+    `初心者ほどここを曖昧にしたまま進みがちですが、${articleTitle}は使いどころまで理解して初めて役に立ちます。`,
+    `${articleTitle}を学ぶときは、意味を覚えるだけでなく「いつ確認するか」を決めることが重要です。`,
+    `相場では毎回同じ形が出るわけではないので、この視点を持っておくと無理な判断を減らしやすくなります。`,
+  ];
+  return `### ポイント${index + 1}: ${point}\n${leads[index % leads.length]}`;
+}
+
+function renderDeepDive(items, articleTitle) {
+  return items.map((point, index) => explainPoint(point, articleTitle, index)).join("\n\n");
+}
+
+function renderMistakeFixes(items, articleTitle) {
+  const fixes = [
+    `対策は、${articleTitle}を見る前に時間足・方向感・損切り幅を先に決めることです。`,
+    "感覚で飛びつかず、使う条件と見送る条件を先にメモしておくと精度が安定します。",
+    "判断後に一文だけでも記録を残すと、同じ失敗の再発をかなり防ぎやすくなります。",
+    "正解探しよりも、危険な場面を避ける意識を優先した方が初心者の成長は安定します。",
+  ];
+  return items.map((point, index) => `### 失敗${index + 1}: ${point}\n${point}が起きる背景には、${articleTitle}を単体で万能サインのように扱ってしまうことがあります。${fixes[index % fixes.length]}`).join("\n\n");
+}
+
+function renderPracticeMenu(practicalPoints, articleTitle) {
+  const items = practicalPoints.length > 0
+    ? practicalPoints
+    : [`${articleTitle}を見た理由を書く`, "見送る条件を決める", "判断後に記録を残す"];
+  return [
+    "1. 今日は何を確認する練習なのかを一文で決めます。",
+    `2. ドル円の5分足か1時間足を開き、「${items[0]}」を意識しながら現在地を言葉にします。`,
+    `3. 次に「${items[Math.min(1, items.length - 1)]}」の視点を追加し、入る理由よりも見送る理由を優先して書きます。`,
+    `4. 最後に「${items[Math.min(2, items.length - 1)]}」を使って、判断後の振り返りを30秒で残します。`,
+  ].join("\n");
+}
+
+function renderChecklist(items) {
+  return joinBulletList(items.map((item) => `${item}を自分の言葉で説明できるか確認する`));
+}
+
+function renderFaq(articleTitle) {
+  return `### まだエントリー経験が少なくても学ぶ意味はありますか？\nあります。${articleTitle}は、勝つための裏技ではなく、危ない場面で無理をしないための基礎だからです。\n\n### これだけ覚えれば勝てますか？\n勝てません。${articleTitle}は重要ですが、環境認識、損切り、ロット管理と組み合わせて初めて機能します。\n\n### どの通貨ペアで練習すればよいですか？\n最初はドル円で十分です。通貨ペアを増やすより、同じ通貨で見方を安定させた方が学習効率は高くなります。`;
+}
+
+function renderClosingLinks() {
+  return `FX Quest Guild:\n[FX Quest Guild](${SITE_URL})\n\nメンバーシップはこちら:\n[FX Quest Guild メンバーシップ](${NOTE_MEMBERSHIP_URL})\n\n取引環境を確認したい方:\n[MATSUI FXを確認する](${A8_URL})`;
+}
+
+function renderPremiumFrameworks(articleTitle) {
+  return `## 世界水準で見るときの前提
+
+本気で資金を守りながら増やすトレーダーほど、${articleTitle}を「単発の勝ちを増やす技術」ではなく、「生存確率と再現性を上げる設計要素」として扱います。
+相場の世界では、分析の精度が高くても、ロット・損失許容・連敗時の対応が崩れると資産曲線は簡単に壊れます。
+だから上位層ほど、手法より先に資金管理、意思決定手順、検証記録の整備に時間を使います。
+
+## 学問横断で理解する
+
+### 統計学の視点
+重要なのは「1回の勝ち負け」より分布です。期待値、分散、標準偏差、連敗の長さ、最大ドローダウン想定まで見て、初めて${articleTitle}の実力が見えてきます。
+
+### 行動ファイナンスの視点
+人は利益が出るとロットを上げたくなり、損失が続くと取り返そうとして規律を壊しやすいです。${articleTitle}は、感情が暴れたときに自分を守る柵として設計する必要があります。
+
+### 制御工学の視点
+トレードは入力に対して出力が不確実な系です。だからこそ、1回の誤差で全体が破綻しないよう、フィードバックを入れた制御設計が必要です。ロット制御、停止条件、再開条件はそのまま制御系の発想です。
+
+### ゲーム理論の視点
+相場は「自分だけが見ている盤面」ではありません。他者の損切り、流動性、時間軸の違う参加者が混ざっています。${articleTitle}を使うときも、自分の都合だけでなく、他者の行動がどうぶつかるかを考えると判断の質が上がります。
+
+### オペレーション設計の視点
+勝ち続ける人は、トレードを感覚職ではなく運用業務として見ています。事前チェック、実行、記録、週次レビューを回す体制がないと、良いルールも長く維持できません。`;
+}
+
+function renderPremiumRiskModels(articleTitle) {
+  return `## 資金管理モデルの比較
+
+### 1. 固定比率方式
+毎回の損失許容を口座資金の一定割合に固定する方法です。最も扱いやすく、規律も守りやすい一方、ボラティリティの違いを吸収しにくい弱点があります。
+
+### 2. ボラティリティ連動方式
+損切り幅やATRに応じてロットを調整し、1回あたりの資金変動をそろえる考え方です。${articleTitle}を実戦で使うなら、本来はこちらの方が理屈に合いやすい場面が多いです。
+
+### 3. ドローダウン制限付き方式
+連敗や資産曲線の悪化に応じて自動でロットを落とす方式です。最大の利点は、状態が悪いときに自分を守れることです。欠点は、回復局面で強気に戻しにくいことです。
+
+### 4. ハーフ・ケリー発想
+理論上の最適成長率を参考にしつつ、実務では半分以下に抑える考え方です。期待値が高くても推定誤差が大きい現実市場では、フルケリーは攻撃的すぎることが多く、保守化が前提になります。
+
+### 5. 口座分割方式
+学習口座、実験口座、本番口座を分ける方法です。検証段階のアイデアを本番資金へ直接ぶつけないので、成長と保全を両立しやすくなります。
+
+${articleTitle}を本気で運用に落とすなら、どれか1つを盲信するより「平常時」「高ボラ時」「連敗時」で切り替える設計まで考えた方が強いです。`;
+}
+
+function renderPremiumExperiments(articleTitle) {
+  return `## 実験課題
+
+### 実験1: 連敗耐性の確認
+直近100トレードを想定し、5連敗・7連敗・10連敗が起きても継続可能かを先に計算します。${articleTitle}が優れていても、連敗耐性が足りなければ運用は継続できません。
+
+### 実験2: ロット固定と変動の比較
+同じ手法で、固定ロット・固定比率・ATR連動の3パターンを比べます。勝率ではなく、最大ドローダウン、回復日数、心理負荷の違いを見るのがポイントです。
+
+### 実験3: 判断停止ルールの導入
+連敗数、週次損失、睡眠不足、経済指標直前など、停止トリガーを決めて成績の変化を比較します。止まる能力は、攻める能力と同じくらい重要です。
+
+### 実験4: 複数時間足での一貫性確認
+5分足、15分足、1時間足で${articleTitle}の見え方がどう変わるかを比較し、どの時間軸で一番再現性が高いかを記録します。
+
+### 実験5: 日記の質と成績の相関
+日記の記述量ではなく、事前仮説・執行理由・撤退理由がそろっているかを採点し、成績と相関を見ると、改善すべきボトルネックが見えやすくなります。`;
+}
+
+function renderPremiumMonetizationBridge(articleTitle) {
+  return `## 実務に落とすときの結論
+
+${articleTitle}で本当に差がつくのは、知識量ではなく設計の密度です。
+勝ちやすい形を探す前に、負けても壊れない構造を作る。
+感情でロットを変えない。
+検証なしで本番ロットへ上げない。
+この3つを守れるだけで、学習者から運用者へ一段階進みやすくなります。`;
+}
+
+function renderPublicMemberBridge(articleTitle) {
+  return `## 有料記事で踏み込む内容
+
+メンバー向けでは、${articleTitle}を「知っている状態」で止めず、
+
+- 世界上位の実務で共通しやすい資金管理の考え方
+- 固定比率、ATR連動、ドローダウン制御、ハーフ・ケリーの使い分け
+- 統計学、行動ファイナンス、制御工学、ゲーム理論の視点
+- そのまま真似できる実験課題と記録テンプレート
+
+まで踏み込みます。
+無料記事では土台、有料記事では運用設計まで扱うイメージです。`;
+}
+
+async function writeThumbnail(draft) {
+  await mkdir(THUMBNAIL_DIR, { recursive: true });
+
+  const thumbnailName = draft.fileName.replace(/\.md$/, ".png");
+  const thumbnailPath = path.join(THUMBNAIL_DIR, thumbnailName);
+  const titleLines = splitTitle(draft.title);
+  const label = draft.visibility === "members_only" ? "MEMBER QUEST" : "FREE QUEST";
+  const accent = draft.visibility === "members_only" ? "#f2c94c" : "#58d68d";
+
+  const svg = `<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="720" fill="#111827"/>
+  <rect x="56" y="54" width="1168" height="612" rx="28" fill="#172033" stroke="${accent}" stroke-width="4"/>
+  <path d="M94 548 C218 482 292 512 382 438 C464 371 540 404 618 320 C702 230 790 268 876 184 C956 106 1056 148 1186 92" fill="none" stroke="${accent}" stroke-width="10" stroke-linecap="round"/>
+  <g opacity="0.9">
+    <rect x="156" y="178" width="18" height="210" fill="#58d68d"/>
+    <line x1="165" y1="138" x2="165" y2="430" stroke="#58d68d" stroke-width="8"/>
+    <rect x="252" y="248" width="18" height="166" fill="#ef6461"/>
+    <line x1="261" y1="210" x2="261" y2="462" stroke="#ef6461" stroke-width="8"/>
+    <rect x="348" y="208" width="18" height="190" fill="#58d68d"/>
+    <line x1="357" y1="168" x2="357" y2="452" stroke="#58d68d" stroke-width="8"/>
+    <rect x="444" y="286" width="18" height="118" fill="#58d68d"/>
+    <line x1="453" y1="232" x2="453" y2="464" stroke="#58d68d" stroke-width="8"/>
   </g>
-  <text x="80" y="62" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="34" font-weight="700">USD/JPY 解説用チャート例</text>
-  <text x="80" y="100" fill="#aebbd3" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="20">実際の相場価格ではありません。判断ポイントの学習用です。</text>
-  <path d="M95 520C190 500 220 420 300 438S430 520 510 430S650 320 730 355S850 445 920 338S1050 220 1180 250" fill="none" stroke="${accent}" stroke-width="8" stroke-linecap="round"/>
-  <g stroke-width="5">
-    <path d="M180 430V560" stroke="#58d68d"/><rect x="164" y="462" width="32" height="58" fill="#58d68d"/>
-    <path d="M260 398V530" stroke="#ff7b7b"/><rect x="244" y="430" width="32" height="62" fill="#ff7b7b"/>
-    <path d="M390 420V548" stroke="#58d68d"/><rect x="374" y="448" width="32" height="66" fill="#58d68d"/>
-    <path d="M545 348V478" stroke="#58d68d"/><rect x="529" y="386" width="32" height="58" fill="#58d68d"/>
-    <path d="M695 294V410" stroke="#ff7b7b"/><rect x="679" y="326" width="32" height="54" fill="#ff7b7b"/>
-    <path d="M825 340V460" stroke="#58d68d"/><rect x="809" y="372" width="32" height="58" fill="#58d68d"/>
-    <path d="M960 258V386" stroke="#58d68d"/><rect x="944" y="292" width="32" height="60" fill="#58d68d"/>
-  </g>
-  <path d="M80 446H1200" stroke="#ff7b7b" stroke-width="3" stroke-dasharray="14 10"/>
-  <rect x="92" y="402" width="228" height="42" rx="6" fill="#1b263d"/>
-  <text x="108" y="432" fill="#ffb1b1" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="21" font-weight="700">見送り・再確認ゾーン</text>
-  <path d="M934 204L970 258" stroke="#ffffff" stroke-width="4"/>
-  <rect x="810" y="154" width="252" height="48" rx="6" fill="#1b263d"/>
-  <text x="832" y="186" fill="#ffffff" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="22" font-weight="700">根拠を確認する地点</text>
-  <text x="80" y="682" fill="#aebbd3" font-family="Hiragino Sans, Yu Gothic, sans-serif" font-size="20">FX Quest Guild | 通貨ペア: USD/JPY</text>
+  <text x="96" y="120" fill="#f8fafc" font-family="Arial, sans-serif" font-size="38" font-weight="700">FX Quest Guild</text>
+  <text x="96" y="174" fill="${accent}" font-family="Arial, sans-serif" font-size="28" font-weight="700">${label} / USDJPY</text>
+  ${titleLines
+    .map(
+      (line, index) =>
+        `<text x="96" y="${520 + index * 72}" fill="#ffffff" font-family="Arial, sans-serif" font-size="58" font-weight="800">${escapeXml(line)}</text>`,
+    )
+    .join("")}
 </svg>`;
 
-  await mkdir(CHART_DIR, { recursive: true });
-  await writeFile(svgPath, svg, "utf8");
-  await execFileAsync("/usr/bin/sips", ["-s", "format", "png", svgPath, "--out", pngPath]);
-  await unlink(svgPath);
+  const fallbackName = draft.visibility === "members_only"
+    ? "2026-06-10-what-is-bid-ask-9-premium-1.png"
+    : "2026-06-10-what-is-bid-ask-10-public-1.png";
+  const fallbackPath = path.join(THUMBNAIL_DIR, fallbackName);
+
+  if (process.env.NOTE_SKIP_THUMBNAIL === "1") {
+    await copyFile(fallbackPath, thumbnailPath);
+    return path.relative(ROOT, thumbnailPath);
+  }
 
   try {
-    await mkdir(CHART_ARCHIVE_DIR, { recursive: true });
-    await copyFile(pngPath, path.join(CHART_ARCHIVE_DIR, path.basename(pngPath)));
+    const { chromium } = await import("playwright");
+    const browser = await chromium.launch(getChromeLaunchOptions({ headless: true }));
+    const page = await browser.newPage({ viewport: { width: 1280, height: 720 }, deviceScaleFactor: 1 });
+    await page.setContent(svg, { waitUntil: "load" });
+    await page.locator("svg").screenshot({ path: thumbnailPath });
+    await browser.close();
   } catch (error) {
-    console.warn(`Chart archive skipped: ${error.message}`);
+    await copyFile(fallbackPath, thumbnailPath);
+    console.warn(`Thumbnail fallback used: ${path.relative(ROOT, fallbackPath)} (${error.message})`);
   }
-
-  return path.relative(ROOT, pngPath);
-}
-
-async function ensureGeneratedThumbnails(ledger) {
-  const generated = [];
-
-  for (const entry of ledger.generated || []) {
-    const draft = {
-      fileName: path.basename(entry.file),
-      title: entry.title,
-      type: entry.type,
-      category: entry.category || entry.sourcePath?.split("/")[2],
-      visibility: entry.visibility,
-    };
-    const thumbnail = entry.thumbnail || (await createThumbnail(draft));
-    const chartImage = entry.chartImage || (await createChartImage(draft));
-    generated.push({ ...entry, thumbnail, ...(chartImage ? { chartImage } : {}) });
-  }
-
-  return { ...ledger, generated };
-}
-
-async function syncLatestThumbnails(ledger) {
-  try {
-    const latest = JSON.parse(await readFile(LATEST_PATH, "utf8"));
-    const generatedByFile = new Map((ledger.generated || []).map((entry) => [entry.file, entry]));
-    const synced = latest.map((entry) => generatedByFile.get(entry.file) || entry);
-    await writeFile(LATEST_PATH, `${JSON.stringify(synced, null, 2)}\n`, "utf8");
-  } catch {
-    // latest.json is optional until the first draft is generated.
-  }
+  return path.relative(ROOT, thumbnailPath);
 }
 
 function parseFrontmatter(markdown) {
@@ -364,80 +406,102 @@ async function readLedger() {
 }
 
 function buildPremiumArticle(article, index) {
-  const compactTitle = shortTitle(article);
-  const title = pickByArticle(article, [
-    `限定QUEST: ドル円チャートで${compactTitle}を判断する実践ワーク`,
-    `限定QUEST: ${compactTitle}を「見送る判断」まで落とし込む練習`,
-    `限定QUEST: 初心者が迷いやすい${compactTitle}を実例で確認`,
-    `限定QUEST: ${compactTitle}で負けやすい場面をドル円で整理`,
-  ]);
-  const key = `article:${article.category}/${article.slug}:premium-practical-work`;
+  const articleTitle = noteTitle(article.title);
+  const practical = pickSection(article, /実戦|使い方|ポイント|注意/i, 2);
+  const mistakes = pickSection(article, /失敗|注意|危険|おすすめしない/i, 3);
+  const conclusion = pickSection(article, /結論|学べること|とは/i, 0);
+  const practicalPoints = sectionPoints(practical, 4);
+  const mistakePoints = sectionPoints(mistakes, 4);
+  const title = `限定QUEST: ${articleTitle}を実戦で使う3つの確認ポイント`;
+  const key = `article:${article.category}/${article.slug}:premium-checkpoints`;
   const fileSlug = `${today}-${slugify(article.slug)}-premium-${index + 1}`;
 
   const body = `# ${title}
 
-この記事は、FX Quest Guild本編の「${article.title}」を読んだあとに進めるメンバー限定ワークです。
-
-今日のテーマは、知識を増やすことではなく、**ドル円チャートを見たときに迷いを減らすこと**です。
+この記事は、FX Quest Guild本編の「${articleTitle}」を読んだあとに進めるメンバー限定ワークです。
+今回は、知識として読んだ内容を「実際のチャートでどう確認するか」からさらに進めて、「資金を守りながら伸ばす運用設計」まで落とし込みます。
+ここでは一般的な初心者向け説明ではなく、長く生き残るための実務目線を優先します。
 
 元QUEST:
-${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
+[${articleTitle}](${article.url})
 
 ## 今日のゴール
 
-知識として覚えるだけでなく、実際のドル円チャートを見ながら「どこを確認すればよいか」を言語化できるようにします。
+知識として覚えるだけでなく、実際のドル円チャートを見ながら「どこを確認すればよいか」「どこでは使わないか」「資金をどう配分すれば壊れにくいか」まで言語化できるようにします。
+
+${sectionSummary(conclusion, 4)}
+
+## 先に押さえたい前提
+
+${articleTitle}は、単独でエントリーを決めるための魔法の答えではありません。
+実戦では、時間足、値動きの方向、直前の高値安値、損失を許容できる幅とセットで扱います。
+この前提を飛ばすと、正しい知識でも使い方が雑になりやすいため、毎回最初に思い出してください。
+
+${renderPremiumFrameworks(articleTitle)}
 
 ## 実戦チェック1: まず相場の状態を一文で書く
 
-次のどれに見えるかを決めます。
+本編の「${practical.heading}」を、ドル円チャートで確認します。
 
-- 上昇
-- 下降
-- レンジ
-- 判断保留
+${joinBulletList(practicalPoints)}
 
-**大事なのは当てることではなく、根拠を短く書くことです。**
+${renderDeepDive(practicalPoints, articleTitle)}
+
+大事なのは当てることではなく、なぜそう見たのかを短く書くことです。判断前に言葉にできないものは、実戦でも再現しにくいと考えてください。
 
 ## 実戦チェック2: 入る場所より、入らない場所を決める
 
 初心者ほど「どこで入るか」を急ぎます。
-でも最初に決めるべきなのは、無理に入らない条件です。
+でも最初に決めるべきなのは、無理に入らない条件です。本編では特に「${mistakes.heading}」を確認してください。
 
-- 直近高値と安値が近すぎる
-- 損切り位置が置きにくい
-- 経済指標の前後で値動きが荒い
-- 根拠が1つしかない
+${joinBulletList(mistakePoints)}
+
+${renderMistakeFixes(mistakePoints, articleTitle)}
+
+${renderPremiumRiskModels(articleTitle)}
 
 ## 実戦チェック3: 1回の判断を記録する
 
-以下を掲示板かノートに残してください。
+以下のテンプレートを使い、1回分だけでよいので記録を残してください。短くても構いません。大切なのは、判断の根拠を毎回同じ順番で言葉にすることです。
 
 - 見た通貨ペア: USD/JPY
 - 見た時間足:
 - 相場認識:
 - 根拠:
 - 見送る条件:
+- もし入るなら損切り位置:
+- 見送り後に確認したいQUEST:
+
+## 今日の練習メニュー
+
+${renderPracticeMenu(practicalPoints, articleTitle)}
+
+${renderPremiumExperiments(articleTitle)}
+
+## 仕上げチェック
+
+${renderChecklist([
+  `${articleTitle}を確認する理由`,
+  "見送る条件",
+  "損切りを置く前提",
+  "判断後に残す記録",
+  "連敗時のロット調整方針",
+  "停止条件と再開条件",
+])}
 
 ## 次にやること
 
-本編で基礎を確認し、限定ワークで実戦の見方を増やしていきましょう。
+本編で基礎を確認し、限定ワークで実戦の見方を増やしていきましょう。1回で完璧に当てようとせず、同じテンプレートで3回続けて記録できる状態を目標にすると、学習の密度が一気に上がります。
 
-FX Quest Guild:
-${link("FX Quest Guildで基礎QUESTを進める", SITE_URL)}
+${renderPremiumMonetizationBridge(articleTitle)}
 
-メンバーシップ:
-${link("メンバーシップでドル円チャート実践ワークに参加する", NOTE_MEMBERSHIP_URL)}
-
-取引環境を確認したい方:
-${link("MATSUI FXの取引環境を確認する", A8_URL)}
+${renderClosingLinks()}
 
 ※本記事は学習目的です。売買指示や利益保証ではありません。投資判断は必ずご自身で行ってください。
 `;
 
   return {
     type: "member_article",
-    category: article.category,
-    topicGroup: topicGroup(article),
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -450,56 +514,90 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
 }
 
 function buildPublicTeaser(article, index) {
-  const compactTitle = shortTitle(article);
-  const title = pickByArticle(article, [
-    `無料公開: FX初心者が${compactTitle}で損しやすい見落とし`,
-    `無料公開: ドル円を見る前に知りたい${compactTitle}の基本`,
-    `無料公開: ${compactTitle}で迷う人へ。最初に見るべきポイント`,
-    `無料公開: ${compactTitle}をなんとなく覚える前に確認すること`,
-    `無料公開: 今日のドル円で使える${compactTitle}の考え方`,
-  ]);
-  const key = `public:${article.category}/${article.slug}:click-focused-teaser`;
+  const articleTitle = noteTitle(article.title);
+  const conclusion = pickSection(article, /結論|学べること|とは/i, 0);
+  const practical = pickSection(article, /ポイント|使い方|実戦/i, 2);
+  const mistakes = pickSection(article, /失敗|注意|危険|おすすめしない/i, 3);
+  const conclusionPoints = sectionPoints(conclusion, 4);
+  const practicalPoints = sectionPoints(practical, 4);
+  const mistakePoints = sectionPoints(mistakes, 4);
+  const title = `無料公開: ${articleTitle}でつまずく前に確認したいこと`;
+  const key = `public:${article.category}/${article.slug}:membership-teaser`;
   const fileSlug = `${today}-${slugify(article.slug)}-public-${index + 1}`;
 
   const body = `# ${title}
 
-FXを学び始めた人が「${article.title}」でつまずきやすいポイントを、短く整理します。
-
-この記事で見るのは、**難しい理論よりも、初心者が実際に見落としやすい判断ミス**です。
+FXを学び始めた人が「${articleTitle}」でつまずく前に、まず確認したいポイントを整理します。
+単語の意味だけを覚えて終わるのではなく、「どんな場面で役立つのか」「どこで誤解しやすいのか」まで含めて、最初の土台を固めるための記事です。
+短い言葉ほど軽く見えますが、基礎ほど後から何度も使います。だからこそ、最初の理解を雑にしないことが重要です。
 
 本編QUEST:
-${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
+[${articleTitle}](${article.url})
 
-## まず押さえること
+## ${conclusion.heading}
 
-**最初から勝ち方を探すより、用語やチャートの見方を自分の言葉で説明できる状態を作ることが大事です。**
+${sectionSummary(conclusion, 4)}
 
-## 初心者が止まりやすいポイント
+${renderDeepDive(conclusionPoints, articleTitle)}
 
-- 言葉は知っているが、実際のチャートで見つけられない
-- 1回の値動きだけで判断してしまう
-- 根拠が少ないままエントリーを考えてしまう
+## なぜ最初にここを理解した方がいいのか
 
-## FX Quest Guildでできること
+${articleTitle}は、利益を増やすテクニックというより、無駄なミスを減らすための基礎知識です。
+初心者は「エントリーの形」や「勝ちやすい手法」に意識が向きがちですが、その前に必要なのは、注文や値動きの見方を取り違えないことです。
+ここが曖昧なままでは、たまたま当たったトレードと再現できる判断の区別がつきません。
+逆に、基礎の理解が安定すると、あとから学ぶ環境認識、損切り、利確、ロット管理もつながりやすくなります。
 
-無料の本編QUESTで基礎を確認し、メンバーシップでは実践ワーク・掲示板・ドル円チャート分析で理解を深めます。
+## ${practical.heading}
 
-FX Quest Guild:
-${link("FX Quest Guildで基礎QUESTを進める", SITE_URL)}
+${joinBulletList(practicalPoints)}
 
-メンバーシップはこちら:
-${link("メンバーシップでドル円チャート実践ワークに参加する", NOTE_MEMBERSHIP_URL)}
+${renderDeepDive(practicalPoints, articleTitle)}
 
-取引環境を確認したい方:
-${link("MATSUI FXの取引環境を確認する", A8_URL)}
+## ドル円チャートで見るときの使い方
+
+最初は難しく考えすぎず、ドル円の1時間足か5分足で十分です。
+大切なのは、「今すぐ入る理由」を探すことではなく、「いま見ている動きに対して${articleTitle}をどう使うのか」を短く説明できるかどうかです。
+もし説明できないなら、その時点では無理に判断しない方が学習としては正解です。
+勝っている人ほど、わからない場面を飛ばす力を大事にしています。
+
+## ${mistakes.heading}
+
+${joinBulletList(mistakePoints)}
+
+${renderMistakeFixes(mistakePoints, articleTitle)}
+
+## 今日からできる練習メニュー
+
+${renderPracticeMenu(practicalPoints, articleTitle)}
+
+## 学習チェックリスト
+
+${renderChecklist([
+  `${articleTitle}の役割`,
+  "どこで使うか",
+  "どこで使わないか",
+  "見送る条件",
+  "記録に残す内容",
+])}
+
+## よくある疑問
+
+${renderFaq(articleTitle)}
+
+${renderPublicMemberBridge(articleTitle)}
+
+## 次にやること
+
+無料の本編QUESTで基礎を確認し、メンバーシップではドル円チャートを使って「どこで使うか」「どこで使わないか」「どう記録して再現するか」まで練習します。
+知識を読む段階から、判断の型を作る段階へ進みたい方は、ここから先の実戦パートが役立ちます。
+
+${renderClosingLinks()}
 
 ※本記事は学習目的です。売買指示や利益保証ではありません。投資判断は必ずご自身で行ってください。
 `;
 
   return {
     type: "public_teaser",
-    category: article.category,
-    topicGroup: topicGroup(article),
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -512,13 +610,13 @@ ${link("MATSUI FXの取引環境を確認する", A8_URL)}
 }
 
 function buildBoardPost(article, index) {
-  const compactTitle = shortTitle(article);
-  const title = pickByArticle(article, [
-    `掲示板テーマ: 今日のドル円で${compactTitle}を一緒に確認`,
-    `掲示板テーマ: ${compactTitle}で迷ったポイントを共有しよう`,
-    `掲示板テーマ: ドル円チャートのどこで${compactTitle}を見ますか？`,
-  ]);
-  const key = `board:${article.category}/${article.slug}:discussion-prompt`;
+  const articleTitle = noteTitle(article.title);
+  const practical = pickSection(article, /ポイント|使い方|実戦/i, 2);
+  const mistakes = pickSection(article, /失敗|注意|危険|おすすめしない/i, 3);
+  const practicalPoints = sectionPoints(practical, 3);
+  const mistakePoints = sectionPoints(mistakes, 3);
+  const title = `掲示板テーマ: ${articleTitle}をドル円チャートで確認しよう`;
+  const key = `board:${article.category}/${article.slug}:usdjpy-check`;
   const fileSlug = `${today}-${slugify(article.slug)}-board-${index + 1}`;
 
   const body = `# ${title}
@@ -526,11 +624,19 @@ function buildBoardPost(article, index) {
 今週の掲示板テーマです。
 
 元QUEST:
-${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
+[${articleTitle}](${article.url})
 
 ## 投稿テーマ
 
 ドル円チャートを見て、「今の相場をどう読むか」を短く投稿してください。
+今回は正解探しではなく、${articleTitle}をどう使って相場を見るかを言葉にする練習です。
+次の視点を1つ以上入れると、投稿の質が上がります。
+
+${joinBulletList(practicalPoints)}
+
+避けたいミスも先に共有しておきます。
+
+${joinBulletList(mistakePoints)}
 
 ## 投稿テンプレート
 
@@ -544,20 +650,15 @@ ${link(`${article.title}をFX Quest Guildで確認する`, article.url)}
 
 正解探しではなく、根拠を言語化する練習として使いましょう。
 他の人の投稿には、否定ではなく「どの根拠を見たか」を返してください。
+相手の結論よりも、どの情報を拾ってその判断になったかを見ると学びやすくなります。
 
-FX Quest Guild:
-${link("FX Quest Guildで基礎QUESTを進める", SITE_URL)}
-
-メンバーシップ:
-${link("メンバーシップでドル円チャート実践ワークに参加する", NOTE_MEMBERSHIP_URL)}
+${renderClosingLinks()}
 
 ※掲示板は学習用です。売買指示、個別の投資助言、利益保証は行いません。
 `;
 
   return {
     type: "board_post",
-    category: article.category,
-    topicGroup: topicGroup(article),
     title,
     key,
     fileName: `${fileSlug}.md`,
@@ -570,22 +671,13 @@ ${link("メンバーシップでドル円チャート実践ワークに参加す
 }
 
 function selectDrafts(articles, ledger) {
-  if (count <= 0) return [];
   const usedKeys = new Set([
     ...(ledger.generated || []).map((entry) => entry.key),
     ...(ledger.posted || []).map((entry) => entry.key),
   ]);
-  const usedArticleTypes = new Set(
-    [...(ledger.generated || []), ...(ledger.posted || [])]
-      .filter((entry) => entry.type && entry.sourcePath)
-      .map((entry) => `${entry.type}:${entry.sourcePath}`),
-  );
 
-  const preferred = sortForTopicDiversity(
-    articles.filter((article) =>
-      ["basic", "chart", "entry", "risk", "analysis", "operation"].includes(article.category),
-    ),
-    ledger,
+  const preferred = articles.filter((article) =>
+    ["basic", "chart", "entry", "risk", "analysis", "operation"].includes(article.category),
   );
 
   const drafts = [];
@@ -601,10 +693,8 @@ function selectDrafts(articles, ledger) {
     for (const builder of builders) {
       const draft = builder(article, drafts.length);
       if (usedKeys.has(draft.key)) continue;
-      if (usedArticleTypes.has(`${draft.type}:${draft.sourcePath}`)) continue;
       drafts.push(draft);
       usedKeys.add(draft.key);
-      usedArticleTypes.add(`${draft.type}:${draft.sourcePath}`);
       if (drafts.length >= count) return drafts;
     }
   }
@@ -614,16 +704,11 @@ function selectDrafts(articles, ledger) {
 
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
-  await mkdir(THUMBNAIL_DIR, { recursive: true });
-  await mkdir(CHART_DIR, { recursive: true });
 
-  const [articles, rawLedger] = await Promise.all([readArticles(), readLedger()]);
-  const ledger = await ensureGeneratedThumbnails(rawLedger);
+  const [articles, ledger] = await Promise.all([readArticles(), readLedger()]);
   const drafts = selectDrafts(articles, ledger);
 
   if (drafts.length === 0) {
-    await writeFile(LEDGER_PATH, `${JSON.stringify(ledger, null, 2)}\n`, "utf8");
-    await syncLatestThumbnails(ledger);
     console.log("No new note drafts. All candidate topics are already generated or posted.");
     return;
   }
@@ -633,9 +718,8 @@ async function main() {
 
   for (const draft of drafts) {
     const outPath = path.join(OUT_DIR, draft.fileName);
+    const thumbnail = await writeThumbnail(draft);
     await writeFile(outPath, draft.body, "utf8");
-    const thumbnail = await createThumbnail(draft);
-    const chartImage = await createChartImage(draft);
     generatedEntries.push({
       key: draft.key,
       id: hash(`${draft.key}:${generatedAt}`),
@@ -644,12 +728,9 @@ async function main() {
       file: path.relative(ROOT, outPath),
       sourcePath: draft.sourcePath,
       sourceUrl: draft.sourceUrl,
-      category: draft.category,
-      topicGroup: draft.topicGroup,
       visibility: draft.visibility,
       tags: draft.tags,
       thumbnail,
-      ...(chartImage ? { chartImage } : {}),
       generatedAt,
     });
   }

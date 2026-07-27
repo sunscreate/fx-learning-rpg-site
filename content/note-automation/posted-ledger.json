@@ -1986,6 +1986,54 @@
       "postedMode": "browser_published",
       "noteUrl": "https://note.com/hearty_tapir5661/n/n70664364e1fc",
       "publishedAt": "2026-07-26T22:32:38.746Z"
+    },
+    {
+      "key": "public:risk/what-is-position-sizing:capital-preservation-funnel",
+      "id": "public-ris",
+      "title": "無料公開: ロット管理で退場しないために最初に捨てるべき3つの思い込み",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-27-what-is-position-sizing-public-1.md",
+      "sourcePath": "src/content/risk/what-is-position-sizing.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "資金管理",
+        "ロット管理",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-27-what-is-position-sizing-public-1.png",
+      "generatedAt": "2026-07-27T08:01:18.335Z",
+      "postedAt": "2026-07-27T08:06:38.703Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nf6919c44c631",
+      "publishedAt": "2026-07-27T08:06:38.703Z"
+    },
+    {
+      "key": "article:risk/what-is-position-sizing:world-class-capital-lab",
+      "id": "member-ris",
+      "title": "限定QUEST: ロット管理を世界水準で設計する 実戦資金管理ラボ",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-27-what-is-position-sizing-premium-1.md",
+      "sourcePath": "src/content/risk/what-is-position-sizing.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/risk/what-is-position-sizing/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "資金管理",
+        "ロット管理",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-27-what-is-position-sizing-premium-1.png",
+      "generatedAt": "2026-07-27T08:01:18.335Z",
+      "postedAt": "2026-07-27T08:15:15.000Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n29eaa68e966b",
+      "publishedAt": "2026-07-27T08:15:15.000Z"
     }
   ]
 }

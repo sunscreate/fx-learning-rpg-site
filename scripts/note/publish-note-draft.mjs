@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { getChromePersistentContextOptions } from "./playwright-launch-options.mjs";
 
 const ROOT = process.cwd();
 const LEDGER_PATH = path.join(ROOT, "content/note-automation/posted-ledger.json");
@@ -28,94 +29,10 @@ async function loadLedger() {
   }
 }
 
-async function uploadThumbnail(page, entry) {
-  if (!entry?.thumbnail) return;
-
-  const existingEyecatch = page.locator('img[alt="eyecatch"], img[alt="見出し画像"]').first();
-  if ((await existingEyecatch.count()) > 0) return;
-
-  const thumbnailPath = path.resolve(ROOT, entry.thumbnail);
-  const labeledImageButton = page.locator('button[aria-label="画像を追加"]').first();
-  const imageButton =
-    (await labeledImageButton.count()) > 0
-      ? labeledImageButton
-      : page.locator("button").filter({ hasText: "画像を追加" }).first();
-  try {
-    await imageButton.waitFor({ timeout: 60000 });
-  } catch (error) {
-    const visibleText = (await page.locator("body").innerText()).replace(/\s+/g, " ").slice(-2000);
-    throw new Error(`Thumbnail button was not found at ${page.url()}. Visible text: ${visibleText}`, {
-      cause: error,
-    });
-  }
-
-  const directFileChooserPromise = page.waitForEvent("filechooser", { timeout: 5000 }).catch(() => null);
-  await imageButton.click({ force: true });
-  const directFileChooser = await directFileChooserPromise;
-  if (directFileChooser) {
-    await directFileChooser.setFiles(thumbnailPath);
-  } else {
-    const uploadButton = page.locator("button:visible").filter({ hasText: "画像をアップロード" }).first();
-    await uploadButton.waitFor({ timeout: 60000 });
-    const fileChooserPromise = page.waitForEvent("filechooser", { timeout: 15000 }).catch(() => null);
-    await uploadButton.click({ force: true });
-    const fileChooser = await fileChooserPromise;
-    if (fileChooser) {
-      await fileChooser.setFiles(thumbnailPath);
-    } else {
-      const fileInput = page.locator('input[type="file"]').last();
-      if ((await fileInput.count()) === 0) {
-        const visibleButtons = await page.locator("button:visible").allInnerTexts();
-        throw new Error(`Thumbnail file input was not found. Visible buttons: ${visibleButtons.join(" | ")}`);
-      }
-      await fileInput.setInputFiles(thumbnailPath);
-    }
-  }
-
-  const cropModal = page.locator(".CropModal__overlay");
-  await cropModal.waitFor({ timeout: 60000 });
-  const saveButton = cropModal.locator("button").filter({ hasText: "保存" });
-  await saveButton.waitFor({ timeout: 60000 });
-  let saveEnabled = false;
-  for (let attempt = 0; attempt < 120 && !saveEnabled; attempt += 1) {
-    saveEnabled = await saveButton.isEnabled();
-    if (!saveEnabled) await page.waitForTimeout(500);
-  }
-  if (!saveEnabled) throw new Error("Thumbnail upload did not become ready to save.");
-  let cropSaved = false;
-  for (let attempt = 0; attempt < 3 && !cropSaved; attempt += 1) {
-    await saveButton.click({ force: attempt > 0 });
-    try {
-      await cropModal.waitFor({ state: "hidden", timeout: 20000 });
-      cropSaved = true;
-    } catch {
-      if (attempt === 2) {
-        const modalText = (await cropModal.innerText()).replace(/\s+/g, " ").trim();
-        throw new Error(`Thumbnail crop modal did not close after save. Modal text: ${modalText}`);
-      }
-    }
-  }
-  await page.waitForTimeout(3000);
-}
-
 function getPublicUrl(url) {
   const match = url.match(/note\.com\/([^/]+)\/n\/([^/?#]+)/);
-  if (match) return `https://note.com/${match[1]}/n/${match[2]}`;
-
-  const editorMatch = url.match(/editor\.note\.com\/notes\/([^/?#]+)/);
-  if (editorMatch) return `https://note.com/hearty_tapir5661/n/${editorMatch[1]}`;
-
-  return url;
-}
-
-function getEditorUrl(url) {
-  const editorMatch = url.match(/editor\.note\.com\/notes\/([^/?#]+)/);
-  if (editorMatch) return `https://editor.note.com/notes/${editorMatch[1]}/edit/`;
-
-  const publicMatch = url.match(/note\.com\/[^/]+\/n\/([^/?#]+)/);
-  if (publicMatch) return `https://editor.note.com/notes/${publicMatch[1]}/edit/`;
-
-  return url;
+  if (!match) return url;
+  return `https://note.com/${match[1]}/n/${match[2]}`;
 }
 
 async function openDraft(page, url) {
@@ -134,78 +51,6 @@ async function openDraft(page, url) {
   if ((await editButton.count()) === 1) {
     await editButton.click({ force: true });
     await page.waitForTimeout(5000);
-    return;
-  }
-
-  const editLink = page.locator("a").filter({ hasText: "編集" });
-  if ((await editLink.count()) === 1) {
-    await editLink.click({ force: true });
-    await page.waitForTimeout(5000);
-    return;
-  }
-
-  const settingsButton = page.locator("button").filter({ hasText: "設定する" });
-  if ((await settingsButton.count()) === 1) {
-    await settingsButton.click({ force: true });
-    await page.waitForTimeout(500);
-
-    if (page.url().includes("editor.note.com")) {
-      await page.waitForTimeout(5000);
-      return;
-    }
-
-    const editControl = page.getByText("編集", { exact: true });
-    if ((await editControl.count()) === 1) {
-      await editControl.click({ force: true });
-      await page.waitForTimeout(5000);
-      return;
-    }
-  }
-
-  const controls = await page.locator("button:visible, a:visible").allInnerTexts();
-  const editorLinks = await page.locator('a[href*="editor.note.com"]').evaluateAll((links) =>
-    links.map((link) => ({ text: link.textContent?.trim(), href: link.href })),
-  );
-  console.log(`Edit controls not found. Visible controls: ${controls.filter(Boolean).join(" | ")}`);
-  console.log(`Editor links: ${JSON.stringify(editorLinks)}`);
-}
-
-async function configurePublishSettings(page, entry) {
-  if (entry?.visibility !== "members_only") return;
-
-  const membershipButton = page.locator("button[role='checkbox']").filter({ hasText: "メンバーシップ" });
-  await membershipButton.waitFor({ timeout: 60000 });
-
-  const isChecked = await membershipButton.getAttribute("aria-checked");
-  if (isChecked !== "true") {
-    await membershipButton.click({ force: true });
-    await page.waitForTimeout(1000);
-  }
-
-  const added = await page.evaluate(() =>
-    [...document.querySelectorAll("button")].some((button) => {
-      const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
-      return button.textContent?.trim() === "追加済" && rowText?.includes("メンバー全員に公開");
-    }),
-  );
-
-  if (!added) {
-    await page.evaluate(() => {
-      const target = [...document.querySelectorAll("button")].find((button) => {
-        const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
-        return button.textContent?.trim() === "追加" && rowText?.includes("メンバー全員に公開");
-      });
-
-      if (!target) throw new Error("Membership all-members add button was not found.");
-      target.click();
-    });
-    await page.waitForTimeout(2000);
-  }
-
-  const trialButton = page.locator("button").filter({ hasText: "試し読みエリアを設定" }).first();
-  if ((await trialButton.count()) > 0) {
-    await trialButton.click({ force: true });
-    await page.waitForTimeout(3000);
   }
 }
 
@@ -226,13 +71,13 @@ async function main() {
   }
 
   const publicUrl = getPublicUrl(targetUrl);
-  const targetEntry = (ledger.posted || []).find(
-    (entry) => (typeof file === "string" && entry.file === file) || entry.noteUrl === publicUrl,
+  const context = await chromium.launchPersistentContext(
+    PROFILE_DIR,
+    getChromePersistentContextOptions({ headless: false }),
   );
-  const context = await chromium.launchPersistentContext(PROFILE_DIR, { headless: false, channel: "chrome" });
   const page = await context.newPage();
 
-  await openDraft(page, getEditorUrl(targetUrl));
+  await openDraft(page, publicUrl);
 
   if (!page.url().includes("editor.note.com")) {
     const text = await page.locator("body").innerText();
@@ -243,44 +88,14 @@ async function main() {
     }
   }
 
-  await uploadThumbnail(page, targetEntry);
-
   const proceedButton = page.locator("button").filter({ hasText: "公開に進む" });
   if ((await proceedButton.count()) === 1) {
-    const savedIndicator = page.getByText("下書きを保存しました", { exact: true });
-    if ((await savedIndicator.count()) > 0) {
-      await savedIndicator.last().waitFor({ timeout: 60000 });
-    }
-
-    let reachedPublishSettings = false;
-    for (let attempt = 0; attempt < 3 && !reachedPublishSettings; attempt += 1) {
-      await proceedButton.click({ force: true });
-      try {
-        await page.waitForURL(/\/publish\/?$/, { timeout: 20000 });
-        reachedPublishSettings = true;
-      } catch {
-        await page.waitForTimeout(1000);
-      }
-    }
-    if (!reachedPublishSettings) {
-      throw new Error(`Publish settings did not open from ${page.url()}.`);
-    }
+    await proceedButton.click({ force: true });
+    await page.waitForTimeout(5000);
   }
 
-  await configurePublishSettings(page, targetEntry);
-
-  const postButton = page.getByRole("button", { name: /^(投稿|公開|更新)する$/ }).first();
-  try {
-    await postButton.waitFor({ timeout: 60000 });
-  } catch (error) {
-    const visibleButtons = await page.locator("button:visible").allInnerTexts();
-    const visibleText = (await page.locator("body").innerText()).replace(/\s+/g, " ").slice(-2000);
-    throw new Error(
-      `Final publish button was not found at ${page.url()}. Visible buttons: ${visibleButtons.join(" | ")}. ` +
-        `Visible text: ${visibleText}`,
-      { cause: error },
-    );
-  }
+  const postButton = page.locator("button").filter({ hasText: "投稿する" });
+  await postButton.waitFor({ timeout: 60000 });
   await postButton.click({ force: true });
   await page.waitForTimeout(10000);
 

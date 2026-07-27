@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { getChromePersistentContextOptions } from "./playwright-launch-options.mjs";
 
 const ROOT = process.cwd();
 const LEDGER_PATH = path.join(ROOT, "content/note-automation/posted-ledger.json");
@@ -25,49 +26,147 @@ function parseTitle(markdown) {
   return markdown.match(/^#\s+(.+)$/m)?.[1]?.trim() || "FX Quest Guild 限定QUEST";
 }
 
-function escapeHtml(value) {
-  return value
+function stripTitle(markdown) {
+  return markdown.replace(/^#\s+.+\n+/, "").trim();
+}
+
+function escapeHtml(input) {
+  return String(input)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 }
 
-function renderInline(markdown) {
-  return escapeHtml(markdown)
-    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2">$1</a>');
+function inlineMarkdownToHtml(input) {
+  const escaped = escapeHtml(input);
+  return escaped.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, (_match, text, url) => {
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+  });
 }
 
-function markdownToNoteHtml(markdown) {
-  const body = markdown.replace(/^#\s+.+\n+/, "").trim();
-  const blocks = body.split(/\n{2,}/);
+function markdownToHtml(markdown) {
+  const lines = stripTitle(markdown).split("\n");
+  const blocks = [];
+  let listItems = [];
+  let orderedItems = [];
 
-  return blocks
-    .map((block) => {
-      const lines = block.split("\n").map((line) => line.trim()).filter(Boolean);
-      if (lines.length === 0) return "";
+  function flushList() {
+    if (listItems.length === 0) return;
+    blocks.push(`<ul>${listItems.map((item) => `<li>${inlineMarkdownToHtml(item)}</li>`).join("")}</ul>`);
+    listItems = [];
+  }
 
-      if (lines[0].startsWith("## ")) {
-        return `<h2>${renderInline(lines[0].replace(/^##\s+/, ""))}</h2>`;
-      }
+  function flushOrderedList() {
+    if (orderedItems.length === 0) return;
+    blocks.push(`<ol>${orderedItems.map((item) => `<li>${inlineMarkdownToHtml(item)}</li>`).join("")}</ol>`);
+    orderedItems = [];
+  }
 
-      if (lines.every((line) => line.startsWith("- "))) {
-        return `<ul>${lines
-          .map((line) => `<li>${renderInline(line.replace(/^-\s+/, ""))}</li>`)
-          .join("")}</ul>`;
-      }
+  for (const line of lines) {
+    const trimmed = line.trim();
 
-      return `<p>${lines.map(renderInline).join("<br>")}</p>`;
-    })
-    .filter(Boolean)
-    .join("");
+    if (!trimmed) {
+      flushList();
+      flushOrderedList();
+      continue;
+    }
+
+    if (trimmed.startsWith("### ")) {
+      flushList();
+      flushOrderedList();
+      blocks.push(`<h3>${inlineMarkdownToHtml(trimmed.replace(/^###\s+/, ""))}</h3>`);
+      continue;
+    }
+
+    if (trimmed.startsWith("## ")) {
+      flushList();
+      flushOrderedList();
+      blocks.push(`<h2>${inlineMarkdownToHtml(trimmed.replace(/^##\s+/, ""))}</h2>`);
+      continue;
+    }
+
+    if (trimmed.startsWith("- ")) {
+      flushOrderedList();
+      listItems.push(trimmed.replace(/^-\s+/, ""));
+      continue;
+    }
+
+    if (/^\d+\.\s+/.test(trimmed)) {
+      flushList();
+      orderedItems.push(trimmed.replace(/^\d+\.\s+/, ""));
+      continue;
+    }
+
+    flushList();
+    flushOrderedList();
+    blocks.push(`<p>${inlineMarkdownToHtml(trimmed)}</p>`);
+  }
+
+  flushList();
+  flushOrderedList();
+  return blocks.join("\n");
+}
+
+function extractMarkdownLinks(markdown) {
+  return [...markdown.matchAll(/\[[^\]]+\]\((https?:\/\/[^)\s]+)\)/g)].map((match) => match[1]);
 }
 
 function getNoteUrl(url) {
   const match = url.match(/editor\.note\.com\/notes\/([^/]+)\//);
   if (!match) return null;
   return `https://note.com/hearty_tapir5661/n/${match[1]}`;
+}
+
+async function pasteRichContent(page, editor, markdown) {
+  const html = markdownToHtml(markdown);
+  await editor.click({ force: true });
+
+  const inserted = await editor.evaluate((element, htmlContent) => {
+    element.focus();
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("delete", false);
+    document.execCommand("insertHTML", false, htmlContent);
+    element.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertHTML" }));
+    element.dispatchEvent(new Event("change", { bubbles: true }));
+    return { text: element.innerText, html: element.innerHTML };
+  }, html);
+
+  if (inserted.text.includes("## ") || inserted.text.includes("### ") || !inserted.html.includes("<a ")) {
+    throw new Error("Rich content insertion failed.");
+  }
+}
+
+async function setThumbnail(page, generatedEntry) {
+  if (!generatedEntry?.thumbnail) return false;
+
+  const thumbnailPath = path.resolve(ROOT, generatedEntry.thumbnail);
+  const imageButton = page.locator('button[aria-label="画像を追加"]').first();
+  if ((await imageButton.count()) === 0) {
+    throw new Error("Thumbnail upload button was not found. Refusing to continue without a thumbnail.");
+  }
+
+  await imageButton.click({ force: true });
+  await page.waitForTimeout(1000);
+
+  const chooserPromise = page.waitForEvent("filechooser", { timeout: 60000 });
+  await page.locator("button").filter({ hasText: "画像をアップロード" }).first().click({ force: true });
+  const chooser = await chooserPromise;
+  await chooser.setFiles(thumbnailPath);
+  await page.waitForTimeout(8000);
+
+  const cropSaveButton = page.locator("button").filter({ hasText: /^保存$/ }).last();
+  await cropSaveButton.waitFor({ timeout: 60000 });
+  await cropSaveButton.click({ force: true });
+  await page.waitForTimeout(5000);
+
+  const eyecatchImage = page.locator('img[alt="eyecatch"]').first();
+  await eyecatchImage.waitFor({ timeout: 60000 });
+  return true;
 }
 
 async function configurePublishSettings(page, entry) {
@@ -81,132 +180,11 @@ async function configurePublishSettings(page, entry) {
       await page.waitForTimeout(1000);
     }
 
-    const added = await page.evaluate(() =>
-      [...document.querySelectorAll("button")].some((button) => {
-        const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
-        return button.textContent?.trim() === "追加済" && rowText?.includes("メンバー全員に公開");
-      }),
-    );
-
-    if (!added) {
-      await page.evaluate(() => {
-        const target = [...document.querySelectorAll("button")].find((button) => {
-          const rowText = button.parentElement?.parentElement?.textContent?.replace(/\s+/g, "");
-          return button.textContent?.trim() === "追加" && rowText?.includes("メンバー全員に公開");
-        });
-
-        if (!target) throw new Error("Membership all-members add button was not found.");
-        target.click();
-      });
+    const addButton = page.locator("button").filter({ hasText: "追加" });
+    if ((await addButton.count()) === 1) {
+      await addButton.click({ force: true });
       await page.waitForTimeout(2000);
     }
-
-    const trialButton = page.locator("button").filter({ hasText: "試し読みエリアを設定" }).first();
-    if ((await trialButton.count()) > 0) {
-      await trialButton.click({ force: true });
-      await page.waitForTimeout(3000);
-    }
-  }
-}
-
-async function uploadThumbnail(page, entry) {
-  if (!entry?.thumbnail) {
-    throw new Error("Refusing to publish without a generated note thumbnail.");
-  }
-
-  const thumbnailPath = path.resolve(ROOT, entry.thumbnail);
-  const labeledImageButton = page.locator('button[aria-label="画像を追加"]').first();
-  const imageButton =
-    (await labeledImageButton.count()) > 0
-      ? labeledImageButton
-      : page.locator("button").filter({ hasText: "画像を追加" }).first();
-  await imageButton.waitFor({ timeout: 60000 });
-
-  const directFileChooserPromise = page.waitForEvent("filechooser", { timeout: 5000 }).catch(() => null);
-  await imageButton.click({ force: true });
-  const directFileChooser = await directFileChooserPromise;
-  if (directFileChooser) {
-    await directFileChooser.setFiles(thumbnailPath);
-  } else {
-    const uploadButton = page.locator("button:visible").filter({ hasText: "画像をアップロード" }).first();
-    await uploadButton.waitFor({ timeout: 60000 });
-    const fileChooserPromise = page.waitForEvent("filechooser", { timeout: 15000 }).catch(() => null);
-    await uploadButton.click({ force: true });
-    const fileChooser = await fileChooserPromise;
-    if (fileChooser) {
-      await fileChooser.setFiles(thumbnailPath);
-    } else {
-      const fileInput = page.locator('input[type="file"]').last();
-      if ((await fileInput.count()) === 0) {
-        const visibleButtons = await page.locator("button:visible").allInnerTexts();
-        throw new Error(`Thumbnail file input was not found. Visible buttons: ${visibleButtons.join(" | ")}`);
-      }
-      await fileInput.setInputFiles(thumbnailPath);
-    }
-  }
-
-  const cropModal = page.locator(".CropModal__overlay");
-  await cropModal.waitFor({ timeout: 60000 });
-  const saveButton = cropModal.locator("button").filter({ hasText: "保存" });
-  await saveButton.waitFor({ timeout: 60000 });
-  let saveEnabled = false;
-  for (let attempt = 0; attempt < 120 && !saveEnabled; attempt += 1) {
-    saveEnabled = await saveButton.isEnabled();
-    if (!saveEnabled) await page.waitForTimeout(500);
-  }
-  if (!saveEnabled) throw new Error("Thumbnail upload did not become ready to save.");
-  let cropSaved = false;
-  for (let attempt = 0; attempt < 3 && !cropSaved; attempt += 1) {
-    await saveButton.click({ force: attempt > 0 });
-    try {
-      await cropModal.waitFor({ state: "hidden", timeout: 20000 });
-      cropSaved = true;
-    } catch {
-      if (attempt === 2) {
-        const modalText = (await cropModal.innerText()).replace(/\s+/g, " ").trim();
-        throw new Error(`Thumbnail crop modal did not close after save. Modal text: ${modalText}`);
-      }
-    }
-  }
-  await page.waitForTimeout(3000);
-}
-
-async function insertChartImage(page, entry) {
-  if (!entry?.chartImage) return;
-
-  const chartPath = path.resolve(ROOT, entry.chartImage);
-  const chartBuffer = await readFile(chartPath);
-  const chartBase64 = chartBuffer.toString("base64");
-  const editor = page.locator("[contenteditable='true']").last();
-
-  await editor.evaluate((element) => {
-    element.focus();
-    const paragraphs = element.querySelectorAll("p");
-    const target = paragraphs[Math.min(1, Math.max(0, paragraphs.length - 1))] || element;
-    const range = document.createRange();
-    range.selectNodeContents(target);
-    range.collapse(false);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-  });
-
-  await page.evaluate(async ({ base64 }) => {
-    const binary = atob(base64);
-    const bytes = new Uint8Array(binary.length);
-    for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
-    const file = new File([bytes], "usdjpy-learning-chart.png", { type: "image/png" });
-    const transfer = new DataTransfer();
-    transfer.items.add(file);
-    const target = document.activeElement;
-    target?.dispatchEvent(new ClipboardEvent("paste", { bubbles: true, cancelable: true, clipboardData: transfer }));
-  }, { base64: chartBase64 });
-
-  await page.waitForTimeout(5000);
-
-  const bodyImageCount = await editor.locator("img").count();
-  if (bodyImageCount === 0) {
-    throw new Error("Chart image insertion could not be verified in the note body.");
   }
 }
 
@@ -220,8 +198,11 @@ async function loadLedger() {
 
 async function main() {
   const fullPath = path.resolve(ROOT, file);
+  const relativeFile = path.relative(ROOT, fullPath);
   const markdown = await readFile(fullPath, "utf8");
   const title = parseTitle(markdown);
+  const ledger = await loadLedger();
+  const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file || entry.file === relativeFile);
 
   let chromium;
   try {
@@ -232,102 +213,76 @@ async function main() {
     process.exit(1);
   }
 
-  const context = await chromium.launchPersistentContext(PROFILE_DIR, { headless: false, channel: "chrome" });
+  const context = await chromium.launchPersistentContext(
+    PROFILE_DIR,
+    getChromePersistentContextOptions({ headless: false }),
+  );
+  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://note.com" });
+  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: "https://editor.note.com" });
   const page = await context.newPage();
-  await page.goto(NOTE_NEW_URL, { waitUntil: "domcontentloaded" });
+  await page.goto(NOTE_NEW_URL, { waitUntil: "domcontentloaded", timeout: 120000 });
 
   console.log("Opened note editor. If login is required, log in in the opened browser, then rerun this command.");
 
   if (page.url().includes("/login")) {
     console.log("note login is required. Log in in the opened browser window. This command will continue after login.");
     await page.waitForURL((url) => !url.href.includes("/login"), { timeout: 10 * 60 * 1000 });
-    await page.goto(NOTE_NEW_URL, { waitUntil: "domcontentloaded" });
+    await page.goto(NOTE_NEW_URL, { waitUntil: "domcontentloaded", timeout: 120000 });
   }
 
   const titleInput = page.getByPlaceholder("タイトル");
   await titleInput.waitFor({ timeout: 60000 });
   await titleInput.fill(title);
+  const thumbnailSet = await setThumbnail(page, generatedEntry);
 
   const editor = page.locator("[contenteditable='true']").last();
   await editor.waitFor({ timeout: 60000 });
-  await page.evaluate((html) => {
-    const editables = [...document.querySelectorAll("[contenteditable='true']")];
-    const bodyEditor =
-      editables.find((element) => element.className?.toString().includes("ProseMirror")) ||
-      editables[editables.length - 1];
+  await pasteRichContent(page, editor, markdown);
 
-    bodyEditor.focus();
-    const range = document.createRange();
-    range.selectNodeContents(bodyEditor);
-    const selection = window.getSelection();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand("delete", false);
-    document.execCommand("insertHTML", false, html);
-    bodyEditor.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertHTML" }));
-    bodyEditor.dispatchEvent(new Event("change", { bubbles: true }));
-  }, markdownToNoteHtml(markdown));
-
-  const ledger = await loadLedger();
-  const generatedEntry = (ledger.generated || []).find((entry) => entry.file === file);
   let publishedNoteUrl = null;
-
-  await uploadThumbnail(page, generatedEntry);
-  await insertChartImage(page, generatedEntry);
+  let qualityChecked = false;
 
   if (publish) {
     if (generatedEntry?.visibility && !["public", "members_only"].includes(generatedEntry.visibility)) {
       throw new Error(`Refusing to auto-publish ${generatedEntry.visibility} as a free public note.`);
     }
+    if (!thumbnailSet) {
+      throw new Error("Refusing to publish without setting a note thumbnail.");
+    }
 
-    const proceedButton = page.locator("button").filter({ hasText: "公開に進む" }).first();
+    const proceedButton = page.locator("button").filter({ hasText: "公開に進む" });
     await proceedButton.waitFor({ timeout: 60000 });
-    const savedIndicator = page.getByText("下書きを保存しました", { exact: true });
-    if ((await savedIndicator.count()) > 0) {
-      await savedIndicator.last().waitFor({ timeout: 60000 });
-    }
-
-    let reachedPublishSettings = false;
-    for (let attempt = 0; attempt < 3 && !reachedPublishSettings; attempt += 1) {
-      await proceedButton.click({ force: true });
-      try {
-        await page.waitForURL(/\/publish\/?$/, { timeout: 20000 });
-        reachedPublishSettings = true;
-      } catch {
-        await page.waitForTimeout(1000);
-      }
-    }
-    if (!reachedPublishSettings) {
-      throw new Error(`Publish settings did not open from ${page.url()}.`);
-    }
+    await proceedButton.click({ force: true });
+    await page.waitForTimeout(5000);
 
     const noteUrl = getNoteUrl(page.url());
     publishedNoteUrl = noteUrl;
     await configurePublishSettings(page, generatedEntry);
 
-    const postButton = page.getByRole("button", { name: /^(投稿|公開)する$/ }).first();
-    try {
-      await postButton.waitFor({ timeout: 60000 });
-    } catch (error) {
-      const visibleButtons = await page.locator("button:visible").allInnerTexts();
-      const visibleText = (await page.locator("body").innerText()).replace(/\s+/g, " ").slice(-2000);
-      throw new Error(
-        `Final publish button was not found at ${page.url()}. Visible buttons: ${visibleButtons.join(" | ")}. ` +
-          `Visible text: ${visibleText}`,
-        { cause: error },
-      );
-    }
+    const postButton = page.locator("button").filter({ hasText: "投稿する" });
+    await postButton.waitFor({ timeout: 60000 });
     await postButton.click({ force: true });
     await page.waitForTimeout(10000);
 
     if (noteUrl) {
       const verifyPage = await context.newPage();
-      await verifyPage.goto(noteUrl, { waitUntil: "domcontentloaded" });
+      await verifyPage.goto(noteUrl, { waitUntil: "domcontentloaded", timeout: 120000 });
       await verifyPage.waitForTimeout(3000);
       const bodyText = await verifyPage.locator("body").innerText();
       if (bodyText.includes("これは公開前の下書きです")) {
         throw new Error("Publish verification failed: draft notice is still visible.");
       }
+      if (bodyText.includes("## ") || bodyText.includes("### ")) {
+        throw new Error("Publish verification failed: raw Markdown headings are visible.");
+      }
+
+      const expectedLinks = extractMarkdownLinks(markdown);
+      const pageLinks = await verifyPage.locator("a[href]").evaluateAll((links) => links.map((link) => link.href));
+      const missingLinks = expectedLinks.filter((expected) => !pageLinks.some((href) => href === expected));
+      if (missingLinks.length > 0) {
+        throw new Error(`Publish verification failed: links were not rendered as links: ${missingLinks.join(", ")}`);
+      }
+      qualityChecked = true;
     }
   }
 
@@ -342,6 +297,8 @@ async function main() {
           ...generatedEntry,
           postedAt,
           postedMode: publish ? "browser_published" : "browser_draft_filled",
+          thumbnailSet,
+          qualityChecked,
           ...(noteUrl ? { noteUrl } : {}),
           ...(publish ? { publishedAt: postedAt } : {}),
         },
@@ -350,10 +307,8 @@ async function main() {
     await writeFile(LEDGER_PATH, `${JSON.stringify(nextLedger, null, 2)}\n`, "utf8");
   }
 
-  await context.close();
-
-  console.log(publish ? `Published note: ${publishedNoteUrl || title}` : `Filled note draft: ${title}`);
-  if (!publish) console.log("Review the editor and publish from note when ready.");
+  console.log(`Filled note draft: ${title}`);
+  console.log("Review the editor and publish from note when ready.");
 }
 
 main().catch((error) => {
