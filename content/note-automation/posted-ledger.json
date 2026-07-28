@@ -2131,6 +2131,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n7f3999d81b97",
       "publishedAt": "2026-07-28T11:03:41.896Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-14:membership-teaser",
+      "id": "6fa372a655",
+      "title": "無料公開: Bid/Askを勝ってる人の考え方でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-07-28-what-is-bid-ask-14-public-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-14.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-14/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-28-what-is-bid-ask-14-public-1.png",
+      "generatedAt": "2026-07-28T22:32:35.039Z",
+      "postedAt": "2026-07-28T22:33:32.028Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n511627a784dc",
+      "publishedAt": "2026-07-28T22:33:32.028Z"
+    },
+    {
+      "key": "article:basic/what-is-bid-ask-14:premium-checkpoints",
+      "id": "b51dbb4c1a",
+      "title": "限定QUEST: Bid/Askを勝ってる人の考え方を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-07-28-what-is-bid-ask-14-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-14.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-14/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-07-28-what-is-bid-ask-14-premium-2.png",
+      "generatedAt": "2026-07-28T22:32:35.039Z",
+      "postedAt": "2026-07-28T22:34:15.404Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n651d63ff6baa",
+      "publishedAt": "2026-07-28T22:34:15.404Z"
     }
   ]
 }
