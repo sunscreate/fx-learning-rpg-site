@@ -2,35 +2,39 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Header from "../../components/Header.astro";
+import QuestCard from "../../components/QuestCard.astro";
 import { getCollection } from "astro:content";
 
-const collectionNames = [
-  "basic",
-  "chart",
-  "entry",
-  "technical",
-  "risk",
-  "mental",
-  "market",
-  "fundamental",
-  "analysis",
-  "style",
-  "advanced",
-  "operation",
-  "ea",
-  "glossary",
+const categoryMeta = [
+  { key: "basic", label: "基礎", description: "まず最初に押さえたいFXの基本用語と仕組み" },
+  { key: "chart", label: "チャート読解", description: "ローソク足や相場の形を読むための土台" },
+  { key: "entry", label: "エントリー", description: "入る場所と見送る場所を判断する練習" },
+  { key: "technical", label: "テクニカル", description: "インジケーターと数値の見方を整理" },
+  { key: "risk", label: "リスク管理", description: "退場しないための資金管理と損失設計" },
+  { key: "mental", label: "メンタル", description: "感情で崩れやすい場面を先に把握する" },
+  { key: "market", label: "相場環境", description: "市場全体の流れと環境認識をつかむ" },
+  { key: "fundamental", label: "ファンダメンタルズ", description: "経済指標や金利の基礎を学ぶ" },
+  { key: "analysis", label: "検証・分析", description: "振り返りと改善サイクルを作る" },
+  { key: "style", label: "トレードスタイル", description: "自分に合う戦い方の輪郭を知る" },
+  { key: "advanced", label: "応用", description: "一歩深い視点で相場を見るための上位テーマ" },
+  { key: "operation", label: "運用", description: "実戦のルール作りと継続運用の整え方" },
+  { key: "ea", label: "EA・自動売買", description: "自動売買の考え方と検証の入口" },
+  { key: "glossary", label: "用語集", description: "気になった単語をすぐ引ける辞典" },
 ];
 
 const allPosts = await Promise.all(
-  collectionNames.map((name) => getCollection(name))
+  categoryMeta.map((category) => getCollection(category.key))
 );
 
-const posts = allPosts
-  .flat()
-  .sort((a, b) => {
-    if (a.data.level !== b.data.level) return a.data.level - b.data.level;
-    return a.data.order - b.data.order;
-  });
+const categories = categoryMeta
+  .map((category, index) => ({
+    ...category,
+    posts: allPosts[index].sort((a, b) => {
+      if (a.data.level !== b.data.level) return a.data.level - b.data.level;
+      return a.data.order - b.data.order;
+    }),
+  }))
+  .filter((category) => category.posts.length > 0);
 ---
 
 <BaseLayout
@@ -44,22 +48,37 @@ const posts = allPosts
       <div class="badge">ARTICLE DATABASE</div>
 
       <h1>記事一覧</h1>
+      <p class="lead">
+        候補一覧をカテゴリごとにまとめています。気になるテーマから見ても、基礎から順番に追っても探しやすい構成です。
+      </p>
 
-      <div class="post-list">
-        {posts.map((post) => (
-          <a class="post-card" href={`/fx-learning-rpg-site/category/${post.collection}/${post.slug || post.id.replace(".md", "")}/`}>
-            <span>LEVEL {post.data.level}</span>
+      <div class="category-jump">
+        {categories.map((category) => (
+          <a href={`#${category.key}`} class="jump-chip">
+            <span>{category.label}</span>
+            <small>{category.posts.length}件</small>
+          </a>
+        ))}
+      </div>
 
-            <h2>{post.data.title}</h2>
+      <div class="category-sections">
+        {categories.map((category) => (
+          <section id={category.key} class="category-block">
+            <div class="category-head">
+              <div>
+                <div class="category-kicker">{category.key.toUpperCase()}</div>
+                <h2>{category.label}</h2>
+                <p>{category.description}</p>
+              </div>
+              <div class="category-count">{category.posts.length} QUESTS</div>
+            </div>
 
-            <p>{post.data.description}</p>
-
-            <div class="tags">
-              {post.data.tags.map((tag) => (
-                <small>{tag}</small>
+            <div class="post-list">
+              {category.posts.map((post) => (
+                <QuestCard article={post} collection={post.collection} />
               ))}
             </div>
-          </a>
+          </section>
         ))}
       </div>
     </section>
@@ -69,54 +88,132 @@ const posts = allPosts
 <style>
   h1 {
     font-size: 54px;
-    margin: 24px 0 40px;
+    margin: 24px 0 16px;
+  }
+
+  .lead {
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 760px;
+    margin: 0 0 28px;
+  }
+
+  .category-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .jump-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(78, 161, 255, 0.08);
+    border: 1px solid rgba(78, 161, 255, 0.18);
+    border-radius: 999px;
+    padding: 10px 16px;
+    color: var(--text);
+    text-decoration: none;
+    transition: 0.2s;
+  }
+
+  .jump-chip:hover {
+    border-color: rgba(78, 161, 255, 0.42);
+    transform: translateY(-2px);
+  }
+
+  .jump-chip span {
+    font-weight: 700;
+  }
+
+  .jump-chip small {
+    color: var(--blue);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .category-sections {
+    display: grid;
+    gap: 32px;
+  }
+
+  .category-block {
+    background: linear-gradient(180deg, rgba(17, 24, 39, 0.94), rgba(10, 15, 28, 0.94));
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 28px;
+    scroll-margin-top: 120px;
+  }
+
+  .category-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .category-kicker {
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+
+  .category-head h2 {
+    margin: 0 0 10px;
+    font-size: 32px;
+  }
+
+  .category-head p {
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 760px;
+    margin: 0;
+  }
+
+  .category-count {
+    flex-shrink: 0;
+    border-radius: 999px;
+    padding: 10px 14px;
+    background: rgba(242, 201, 76, 0.1);
+    border: 1px solid rgba(242, 201, 76, 0.22);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
   }
 
   .post-list {
     display: grid;
     gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .post-card {
-    background: linear-gradient(180deg, var(--panel-light), var(--panel));
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 24px;
-    transition: 0.2s;
+  @media (max-width: 900px) {
+    .category-head {
+      flex-direction: column;
+    }
+
+    .post-list {
+      grid-template-columns: 1fr;
+    }
   }
 
-  .post-card:hover {
-    border-color: rgba(78,161,255,0.5);
-    transform: translateY(-3px);
-  }
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 40px;
+    }
 
-  .post-card span {
-    color: var(--gold);
-    font-size: 12px;
-    font-weight: 800;
-  }
+    .category-block {
+      padding: 22px;
+      border-radius: 22px;
+    }
 
-  .post-card h2 {
-    margin: 12px 0;
-  }
-
-  .post-card p {
-    color: var(--muted);
-    line-height: 1.8;
-  }
-
-  .tags {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 18px;
-  }
-
-  .tags small {
-    background: rgba(78,161,255,0.1);
-    border: 1px solid rgba(78,161,255,0.2);
-    padding: 6px 10px;
-    border-radius: 999px;
-    color: var(--blue);
+    .category-head h2 {
+      font-size: 26px;
+    }
   }
 </style>
