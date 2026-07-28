@@ -118,6 +118,46 @@ function getNoteUrl(url) {
   return `https://note.com/hearty_tapir5661/n/${match[1]}`;
 }
 
+function getNoteKey(noteUrl) {
+  return noteUrl?.match(/\/n\/([^/?#]+)/)?.[1] || null;
+}
+
+async function waitForMembershipPaywall(noteUrl) {
+  const noteKey = getNoteKey(noteUrl);
+  if (!noteKey) {
+    throw new Error("Publish verification failed: note URL key was not found.");
+  }
+
+  let lastState = null;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    const response = await fetch(`https://note.com/api/v3/notes/${noteKey}`);
+    if (!response.ok) {
+      throw new Error(`Publish verification failed: note API returned ${response.status}.`);
+    }
+    const payload = await response.json();
+    const note = payload?.data || {};
+    lastState = {
+      status: note.status,
+      is_limited: note.is_limited,
+      can_read: note.can_read,
+      is_membership_connected: note.paywall?.context?.is_membership_connected,
+    };
+
+    if (
+      lastState.status === "published" &&
+      lastState.is_limited === true &&
+      lastState.can_read === false &&
+      lastState.is_membership_connected === true
+    ) {
+      return;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+  }
+
+  throw new Error(`Publish verification failed: note membership paywall is not active: ${JSON.stringify(lastState)}`);
+}
+
 async function pasteRichContent(page, editor, markdown) {
   const html = markdownToHtml(markdown);
   await editor.click({ force: true });
@@ -169,6 +209,31 @@ async function setThumbnail(page, generatedEntry) {
   return true;
 }
 
+async function addMembershipPublicationTarget(page) {
+  const addButtons = page.locator("button").filter({ hasText: /^追加$/ });
+  const candidates = await addButtons.evaluateAll((buttons) =>
+    buttons.map((button, index) => {
+      let text = "";
+      let node = button;
+      for (let depth = 0; depth < 5 && node; depth += 1, node = node.parentElement) {
+        text += ` ${(node.innerText || node.textContent || "").trim().replace(/\s+/g, " ")}`;
+      }
+      return { index, text };
+    }),
+  );
+
+  if (candidates.length === 0) return false;
+
+  const selected =
+    candidates.find((candidate) => candidate.text.includes("ギルドメンバー")) ||
+    candidates.find((candidate) => candidate.text.includes("メンバー全員")) ||
+    candidates[0];
+
+  await addButtons.nth(selected.index).click({ force: true });
+  await page.waitForTimeout(2500);
+  return true;
+}
+
 async function configurePublishSettings(page, entry) {
   if (entry?.visibility === "members_only") {
     const membershipButton = page.locator("button[role='checkbox']").filter({ hasText: "メンバーシップ" });
@@ -180,12 +245,21 @@ async function configurePublishSettings(page, entry) {
       await page.waitForTimeout(1000);
     }
 
-    const addButton = page.locator("button").filter({ hasText: "追加" });
-    if ((await addButton.count()) === 1) {
-      await addButton.click({ force: true });
-      await page.waitForTimeout(2000);
-    }
+    await addMembershipPublicationTarget(page);
   }
+}
+
+async function submitPublishSettings(page) {
+  const trialAreaButton = page.locator("button").filter({ hasText: "試し読みエリアを設定" });
+  if ((await trialAreaButton.count()) > 0) {
+    await trialAreaButton.first().click({ force: true });
+    await page.waitForTimeout(5000);
+  }
+
+  const postButton = page.locator("button").filter({ hasText: /^(投稿する|更新する)$/ }).first();
+  await postButton.waitFor({ timeout: 60000 });
+  await postButton.click({ force: true });
+  await page.waitForTimeout(10000);
 }
 
 async function loadLedger() {
@@ -299,17 +373,21 @@ async function postSingleDraft(context, ledger, queueEntry) {
     const noteUrl = getNoteUrl(page.url());
     publishedNoteUrl = noteUrl;
     await configurePublishSettings(page, generatedEntry);
-
-    const postButton = page.locator("button").filter({ hasText: "投稿する" });
-    await postButton.waitFor({ timeout: 60000 });
-    await postButton.click({ force: true });
-    await page.waitForTimeout(10000);
+    await submitPublishSettings(page);
 
     if (noteUrl) {
       const verifyPage = await context.newPage();
       await verifyPage.goto(noteUrl, { waitUntil: "domcontentloaded", timeout: 120000 });
       await verifyPage.waitForTimeout(3000);
-      const bodyText = await verifyPage.locator("body").innerText();
+      if (generatedEntry?.visibility === "members_only") {
+        await waitForMembershipPaywall(noteUrl);
+      }
+
+      const contentScope =
+        (await verifyPage.locator("article, main").count()) > 0
+          ? verifyPage.locator("article, main").first()
+          : verifyPage.locator("body");
+      const bodyText = await contentScope.innerText();
       if (bodyText.includes("これは公開前の下書きです")) {
         throw new Error("Publish verification failed: draft notice is still visible.");
       }
@@ -318,10 +396,43 @@ async function postSingleDraft(context, ledger, queueEntry) {
       }
 
       const expectedLinks = extractMarkdownLinks(markdown);
-      const pageLinks = await verifyPage.locator("a[href]").evaluateAll((links) => links.map((link) => link.href));
+      const pageLinks = await contentScope.locator("a[href]").evaluateAll((links) => links.map((link) => link.href));
       const missingLinks = expectedLinks.filter((expected) => !pageLinks.some((href) => href === expected));
       if (missingLinks.length > 0) {
         throw new Error(`Publish verification failed: links were not rendered as links: ${missingLinks.join(", ")}`);
+      }
+      const ogImage = await verifyPage.locator('meta[property="og:image"]').getAttribute("content");
+      if (!ogImage) {
+        throw new Error("Publish verification failed: og:image was not found.");
+      }
+      const visibleImages = await contentScope.locator("img").evaluateAll((images) =>
+        images
+          .filter(
+            (image) =>
+              (image.currentSrc || image.src) &&
+              image.naturalWidth > 0 &&
+              image.naturalHeight > 0 &&
+              Boolean(image.offsetWidth || image.offsetHeight || image.getClientRects().length),
+          )
+          .map((image) => ({
+            src: image.currentSrc || image.src,
+            alt: image.alt || "",
+          })),
+      );
+      if (visibleImages.length === 0) {
+        throw new Error("Publish verification failed: visible note thumbnail was not found.");
+      }
+      if (generatedEntry?.chartImage) {
+        const visibleBodyImages = visibleImages.filter(
+          (image) =>
+            (image.currentSrc || image.src) &&
+            !image.alt.includes("見出し") &&
+            !image.src.includes("default_profile") &&
+            !image.src.startsWith("data:"),
+        );
+        if (visibleBodyImages.length === 0) {
+          throw new Error("Publish verification failed: generated chart image is not visible in the article body.");
+        }
       }
       qualityChecked = true;
       await verifyPage.close();
