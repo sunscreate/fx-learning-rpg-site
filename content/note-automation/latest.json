@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-bid-ask-5:membership-teaser",
-    "id": "7815613da7",
-    "title": "無料公開: Bid/Askを注意点でつまずく前に確認したいこと",
+    "key": "public:basic/what-is-bid-ask-15:membership-teaser",
+    "id": "b8accc1e8c",
+    "title": "無料公開: Bid/Askを負ける人の特徴でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-07-30-what-is-bid-ask-5-public-1.md",
-    "sourcePath": "src/content/basic/what-is-bid-ask-5.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-5/",
+    "file": "content/note-automation/drafts/2026-07-30-what-is-bid-ask-15-public-1.md",
+    "sourcePath": "src/content/basic/what-is-bid-ask-15.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-15/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-30-what-is-bid-ask-5-public-1.png",
-    "generatedAt": "2026-07-30T11:01:29.235Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-30-what-is-bid-ask-15-public-1.png",
+    "generatedAt": "2026-07-30T22:31:04.547Z"
   },
   {
-    "key": "article:basic/what-is-bid-ask-5:premium-checkpoints",
-    "id": "e01ce0e9c9",
-    "title": "限定QUEST: Bid/Askを注意点を実戦で使う3つの確認ポイント",
+    "key": "article:basic/what-is-bid-ask-15:premium-checkpoints",
+    "id": "dacd6fa3be",
+    "title": "限定QUEST: Bid/Askを負ける人の特徴を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-07-30-what-is-bid-ask-5-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-bid-ask-5.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-5/",
+    "file": "content/note-automation/drafts/2026-07-30-what-is-bid-ask-15-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-bid-ask-15.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-15/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-07-30-what-is-bid-ask-5-premium-2.png",
-    "generatedAt": "2026-07-30T11:01:29.235Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-07-30-what-is-bid-ask-15-premium-2.png",
+    "generatedAt": "2026-07-30T22:31:04.547Z"
   }
 ]
