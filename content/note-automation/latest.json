@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:entry/what-is-n-pattern-4:membership-teaser",
-    "id": "9a8c510ac7",
-    "title": "無料公開: N字見方でつまずく前に確認したいこと",
+    "key": "public:entry/what-is-n-pattern-3:membership-teaser",
+    "id": "9948f2d563",
+    "title": "無料公開: N字使い方でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-08-04-what-is-n-pattern-4-public-1.md",
-    "sourcePath": "src/content/entry/what-is-n-pattern-4.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-4/",
+    "file": "content/note-automation/drafts/2026-08-04-what-is-n-pattern-3-public-1.md",
+    "sourcePath": "src/content/entry/what-is-n-pattern-3.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-3/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-04-what-is-n-pattern-4-public-1.png",
-    "generatedAt": "2026-08-04T11:02:07.721Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-04-what-is-n-pattern-3-public-1.png",
+    "generatedAt": "2026-08-04T22:31:12.730Z"
   },
   {
-    "key": "article:entry/what-is-n-pattern-4:premium-checkpoints",
-    "id": "ec13b57b0b",
-    "title": "限定QUEST: N字見方を実戦で使う3つの確認ポイント",
+    "key": "article:entry/what-is-n-pattern-3:premium-checkpoints",
+    "id": "b7829b536e",
+    "title": "限定QUEST: N字使い方を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-08-04-what-is-n-pattern-4-premium-2.md",
-    "sourcePath": "src/content/entry/what-is-n-pattern-4.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-4/",
+    "file": "content/note-automation/drafts/2026-08-04-what-is-n-pattern-3-premium-2.md",
+    "sourcePath": "src/content/entry/what-is-n-pattern-3.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-3/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-04-what-is-n-pattern-4-premium-2.png",
-    "generatedAt": "2026-08-04T11:02:07.721Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-04-what-is-n-pattern-3-premium-2.png",
+    "generatedAt": "2026-08-04T22:31:12.730Z"
   }
 ]
