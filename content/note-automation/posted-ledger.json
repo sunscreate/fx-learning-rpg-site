@@ -2899,6 +2899,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n954a3d48cdd0",
       "publishedAt": "2026-08-05T11:03:40.987Z"
+    },
+    {
+      "key": "public:entry/what-is-n-pattern-2:membership-teaser",
+      "id": "8b7c723a07",
+      "title": "無料公開: N字初心者向け解説でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-08-05-what-is-n-pattern-2-public-1.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-2/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-05-what-is-n-pattern-2-public-1.png",
+      "generatedAt": "2026-08-05T22:32:54.949Z",
+      "postedAt": "2026-08-05T22:33:53.617Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n4e930719099a",
+      "publishedAt": "2026-08-05T22:33:53.617Z"
+    },
+    {
+      "key": "article:entry/what-is-n-pattern-2:premium-checkpoints",
+      "id": "7de9f10ab9",
+      "title": "限定QUEST: N字初心者向け解説を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-08-05-what-is-n-pattern-2-premium-2.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-2/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-05-what-is-n-pattern-2-premium-2.png",
+      "generatedAt": "2026-08-05T22:32:54.949Z",
+      "postedAt": "2026-08-05T22:34:37.453Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n67a5012321b5",
+      "publishedAt": "2026-08-05T22:34:37.453Z"
     }
   ]
 }
