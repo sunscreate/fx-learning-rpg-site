@@ -185,16 +185,44 @@ async function setThumbnail(page, generatedEntry) {
   if (!generatedEntry?.thumbnail) return false;
 
   const thumbnailPath = path.resolve(ROOT, generatedEntry.thumbnail);
-  const imageButton = page.locator('button[aria-label="画像を追加"]').first();
-  if ((await imageButton.count()) === 0) {
+  const imageButton = page.locator('button[aria-label="画像を追加"], button[aria-label="見出し画像を追加"]').first();
+  const imageButtonCount = await imageButton.count();
+  if (imageButtonCount > 0) {
+    await imageButton.click({ force: true });
+  } else {
+    const buttons = page.locator("button");
+    const fallbackIndex = await buttons.evaluateAll((buttonElements) =>
+      buttonElements.findIndex((button) => {
+        const rect = button.getBoundingClientRect();
+        const text = (button.innerText || button.textContent || "").trim();
+        return (
+          rect.width === 40 &&
+          rect.height === 40 &&
+          rect.x > 250 &&
+          rect.y > 60 &&
+          rect.y < 180 &&
+          !button.getAttribute("aria-label") &&
+          !text
+        );
+      }),
+    );
+
+    if (fallbackIndex < 0) {
+      throw new Error("Thumbnail upload button was not found. Refusing to continue without a thumbnail.");
+    }
+
+    await buttons.nth(fallbackIndex).click({ force: true });
+  }
+
+  const uploadButton = page.locator("button").filter({ hasText: "画像をアップロード" }).first();
+  if ((await uploadButton.count()) === 0) {
     throw new Error("Thumbnail upload button was not found. Refusing to continue without a thumbnail.");
   }
 
-  await imageButton.click({ force: true });
   await page.waitForTimeout(1000);
 
   const chooserPromise = page.waitForEvent("filechooser", { timeout: 60000 });
-  await page.locator("button").filter({ hasText: "画像をアップロード" }).first().click({ force: true });
+  await uploadButton.click({ force: true });
   const chooser = await chooserPromise;
   await chooser.setFiles(thumbnailPath);
   await page.waitForTimeout(8000);

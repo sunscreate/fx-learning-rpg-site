@@ -3475,6 +3475,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/nb276d7d0e9a5",
       "publishedAt": "2026-08-11T23:38:15.758Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-12:membership-teaser",
+      "id": "2564d2a6c3",
+      "title": "無料公開: pips環境認識との関係でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-08-13-what-is-pips-12-public-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-12/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-12-public-1.png",
+      "generatedAt": "2026-08-13T11:40:11.695Z",
+      "postedAt": "2026-08-13T11:43:05.769Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n12fbb542754a",
+      "publishedAt": "2026-08-13T11:43:05.769Z"
+    },
+    {
+      "key": "article:basic/what-is-pips-12:premium-checkpoints",
+      "id": "9397f98990",
+      "title": "限定QUEST: pips環境認識との関係を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-08-13-what-is-pips-12-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-pips-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-12/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-12-premium-2.png",
+      "generatedAt": "2026-08-13T11:40:11.695Z",
+      "postedAt": "2026-08-13T11:44:43.361Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n25afa7b8ef35",
+      "publishedAt": "2026-08-13T11:44:43.361Z"
     }
   ]
 }
