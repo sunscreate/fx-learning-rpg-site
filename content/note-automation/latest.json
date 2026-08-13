@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-pips-12:membership-teaser",
-    "id": "20e0efb86d",
-    "title": "無料公開: pips環境認識との関係でつまずく前に確認したいこと",
+    "key": "public:basic/what-is-pips-4:membership-teaser",
+    "id": "262a718548",
+    "title": "無料公開: pips見方でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-08-13-what-is-pips-12-public-1.md",
-    "sourcePath": "src/content/basic/what-is-pips-12.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-12/",
+    "file": "content/note-automation/drafts/2026-08-13-what-is-pips-4-public-1.md",
+    "sourcePath": "src/content/basic/what-is-pips-4.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-4/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-12-public-1.png",
-    "generatedAt": "2026-08-13T11:40:12.275Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-4-public-1.png",
+    "generatedAt": "2026-08-13T22:31:04.574Z"
   },
   {
-    "key": "article:basic/what-is-pips-12:premium-checkpoints",
-    "id": "3969aef143",
-    "title": "限定QUEST: pips環境認識との関係を実戦で使う3つの確認ポイント",
+    "key": "article:basic/what-is-pips-4:premium-checkpoints",
+    "id": "43f433bc86",
+    "title": "限定QUEST: pips見方を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-08-13-what-is-pips-12-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-pips-12.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-12/",
+    "file": "content/note-automation/drafts/2026-08-13-what-is-pips-4-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-pips-4.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-4/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-12-premium-2.png",
-    "generatedAt": "2026-08-13T11:40:12.275Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-4-premium-2.png",
+    "generatedAt": "2026-08-13T22:31:04.574Z"
   }
 ]

@@ -3523,6 +3523,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n25afa7b8ef35",
       "publishedAt": "2026-08-13T11:44:43.361Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-4:membership-teaser",
+      "id": "262a718548",
+      "title": "無料公開: pips見方でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-08-13-what-is-pips-4-public-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-4.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-4/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-4-public-1.png",
+      "generatedAt": "2026-08-13T22:31:04.574Z",
+      "postedAt": "2026-08-13T22:32:03.938Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n96d91c5f44f1",
+      "publishedAt": "2026-08-13T22:32:03.938Z"
+    },
+    {
+      "key": "article:basic/what-is-pips-4:premium-checkpoints",
+      "id": "43f433bc86",
+      "title": "限定QUEST: pips見方を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-08-13-what-is-pips-4-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-pips-4.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-4/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-13-what-is-pips-4-premium-2.png",
+      "generatedAt": "2026-08-13T22:31:04.574Z",
+      "postedAt": "2026-08-13T22:32:47.536Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n5174660e6fff",
+      "publishedAt": "2026-08-13T22:32:47.536Z"
     }
   ]
 }
