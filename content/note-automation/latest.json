@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-pips-15:membership-teaser",
-    "id": "0c92e0aa02",
-    "title": "無料公開: pips負ける人の特徴でつまずく前に確認したいこと",
+    "key": "public:chart/what-is-support-resistance-10:membership-teaser",
+    "id": "df4035d65e",
+    "title": "無料公開: サポートラインFX初心者が最初に覚えるべき理由でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-08-17-what-is-pips-15-public-1.md",
-    "sourcePath": "src/content/basic/what-is-pips-15.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-15/",
+    "file": "content/note-automation/drafts/2026-08-18-what-is-support-resistance-10-public-1.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-10.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-10/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-17-what-is-pips-15-public-1.png",
-    "generatedAt": "2026-08-17T22:31:42.227Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-18-what-is-support-resistance-10-public-1.png",
+    "generatedAt": "2026-08-18T11:01:45.184Z"
   },
   {
-    "key": "article:basic/what-is-pips-15:premium-checkpoints",
-    "id": "ea8a44b00e",
-    "title": "限定QUEST: pips負ける人の特徴を実戦で使う3つの確認ポイント",
+    "key": "article:chart/what-is-support-resistance-10:premium-checkpoints",
+    "id": "16d2732664",
+    "title": "限定QUEST: サポートラインFX初心者が最初に覚えるべき理由を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-08-17-what-is-pips-15-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-pips-15.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-15/",
+    "file": "content/note-automation/drafts/2026-08-18-what-is-support-resistance-10-premium-2.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-10.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-10/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-17-what-is-pips-15-premium-2.png",
-    "generatedAt": "2026-08-17T22:31:42.227Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-18-what-is-support-resistance-10-premium-2.png",
+    "generatedAt": "2026-08-18T11:01:45.184Z"
   }
 ]
