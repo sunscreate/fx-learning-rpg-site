@@ -4387,6 +4387,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n0746e9620975",
       "publishedAt": "2026-08-22T11:03:42.476Z"
+    },
+    {
+      "key": "public:chart/what-is-support-resistance-2:membership-teaser",
+      "id": "96f8880474",
+      "title": "無料公開: サポートライン初心者向け解説でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-08-22-what-is-support-resistance-2-public-1.md",
+      "sourcePath": "src/content/chart/what-is-support-resistance-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-2/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-22-what-is-support-resistance-2-public-1.png",
+      "generatedAt": "2026-08-22T22:32:31.280Z",
+      "postedAt": "2026-08-22T22:33:29.595Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n1ac5557475bb",
+      "publishedAt": "2026-08-22T22:33:29.595Z"
+    },
+    {
+      "key": "article:chart/what-is-support-resistance-2:premium-checkpoints",
+      "id": "86de6e20d0",
+      "title": "限定QUEST: サポートライン初心者向け解説を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-08-22-what-is-support-resistance-2-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-support-resistance-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-2/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-22-what-is-support-resistance-2-premium-2.png",
+      "generatedAt": "2026-08-22T22:32:31.280Z",
+      "postedAt": "2026-08-22T22:34:12.456Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nb11d3acb7290",
+      "publishedAt": "2026-08-22T22:34:12.456Z"
     }
   ]
 }
