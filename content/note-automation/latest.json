@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:chart/what-is-support-resistance-7:membership-teaser",
-    "id": "6955c5ac06",
-    "title": "無料公開: サポートライン勝てない原因でつまずく前に確認したいこと",
+    "key": "public:chart/what-is-support-resistance-13:membership-teaser",
+    "id": "f3c978cf7d",
+    "title": "無料公開: サポートライン損切りとの関係でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-08-23-what-is-support-resistance-7-public-1.md",
-    "sourcePath": "src/content/chart/what-is-support-resistance-7.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-7/",
+    "file": "content/note-automation/drafts/2026-08-24-what-is-support-resistance-13-public-1.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-13.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-13/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-23-what-is-support-resistance-7-public-1.png",
-    "generatedAt": "2026-08-23T22:30:59.397Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-24-what-is-support-resistance-13-public-1.png",
+    "generatedAt": "2026-08-24T11:02:24.123Z"
   },
   {
-    "key": "article:chart/what-is-support-resistance-7:premium-checkpoints",
-    "id": "6c67f1faa8",
-    "title": "限定QUEST: サポートライン勝てない原因を実戦で使う3つの確認ポイント",
+    "key": "article:chart/what-is-support-resistance-13:premium-checkpoints",
+    "id": "4eda5a8269",
+    "title": "限定QUEST: サポートライン損切りとの関係を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-08-23-what-is-support-resistance-7-premium-2.md",
-    "sourcePath": "src/content/chart/what-is-support-resistance-7.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-7/",
+    "file": "content/note-automation/drafts/2026-08-24-what-is-support-resistance-13-premium-2.md",
+    "sourcePath": "src/content/chart/what-is-support-resistance-13.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-13/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-23-what-is-support-resistance-7-premium-2.png",
-    "generatedAt": "2026-08-23T22:30:59.397Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-24-what-is-support-resistance-13-premium-2.png",
+    "generatedAt": "2026-08-24T11:02:24.123Z"
   }
 ]
