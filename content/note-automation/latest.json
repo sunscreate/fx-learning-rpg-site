@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:chart/what-is-support-resistance-15:membership-teaser",
-    "id": "23e6086772",
-    "title": "無料公開: サポートライン負ける人の特徴でつまずく前に確認したいこと",
+    "key": "public:basic/what-is-stop-out-10:membership-teaser",
+    "id": "5266b6b8c5",
+    "title": "無料公開: ストップアウトFX初心者が最初に覚えるべき理由でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-08-25-what-is-support-resistance-15-public-1.md",
-    "sourcePath": "src/content/chart/what-is-support-resistance-15.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-15/",
+    "file": "content/note-automation/drafts/2026-08-25-what-is-stop-out-10-public-1.md",
+    "sourcePath": "src/content/basic/what-is-stop-out-10.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-10/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-25-what-is-support-resistance-15-public-1.png",
-    "generatedAt": "2026-08-25T11:00:56.274Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-25-what-is-stop-out-10-public-1.png",
+    "generatedAt": "2026-08-25T22:31:41.897Z"
   },
   {
-    "key": "article:chart/what-is-support-resistance-15:premium-checkpoints",
-    "id": "5d8b0e20ff",
-    "title": "限定QUEST: サポートライン負ける人の特徴を実戦で使う3つの確認ポイント",
+    "key": "article:basic/what-is-stop-out-10:premium-checkpoints",
+    "id": "80072803d9",
+    "title": "限定QUEST: ストップアウトFX初心者が最初に覚えるべき理由を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-08-25-what-is-support-resistance-15-premium-2.md",
-    "sourcePath": "src/content/chart/what-is-support-resistance-15.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-15/",
+    "file": "content/note-automation/drafts/2026-08-25-what-is-stop-out-10-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-stop-out-10.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-10/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-25-what-is-support-resistance-15-premium-2.png",
-    "generatedAt": "2026-08-25T11:00:56.274Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-25-what-is-stop-out-10-premium-2.png",
+    "generatedAt": "2026-08-25T22:31:41.897Z"
   }
 ]
