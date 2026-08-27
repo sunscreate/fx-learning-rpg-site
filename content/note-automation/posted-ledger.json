@@ -4819,6 +4819,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n981c87ff133d",
       "publishedAt": "2026-08-26T22:34:00.680Z"
+    },
+    {
+      "key": "public:basic/what-is-stop-out-1:membership-teaser",
+      "id": "2d69871a84",
+      "title": "無料公開: ストップアウトとは？強制ロスカットとの違いを解説でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-08-27-what-is-stop-out-1-public-1.md",
+      "sourcePath": "src/content/basic/what-is-stop-out-1.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-1/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-27-what-is-stop-out-1-public-1.png",
+      "generatedAt": "2026-08-27T11:01:59.001Z",
+      "postedAt": "2026-08-27T11:03:00.872Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n18d86adb9a0c",
+      "publishedAt": "2026-08-27T11:03:00.872Z"
+    },
+    {
+      "key": "article:basic/what-is-stop-out-1:premium-checkpoints",
+      "id": "b83fcc104f",
+      "title": "限定QUEST: ストップアウトとは？強制ロスカットとの違いを解説を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-08-27-what-is-stop-out-1-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-stop-out-1.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-1/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-08-27-what-is-stop-out-1-premium-2.png",
+      "generatedAt": "2026-08-27T11:01:59.001Z",
+      "postedAt": "2026-08-27T11:03:44.907Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/na6510aa2d05b",
+      "publishedAt": "2026-08-27T11:03:44.907Z"
     }
   ]
 }
