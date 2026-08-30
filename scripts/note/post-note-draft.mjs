@@ -16,6 +16,8 @@ const args = new Map(
 
 const file = args.get("file");
 const publish = args.get("publish") === true || args.get("publish") === "true";
+const includeCompanionsArg = args.get("include-companions");
+const includeCompanions = includeCompanionsArg === true || includeCompanionsArg === "true";
 
 if (!file || typeof file !== "string") {
   console.error("Usage: npm run note:post -- --file=content/note-automation/drafts/example.md");
@@ -307,6 +309,10 @@ function buildPostingQueue(ledger, targetFile) {
   const primary = (ledger.generated || []).find((entry) => sameEntryFile(entry, targetFile));
   if (!primary) {
     return [{ file: relativeTargetFile, generatedEntry: null }];
+  }
+  const shouldIncludeCompanions = args.has("include-companions") ? includeCompanions : primary.visibility !== "public";
+  if (!shouldIncludeCompanions) {
+    return [{ file: primary.file, generatedEntry: primary }];
   }
 
   const companions = (ledger.generated || [])

@@ -680,6 +680,90 @@ ${renderClosingLinks()}
   };
 }
 
+function buildPublicPractice(article, index) {
+  const articleTitle = noteTitle(article.title);
+  const practical = pickSection(article, /ポイント|使い方|実戦/i, 2);
+  const mistakes = pickSection(article, /失敗|注意|危険|おすすめしない/i, 3);
+  const practicalPoints = sectionPoints(practical, 4);
+  const mistakePoints = sectionPoints(mistakes, 3);
+  const title = `無料公開: ${articleTitle}をドル円で練習する3ステップ`;
+  const key = `public:${article.category}/${article.slug}:usdjpy-practice`;
+  const fileSlug = `${today}-${slugify(article.slug)}-public-practice-${index + 1}`;
+
+  const body = `# ${title}
+
+FXの知識は、読んだだけでは判断力に変わりません。
+今回は「${articleTitle}」を、ドル円チャートを見ながら短時間で練習するための手順に落とし込みます。
+難しい分析を増やすより、見る順番を固定して、毎回同じ言葉で記録することを優先します。
+
+本編QUEST:
+[${articleTitle}](${article.url})
+
+## 今日の練習テーマ
+
+${articleTitle}を使う目的は、エントリー理由を増やすことではなく、入ってよい場面と見送る場面を分けることです。
+まずはドル円の5分足か1時間足を開き、次の3ステップだけ確認してください。
+
+## ステップ1: いま見ている時間足を決める
+
+最初に時間足を1つに固定します。
+5分足なら短期の動き、1時間足なら流れの確認と割り切ります。
+ここを曖昧にしたまま見ると、同じチャートでも都合のよい情報だけ拾いやすくなります。
+
+${joinBulletList(practicalPoints)}
+
+## ステップ2: 入る理由より見送る理由を先に書く
+
+初心者が伸びる近道は、勝てそうな形を探すことより、危ない場面を言語化することです。
+「説明できない」「時間足で判断が割れる」「損切り幅が広すぎる」と感じたら、その時点で見送り候補にします。
+
+${renderMistakeFixes(mistakePoints, articleTitle)}
+
+## ステップ3: 30秒で記録する
+
+判断したあとに、次の3行だけ残します。
+
+1. 見た時間足
+2. ${articleTitle}をどう使ったか
+3. 入らない理由、または次に確認する条件
+
+記録は長くなくて構いません。
+同じ型で残すほど、あとから自分の判断ミスを見つけやすくなります。
+
+## 失敗を減らすチェックリスト
+
+${renderChecklist([
+  "時間足を先に決めたか",
+  `${articleTitle}を使う理由を一文で説明したか`,
+  "見送る条件を書いたか",
+  "損切り幅とロットを確認したか",
+  "結果ではなく判断の質を記録したか",
+])}
+
+## 次にやること
+
+本編QUESTで基礎を確認したら、次は同じ手順を3回だけ繰り返してください。
+勝ち負けよりも、同じ順番で判断できたかを見ます。
+メンバーシップでは、この記録をドル円チャートの具体例に当てはめて、再現しやすい判断の型にしていきます。
+
+${renderClosingLinks()}
+
+※本記事は学習目的です。売買指示や利益保証ではありません。投資判断は必ずご自身で行ってください。
+`;
+
+  return {
+    type: "public_practice",
+    title,
+    key,
+    fileName: `${fileSlug}.md`,
+    sourcePath: article.sourcePath,
+    sourceUrl: article.url,
+    tags: ["FX初心者", "FX学習", "ドル円", "FX Quest Guild"],
+    visibility: "public",
+    body,
+  };
+}
+
 function buildBoardPost(article, index) {
   const articleTitle = noteTitle(article.title);
   const practical = pickSection(article, /ポイント|使い方|実戦/i, 2);
@@ -757,7 +841,7 @@ function selectDrafts(articles, ledger) {
   for (const article of preferred) {
     const buildersByType = {
       any: [buildPublicTeaser, buildPremiumArticle, buildBoardPost],
-      public: [buildPublicTeaser],
+      public: [buildPublicTeaser, buildPublicPractice],
       member: [buildPremiumArticle],
       board: [buildBoardPost],
       paired: [buildPublicTeaser, buildPremiumArticle],
@@ -768,6 +852,7 @@ function selectDrafts(articles, ledger) {
       const draft = builder(article, drafts.length + articleDrafts.length);
       if (usedKeys.has(draft.key)) continue;
       articleDrafts.push(draft);
+      if (typeFilter === "public") break;
     }
 
     if (typeFilter === "paired" && articleDrafts.length < 2) continue;
