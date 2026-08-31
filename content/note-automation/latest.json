@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-bid-ask:usdjpy-practice",
-    "id": "b3565f8cb6",
-    "title": "無料公開: Bid-Askとは？をドル円で練習する3ステップ",
-    "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-08-30-what-is-bid-ask-public-practice-1.md",
-    "sourcePath": "src/content/basic/what-is-bid-ask.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask/",
+    "key": "public:basic/what-is-stop-out-6:membership-teaser",
+    "id": "1cc8383838",
+    "title": "無料公開: ストップアウト失敗例でつまずく前に確認したいこと",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-08-31-what-is-stop-out-6-public-1.md",
+    "sourcePath": "src/content/basic/what-is-stop-out-6.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-6/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,25 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-30-what-is-bid-ask-public-practice-1.png",
-    "generatedAt": "2026-08-30T22:34:36.915Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-08-31-what-is-stop-out-6-public-1.png",
+    "generatedAt": "2026-08-31T11:02:50.265Z"
+  },
+  {
+    "key": "article:basic/what-is-stop-out-6:premium-checkpoints",
+    "id": "4fd7127edf",
+    "title": "限定QUEST: ストップアウト失敗例を実戦で使う3つの確認ポイント",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-08-31-what-is-stop-out-6-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-stop-out-6.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-6/",
+    "visibility": "members_only",
+    "tags": [
+      "FX初心者",
+      "ドル円",
+      "チャート分析",
+      "FX Quest Guild"
+    ],
+    "thumbnail": "content/note-automation/thumbnails/2026-08-31-what-is-stop-out-6-premium-2.png",
+    "generatedAt": "2026-08-31T11:02:50.265Z"
   }
 ]
