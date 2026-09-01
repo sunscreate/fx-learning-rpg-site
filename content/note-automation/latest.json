@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-stop-out-6:membership-teaser",
-    "id": "1cc8383838",
-    "title": "無料公開: ストップアウト失敗例でつまずく前に確認したいこと",
+    "key": "public:basic/what-is-stop-out-2:membership-teaser",
+    "id": "36386aabed",
+    "title": "無料公開: ストップアウト初心者向け解説でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-08-31-what-is-stop-out-6-public-1.md",
-    "sourcePath": "src/content/basic/what-is-stop-out-6.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-6/",
+    "file": "content/note-automation/drafts/2026-09-01-what-is-stop-out-2-public-1.md",
+    "sourcePath": "src/content/basic/what-is-stop-out-2.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-2/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-31-what-is-stop-out-6-public-1.png",
-    "generatedAt": "2026-08-31T11:02:50.265Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-09-01-what-is-stop-out-2-public-1.png",
+    "generatedAt": "2026-09-01T11:01:18.037Z"
   },
   {
-    "key": "article:basic/what-is-stop-out-6:premium-checkpoints",
-    "id": "4fd7127edf",
-    "title": "限定QUEST: ストップアウト失敗例を実戦で使う3つの確認ポイント",
+    "key": "article:basic/what-is-stop-out-2:premium-checkpoints",
+    "id": "0ec75b0d27",
+    "title": "限定QUEST: ストップアウト初心者向け解説を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-08-31-what-is-stop-out-6-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-stop-out-6.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-6/",
+    "file": "content/note-automation/drafts/2026-09-01-what-is-stop-out-2-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-stop-out-2.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-2/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-08-31-what-is-stop-out-6-premium-2.png",
-    "generatedAt": "2026-08-31T11:02:50.265Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-09-01-what-is-stop-out-2-premium-2.png",
+    "generatedAt": "2026-09-01T11:01:18.037Z"
   }
 ]
