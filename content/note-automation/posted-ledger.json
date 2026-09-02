@@ -5227,6 +5227,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n379b82815174",
       "publishedAt": "2026-09-01T11:03:11.179Z"
+    },
+    {
+      "key": "public:basic/what-is-stop-out-14:membership-teaser",
+      "id": "5faaa54deb",
+      "title": "無料公開: ストップアウト勝ってる人の考え方でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-09-02-what-is-stop-out-14-public-1.md",
+      "sourcePath": "src/content/basic/what-is-stop-out-14.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-14/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-02-what-is-stop-out-14-public-1.png",
+      "generatedAt": "2026-09-02T11:02:49.767Z",
+      "postedAt": "2026-09-02T11:03:49.648Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n2967f1157209",
+      "publishedAt": "2026-09-02T11:03:49.648Z"
+    },
+    {
+      "key": "article:basic/what-is-stop-out-14:premium-checkpoints",
+      "id": "97fd1bc7de",
+      "title": "限定QUEST: ストップアウト勝ってる人の考え方を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-09-02-what-is-stop-out-14-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-stop-out-14.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-14/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-02-what-is-stop-out-14-premium-2.png",
+      "generatedAt": "2026-09-02T11:02:49.767Z",
+      "postedAt": "2026-09-02T11:04:32.758Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nb30fc147224a",
+      "publishedAt": "2026-09-02T11:04:32.758Z"
     }
   ]
 }
