@@ -5275,6 +5275,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/nb30fc147224a",
       "publishedAt": "2026-09-02T11:04:32.758Z"
+    },
+    {
+      "key": "public:basic/what-is-stop-out-7:membership-teaser",
+      "id": "91fbc848fd",
+      "title": "無料公開: ストップアウト勝てない原因でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-09-03-what-is-stop-out-7-public-1.md",
+      "sourcePath": "src/content/basic/what-is-stop-out-7.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-7/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-03-what-is-stop-out-7-public-1.png",
+      "generatedAt": "2026-09-03T11:01:31.165Z",
+      "postedAt": "2026-09-03T11:02:35.098Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n5e1483f543d1",
+      "publishedAt": "2026-09-03T11:02:35.098Z"
+    },
+    {
+      "key": "article:basic/what-is-stop-out-7:premium-checkpoints",
+      "id": "8b28148bf1",
+      "title": "限定QUEST: ストップアウト勝てない原因を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-09-03-what-is-stop-out-7-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-stop-out-7.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-stop-out-7/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-03-what-is-stop-out-7-premium-2.png",
+      "generatedAt": "2026-09-03T11:01:31.165Z",
+      "postedAt": "2026-09-03T11:03:18.490Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nbe4d31d26738",
+      "publishedAt": "2026-09-03T11:03:18.490Z"
     }
   ]
 }
