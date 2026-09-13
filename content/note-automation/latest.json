@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-spread-1:membership-teaser",
-    "id": "da32ac9a37",
-    "title": "無料公開: スプレッドとは？FXの実質コストを初心者向けに解説でつまずく前に確認したいこと",
+    "key": "public:basic/what-is-spread-8:membership-teaser",
+    "id": "ae67f4b431",
+    "title": "無料公開: スプレッドの実戦的な使い方でつまずく前に確認したいこと",
     "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-09-12-what-is-spread-1-public-1.md",
-    "sourcePath": "src/content/basic/what-is-spread-1.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-1/",
+    "file": "content/note-automation/drafts/2026-09-13-what-is-spread-8-public-1.md",
+    "sourcePath": "src/content/basic/what-is-spread-8.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-8/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,17 +14,17 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-09-12-what-is-spread-1-public-1.png",
-    "generatedAt": "2026-09-12T11:01:17.087Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-09-13-what-is-spread-8-public-1.png",
+    "generatedAt": "2026-09-13T11:02:16.943Z"
   },
   {
-    "key": "article:basic/what-is-spread-1:premium-checkpoints",
-    "id": "783c09825b",
-    "title": "限定QUEST: スプレッドとは？FXの実質コストを初心者向けに解説を実戦で使う3つの確認ポイント",
+    "key": "article:basic/what-is-spread-8:premium-checkpoints",
+    "id": "83910c990d",
+    "title": "限定QUEST: スプレッドの実戦的な使い方を実戦で使う3つの確認ポイント",
     "type": "member_article",
-    "file": "content/note-automation/drafts/2026-09-12-what-is-spread-1-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-spread-1.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-1/",
+    "file": "content/note-automation/drafts/2026-09-13-what-is-spread-8-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-spread-8.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-8/",
     "visibility": "members_only",
     "tags": [
       "FX初心者",
@@ -32,7 +32,7 @@
       "チャート分析",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-09-12-what-is-spread-1-premium-2.png",
-    "generatedAt": "2026-09-12T11:01:17.087Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-09-13-what-is-spread-8-premium-2.png",
+    "generatedAt": "2026-09-13T11:02:16.943Z"
   }
 ]
