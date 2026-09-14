@@ -856,6 +856,7 @@ function selectDrafts(articles, ledger) {
     }
 
     if (typeFilter === "paired" && articleDrafts.length < 2) continue;
+    if (articleDrafts.length === 0) continue;
 
     for (const draft of articleDrafts) {
       drafts.push(draft);
