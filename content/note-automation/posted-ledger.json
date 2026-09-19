@@ -5779,6 +5779,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n6a34adcf3869",
       "publishedAt": "2026-09-14T22:35:48.813Z"
+    },
+    {
+      "key": "public:basic/what-is-spread-12:membership-teaser",
+      "id": "60ae6b8ff4",
+      "title": "無料公開: スプレッド環境認識との関係でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-09-19-what-is-spread-12-public-1.md",
+      "sourcePath": "src/content/basic/what-is-spread-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-12/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-19-what-is-spread-12-public-1.png",
+      "generatedAt": "2026-09-19T11:01:55.678Z",
+      "postedAt": "2026-09-19T11:03:18.731Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n594810a980fc",
+      "publishedAt": "2026-09-19T11:03:18.731Z"
+    },
+    {
+      "key": "article:basic/what-is-spread-12:premium-checkpoints",
+      "id": "a06817cf1a",
+      "title": "限定QUEST: スプレッド環境認識との関係を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-09-19-what-is-spread-12-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-spread-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-12/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-19-what-is-spread-12-premium-2.png",
+      "generatedAt": "2026-09-19T11:01:55.678Z",
+      "postedAt": "2026-09-19T11:04:04.819Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/ndf1541b9a61f",
+      "publishedAt": "2026-09-19T11:04:04.819Z"
     }
   ]
 }
