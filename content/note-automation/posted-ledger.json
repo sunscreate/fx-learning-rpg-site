@@ -5923,6 +5923,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n74a8a0f05b0f",
       "publishedAt": "2026-09-21T11:04:02.732Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-8:usdjpy-practice",
+      "id": "583dce9df7",
+      "title": "無料公開: Bid/Askをの実戦的な使い方をドル円で練習する3ステップ",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-09-21-what-is-bid-ask-8-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-8.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-8/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-21-what-is-bid-ask-8-public-practice-1.png",
+      "generatedAt": "2026-09-21T22:31:04.402Z",
+      "postedAt": "2026-09-21T22:31:57.768Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/na6ba2a573be8",
+      "publishedAt": "2026-09-21T22:31:57.768Z"
     }
   ]
 }
