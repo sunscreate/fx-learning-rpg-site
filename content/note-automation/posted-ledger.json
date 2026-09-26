@@ -5947,6 +5947,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/na6ba2a573be8",
       "publishedAt": "2026-09-21T22:31:57.768Z"
+    },
+    {
+      "key": "public:basic/what-is-spread-3:membership-teaser",
+      "id": "82abbfdbae",
+      "title": "無料公開: スプレッド使い方でつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-09-26-what-is-spread-3-public-1.md",
+      "sourcePath": "src/content/basic/what-is-spread-3.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-3/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-26-what-is-spread-3-public-1.png",
+      "generatedAt": "2026-09-26T11:01:42.908Z",
+      "postedAt": "2026-09-26T11:02:44.762Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n586075c3baf2",
+      "publishedAt": "2026-09-26T11:02:44.762Z"
+    },
+    {
+      "key": "article:basic/what-is-spread-3:premium-checkpoints",
+      "id": "b07e6a20ed",
+      "title": "限定QUEST: スプレッド使い方を実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-09-26-what-is-spread-3-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-spread-3.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-3/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-26-what-is-spread-3-premium-2.png",
+      "generatedAt": "2026-09-26T11:01:42.908Z",
+      "postedAt": "2026-09-26T11:03:29.223Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nd09cfab16127",
+      "publishedAt": "2026-09-26T11:03:29.223Z"
     }
   ]
 }
