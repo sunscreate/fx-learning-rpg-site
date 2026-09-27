@@ -115,6 +115,24 @@
       "thumbnail": "content/note-automation/thumbnails/2026-06-14-what-is-bid-ask-12-premium-1.png",
       "chartImage": "content/note-automation/charts/2026-06-14-what-is-bid-ask-12-premium-1-chart.png",
       "generatedAt": "2026-06-14T11:02:17.617Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-12:usdjpy-practice",
+      "id": "c4a6202b13",
+      "title": "無料公開: Bid/Askを環境認識との関係をドル円で練習する3ステップ",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-09-27-what-is-bid-ask-12-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-12/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-27-what-is-bid-ask-12-public-practice-1.png",
+      "generatedAt": "2026-09-27T22:32:35.555Z"
     }
   ],
   "posted": [
@@ -6067,6 +6085,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n46db52ee6a49",
       "publishedAt": "2026-09-27T11:06:15.357Z"
+    },
+    {
+      "key": "public:basic/what-is-bid-ask-12:usdjpy-practice",
+      "id": "c4a6202b13",
+      "title": "無料公開: Bid/Askを環境認識との関係をドル円で練習する3ステップ",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-09-27-what-is-bid-ask-12-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-bid-ask-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-12/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-09-27-what-is-bid-ask-12-public-practice-1.png",
+      "generatedAt": "2026-09-27T22:32:35.555Z",
+      "postedAt": "2026-09-27T22:35:39.000Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n04474cf87534",
+      "publishedAt": "2026-09-27T22:35:39.000Z"
     }
   ]
 }
