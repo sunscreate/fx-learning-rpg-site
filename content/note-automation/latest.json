@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-spread-2:membership-teaser",
-    "id": "70582d0b7f",
-    "title": "無料公開: スプレッド初心者向け解説でつまずく前に確認したいこと",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-09-28-what-is-spread-2-public-1.md",
-    "sourcePath": "src/content/basic/what-is-spread-2.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-2/",
+    "key": "public:basic/what-is-bid-ask-4:usdjpy-practice",
+    "id": "35e79398fc",
+    "title": "無料公開: Bid/Askを見方をドル円で練習する3ステップ",
+    "type": "public_practice",
+    "file": "content/note-automation/drafts/2026-09-28-what-is-bid-ask-4-public-practice-1.md",
+    "sourcePath": "src/content/basic/what-is-bid-ask-4.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-4/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,25 +14,7 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-09-28-what-is-spread-2-public-1.png",
-    "generatedAt": "2026-09-28T11:03:02.423Z"
-  },
-  {
-    "key": "article:basic/what-is-spread-2:premium-checkpoints",
-    "id": "5db4b4e219",
-    "title": "限定QUEST: スプレッド初心者向け解説を実戦で使う3つの確認ポイント",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-09-28-what-is-spread-2-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-spread-2.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-2/",
-    "visibility": "members_only",
-    "tags": [
-      "FX初心者",
-      "ドル円",
-      "チャート分析",
-      "FX Quest Guild"
-    ],
-    "thumbnail": "content/note-automation/thumbnails/2026-09-28-what-is-spread-2-premium-2.png",
-    "generatedAt": "2026-09-28T11:03:02.423Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-09-28-what-is-bid-ask-4-public-practice-1.png",
+    "generatedAt": "2026-09-28T22:32:01.272Z"
   }
 ]
