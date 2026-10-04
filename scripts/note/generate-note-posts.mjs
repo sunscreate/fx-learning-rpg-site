@@ -176,6 +176,36 @@ function renderClosingLinks() {
   return `noteで続ける:\n[hearty_tapir5661 の投稿一覧](${NOTE_PROFILE_URL})\n\nこのnoteを保存して、次に同じテーマへ戻れるようにしておくと復習しやすくなります。`;
 }
 
+function renderPublicDecisionFrame(articleTitle) {
+  return `## 有料で読む価値があるかの判断基準
+
+この先へ進むか迷う場合は、次の3つで判断してください。
+
+- ${articleTitle}を読んだあと、実際のチャートでどこを見ればよいか迷う
+- 知識は増えているのに、入る場面と見送る場面を分けられない
+- トレード後に「なぜその判断をしたか」を残せず、同じ失敗を繰り返している
+
+1つでも当てはまるなら、次に必要なのは新しい用語ではなく、行動に移せる型です。
+限定QUESTは、読者が「読むだけ」で止まらず、保存して戻り、同じ手順で記録できるように設計しています。
+お金を払う価値は、情報量ではなく、迷ったときに戻れる判断手順が手元に残ることです。`;
+}
+
+function renderBehavioralActivation(articleTitle) {
+  return `## 行動心理学で見る今日の一歩
+
+人は「あとでやろう」と思ったことほど忘れやすいです。
+だからこの記事では、やることを大きくせず、今日の行動を1つだけに絞ります。
+
+今日やること:
+- ${articleTitle}を使う場面を1つ書く
+- ${articleTitle}を使わない場面を1つ書く
+- 次に同じテーマへ戻るため、このnoteを保存する
+
+行動を小さくすると、始める抵抗が下がります。
+保存して戻る場所を作ると、次回の迷いも減ります。
+この小さな反復が、無料記事から限定QUESTへ進む価値を作ります。`;
+}
+
 function renderPublicNoteRevenueBridge(articleTitle) {
   return `## このnoteで続けると伸びやすい理由
 
@@ -234,6 +264,37 @@ ${articleTitle}のような基礎テーマを、別の日、別の相場、別�
 その記録が次のQUESTを読むときの材料になります。`;
 }
 
+function renderPremiumPaidValueDesign(articleTitle) {
+  return `## 支払った価値を回収する使い方
+
+この記事の価値は、読んだ直後の納得感ではなく、次のトレード前に判断を整えられることです。
+次の3つを埋めれば、限定QUESTを実務メモとして使えます。
+
+- 迷ったときに最初に見る条件:
+- 今日は見送ると決める条件:
+- 次回も同じ判断をするための記録:
+
+行動経済学では、人は目先の値動きに引っ張られやすいです。
+だから先に「見送る条件」を書いておくと、衝動的なエントリーを減らしやすくなります。
+学習科学では、同じ型で思い出す回数が増えるほど定着しやすくなります。
+このnoteを保存して、同じテンプレートで繰り返すほど、支払った価値は回収しやすくなります。`;
+}
+
+function renderPremiumDecisionPsychology(articleTitle) {
+  return `## なぜこの順番で進めるのか
+
+この限定QUESTは、知識を増やす順番ではなく、行動が変わる順番で作っています。
+
+- 認知心理学: 見るポイントを絞ると、チャート上のノイズに振り回されにくくなる
+- 行動心理学: 「いつ・何をするか」を決めると、次の行動に移りやすくなる
+- 行動経済学: 損失を取り返したい衝動を、事前ルールで抑えやすくなる
+- 学習科学: 同じテンプレートで反復すると、判断の再現性が上がりやすい
+
+${articleTitle}を学ぶ目的は、知識を増やして満足することではありません。
+迷った場面で、自分のお金を守る判断を1つ増やすことです。
+その意味で、限定QUESTは読み物ではなく、判断を変えるための作業台として使ってください。`;
+}
+
 function renderMemberBoardRevenueBridge(articleTitle) {
   return `## 掲示板で伸ばす使い方
 
@@ -245,6 +306,19 @@ ${articleTitle}について投稿するときは、正解を当てるより「�
 - 週末に同じテーマを見直す
 
 この流れをnote内で続けるほど、限定記事の内容が自分の判断ルールに変わっていきます。`;
+}
+
+function renderBoardCommitmentLoop(articleTitle) {
+  return `## 投稿すると続きやすい理由
+
+人は、頭の中だけで決めたことより、書いて残したことの方が見直しやすくなります。
+掲示板に投稿すると、${articleTitle}をどう見たかが残り、次の記事を読むときの比較材料になります。
+
+- 自分の判断を外に出す
+- 他の人の根拠を見る
+- 次回の限定QUESTで修正する
+
+この循環ができると、note内で学習が閉じず、継続する理由が生まれます。`;
 }
 
 function renderPremiumFrameworks(articleTitle) {
@@ -582,6 +656,10 @@ ${renderPracticeMenu(practicalPoints, articleTitle)}
 
 ${renderPremiumExperiments(articleTitle)}
 
+${renderPremiumPaidValueDesign(articleTitle)}
+
+${renderPremiumDecisionPsychology(articleTitle)}
+
 ${renderPremiumNoteRetention(articleTitle)}
 
 ## 上位層が実務で外さない運用ルール
@@ -692,6 +770,8 @@ ${renderDeepDive(practicalPoints, articleTitle)}
 
 ${renderPublicNoteRevenueBridge(articleTitle)}
 
+${renderPublicDecisionFrame(articleTitle)}
+
 ## ドル円チャートで見るときの使い方
 
 最初は難しく考えすぎず、ドル円の1時間足か5分足で十分です。
@@ -712,6 +792,8 @@ ${renderPublicAdvancedAngles(articleTitle)}
 ${renderPracticeMenu(practicalPoints, articleTitle)}
 
 ${renderPublicExperiments(articleTitle)}
+
+${renderBehavioralActivation(articleTitle)}
 
 ## 学習チェックリスト
 
@@ -822,6 +904,10 @@ ${renderChecklist([
 勝ち負けよりも、同じ順番で判断できたかを見ます。
 限定QUESTでは、この記録をドル円チャートの具体例に当てはめて、再現しやすい判断の型にしていきます。
 
+${renderBehavioralActivation(articleTitle)}
+
+${renderPublicDecisionFrame(articleTitle)}
+
 ${renderPublicNoteOffer(articleTitle)}
 
 ${renderClosingLinks()}
@@ -886,6 +972,8 @@ ${joinBulletList(mistakePoints)}
 相手の結論よりも、どの情報を拾ってその判断になったかを見ると学びやすくなります。
 
 ${renderMemberBoardRevenueBridge(articleTitle)}
+
+${renderBoardCommitmentLoop(articleTitle)}
 
 ${renderClosingLinks()}
 
