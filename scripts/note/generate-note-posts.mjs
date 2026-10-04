@@ -190,6 +190,37 @@ function renderPublicDecisionFrame(articleTitle) {
 お金を払う価値は、情報量ではなく、迷ったときに戻れる判断手順が手元に残ることです。`;
 }
 
+function renderTrustFilter(articleTitle) {
+  return `## 先に伝えておきたい向き不向き
+
+このnoteは、すぐ勝てるサインを探している人には向いていません。
+短期的な正解より、同じ判断を再現する力を作るための記事です。
+
+逆に、次のような人には相性が良いです。
+
+- ${articleTitle}を読んでも、実戦で使う順番がまだ曖昧
+- 何度も同じ失敗をしていて、記録の型がほしい
+- 感覚ではなく、見送る条件を先に決めたい
+- 読んだ内容を次のチャート確認に残したい
+
+向き不向きを先に分ける理由は、読者の時間とお金を無駄にしないためです。
+必要な人だけが次へ進む方が、限定QUESTの価値も高くなります。`;
+}
+
+function renderPaidValueStack(articleTitle) {
+  return `## 限定QUESTで持ち帰るもの
+
+限定QUESTで持ち帰ってほしいのは、知識そのものではなく、次に使える判断パーツです。
+
+- 見る順番: ${articleTitle}を確認する前後で何を見るか
+- 見送る条件: 入らない理由を先に決めるための基準
+- 記録テンプレート: 後から判断を見直すための型
+- 週末レビュー: 同じミスを翌週に残さないための確認項目
+
+この4つがあると、読んだ内容がその場限りで終わりにくくなります。
+「読んだのに変わらない」を減らすことが、限定QUESTにお金を使う一番の意味です。`;
+}
+
 function renderBehavioralActivation(articleTitle) {
   return `## 行動心理学で見る今日の一歩
 
@@ -278,6 +309,19 @@ function renderPremiumPaidValueDesign(articleTitle) {
 だから先に「見送る条件」を書いておくと、衝動的なエントリーを減らしやすくなります。
 学習科学では、同じ型で思い出す回数が増えるほど定着しやすくなります。
 このnoteを保存して、同じテンプレートで繰り返すほど、支払った価値は回収しやすくなります。`;
+}
+
+function renderPremiumOutcomeLedger(articleTitle) {
+  return `## 今日の成果物
+
+この記事を閉じる前に、次の3行だけ残してください。
+
+- ${articleTitle}で今日見る条件:
+- 見送ると決める条件:
+- 次回の限定QUESTで確認すること:
+
+この3行が残れば、この記事は単なる読み物ではなく、次回の判断材料になります。
+支払った価値を回収するには、完璧な理解よりも、次に戻れるメモを1つ残すことが大切です。`;
 }
 
 function renderPremiumDecisionPsychology(articleTitle) {
@@ -658,6 +702,8 @@ ${renderPremiumExperiments(articleTitle)}
 
 ${renderPremiumPaidValueDesign(articleTitle)}
 
+${renderPremiumOutcomeLedger(articleTitle)}
+
 ${renderPremiumDecisionPsychology(articleTitle)}
 
 ${renderPremiumNoteRetention(articleTitle)}
@@ -771,6 +817,10 @@ ${renderDeepDive(practicalPoints, articleTitle)}
 ${renderPublicNoteRevenueBridge(articleTitle)}
 
 ${renderPublicDecisionFrame(articleTitle)}
+
+${renderTrustFilter(articleTitle)}
+
+${renderPaidValueStack(articleTitle)}
 
 ## ドル円チャートで見るときの使い方
 
@@ -907,6 +957,10 @@ ${renderChecklist([
 ${renderBehavioralActivation(articleTitle)}
 
 ${renderPublicDecisionFrame(articleTitle)}
+
+${renderTrustFilter(articleTitle)}
+
+${renderPaidValueStack(articleTitle)}
 
 ${renderPublicNoteOffer(articleTitle)}
 
