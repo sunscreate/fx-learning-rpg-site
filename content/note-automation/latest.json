@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-bid-ask-7:usdjpy-practice",
-    "id": "fb58d98639",
-    "title": "無料公開: Bid/Askを勝てない原因をドル円で練習する3ステップ",
-    "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-10-03-what-is-bid-ask-7-public-practice-1.md",
-    "sourcePath": "src/content/basic/what-is-bid-ask-7.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-bid-ask-7/",
+    "key": "public:basic/what-is-spread-15:membership-teaser",
+    "id": "5e2b3bae55",
+    "title": "無料公開: スプレッド負ける人の特徴でつまずく前に確認したいこと",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-10-04-what-is-spread-15-public-1.md",
+    "sourcePath": "src/content/basic/what-is-spread-15.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-15/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,25 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-03-what-is-bid-ask-7-public-practice-1.png",
-    "generatedAt": "2026-10-03T22:32:06.737Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-04-what-is-spread-15-public-1.png",
+    "generatedAt": "2026-10-04T11:02:07.399Z"
+  },
+  {
+    "key": "article:basic/what-is-spread-15:premium-checkpoints",
+    "id": "0b64bcc4ea",
+    "title": "限定QUEST: スプレッド負ける人の特徴を実戦で使う3つの確認ポイント",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-10-04-what-is-spread-15-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-spread-15.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-spread-15/",
+    "visibility": "members_only",
+    "tags": [
+      "FX初心者",
+      "ドル円",
+      "チャート分析",
+      "FX Quest Guild"
+    ],
+    "thumbnail": "content/note-automation/thumbnails/2026-10-04-what-is-spread-15-premium-2.png",
+    "generatedAt": "2026-10-04T11:02:07.399Z"
   }
 ]
