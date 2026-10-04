@@ -12,8 +12,6 @@ const LATEST_PATH = path.join(ROOT, "content/note-automation/latest.json");
 
 const SITE_URL = "https://sunscreate.github.io/fx-learning-rpg-site/";
 const NOTE_PROFILE_URL = "https://note.com/hearty_tapir5661";
-const NOTE_MEMBERSHIP_URL = "https://note.com/hearty_tapir5661/membership";
-const A8_URL = "https://px.a8.net/svt/ejp?a8mat=3Z0M25+6HE1RU+4SM6+5YRHE";
 
 const args = new Map(
   process.argv.slice(2).map((arg) => {
@@ -175,16 +173,16 @@ function renderFaq(articleTitle) {
 }
 
 function renderClosingLinks() {
-  return `noteで続ける:\n[FX Quest Guild メンバーシップ](${NOTE_MEMBERSHIP_URL})\n\n投稿一覧:\n[hearty_tapir5661 のnote](${NOTE_PROFILE_URL})\n\nFX Quest Guild:\n[FX Quest Guild](${SITE_URL})\n\n取引環境を確認したい方:\n[MATSUI FXを確認する](${A8_URL})`;
+  return `noteで続ける:\n[hearty_tapir5661 の投稿一覧](${NOTE_PROFILE_URL})\n\nこのnoteを保存して、次に同じテーマへ戻れるようにしておくと復習しやすくなります。`;
 }
 
 function renderPublicNoteRevenueBridge(articleTitle) {
-  return `## noteメンバーシップで続きが伸びる理由
+  return `## このnoteで続けると伸びやすい理由
 
 無料記事では、${articleTitle}の入口を整理しました。
 ただ、実戦で差がつくのは「読んだ直後」ではなく、同じ型で何度も見直せる状態を作ったあとです。
 
-FX Quest Guildのnoteメンバーシップでは、毎回の限定QUESTを次の形で使えるようにしています。
+FX Quest Guildのnoteでは、毎回のQUESTを次の形で使えるようにしています。
 
 - 今日見るポイントを1つに絞る
 - ドル円チャートで使う場面と見送る場面を分ける
@@ -193,14 +191,15 @@ FX Quest Guildのnoteメンバーシップでは、毎回の限定QUESTを次の
 
 独学で迷いやすい人ほど、記事を単発で読むより「読む、試す、記録する、次のQUESTへ進む」の流れをnote内で固定した方が伸びやすいです。
 
-参加はこちら:
-[FX Quest Guild メンバーシップ](${NOTE_MEMBERSHIP_URL})`;
+まずはこのnoteをフォローして、投稿一覧から次のQUESTへ進める状態にしておいてください。
+
+[投稿一覧を見る](${NOTE_PROFILE_URL})`;
 }
 
 function renderPublicNoteOffer(articleTitle) {
   return `## ここから先で得られるもの
 
-メンバー限定記事では、${articleTitle}を使って次の部分まで踏み込みます。
+限定QUESTでは、${articleTitle}を使って次の部分まで踏み込みます。
 
 - 入る条件より先に、見送る条件を決める
 - 1回の負けで崩れないロット管理へ落とす
@@ -208,13 +207,16 @@ function renderPublicNoteOffer(articleTitle) {
 - 週次レビューで同じミスを減らす
 
 「知識は増えたのに判断が変わらない」と感じているなら、次に必要なのは情報量ではなく運用の型です。
-この型をnote内で積み上げたい方は、メンバーシップから限定QUESTを順番に進めてください。
+この型をnote内で積み上げたい方は、投稿一覧から限定QUESTを順番に進めてください。
 
-[メンバー限定QUESTへ進む](${NOTE_MEMBERSHIP_URL})`;
+入った直後は、まず「無料記事で基礎を確認する」「限定QUESTで記録テンプレートを使う」「週末に同じ記事へ戻る」の3つだけで十分です。
+選択肢を増やしすぎず、同じ型を繰り返すほど判断のブレが減っていきます。
+
+[投稿一覧から次のQUESTを探す](${NOTE_PROFILE_URL})`;
 }
 
 function renderPremiumNoteRetention(articleTitle) {
-  return `## メンバーシップを使い倒す順番
+  return `## 限定QUESTを使い倒す順番
 
 この記事は、読んで終わりにせず、note内で次の順番で使うと効果が出やすくなります。
 
@@ -223,16 +225,17 @@ function renderPremiumNoteRetention(articleTitle) {
 3. 週末に同じ記事へ戻り、判断が変わった理由を追記する
 4. 次の限定QUESTで、同じテンプレートを別テーマへ当てはめる
 
-メンバーシップの価値は、記事本数だけではありません。
+限定QUESTの価値は、記事本数だけではありません。
 ${articleTitle}のような基礎テーマを、別の日、別の相場、別の時間足で何度も使い直せることが大きな価値です。
 迷ったときに戻る記事がnote内に増えるほど、判断のブレは小さくなります。
 
-継続して使う方はこちら:
-[FX Quest Guild メンバーシップ](${NOTE_MEMBERSHIP_URL})`;
+今日やることは1つで十分です。
+この記事を保存し、次にチャートを開いたときに「使う場面」と「見送る場面」を1つずつ書いてください。
+その記録が次のQUESTを読むときの材料になります。`;
 }
 
 function renderMemberBoardRevenueBridge(articleTitle) {
-  return `## メンバーシップ内で伸ばす使い方
+  return `## 掲示板で伸ばす使い方
 
 掲示板は、読むだけでは見えにくい判断のクセを見つける場所です。
 ${articleTitle}について投稿するときは、正解を当てるより「どの根拠を見たか」を残してください。
@@ -732,7 +735,7 @@ ${renderPublicNoteOffer(articleTitle)}
 
 ## 次にやること
 
-無料の本編QUESTで基礎を確認し、メンバーシップではドル円チャートを使って「どこで使うか」「どこで使わないか」「どう記録して再現するか」まで練習します。
+無料の本編QUESTで基礎を確認し、限定QUESTではドル円チャートを使って「どこで使うか」「どこで使わないか」「どう記録して再現するか」まで練習します。
 知識を読む段階から、判断の型を作る段階へ進みたい方は、ここから先の実戦パートが役立ちます。
 
 ${renderClosingLinks()}
@@ -817,7 +820,7 @@ ${renderChecklist([
 
 本編QUESTで基礎を確認したら、次は同じ手順を3回だけ繰り返してください。
 勝ち負けよりも、同じ順番で判断できたかを見ます。
-メンバーシップでは、この記録をドル円チャートの具体例に当てはめて、再現しやすい判断の型にしていきます。
+限定QUESTでは、この記録をドル円チャートの具体例に当てはめて、再現しやすい判断の型にしていきます。
 
 ${renderPublicNoteOffer(articleTitle)}
 
