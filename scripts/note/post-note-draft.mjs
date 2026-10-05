@@ -435,7 +435,7 @@ async function postSingleDraft(context, ledger, queueEntry) {
       if (missingLinks.length > 0) {
         throw new Error(`Publish verification failed: links were not rendered as links: ${missingLinks.join(", ")}`);
       }
-      const ogImage = await verifyPage.locator('meta[property="og:image"]').getAttribute("content");
+      const ogImage = await verifyPage.locator('meta[property="og:image"]').first().getAttribute("content");
       if (!ogImage) {
         throw new Error("Publish verification failed: og:image was not found.");
       }

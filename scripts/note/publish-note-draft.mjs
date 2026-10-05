@@ -74,7 +74,7 @@ async function verifyPublishedNote(context, publicUrl, markdown, generatedEntry)
     throw new Error(`Publish verification failed: links were not rendered as links: ${missingLinks.join(", ")}`);
   }
 
-  const ogImage = await verifyPage.locator('meta[property="og:image"]').getAttribute("content");
+  const ogImage = await verifyPage.locator('meta[property="og:image"]').first().getAttribute("content");
   if (!ogImage) {
     throw new Error("Publish verification failed: og:image was not found.");
   }
@@ -111,6 +111,46 @@ async function verifyPublishedNote(context, publicUrl, markdown, generatedEntry)
   }
 
   await verifyPage.close();
+}
+
+function getNoteKey(noteUrl) {
+  return noteUrl?.match(/\/n\/([^/?#]+)/)?.[1] || null;
+}
+
+async function waitForMembershipPaywall(noteUrl) {
+  const noteKey = getNoteKey(noteUrl);
+  if (!noteKey) {
+    throw new Error("Publish verification failed: note URL key was not found.");
+  }
+
+  let lastState = null;
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    const response = await fetch(`https://note.com/api/v3/notes/${noteKey}`);
+    if (!response.ok) {
+      throw new Error(`Publish verification failed: note API returned ${response.status}.`);
+    }
+    const payload = await response.json();
+    const note = payload?.data || {};
+    lastState = {
+      status: note.status,
+      is_limited: note.is_limited,
+      can_read: note.can_read,
+      is_membership_connected: note.paywall?.context?.is_membership_connected,
+    };
+
+    if (
+      lastState.status === "published" &&
+      lastState.is_limited === true &&
+      lastState.can_read === false &&
+      lastState.is_membership_connected === true
+    ) {
+      return;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+  }
+
+  throw new Error(`Publish verification failed: note membership paywall is not active: ${JSON.stringify(lastState)}`);
 }
 
 function buildPublishedLedger(ledger, publicUrl, targetFile, generatedEntry) {
@@ -221,6 +261,9 @@ async function main() {
     await page.waitForTimeout(10000);
   }
 
+  if (generatedEntry?.visibility === "members_only") {
+    await waitForMembershipPaywall(publicUrl);
+  }
   await verifyPublishedNote(context, publicUrl, markdown, generatedEntry);
 
   const nextLedger = buildPublishedLedger(ledger, publicUrl, normalizedFile, generatedEntry);
