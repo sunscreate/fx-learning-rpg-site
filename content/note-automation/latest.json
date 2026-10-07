@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-slippage-1:membership-teaser",
-    "id": "7604ec5603",
-    "title": "無料公開: スリッページとは？注文価格がズレる原因を解説でつまずく前に確認したいこと",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-10-07-what-is-slippage-1-public-1.md",
-    "sourcePath": "src/content/basic/what-is-slippage-1.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-1/",
+    "key": "public:basic/what-is-fx:usdjpy-practice",
+    "id": "c2d4c6b4dc",
+    "title": "無料公開: FXとは？をドル円で練習する3ステップ",
+    "type": "public_practice",
+    "file": "content/note-automation/drafts/2026-10-07-what-is-fx-public-practice-1.md",
+    "sourcePath": "src/content/basic/what-is-fx.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-fx/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,25 +14,7 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-07-what-is-slippage-1-public-1.png",
-    "generatedAt": "2026-10-07T11:02:28.597Z"
-  },
-  {
-    "key": "article:basic/what-is-slippage-1:premium-checkpoints",
-    "id": "bd1d0bf867",
-    "title": "限定QUEST: スリッページとは？注文価格がズレる原因を解説を実戦で使う3つの確認ポイント",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-10-07-what-is-slippage-1-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-slippage-1.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-1/",
-    "visibility": "members_only",
-    "tags": [
-      "FX初心者",
-      "ドル円",
-      "チャート分析",
-      "FX Quest Guild"
-    ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-07-what-is-slippage-1-premium-2.png",
-    "generatedAt": "2026-10-07T11:02:28.597Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-07-what-is-fx-public-practice-1.png",
+    "generatedAt": "2026-10-07T22:31:13.005Z"
   }
 ]
