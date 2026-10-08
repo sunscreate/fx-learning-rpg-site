@@ -6781,6 +6781,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n82cce60fc2d8",
       "publishedAt": "2026-10-07T22:32:13.805Z"
+    },
+    {
+      "key": "public:basic/trading-session:usdjpy-practice",
+      "id": "48a5b10dfa",
+      "title": "無料公開: FXの取引時間とは？をドル円で練習する3ステップ",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-08-trading-session-public-practice-1.md",
+      "sourcePath": "src/content/basic/trading-session.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/trading-session/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-08-trading-session-public-practice-1.png",
+      "generatedAt": "2026-10-08T22:32:30.684Z",
+      "postedAt": "2026-10-08T22:33:58.695Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n58804ea54210",
+      "publishedAt": "2026-10-08T22:33:58.695Z"
     }
   ]
 }

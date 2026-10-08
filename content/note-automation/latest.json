@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-fx:usdjpy-practice",
-    "id": "c2d4c6b4dc",
-    "title": "無料公開: FXとは？をドル円で練習する3ステップ",
+    "key": "public:basic/trading-session:usdjpy-practice",
+    "id": "48a5b10dfa",
+    "title": "無料公開: FXの取引時間とは？をドル円で練習する3ステップ",
     "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-10-07-what-is-fx-public-practice-1.md",
-    "sourcePath": "src/content/basic/what-is-fx.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-fx/",
+    "file": "content/note-automation/drafts/2026-10-08-trading-session-public-practice-1.md",
+    "sourcePath": "src/content/basic/trading-session.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/trading-session/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,7 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-07-what-is-fx-public-practice-1.png",
-    "generatedAt": "2026-10-07T22:31:13.005Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-08-trading-session-public-practice-1.png",
+    "generatedAt": "2026-10-08T22:32:30.684Z"
   }
 ]
