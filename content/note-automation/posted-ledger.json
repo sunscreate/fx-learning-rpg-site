@@ -6877,6 +6877,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n8c75ec97796e",
       "publishedAt": "2026-10-09T22:32:23.065Z"
+    },
+    {
+      "key": "public:basic/what-is-slippage-11:membership-teaser",
+      "id": "bc7601bc90",
+      "title": "無料公開: スリッページよくある勘違いでつまずく前に確認したいこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-10-10-what-is-slippage-11-public-1.md",
+      "sourcePath": "src/content/basic/what-is-slippage-11.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-11/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-10-what-is-slippage-11-public-1.png",
+      "generatedAt": "2026-10-10T11:02:04.989Z",
+      "postedAt": "2026-10-10T11:03:09.338Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nb9b767643ec4",
+      "publishedAt": "2026-10-10T11:03:09.338Z"
+    },
+    {
+      "key": "article:basic/what-is-slippage-11:premium-checkpoints",
+      "id": "1543f3f453",
+      "title": "限定QUEST: スリッページよくある勘違いを実戦で使う3つの確認ポイント",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-10-10-what-is-slippage-11-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-slippage-11.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-11/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-10-what-is-slippage-11-premium-2.png",
+      "generatedAt": "2026-10-10T11:02:04.989Z",
+      "postedAt": "2026-10-10T11:03:53.104Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n060fd36e48b5",
+      "publishedAt": "2026-10-10T11:03:53.104Z"
     }
   ]
 }
