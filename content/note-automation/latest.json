@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:entry/what-is-n-pattern-9:usdjpy-practice",
-    "id": "5b57b31203",
-    "title": "無料公開: N字おすすめしない場面をドル円で練習する3ステップ",
-    "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-10-11-what-is-n-pattern-9-public-practice-1.md",
-    "sourcePath": "src/content/entry/what-is-n-pattern-9.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-9/",
+    "key": "public:basic/what-is-slippage-12:membership-teaser",
+    "id": "a9f94b7367",
+    "title": "無料公開: スリッページ環境認識との関係でつまずく前に確認したいこと",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-10-11-what-is-slippage-12-public-1.md",
+    "sourcePath": "src/content/basic/what-is-slippage-12.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-12/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,25 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-11-what-is-n-pattern-9-public-practice-1.png",
-    "generatedAt": "2026-10-11T09:27:10.113Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-11-what-is-slippage-12-public-1.png",
+    "generatedAt": "2026-10-11T11:01:41.949Z"
+  },
+  {
+    "key": "article:basic/what-is-slippage-12:premium-checkpoints",
+    "id": "9488fbc0fb",
+    "title": "限定QUEST: スリッページ環境認識との関係を実戦で使う3つの確認ポイント",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-10-11-what-is-slippage-12-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-slippage-12.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-12/",
+    "visibility": "members_only",
+    "tags": [
+      "FX初心者",
+      "ドル円",
+      "チャート分析",
+      "FX Quest Guild"
+    ],
+    "thumbnail": "content/note-automation/thumbnails/2026-10-11-what-is-slippage-12-premium-2.png",
+    "generatedAt": "2026-10-11T11:01:41.949Z"
   }
 ]
