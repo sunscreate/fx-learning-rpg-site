@@ -7213,6 +7213,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n6c6cd1d2c0d6",
       "publishedAt": "2026-10-14T11:03:27.280Z"
+    },
+    {
+      "key": "public:entry/what-is-n-pattern-12:usdjpy-practice",
+      "id": "c7715dc87e",
+      "title": "無料公開: N字環境認識との関係をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-14-what-is-n-pattern-12-public-practice-1.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-12/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-14-what-is-n-pattern-12-public-practice-1.png",
+      "generatedAt": "2026-10-14T22:31:30.962Z",
+      "postedAt": "2026-10-14T22:32:22.464Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n446a4c3e5cd4",
+      "publishedAt": "2026-10-14T22:32:22.464Z"
     }
   ]
 }
