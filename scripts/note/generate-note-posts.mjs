@@ -176,6 +176,100 @@ function renderClosingLinks() {
   return `noteで続ける:\n[hearty_tapir5661 の投稿一覧](${NOTE_PROFILE_URL})\n\nこのnoteを保存して、次に同じテーマへ戻れるようにしておくと復習しやすくなります。`;
 }
 
+function renderReaderPersona(articleTitle) {
+  return `## この記事を届けたい人
+
+今回の想定読者は、FXを学び始めて3か月から1年ほど経ち、ドル円チャートを毎日見ているのに、判断がまだ安定しない人です。
+
+- 用語は少しずつ分かってきたが、実戦になると見る順番が崩れる
+- 勝った日は自信が出るが、負けた日は根拠が曖昧だったことに気づく
+- ${articleTitle}を知識としては読んだが、エントリー前の確認に落とせていない
+- 新しい手法を探す前に、自分の判断を整える型がほしい
+
+この記事は「すぐ勝てるサイン」を渡すものではありません。
+代わりに、迷ったときに何を見て、何を見送るかを決めるための作業手順を渡します。`;
+}
+
+function renderPainCauseSolution(articleTitle) {
+  return `## 悩み、原因、解決策
+
+### 悩み
+${articleTitle}を読んでも、実際のチャートを前にすると「今使っていいのか」「今回は見送るべきなのか」で止まりやすくなります。
+その結果、勝った理由も負けた理由も曖昧になり、次の判断へつながりません。
+
+### 原因
+原因は、知識不足だけではありません。
+多くの場合、見る順番、見送る条件、記録の残し方が決まっていないことです。
+順番がないと、その日の値動きや直前の損益に引っ張られ、都合のよい根拠だけを拾いやすくなります。
+
+### 解決策
+解決策は、毎回同じ型で確認することです。
+まず「相場の状態」を一文で書き、次に「使う条件」と「使わない条件」を分け、最後に「次回も同じ判断をするための記録」を残します。
+限定QUESTでは、この流れを有料ラインの先でそのまま使える手順に落とし込みます。`;
+}
+
+function renderPaidLinePreview(articleTitle) {
+  return `## 有料ラインの先で受け取る手順
+
+有料ラインの先では、${articleTitle}を次の順番で実戦用に変えます。
+
+1. 今日の相場を一文で定義する
+2. ${articleTitle}を使う条件を1つに絞る
+3. 先に見送る条件を書く
+4. 損切り幅とロットを確認する
+5. 判断後に3行だけ記録する
+6. 週末に同じ型で見直す
+
+ここで売っているのは、情報量ではなく「迷ったときに戻れる順番」です。
+読んだ直後だけ納得する記事ではなく、次にチャートを開いたときに使える記事を目指しています。`;
+}
+
+function renderPremiumPersonaContract(articleTitle) {
+  return `## この限定QUESTの約束
+
+この限定QUESTは、${articleTitle}を知識として理解した人が、次の段階へ進むための記事です。
+想定しているのは、勝ち方を増やしたい人ではなく、負け方を整えて資金を守りたい人です。
+
+この記事の約束は3つです。
+
+- 読者像を絞る: ドル円を見ている初心者から初級者に合わせる
+- 悩みを絞る: 「知っているのに使えない」を解消する
+- 成果物を絞る: 最後に3行の判断メモが残る状態にする
+
+ここから先は、読むための文章ではなく、実際に手を動かすためのワークとして進めてください。`;
+}
+
+function renderPremiumExecutionSequence(articleTitle) {
+  return `## 有料ラインの先の実行手順
+
+ここからは、${articleTitle}を実戦で使うための順番です。
+一度で完璧にしようとせず、まずは1回分だけ埋めてください。
+
+### 手順1: 今日の相場を一文で決める
+例: 「ドル円は1時間足では上昇後の押し目候補だが、5分足ではまだ方向が揃っていない」
+
+### 手順2: 使う条件を1つだけ選ぶ
+${articleTitle}を使う条件を増やしすぎると、結局どれも守れません。
+今日は1つだけに絞ります。
+
+### 手順3: 見送る条件を先に書く
+入る理由より先に、入らない理由を書きます。
+この順番にすると、損を取り返したい気持ちに引っ張られにくくなります。
+
+### 手順4: 損切り幅とロットを照合する
+損切り幅が広いなら、ロットを落とします。
+ロットを落とせないなら、その時点で見送り候補です。
+
+### 手順5: 3行で記録する
+- 今日の判断:
+- 見送る条件:
+- 次回も同じ判断をするための注意点:
+
+### 手順6: 週末に1回だけ見直す
+勝ち負けではなく、手順を守れたかを見ます。
+守れなかった箇所が、次の限定QUESTで直すテーマになります。`;
+}
+
 function renderPublicDecisionFrame(articleTitle) {
   return `## 有料で読む価値があるかの判断基準
 
@@ -644,6 +738,12 @@ function buildPremiumArticle(article, index) {
 今回は、知識として読んだ内容を「実際のチャートでどう確認するか」からさらに進めて、「資金を守りながら伸ばす運用設計」まで落とし込みます。
 ここでは一般的な初心者向け説明ではなく、長く生き残るための実務目線を優先します。
 
+${renderReaderPersona(articleTitle)}
+
+${renderPainCauseSolution(articleTitle)}
+
+${renderPremiumPersonaContract(articleTitle)}
+
 元QUEST:
 [${articleTitle}](${article.url})
 
@@ -652,6 +752,8 @@ function buildPremiumArticle(article, index) {
 知識として覚えるだけでなく、実際のドル円チャートを見ながら「どこを確認すればよいか」「どこでは使わないか」「資金をどう配分すれば壊れにくいか」まで言語化できるようにします。
 
 ${sectionSummary(conclusion, 4)}
+
+${renderPremiumExecutionSequence(articleTitle)}
 
 ## 先に押さえたい前提
 
@@ -792,6 +894,10 @@ FXを学び始めた人が「${articleTitle}」でつまずく前に、まず確
 単語の意味だけを覚えて終わるのではなく、「どんな場面で役立つのか」「どこで誤解しやすいのか」まで含めて、最初の土台を固めるための記事です。
 短い言葉ほど軽く見えますが、基礎ほど後から何度も使います。だからこそ、最初の理解を雑にしないことが重要です。
 
+${renderReaderPersona(articleTitle)}
+
+${renderPainCauseSolution(articleTitle)}
+
 本編QUEST:
 [${articleTitle}](${article.url})
 
@@ -821,6 +927,8 @@ ${renderPublicDecisionFrame(articleTitle)}
 ${renderTrustFilter(articleTitle)}
 
 ${renderPaidValueStack(articleTitle)}
+
+${renderPaidLinePreview(articleTitle)}
 
 ## ドル円チャートで見るときの使い方
 
@@ -904,6 +1012,10 @@ FXの知識は、読んだだけでは判断力に変わりません。
 今回は「${articleTitle}」を、ドル円チャートを見ながら短時間で練習するための手順に落とし込みます。
 難しい分析を増やすより、見る順番を固定して、毎回同じ言葉で記録することを優先します。
 
+${renderReaderPersona(articleTitle)}
+
+${renderPainCauseSolution(articleTitle)}
+
 本編QUEST:
 [${articleTitle}](${article.url})
 
@@ -961,6 +1073,8 @@ ${renderPublicDecisionFrame(articleTitle)}
 ${renderTrustFilter(articleTitle)}
 
 ${renderPaidValueStack(articleTitle)}
+
+${renderPaidLinePreview(articleTitle)}
 
 ${renderPublicNoteOffer(articleTitle)}
 
