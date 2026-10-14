@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:entry/what-is-n-pattern-11:usdjpy-practice",
-    "id": "df31ed3d7b",
-    "title": "無料公開: N字よくある勘違いをドル円で練習する3ステップ",
-    "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-10-13-what-is-n-pattern-11-public-practice-1.md",
-    "sourcePath": "src/content/entry/what-is-n-pattern-11.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-11/",
+    "key": "public:basic/what-is-slippage-6:membership-teaser",
+    "id": "94b4949f38",
+    "title": "無料公開: スリッページ失敗例で迷う人が最初に直すこと",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-10-14-what-is-slippage-6-public-1.md",
+    "sourcePath": "src/content/basic/what-is-slippage-6.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-6/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,25 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-13-what-is-n-pattern-11-public-practice-1.png",
-    "generatedAt": "2026-10-13T22:32:49.607Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-14-what-is-slippage-6-public-1.png",
+    "generatedAt": "2026-10-14T11:01:38.272Z"
+  },
+  {
+    "key": "article:basic/what-is-slippage-6:premium-checkpoints",
+    "id": "ee58191c69",
+    "title": "限定QUEST: スリッページ失敗例で「入らない判断」を作る実戦手順",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-10-14-what-is-slippage-6-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-slippage-6.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-6/",
+    "visibility": "members_only",
+    "tags": [
+      "FX初心者",
+      "ドル円",
+      "チャート分析",
+      "FX Quest Guild"
+    ],
+    "thumbnail": "content/note-automation/thumbnails/2026-10-14-what-is-slippage-6-premium-2.png",
+    "generatedAt": "2026-10-14T11:01:38.272Z"
   }
 ]
