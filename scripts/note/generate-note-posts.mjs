@@ -45,17 +45,41 @@ function escapeXml(input) {
 }
 
 function splitTitle(title) {
-  const normalized = title.replace(/^無料公開:\s*/, "").replace(/^限定QUEST:\s*/, "");
-  if (normalized.length <= 24) return [normalized];
-  const first = normalized.slice(0, 24);
-  const second = normalized.slice(24, 48);
-  return [first, second ? `${second}${normalized.length > 48 ? "..." : ""}` : ""].filter(Boolean);
+  const normalized = title
+    .replace(/^無料公開:\s*/, "")
+    .replace(/^限定QUEST:\s*/, "")
+    .replace(/^掲示板テーマ:\s*/, "");
+  if (normalized.length <= 18) return [normalized];
+  const first = normalized.slice(0, 18);
+  const second = normalized.slice(18, 36);
+  const third = normalized.slice(36, 52);
+  return [
+    first,
+    second ? `${second}${normalized.length > 52 ? "..." : ""}` : "",
+    third && normalized.length <= 52 ? third : "",
+  ].filter(Boolean);
 }
 
 function noteTitle(title) {
   return title
     .replace(/Bid\/AskFX初心者/g, "Bid/AskをFX初心者")
     .replace(/Bid\/Ask(?!(?:とは|を))(?=[\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Han}])/u, "Bid/Askを");
+}
+
+function buildPremiumTitle(articleTitle) {
+  return `限定QUEST: ${articleTitle}で「入らない判断」を作る実戦手順`;
+}
+
+function buildPublicTeaserTitle(articleTitle) {
+  return `無料公開: ${articleTitle}で迷う人が最初に直すこと`;
+}
+
+function buildPublicPracticeTitle(articleTitle) {
+  return `無料公開: ${articleTitle}をドル円で使う3行練習`;
+}
+
+function buildBoardTitle(articleTitle) {
+  return `掲示板テーマ: ${articleTitle}の見送り判断を共有しよう`;
 }
 
 function cleanBodyLine(line) {
@@ -582,37 +606,84 @@ ${articleTitle}を見た場面を3回分だけ記録し、「見えた」「見�
 成績より先に判断の質をそろえる方が、後で伸びやすいです。`;
 }
 
+function thumbnailCopy(draft) {
+  const copies = {
+    member_article: {
+      badge: "限定ワーク",
+      hook: "知ってるのに使えない人へ",
+      promise: "入らない判断を作る",
+      proof: "手順 / 記録 / 週末レビュー",
+    },
+    public_teaser: {
+      badge: "無料公開",
+      hook: "最初に直すポイント",
+      promise: "迷う理由を3分で整理",
+      proof: "悩み / 原因 / 解決策",
+    },
+    public_practice: {
+      badge: "無料公開",
+      hook: "ドル円で3行練習",
+      promise: "読むだけで終わらせない",
+      proof: "使う条件 / 見送る条件 / 記録",
+    },
+    board_post: {
+      badge: "掲示板",
+      hook: "判断を残して強くする",
+      promise: "見方を比べるテーマ",
+      proof: "投稿 / 比較 / 週末復習",
+    },
+  };
+
+  return copies[draft.type] || copies.public_teaser;
+}
+
 async function writeThumbnail(draft) {
   await mkdir(THUMBNAIL_DIR, { recursive: true });
 
   const thumbnailName = draft.fileName.replace(/\.md$/, ".png");
   const thumbnailPath = path.join(THUMBNAIL_DIR, thumbnailName);
   const titleLines = splitTitle(draft.title);
+  const copy = thumbnailCopy(draft);
   const label = draft.visibility === "members_only" ? "MEMBER QUEST" : "FREE QUEST";
   const accent = draft.visibility === "members_only" ? "#f2c94c" : "#58d68d";
+  const mutedAccent = draft.visibility === "members_only" ? "#8a6d1f" : "#1f7a4a";
 
   const svg = `<svg width="1280" height="720" viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1280" height="720" fill="#111827"/>
-  <rect x="56" y="54" width="1168" height="612" rx="28" fill="#172033" stroke="${accent}" stroke-width="4"/>
-  <path d="M94 548 C218 482 292 512 382 438 C464 371 540 404 618 320 C702 230 790 268 876 184 C956 106 1056 148 1186 92" fill="none" stroke="${accent}" stroke-width="10" stroke-linecap="round"/>
-  <g opacity="0.9">
-    <rect x="156" y="178" width="18" height="210" fill="#58d68d"/>
-    <line x1="165" y1="138" x2="165" y2="430" stroke="#58d68d" stroke-width="8"/>
-    <rect x="252" y="248" width="18" height="166" fill="#ef6461"/>
-    <line x1="261" y1="210" x2="261" y2="462" stroke="#ef6461" stroke-width="8"/>
-    <rect x="348" y="208" width="18" height="190" fill="#58d68d"/>
-    <line x1="357" y1="168" x2="357" y2="452" stroke="#58d68d" stroke-width="8"/>
-    <rect x="444" y="286" width="18" height="118" fill="#58d68d"/>
-    <line x1="453" y1="232" x2="453" y2="464" stroke="#58d68d" stroke-width="8"/>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#182338"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#0b1220"/>
+  <rect x="54" y="52" width="1172" height="616" rx="18" fill="url(#panel)" stroke="${accent}" stroke-width="4"/>
+  <rect x="88" y="86" width="190" height="48" rx="24" fill="${accent}"/>
+  <text x="183" y="119" text-anchor="middle" fill="#0b1220" font-family="Arial, sans-serif" font-size="25" font-weight="800">${escapeXml(copy.badge)}</text>
+  <text x="306" y="120" fill="#f8fafc" font-family="Arial, sans-serif" font-size="34" font-weight="800">FX Quest Guild</text>
+  <text x="1042" y="120" text-anchor="end" fill="${accent}" font-family="Arial, sans-serif" font-size="27" font-weight="800">${label}</text>
+  <text x="96" y="218" fill="${accent}" font-family="Arial, sans-serif" font-size="54" font-weight="900">${escapeXml(copy.hook)}</text>
+  <text x="96" y="280" fill="#e5e7eb" font-family="Arial, sans-serif" font-size="34" font-weight="700">${escapeXml(copy.promise)}</text>
+  <rect x="96" y="314" width="456" height="54" rx="12" fill="#0f172a" stroke="${mutedAccent}" stroke-width="2"/>
+  <text x="124" y="350" fill="#dbeafe" font-family="Arial, sans-serif" font-size="27" font-weight="700">${escapeXml(copy.proof)}</text>
+  <g opacity="0.95">
+    <path d="M708 506 C766 448 812 476 858 392 C904 310 954 330 998 248 C1038 174 1090 198 1168 136" fill="none" stroke="${accent}" stroke-width="12" stroke-linecap="round"/>
+    <line x1="746" y1="230" x2="746" y2="558" stroke="#2dd4bf" stroke-width="7"/>
+    <rect x="736" y="286" width="20" height="154" fill="#2dd4bf"/>
+    <line x1="842" y1="274" x2="842" y2="582" stroke="#ef6461" stroke-width="7"/>
+    <rect x="832" y="358" width="20" height="128" fill="#ef6461"/>
+    <line x1="938" y1="186" x2="938" y2="530" stroke="#2dd4bf" stroke-width="7"/>
+    <rect x="928" y="250" width="20" height="186" fill="#2dd4bf"/>
+    <line x1="1040" y1="158" x2="1040" y2="492" stroke="#2dd4bf" stroke-width="7"/>
+    <rect x="1030" y="214" width="20" height="196" fill="#2dd4bf"/>
+    <circle cx="1168" cy="136" r="16" fill="${accent}"/>
   </g>
-  <text x="96" y="120" fill="#f8fafc" font-family="Arial, sans-serif" font-size="38" font-weight="700">FX Quest Guild</text>
-  <text x="96" y="174" fill="${accent}" font-family="Arial, sans-serif" font-size="28" font-weight="700">${label} / USDJPY</text>
   ${titleLines
     .map(
       (line, index) =>
-        `<text x="96" y="${520 + index * 72}" fill="#ffffff" font-family="Arial, sans-serif" font-size="58" font-weight="800">${escapeXml(line)}</text>`,
+        `<text x="96" y="${468 + index * 64}" fill="#ffffff" font-family="Arial, sans-serif" font-size="54" font-weight="900">${escapeXml(line)}</text>`,
     )
     .join("")}
+  <text x="96" y="640" fill="#cbd5e1" font-family="Arial, sans-serif" font-size="25" font-weight="700">USD/JPY learning note</text>
 </svg>`;
 
   const fallbackName = draft.visibility === "members_only"
@@ -728,7 +799,7 @@ function buildPremiumArticle(article, index) {
   const conclusion = pickSection(article, /結論|学べること|とは/i, 0);
   const practicalPoints = sectionPoints(practical, 4);
   const mistakePoints = sectionPoints(mistakes, 4);
-  const title = `限定QUEST: ${articleTitle}を実戦で使う3つの確認ポイント`;
+  const title = buildPremiumTitle(articleTitle);
   const key = `article:${article.category}/${article.slug}:premium-checkpoints`;
   const fileSlug = `${today}-${slugify(article.slug)}-premium-${index + 1}`;
 
@@ -884,7 +955,7 @@ function buildPublicTeaser(article, index) {
   const conclusionPoints = sectionPoints(conclusion, 4);
   const practicalPoints = sectionPoints(practical, 4);
   const mistakePoints = sectionPoints(mistakes, 4);
-  const title = `無料公開: ${articleTitle}でつまずく前に確認したいこと`;
+  const title = buildPublicTeaserTitle(articleTitle);
   const key = `public:${article.category}/${article.slug}:membership-teaser`;
   const fileSlug = `${today}-${slugify(article.slug)}-public-${index + 1}`;
 
@@ -1002,7 +1073,7 @@ function buildPublicPractice(article, index) {
   const mistakes = pickSection(article, /失敗|注意|危険|おすすめしない/i, 3);
   const practicalPoints = sectionPoints(practical, 4);
   const mistakePoints = sectionPoints(mistakes, 3);
-  const title = `無料公開: ${articleTitle}をドル円で練習する3ステップ`;
+  const title = buildPublicPracticeTitle(articleTitle);
   const key = `public:${article.category}/${article.slug}:usdjpy-practice`;
   const fileSlug = `${today}-${slugify(article.slug)}-public-practice-${index + 1}`;
 
@@ -1102,7 +1173,7 @@ function buildBoardPost(article, index) {
   const mistakes = pickSection(article, /失敗|注意|危険|おすすめしない/i, 3);
   const practicalPoints = sectionPoints(practical, 3);
   const mistakePoints = sectionPoints(mistakes, 3);
-  const title = `掲示板テーマ: ${articleTitle}をドル円チャートで確認しよう`;
+  const title = buildBoardTitle(articleTitle);
   const key = `board:${article.category}/${article.slug}:usdjpy-check`;
   const fileSlug = `${today}-${slugify(article.slug)}-board-${index + 1}`;
 
