@@ -1,0 +1,67 @@
+{
+  "generated": [
+    {
+      "key": "lab:public:note-title-thumbnail",
+      "type": "public_teaser",
+      "visibility": "public",
+      "title": "無料公開: noteを書いているのに記事が開かれないを最初に改善する3つの確認点",
+      "tags": [
+        "note収益化",
+        "コンテンツ販売",
+        "文章術"
+      ],
+      "id": "ccfb81ff4b",
+      "file": "content/note-monetization-lab/drafts/2026-10-15-note-title-thumbnail-public_teaser.md",
+      "generatedAt": "2026-10-15T11:25:53.518Z",
+      "thumbnail": "content/note-monetization-lab/thumbnails/2026-10-15-note-title-thumbnail-public_teaser.svg"
+    },
+    {
+      "key": "lab:paid:note-title-thumbnail",
+      "type": "paid_how_to",
+      "visibility": "paid",
+      "price": 980,
+      "title": "実践手順: noteを書いているのに記事が開かれないを改善するテンプレート",
+      "tags": [
+        "note収益化",
+        "コンテンツ販売",
+        "テンプレート"
+      ],
+      "id": "3470b1a800",
+      "file": "content/note-monetization-lab/drafts/2026-10-15-note-title-thumbnail-paid_how_to.md",
+      "generatedAt": "2026-10-15T11:25:53.518Z",
+      "thumbnail": "content/note-monetization-lab/thumbnails/2026-10-15-note-title-thumbnail-paid_how_to.svg"
+    },
+    {
+      "key": "lab:public:paid-note-value",
+      "type": "public_teaser",
+      "visibility": "public",
+      "title": "無料公開: 有料noteを作っても購入されないを最初に改善する3つの確認点",
+      "tags": [
+        "note収益化",
+        "コンテンツ販売",
+        "文章術"
+      ],
+      "id": "f932b92653",
+      "file": "content/note-monetization-lab/drafts/2026-10-15-paid-note-value-public_teaser.md",
+      "generatedAt": "2026-10-15T11:25:53.518Z",
+      "thumbnail": "content/note-monetization-lab/thumbnails/2026-10-15-paid-note-value-public_teaser.svg"
+    },
+    {
+      "key": "lab:paid:paid-note-value",
+      "type": "paid_how_to",
+      "visibility": "paid",
+      "price": 980,
+      "title": "実践手順: 有料noteを作っても購入されないを改善するテンプレート",
+      "tags": [
+        "note収益化",
+        "コンテンツ販売",
+        "テンプレート"
+      ],
+      "id": "0dadf4433e",
+      "file": "content/note-monetization-lab/drafts/2026-10-15-paid-note-value-paid_how_to.md",
+      "generatedAt": "2026-10-15T11:25:53.518Z",
+      "thumbnail": "content/note-monetization-lab/thumbnails/2026-10-15-paid-note-value-paid_how_to.svg"
+    }
+  ],
+  "posted": []
+}

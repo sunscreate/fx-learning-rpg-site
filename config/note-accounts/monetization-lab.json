@@ -1,0 +1,24 @@
+{
+  "id": "monetization-lab",
+  "brandName": "note収益化ラボ",
+  "profileUrl": "https://note.com/REPLACE_WITH_MONETIZATION_LAB_ACCOUNT",
+  "audience": "noteを始めて1〜6か月で、記事が読まれず売れずに悩む人",
+  "promise": "タイトル・画像・有料部分を改善し、読者が次の行動へ進める記事を作る",
+  "defaultTags": ["note収益化", "コンテンツ販売", "AI活用", "副業", "文章術"],
+  "postingPolicy": {
+    "publicPerWeek": 3,
+    "paidPerWeek": 1,
+    "analysisPerWeek": 1,
+    "requireManualApproval": true
+  },
+  "pricing": {
+    "analysis": 500,
+    "howTo": 980,
+    "templatePack": 1980,
+    "implementationPack": 2980
+  },
+  "cta": {
+    "public": "記事を保存し、次の改善記事へ進む",
+    "paid": "テンプレートを使って自分の記事を改善する"
+  }
+}

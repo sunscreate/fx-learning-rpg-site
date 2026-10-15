@@ -14,7 +14,8 @@
     "note:post": "node scripts/note/post-note-draft.mjs",
     "note:publish": "node scripts/note/publish-note-draft.mjs",
     "note:generate:public": "node scripts/note/generate-note-posts.mjs --count=1 --type=public",
-    "note:generate:member": "node scripts/note/generate-note-posts.mjs --count=1 --type=paired"
+    "note:generate:member": "node scripts/note/generate-note-posts.mjs --count=1 --type=paired",
+    "note:lab:generate": "node scripts/note/generate-monetization-lab-posts.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^5.0.5",
