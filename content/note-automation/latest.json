@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:entry/what-is-n-pattern-12:usdjpy-practice",
-    "id": "c7715dc87e",
-    "title": "無料公開: N字環境認識との関係をドル円で使う3行練習",
-    "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-10-14-what-is-n-pattern-12-public-practice-1.md",
-    "sourcePath": "src/content/entry/what-is-n-pattern-12.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-12/",
+    "key": "public:basic/what-is-slippage-2:membership-teaser",
+    "id": "121bc71b72",
+    "title": "無料公開: スリッページ初心者向け解説で迷う人が最初に直すこと",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-10-15-what-is-slippage-2-public-1.md",
+    "sourcePath": "src/content/basic/what-is-slippage-2.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-2/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,25 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-14-what-is-n-pattern-12-public-practice-1.png",
-    "generatedAt": "2026-10-14T22:31:30.962Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-15-what-is-slippage-2-public-1.png",
+    "generatedAt": "2026-10-15T11:02:00.921Z"
+  },
+  {
+    "key": "article:basic/what-is-slippage-2:premium-checkpoints",
+    "id": "c2d490db8e",
+    "title": "限定QUEST: スリッページ初心者向け解説で「入らない判断」を作る実戦手順",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-10-15-what-is-slippage-2-premium-2.md",
+    "sourcePath": "src/content/basic/what-is-slippage-2.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-2/",
+    "visibility": "members_only",
+    "tags": [
+      "FX初心者",
+      "ドル円",
+      "チャート分析",
+      "FX Quest Guild"
+    ],
+    "thumbnail": "content/note-automation/thumbnails/2026-10-15-what-is-slippage-2-premium-2.png",
+    "generatedAt": "2026-10-15T11:02:00.921Z"
   }
 ]

@@ -7237,6 +7237,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n446a4c3e5cd4",
       "publishedAt": "2026-10-14T22:32:22.464Z"
+    },
+    {
+      "key": "public:basic/what-is-slippage-2:membership-teaser",
+      "id": "121bc71b72",
+      "title": "無料公開: スリッページ初心者向け解説で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-10-15-what-is-slippage-2-public-1.md",
+      "sourcePath": "src/content/basic/what-is-slippage-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-2/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-15-what-is-slippage-2-public-1.png",
+      "generatedAt": "2026-10-15T11:02:00.921Z",
+      "postedAt": "2026-10-15T11:02:50.080Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n043a0773b87c",
+      "publishedAt": "2026-10-15T11:02:50.080Z"
+    },
+    {
+      "key": "article:basic/what-is-slippage-2:premium-checkpoints",
+      "id": "c2d490db8e",
+      "title": "限定QUEST: スリッページ初心者向け解説で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-10-15-what-is-slippage-2-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-slippage-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-2/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-15-what-is-slippage-2-premium-2.png",
+      "generatedAt": "2026-10-15T11:02:00.921Z",
+      "postedAt": "2026-10-15T11:03:33.382Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nc648536c13d8",
+      "publishedAt": "2026-10-15T11:03:33.382Z"
     }
   ]
 }
