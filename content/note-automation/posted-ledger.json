@@ -7357,6 +7357,102 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n6447245a685a",
       "publishedAt": "2026-10-16T11:03:38.250Z"
+    },
+    {
+      "key": "public:entry/what-is-n-pattern-3:usdjpy-practice",
+      "id": "30b8441eee",
+      "title": "無料公開: N字使い方をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-16-what-is-n-pattern-3-public-practice-1.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-3.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-3/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-16-what-is-n-pattern-3-public-practice-1.png",
+      "generatedAt": "2026-10-16T22:31:46.627Z",
+      "postedAt": "2026-10-16T22:32:35.098Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n4a96619617af",
+      "publishedAt": "2026-10-16T22:32:35.098Z"
+    },
+    {
+      "key": "public:basic/what-is-slippage-7:membership-teaser",
+      "id": "f924518872",
+      "title": "無料公開: スリッページ勝てない原因で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-10-17-what-is-slippage-7-public-1.md",
+      "sourcePath": "src/content/basic/what-is-slippage-7.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-7/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-17-what-is-slippage-7-public-1.png",
+      "generatedAt": "2026-10-17T11:00:53.160Z",
+      "postedAt": "2026-10-17T11:01:39.906Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n3223125d3066",
+      "publishedAt": "2026-10-17T11:01:39.906Z"
+    },
+    {
+      "key": "article:basic/what-is-slippage-7:premium-checkpoints",
+      "id": "ad4010fdd5",
+      "title": "限定QUEST: スリッページ勝てない原因で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-10-17-what-is-slippage-7-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-slippage-7.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-slippage-7/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-17-what-is-slippage-7-premium-2.png",
+      "generatedAt": "2026-10-17T11:00:53.160Z",
+      "postedAt": "2026-10-17T11:02:23.439Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n99d53cfcc863",
+      "publishedAt": "2026-10-17T11:02:23.439Z"
+    },
+    {
+      "key": "public:entry/what-is-n-pattern-6:usdjpy-practice",
+      "id": "197e72c102",
+      "title": "無料公開: N字失敗例をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-17-what-is-n-pattern-6-public-practice-1.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-6.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-6/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-17-what-is-n-pattern-6-public-practice-1.png",
+      "generatedAt": "2026-10-17T22:30:54.139Z",
+      "postedAt": "2026-10-17T22:31:41.176Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n682c65503722",
+      "publishedAt": "2026-10-17T22:31:41.176Z"
     }
   ]
 }
