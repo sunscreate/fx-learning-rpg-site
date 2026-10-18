@@ -7453,6 +7453,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n682c65503722",
       "publishedAt": "2026-10-17T22:31:41.176Z"
+    },
+    {
+      "key": "public:entry/what-is-n-pattern-2:usdjpy-practice",
+      "id": "ce2f6080f6",
+      "title": "無料公開: N字初心者向け解説をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-18-what-is-n-pattern-2-public-practice-1.md",
+      "sourcePath": "src/content/entry/what-is-n-pattern-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-2/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-18-what-is-n-pattern-2-public-practice-1.png",
+      "generatedAt": "2026-10-18T22:31:32.246Z",
+      "postedAt": "2026-10-18T22:32:23.064Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n91ac4394e6e8",
+      "publishedAt": "2026-10-18T22:32:23.064Z"
     }
   ]
 }
