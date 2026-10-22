@@ -310,7 +310,10 @@ function buildPostingQueue(ledger, targetFile) {
   if (!primary) {
     return [{ file: relativeTargetFile, generatedEntry: null }];
   }
-  const shouldIncludeCompanions = args.has("include-companions") ? includeCompanions : primary.visibility !== "public";
+  // A caller-selected draft must remain the only publish target unless it
+  // explicitly requests its paired companion. This prevents a members-only
+  // invocation from publishing the public draft first.
+  const shouldIncludeCompanions = args.has("include-companions") && includeCompanions;
   if (!shouldIncludeCompanions) {
     return [{ file: primary.file, generatedEntry: primary }];
   }
