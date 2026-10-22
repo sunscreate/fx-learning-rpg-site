@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-swap-9:membership-teaser",
-    "id": "e1069e2748",
-    "title": "無料公開: スワップポイントおすすめしない場面で迷う人が最初に直すこと",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-10-22-what-is-swap-9-public-1.md",
-    "sourcePath": "src/content/basic/what-is-swap-9.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-9/",
+    "key": "public:entry/what-is-n-pattern-5:usdjpy-practice",
+    "id": "26e5ad5bb0",
+    "title": "無料公開: N字注意点をドル円で使う3行練習",
+    "type": "public_practice",
+    "file": "content/note-automation/drafts/2026-10-22-what-is-n-pattern-5-public-practice-1.md",
+    "sourcePath": "src/content/entry/what-is-n-pattern-5.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/entry/what-is-n-pattern-5/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,25 +14,7 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-22-what-is-swap-9-public-1.png",
-    "generatedAt": "2026-10-22T11:05:47.557Z"
-  },
-  {
-    "key": "article:basic/what-is-swap-9:premium-checkpoints",
-    "id": "8c8dd8c586",
-    "title": "限定QUEST: スワップポイントおすすめしない場面で「入らない判断」を作る実戦手順",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-10-22-what-is-swap-9-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-swap-9.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-9/",
-    "visibility": "members_only",
-    "tags": [
-      "FX初心者",
-      "ドル円",
-      "チャート分析",
-      "FX Quest Guild"
-    ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-22-what-is-swap-9-premium-2.png",
-    "generatedAt": "2026-10-22T11:05:47.557Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-22-what-is-n-pattern-5-public-practice-1.png",
+    "generatedAt": "2026-10-22T22:32:51.974Z"
   }
 ]
