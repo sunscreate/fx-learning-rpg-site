@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-swap-point:membership-teaser",
-    "id": "363c291317",
-    "title": "無料公開: スワップポイントとは？で迷う人が最初に直すこと",
-    "type": "public_teaser",
-    "file": "content/note-automation/drafts/2026-10-23-what-is-swap-point-public-1.md",
-    "sourcePath": "src/content/basic/what-is-swap-point.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-point/",
+    "key": "public:basic/what-is-pips-1:usdjpy-practice",
+    "id": "2d6b99d098",
+    "title": "無料公開: pipsとは？FXの値幅単位を初心者向けに解説をドル円で使う3行練習",
+    "type": "public_practice",
+    "file": "content/note-automation/drafts/2026-10-27-what-is-pips-1-public-practice-1.md",
+    "sourcePath": "src/content/basic/what-is-pips-1.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-1/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,25 +14,7 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-23-what-is-swap-point-public-1.png",
-    "generatedAt": "2026-10-23T10:59:26.908Z"
-  },
-  {
-    "key": "article:basic/what-is-swap-point:premium-checkpoints",
-    "id": "818593d93b",
-    "title": "限定QUEST: スワップポイントとは？で「入らない判断」を作る実戦手順",
-    "type": "member_article",
-    "file": "content/note-automation/drafts/2026-10-23-what-is-swap-point-premium-2.md",
-    "sourcePath": "src/content/basic/what-is-swap-point.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-point/",
-    "visibility": "members_only",
-    "tags": [
-      "FX初心者",
-      "ドル円",
-      "チャート分析",
-      "FX Quest Guild"
-    ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-23-what-is-swap-point-premium-2.png",
-    "generatedAt": "2026-10-23T10:59:26.908Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-27-what-is-pips-1-public-practice-1.png",
+    "generatedAt": "2026-10-27T22:31:21.652Z"
   }
 ]
