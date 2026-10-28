@@ -241,6 +241,24 @@
       ],
       "thumbnail": "content/note-automation/thumbnails/2026-10-27-what-is-swap-12-public-1.png",
       "generatedAt": "2026-10-27T11:01:19.633Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-4:membership-teaser",
+      "id": "8012e1e3ff",
+      "title": "無料公開: スワップポイント見方で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-10-28-what-is-swap-4-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-4.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-4/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-28-what-is-swap-4-public-1.png",
+      "generatedAt": "2026-10-28T10:57:15.391Z"
     }
   ],
   "posted": [
@@ -8137,6 +8155,54 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n26806e90d900",
       "publishedAt": "2026-10-27T22:32:12.029Z"
+    },
+    {
+      "key": "article:basic/what-is-swap-4:premium-checkpoints",
+      "id": "3f6c548ec9",
+      "title": "限定QUEST: スワップポイント見方で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-10-28-what-is-swap-4-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-4.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-4/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-28-what-is-swap-4-premium-2.png",
+      "generatedAt": "2026-10-28T10:57:15.391Z",
+      "postedAt": "2026-10-28T10:58:15.345Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n95cfd6197595",
+      "publishedAt": "2026-10-28T10:58:15.345Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-8:usdjpy-practice",
+      "id": "38d34bf0b0",
+      "title": "無料公開: pipsの実戦的な使い方をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-28-what-is-pips-8-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-8.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-8/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-28-what-is-pips-8-public-practice-1.png",
+      "generatedAt": "2026-10-28T22:32:26.107Z",
+      "postedAt": "2026-10-28T22:33:19.259Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n7fc1ac88b68b",
+      "publishedAt": "2026-10-28T22:33:19.259Z"
     }
   ]
 }
