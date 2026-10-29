@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:basic/what-is-pips-8:usdjpy-practice",
-    "id": "38d34bf0b0",
-    "title": "無料公開: pipsの実戦的な使い方をドル円で使う3行練習",
+    "key": "public:basic/what-is-pips-11:usdjpy-practice",
+    "id": "ed5180e266",
+    "title": "無料公開: pipsよくある勘違いをドル円で使う3行練習",
     "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-10-28-what-is-pips-8-public-practice-1.md",
-    "sourcePath": "src/content/basic/what-is-pips-8.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-8/",
+    "file": "content/note-automation/drafts/2026-10-29-what-is-pips-11-public-practice-1.md",
+    "sourcePath": "src/content/basic/what-is-pips-11.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-11/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,7 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-10-28-what-is-pips-8-public-practice-1.png",
-    "generatedAt": "2026-10-28T22:32:26.107Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-10-29-what-is-pips-11-public-practice-1.png",
+    "generatedAt": "2026-10-29T22:29:00.938Z"
   }
 ]
