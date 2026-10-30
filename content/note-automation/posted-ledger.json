@@ -8227,6 +8227,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n56b1f01a0687",
       "publishedAt": "2026-10-29T22:29:50.180Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-12:usdjpy-practice",
+      "id": "a45662ebe7",
+      "title": "無料公開: pips環境認識との関係をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-30-what-is-pips-12-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-12/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-30-what-is-pips-12-public-practice-1.png",
+      "generatedAt": "2026-10-30T22:26:28.783Z",
+      "postedAt": "2026-10-30T22:27:20.714Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n1277e5ed6c15",
+      "publishedAt": "2026-10-30T22:27:20.714Z"
     }
   ]
 }
