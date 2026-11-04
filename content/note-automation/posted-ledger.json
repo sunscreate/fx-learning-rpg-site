@@ -259,6 +259,24 @@
       ],
       "thumbnail": "content/note-automation/thumbnails/2026-10-28-what-is-swap-4-public-1.png",
       "generatedAt": "2026-10-28T10:57:15.391Z"
+    },
+    {
+      "key": "article:basic/what-is-swap-5:premium-checkpoints",
+      "id": "f74b35e93f",
+      "title": "限定QUEST: スワップポイント注意点で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-04-what-is-swap-5-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-5.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-5/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-04-what-is-swap-5-premium-2.png",
+      "generatedAt": "2026-11-04T11:03:28.745Z"
     }
   ],
   "posted": [
@@ -8275,6 +8293,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/nd5a19b30509e",
       "publishedAt": "2026-11-03T22:26:49.364Z"
+    },
+    {
+      "key": "article:basic/what-is-swap-5:premium-checkpoints",
+      "id": "f74b35e93f",
+      "title": "限定QUEST: スワップポイント注意点で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-04-what-is-swap-5-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-5.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-5/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-04-what-is-swap-5-premium-2.png",
+      "generatedAt": "2026-11-04T11:03:28.745Z",
+      "postedAt": "2026-11-04T11:04:36.906Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nbae8c18a4d3c",
+      "publishedAt": "2026-11-04T11:04:36.906Z"
     }
   ]
 }
