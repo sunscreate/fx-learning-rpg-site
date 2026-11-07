@@ -8365,6 +8365,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n3ff922104df2",
       "publishedAt": "2026-11-05T22:35:55.279Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-5:usdjpy-practice",
+      "id": "c3a1f44fdd",
+      "title": "無料公開: pips注意点をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-07-what-is-pips-5-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-5.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-5/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-07-what-is-pips-5-public-practice-1.png",
+      "generatedAt": "2026-11-07T22:29:49.080Z",
+      "postedAt": "2026-11-07T22:30:43.405Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n6c7e4ca57ac8",
+      "publishedAt": "2026-11-07T22:30:43.405Z"
     }
   ]
 }
