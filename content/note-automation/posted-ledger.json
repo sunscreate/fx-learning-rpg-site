@@ -8389,6 +8389,30 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n6c7e4ca57ac8",
       "publishedAt": "2026-11-07T22:30:43.405Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-15:usdjpy-practice",
+      "id": "1934ec56b8",
+      "title": "無料公開: pips負ける人の特徴をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-08-what-is-pips-15-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-15.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-15/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-08-what-is-pips-15-public-practice-1.png",
+      "generatedAt": "2026-11-08T22:32:23.184Z",
+      "postedAt": "2026-11-08T22:33:15.547Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n847c2ad8aef8",
+      "publishedAt": "2026-11-08T22:33:15.547Z"
     }
   ]
 }
