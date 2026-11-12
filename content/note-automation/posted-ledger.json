@@ -261,22 +261,274 @@
       "generatedAt": "2026-10-28T10:57:15.391Z"
     },
     {
-      "key": "article:basic/what-is-swap-5:premium-checkpoints",
-      "id": "f74b35e93f",
-      "title": "限定QUEST: スワップポイント注意点で「入らない判断」を作る実戦手順",
-      "type": "member_article",
-      "file": "content/note-automation/drafts/2026-11-04-what-is-swap-5-premium-2.md",
-      "sourcePath": "src/content/basic/what-is-swap-5.md",
-      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-5/",
-      "visibility": "members_only",
+      "key": "public:basic/what-is-swap-3:membership-teaser",
+      "id": "18d323b5bb",
+      "title": "無料公開: スワップポイント使い方で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-10-29-what-is-swap-3-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-3.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-3/",
+      "visibility": "public",
       "tags": [
         "FX初心者",
+        "FX学習",
         "ドル円",
-        "チャート分析",
         "FX Quest Guild"
       ],
-      "thumbnail": "content/note-automation/thumbnails/2026-11-04-what-is-swap-5-premium-2.png",
+      "thumbnail": "content/note-automation/thumbnails/2026-10-29-what-is-swap-3-public-1.png",
+      "generatedAt": "2026-10-29T11:02:57.263Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-6:membership-teaser",
+      "id": "c9e6942d6f",
+      "title": "無料公開: スワップポイント失敗例で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-10-30-what-is-swap-6-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-6.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-6/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-30-what-is-swap-6-public-1.png",
+      "generatedAt": "2026-10-30T11:04:28.940Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-2:membership-teaser",
+      "id": "2ac22ca3c1",
+      "title": "無料公開: スワップポイント初心者向け解説で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-10-31-what-is-swap-2-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-2/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-31-what-is-swap-2-public-1.png",
+      "generatedAt": "2026-10-31T11:00:35.615Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-14:membership-teaser",
+      "id": "210e60fb92",
+      "title": "無料公開: スワップポイント勝ってる人の考え方で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-01-what-is-swap-14-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-14.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-14/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-01-what-is-swap-14-public-1.png",
+      "generatedAt": "2026-11-01T10:57:37.127Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-7:membership-teaser",
+      "id": "37c2f19cdb",
+      "title": "無料公開: スワップポイント勝てない原因で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-02-what-is-swap-7-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-7.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-7/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-02-what-is-swap-7-public-1.png",
+      "generatedAt": "2026-11-02T11:03:45.372Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-13:membership-teaser",
+      "id": "8bff60636d",
+      "title": "無料公開: スワップポイント損切りとの関係で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-03-what-is-swap-13-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-13.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-13/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-03-what-is-swap-13-public-1.png",
+      "generatedAt": "2026-11-03T10:55:47.094Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-5:membership-teaser",
+      "id": "1f36ce5de2",
+      "title": "無料公開: スワップポイント注意点で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-04-what-is-swap-5-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-5.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-5/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-04-what-is-swap-5-public-1.png",
       "generatedAt": "2026-11-04T11:03:28.745Z"
+    },
+    {
+      "key": "public:basic/what-is-swap-15:membership-teaser",
+      "id": "341ebe29b9",
+      "title": "無料公開: スワップポイント負ける人の特徴で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-05-what-is-swap-15-public-1.md",
+      "sourcePath": "src/content/basic/what-is-swap-15.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-15/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-05-what-is-swap-15-public-1.png",
+      "generatedAt": "2026-11-05T11:04:13.932Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-10:membership-teaser",
+      "id": "090dee257e",
+      "title": "無料公開: ダウ理論FX初心者が最初に覚えるべき理由で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-06-what-is-dow-theory-10-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-10/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-06-what-is-dow-theory-10-public-1.png",
+      "generatedAt": "2026-11-06T10:55:40.897Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-9:membership-teaser",
+      "id": "07ec1fa9df",
+      "title": "無料公開: ダウ理論おすすめしない場面で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-07-what-is-dow-theory-9-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-9.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-9/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-07-what-is-dow-theory-9-public-1.png",
+      "generatedAt": "2026-11-07T11:01:51.753Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-1:membership-teaser",
+      "id": "699248bf4e",
+      "title": "無料公開: ダウ理論とは？トレンド判断の基本を初心者向けに解説で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-08-what-is-dow-theory-1-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-1.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-1/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-08-what-is-dow-theory-1-public-1.png",
+      "generatedAt": "2026-11-08T11:02:29.651Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-8:membership-teaser",
+      "id": "add5a09bbd",
+      "title": "無料公開: ダウ理論の実戦的な使い方で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-09-what-is-dow-theory-8-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-8.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-8/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-09-what-is-dow-theory-8-public-1.png",
+      "generatedAt": "2026-11-09T11:04:53.858Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-11:membership-teaser",
+      "id": "53427215a4",
+      "title": "無料公開: ダウ理論よくある勘違いで迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-10-what-is-dow-theory-11-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-11.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-11/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-10-what-is-dow-theory-11-public-1.png",
+      "generatedAt": "2026-11-10T11:03:09.269Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-12:membership-teaser",
+      "id": "474d539f31",
+      "title": "無料公開: ダウ理論環境認識との関係で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-11-what-is-dow-theory-12-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-12/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-11-what-is-dow-theory-12-public-1.png",
+      "generatedAt": "2026-11-11T11:00:36.781Z"
+    },
+    {
+      "key": "public:chart/what-is-dow-theory-4:membership-teaser",
+      "id": "fbf9877f76",
+      "title": "無料公開: ダウ理論見方で迷う人が最初に直すこと",
+      "type": "public_teaser",
+      "file": "content/note-automation/drafts/2026-11-12-what-is-dow-theory-4-public-1.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-4.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-4/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-12-what-is-dow-theory-4-public-1.png",
+      "generatedAt": "2026-11-12T11:04:21.014Z"
     }
   ],
   "posted": [
@@ -8223,6 +8475,30 @@
       "publishedAt": "2026-10-28T22:33:19.259Z"
     },
     {
+      "key": "article:basic/what-is-swap-3:premium-checkpoints",
+      "id": "84de7174bc",
+      "title": "限定QUEST: スワップポイント使い方で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-10-29-what-is-swap-3-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-3.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-3/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-29-what-is-swap-3-premium-2.png",
+      "generatedAt": "2026-10-29T11:02:57.263Z",
+      "postedAt": "2026-10-29T11:04:01.708Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nabadb176cece",
+      "publishedAt": "2026-10-29T11:04:01.708Z"
+    },
+    {
       "key": "public:basic/what-is-pips-11:usdjpy-practice",
       "id": "ed5180e266",
       "title": "無料公開: pipsよくある勘違いをドル円で使う3行練習",
@@ -8247,6 +8523,30 @@
       "publishedAt": "2026-10-29T22:29:50.180Z"
     },
     {
+      "key": "article:basic/what-is-swap-6:premium-checkpoints",
+      "id": "84c674df20",
+      "title": "限定QUEST: スワップポイント失敗例で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-10-30-what-is-swap-6-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-6.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-6/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-30-what-is-swap-6-premium-2.png",
+      "generatedAt": "2026-10-30T11:04:28.940Z",
+      "postedAt": "2026-10-30T11:05:35.331Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/ndce8cc2f7f3f",
+      "publishedAt": "2026-10-30T11:05:35.331Z"
+    },
+    {
       "key": "public:basic/what-is-pips-12:usdjpy-practice",
       "id": "a45662ebe7",
       "title": "無料公開: pips環境認識との関係をドル円で使う3行練習",
@@ -8269,6 +8569,174 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n1277e5ed6c15",
       "publishedAt": "2026-10-30T22:27:20.714Z"
+    },
+    {
+      "key": "article:basic/what-is-swap-2:premium-checkpoints",
+      "id": "e9984534a7",
+      "title": "限定QUEST: スワップポイント初心者向け解説で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-10-31-what-is-swap-2-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-2.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-2/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-31-what-is-swap-2-premium-2.png",
+      "generatedAt": "2026-10-31T11:00:35.615Z",
+      "postedAt": "2026-10-31T11:01:35.651Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n44f7b5120b18",
+      "publishedAt": "2026-10-31T11:01:35.651Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-4:usdjpy-practice",
+      "id": "d70e6e5537",
+      "title": "無料公開: pips見方をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-10-31-what-is-pips-4-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-4.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-4/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-10-31-what-is-pips-4-public-practice-1.png",
+      "generatedAt": "2026-10-31T22:29:36.705Z",
+      "postedAt": "2026-10-31T22:30:24.653Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nca47abab5016",
+      "publishedAt": "2026-10-31T22:30:24.653Z"
+    },
+    {
+      "key": "article:basic/what-is-swap-14:premium-checkpoints",
+      "id": "3baf227fcd",
+      "title": "限定QUEST: スワップポイント勝ってる人の考え方で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-01-what-is-swap-14-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-14.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-14/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-01-what-is-swap-14-premium-2.png",
+      "generatedAt": "2026-11-01T10:57:37.127Z",
+      "postedAt": "2026-11-01T10:58:33.288Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nd9f2261211fc",
+      "publishedAt": "2026-11-01T10:58:33.288Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-3:usdjpy-practice",
+      "id": "15ec3226ff",
+      "title": "無料公開: pips使い方をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-01-what-is-pips-3-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-3.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-3/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-01-what-is-pips-3-public-practice-1.png",
+      "generatedAt": "2026-11-01T22:31:17.053Z",
+      "postedAt": "2026-11-01T22:32:06.171Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n6d24a7d866e8",
+      "publishedAt": "2026-11-01T22:32:06.171Z"
+    },
+    {
+      "key": "article:basic/what-is-swap-7:premium-checkpoints",
+      "id": "dd0a3d13f1",
+      "title": "限定QUEST: スワップポイント勝てない原因で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-02-what-is-swap-7-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-7.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-7/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-02-what-is-swap-7-premium-2.png",
+      "generatedAt": "2026-11-02T11:03:45.372Z",
+      "postedAt": "2026-11-02T11:04:46.677Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n1833724536fe",
+      "publishedAt": "2026-11-02T11:04:46.677Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-6:usdjpy-practice",
+      "id": "96cc95b935",
+      "title": "無料公開: pips失敗例をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-02-what-is-pips-6-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-6.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-6/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-02-what-is-pips-6-public-practice-1.png",
+      "generatedAt": "2026-11-02T22:29:19.091Z",
+      "postedAt": "2026-11-02T22:30:08.592Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n1cbc1e982c12",
+      "publishedAt": "2026-11-02T22:30:08.592Z"
+    },
+    {
+      "key": "article:basic/what-is-swap-13:premium-checkpoints",
+      "id": "dbba870ee4",
+      "title": "限定QUEST: スワップポイント損切りとの関係で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-03-what-is-swap-13-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-13.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-13/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-03-what-is-swap-13-premium-2.png",
+      "generatedAt": "2026-11-03T10:55:47.094Z",
+      "postedAt": "2026-11-03T10:56:46.769Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/na45b92d70c8b",
+      "publishedAt": "2026-11-03T10:56:46.769Z"
     },
     {
       "key": "public:basic/what-is-pips-2:usdjpy-practice",
@@ -8343,6 +8811,30 @@
       "publishedAt": "2026-11-04T22:26:54.831Z"
     },
     {
+      "key": "article:basic/what-is-swap-15:premium-checkpoints",
+      "id": "eaf404edbc",
+      "title": "限定QUEST: スワップポイント負ける人の特徴で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-05-what-is-swap-15-premium-2.md",
+      "sourcePath": "src/content/basic/what-is-swap-15.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-swap-15/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-05-what-is-swap-15-premium-2.png",
+      "generatedAt": "2026-11-05T11:04:13.932Z",
+      "postedAt": "2026-11-05T11:05:15.506Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n7a8a394afa57",
+      "publishedAt": "2026-11-05T11:05:15.506Z"
+    },
+    {
       "key": "public:basic/what-is-pips-7:usdjpy-practice",
       "id": "1e711c82bb",
       "title": "無料公開: pips勝てない原因をドル円で使う3行練習",
@@ -8365,6 +8857,78 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n3ff922104df2",
       "publishedAt": "2026-11-05T22:35:55.279Z"
+    },
+    {
+      "key": "article:chart/what-is-dow-theory-10:premium-checkpoints",
+      "id": "f58a7e64db",
+      "title": "限定QUEST: ダウ理論FX初心者が最初に覚えるべき理由で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-06-what-is-dow-theory-10-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-10/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-06-what-is-dow-theory-10-premium-2.png",
+      "generatedAt": "2026-11-06T10:55:40.897Z",
+      "postedAt": "2026-11-06T10:56:49.180Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/ndb6b5b964bcd",
+      "publishedAt": "2026-11-06T10:56:49.180Z"
+    },
+    {
+      "key": "public:basic/what-is-pips-13:usdjpy-practice",
+      "id": "aca53e60ac",
+      "title": "無料公開: pips損切りとの関係をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-06-what-is-pips-13-public-practice-1.md",
+      "sourcePath": "src/content/basic/what-is-pips-13.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/basic/what-is-pips-13/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-06-what-is-pips-13-public-practice-1.png",
+      "generatedAt": "2026-11-06T22:27:40.598Z",
+      "postedAt": "2026-11-06T22:28:34.118Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nf57b94840329",
+      "publishedAt": "2026-11-06T22:28:34.118Z"
+    },
+    {
+      "key": "article:chart/what-is-dow-theory-9:premium-checkpoints",
+      "id": "b889751814",
+      "title": "限定QUEST: ダウ理論おすすめしない場面で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-07-what-is-dow-theory-9-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-9.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-9/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-07-what-is-dow-theory-9-premium-2.png",
+      "generatedAt": "2026-11-07T11:01:51.753Z",
+      "postedAt": "2026-11-07T11:02:57.431Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/necbbf06ade01",
+      "publishedAt": "2026-11-07T11:02:57.431Z"
     },
     {
       "key": "public:basic/what-is-pips-5:usdjpy-practice",
@@ -8391,6 +8955,30 @@
       "publishedAt": "2026-11-07T22:30:43.405Z"
     },
     {
+      "key": "article:chart/what-is-dow-theory-1:premium-checkpoints",
+      "id": "d597317646",
+      "title": "限定QUEST: ダウ理論とは？トレンド判断の基本を初心者向けに解説で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-08-what-is-dow-theory-1-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-1.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-1/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-08-what-is-dow-theory-1-premium-2.png",
+      "generatedAt": "2026-11-08T11:02:29.651Z",
+      "postedAt": "2026-11-08T11:03:35.550Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n17d0ef5156a0",
+      "publishedAt": "2026-11-08T11:03:35.550Z"
+    },
+    {
       "key": "public:basic/what-is-pips-15:usdjpy-practice",
       "id": "1934ec56b8",
       "title": "無料公開: pips負ける人の特徴をドル円で使う3行練習",
@@ -8413,6 +9001,198 @@
       "qualityChecked": true,
       "noteUrl": "https://note.com/hearty_tapir5661/n/n847c2ad8aef8",
       "publishedAt": "2026-11-08T22:33:15.547Z"
+    },
+    {
+      "key": "article:chart/what-is-dow-theory-8:premium-checkpoints",
+      "id": "a6324bbf04",
+      "title": "限定QUEST: ダウ理論の実戦的な使い方で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-09-what-is-dow-theory-8-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-8.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-8/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-09-what-is-dow-theory-8-premium-2.png",
+      "generatedAt": "2026-11-09T11:04:53.858Z",
+      "postedAt": "2026-11-09T11:05:58.207Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/na764f5b64519",
+      "publishedAt": "2026-11-09T11:05:58.207Z"
+    },
+    {
+      "key": "public:chart/what-is-support-resistance-10:usdjpy-practice",
+      "id": "816f94c9f8",
+      "title": "無料公開: サポートラインFX初心者が最初に覚えるべき理由をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-09-what-is-support-resistance-10-public-practice-1.md",
+      "sourcePath": "src/content/chart/what-is-support-resistance-10.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-10/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-09-what-is-support-resistance-10-public-practice-1.png",
+      "generatedAt": "2026-11-09T22:30:29.093Z",
+      "postedAt": "2026-11-09T22:31:30.635Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nfb5f62c03587",
+      "publishedAt": "2026-11-09T22:31:30.635Z"
+    },
+    {
+      "key": "article:chart/what-is-dow-theory-11:premium-checkpoints",
+      "id": "8be94f688c",
+      "title": "限定QUEST: ダウ理論よくある勘違いで「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-10-what-is-dow-theory-11-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-11.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-11/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-10-what-is-dow-theory-11-premium-2.png",
+      "generatedAt": "2026-11-10T11:03:09.269Z",
+      "postedAt": "2026-11-10T11:04:22.147Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nec79f853a8bb",
+      "publishedAt": "2026-11-10T11:04:22.147Z"
+    },
+    {
+      "key": "public:chart/what-is-support-resistance-9:usdjpy-practice",
+      "id": "f1bb7e9ac1",
+      "title": "無料公開: サポートラインおすすめしない場面をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-10-what-is-support-resistance-9-public-practice-1.md",
+      "sourcePath": "src/content/chart/what-is-support-resistance-9.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-9/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-10-what-is-support-resistance-9-public-practice-1.png",
+      "generatedAt": "2026-11-10T22:31:32.126Z",
+      "postedAt": "2026-11-10T22:32:30.105Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/nee8d49d33ba2",
+      "publishedAt": "2026-11-10T22:32:30.105Z"
+    },
+    {
+      "key": "article:chart/what-is-dow-theory-12:premium-checkpoints",
+      "id": "fc8ecfd3b1",
+      "title": "限定QUEST: ダウ理論環境認識との関係で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-11-what-is-dow-theory-12-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-12.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-12/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-11-what-is-dow-theory-12-premium-2.png",
+      "generatedAt": "2026-11-11T11:00:36.781Z",
+      "postedAt": "2026-11-11T11:01:39.171Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n664f3e28e1b8",
+      "publishedAt": "2026-11-11T11:01:39.171Z"
+    },
+    {
+      "key": "public:chart/what-is-support-resistance-1:usdjpy-practice",
+      "id": "e4a7d41d71",
+      "title": "無料公開: サポートラインとは？をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-11-what-is-support-resistance-1-public-practice-1.md",
+      "sourcePath": "src/content/chart/what-is-support-resistance-1.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-1/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-11-what-is-support-resistance-1-public-practice-1.png",
+      "generatedAt": "2026-11-11T22:30:46.638Z",
+      "postedAt": "2026-11-11T22:31:42.104Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n1d3ae36ece38",
+      "publishedAt": "2026-11-11T22:31:42.104Z"
+    },
+    {
+      "key": "article:chart/what-is-dow-theory-4:premium-checkpoints",
+      "id": "07d8965942",
+      "title": "限定QUEST: ダウ理論見方で「入らない判断」を作る実戦手順",
+      "type": "member_article",
+      "file": "content/note-automation/drafts/2026-11-12-what-is-dow-theory-4-premium-2.md",
+      "sourcePath": "src/content/chart/what-is-dow-theory-4.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-4/",
+      "visibility": "members_only",
+      "tags": [
+        "FX初心者",
+        "ドル円",
+        "チャート分析",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-12-what-is-dow-theory-4-premium-2.png",
+      "generatedAt": "2026-11-12T11:04:21.014Z",
+      "postedAt": "2026-11-12T11:05:35.445Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/na4cd602a8e98",
+      "publishedAt": "2026-11-12T11:05:35.445Z"
+    },
+    {
+      "key": "public:chart/what-is-support-resistance-8:usdjpy-practice",
+      "id": "9a466b1d94",
+      "title": "無料公開: サポートラインの実戦的な使い方をドル円で使う3行練習",
+      "type": "public_practice",
+      "file": "content/note-automation/drafts/2026-11-12-what-is-support-resistance-8-public-practice-1.md",
+      "sourcePath": "src/content/chart/what-is-support-resistance-8.md",
+      "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-8/",
+      "visibility": "public",
+      "tags": [
+        "FX初心者",
+        "FX学習",
+        "ドル円",
+        "FX Quest Guild"
+      ],
+      "thumbnail": "content/note-automation/thumbnails/2026-11-12-what-is-support-resistance-8-public-practice-1.png",
+      "generatedAt": "2026-11-12T22:35:13.694Z",
+      "postedAt": "2026-11-12T22:36:12.789Z",
+      "postedMode": "browser_published",
+      "thumbnailSet": true,
+      "qualityChecked": true,
+      "noteUrl": "https://note.com/hearty_tapir5661/n/n70c7a4874436",
+      "publishedAt": "2026-11-12T22:36:12.789Z"
     }
   ]
 }
