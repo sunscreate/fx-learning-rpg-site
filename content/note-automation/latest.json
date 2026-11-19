@@ -1,12 +1,12 @@
 [
   {
-    "key": "public:chart/what-is-support-resistance-11:usdjpy-practice",
-    "id": "9ee3687f65",
-    "title": "無料公開: サポートラインよくある勘違いをドル円で使う3行練習",
-    "type": "public_practice",
-    "file": "content/note-automation/drafts/2026-11-17-what-is-support-resistance-11-public-practice-1.md",
-    "sourcePath": "src/content/chart/what-is-support-resistance-11.md",
-    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-support-resistance-11/",
+    "key": "public:chart/what-is-dow-theory-6:membership-teaser",
+    "id": "d8e7edb5ba",
+    "title": "無料公開: ダウ理論失敗例で迷う人が最初に直すこと",
+    "type": "public_teaser",
+    "file": "content/note-automation/drafts/2026-11-19-what-is-dow-theory-6-public-1.md",
+    "sourcePath": "src/content/chart/what-is-dow-theory-6.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-6/",
     "visibility": "public",
     "tags": [
       "FX初心者",
@@ -14,7 +14,25 @@
       "ドル円",
       "FX Quest Guild"
     ],
-    "thumbnail": "content/note-automation/thumbnails/2026-11-17-what-is-support-resistance-11-public-practice-1.png",
-    "generatedAt": "2026-11-17T22:27:22.594Z"
+    "thumbnail": "content/note-automation/thumbnails/2026-11-19-what-is-dow-theory-6-public-1.png",
+    "generatedAt": "2026-11-19T10:56:28.079Z"
+  },
+  {
+    "key": "article:chart/what-is-dow-theory-6:premium-checkpoints",
+    "id": "b979244b7c",
+    "title": "限定QUEST: ダウ理論失敗例で「入らない判断」を作る実戦手順",
+    "type": "member_article",
+    "file": "content/note-automation/drafts/2026-11-19-what-is-dow-theory-6-premium-2.md",
+    "sourcePath": "src/content/chart/what-is-dow-theory-6.md",
+    "sourceUrl": "https://sunscreate.github.io/fx-learning-rpg-site/category/chart/what-is-dow-theory-6/",
+    "visibility": "members_only",
+    "tags": [
+      "FX初心者",
+      "ドル円",
+      "チャート分析",
+      "FX Quest Guild"
+    ],
+    "thumbnail": "content/note-automation/thumbnails/2026-11-19-what-is-dow-theory-6-premium-2.png",
+    "generatedAt": "2026-11-19T10:56:28.079Z"
   }
 ]
